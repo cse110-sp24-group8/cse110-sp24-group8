@@ -16,6 +16,8 @@
   - 3rd Year Math-CS
 - ### Joshua Chen (Developer)
 - ### Nicholas Nguyen (Developer)
+  - [Nicholas' GitHub](https://github.com/nicholas-ngyn)
+  - 2nd Year CS
 - ### Samvathna Em (Developer)
   - [Sam's GitHub](https://github.com/SamvathnaEm)
   - 3rd Year CS
