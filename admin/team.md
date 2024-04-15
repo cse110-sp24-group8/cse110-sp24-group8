@@ -22,3 +22,5 @@
   - [Sam's GitHub](https://github.com/SamvathnaEm)
   - 3rd Year CS
 - ### Ulises Salinas (Developer)
+  - [Ulises's GitHub](https://github.com/ulises0516)
+  - 2nd Year CS
