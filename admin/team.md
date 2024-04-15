@@ -17,4 +17,6 @@
 - ### Joshua Chen (Developer)
 - ### Nicholas Nguyen (Developer)
 - ### Samvathna Em (Developer)
+  - [Sam's GitHub](https://github.com/SamvathnaEm)
+  - 3rd Year CS
 - ### Ulises Salinas (Developer)
