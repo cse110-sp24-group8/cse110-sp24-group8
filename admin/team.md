@@ -15,6 +15,8 @@
   - [Eric's GitHub](https://github.com/erhuang623)
   - 3rd Year Math-CS
 - ### Joshua Chen (Developer)
+  - [Joshua's GitHub](https://github.com/jochshen)
+  -   2nd Year CS
 - ### Nicholas Nguyen (Developer)
   - [Nicholas' GitHub](https://github.com/nicholas-ngyn)
   - 2nd Year CS
