@@ -2,7 +2,7 @@
 
 ## Team Brand:
 
-![Sunshine LeBron James](/images/LeCoders%20Logo.png)
+![Sunshine LeBron James](branding/images/LeCoders%20Logo.png)
 
 ### Team Mascot: Sunshine LeBron
 ![image](https://github.com/kevku/cse110-sp24-group8/assets/122563165/2a9abb30-57bd-4b19-85f8-134ac5a84355)
