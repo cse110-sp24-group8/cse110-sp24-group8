@@ -24,7 +24,8 @@
   - [Arthur's Github](https://github.com/cheung-arthur)
   - 2nd Year CS
 - ### Brandon Luu (Developer)
-    - [Brandon's Github]()
+    - [Brandon's Github](https://github.com/b1luu)
+    - 2nd Year CS
 - ### Eric Huang (Developer)
   - [Eric's GitHub](https://github.com/erhuang623)
   - 3rd Year Math-CS
