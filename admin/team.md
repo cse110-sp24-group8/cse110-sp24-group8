@@ -2,15 +2,28 @@
 
 ## Team Brand:
 
-## Values: LeBron
+![Sunshine LeBron James](/images/LeCoders%20Logo.png)
+
+### Team Mascot: Sunshine LeBron
+
+## Values: 
+- Respect: No matter what disagreements our team may face, we vow to respect each others ideas and opinions regardless of what direction our team chooses to go towards.
+- Collaboration: As a team, we will work together to achieve our goals. Team members are willing to help and teach each other in time of need. 
+- Communication: Our team is committed to work through our problems and to resolve issues through communicating with each other
+- Challenge: Our team will face many challenges and will try to overcome them to the best of our ability. Team members will persevere through hardships together.
+- Learning: The team will encourage and foster a learning community. Each team member should strive to help each other learn and enlighten, rather than judge.
 
 ## Roster:
 - ### Kaustubh Paliwal (Team Lead)
+  - [Kaustubh's Github]()
 - ### Kevin Kuang (Team Lead)
   - [Kevin's GitHub](https://github.com/kevku)
   - 3rd Year Math-CS
 - ### Arthur Cheung (Designer)
+  - [Arthur's Github](https://github.com/cheung-arthur)
+  - 2nd Year CS
 - ### Brandon Luu (Developer)
+    - [Brandon's Github]()
 - ### Eric Huang (Developer)
   - [Eric's GitHub](https://github.com/erhuang623)
   - 3rd Year Math-CS
