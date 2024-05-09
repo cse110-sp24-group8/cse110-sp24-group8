@@ -1,4 +1,4 @@
-# Design/Project Logistics Meeting 
+Project Logistics Meeting 
 ## Team 8
 
 **Type of meeting held:** Online
