@@ -26,5 +26,5 @@
 4. *TA Jash mentioned to start coding ASAP, something to keep in mind*
 5. KP and Kevin start creating GitHub issues after design
 6. Kevin leads HTML/CSS, calls Josh's team to start help coding HTML/CSS after design and issues
-7. Keep upcoming assignments in mind ***adr*** and ***CI/CD*** pipeline 
-## When did the meeting finish: 10:40pm
+7. Keep upcoming assignments in mind: ***adr*** and ***CI/CD*** pipeline 
+## When did the meeting finish: 10:46pm
