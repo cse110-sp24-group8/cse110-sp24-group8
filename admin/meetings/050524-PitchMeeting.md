@@ -32,5 +32,5 @@ Pages will be assigned tomorrow and each person will need to complete one(diagra
 
 ## Feedback: If there is any feedback feel free to DM KP or Kevin directly
 
-## Meeting Finished: 11:33pm
+## Meeting Finished: 7:30pm
 
