@@ -32,4 +32,5 @@
    - Design Team Meeting (Arthur and Nick and KP) - This Friday
    - Present timeline to TA (KP & Kevin) - Next Week Wed
    - CI/CD Assignment (Josh/Brandon/Ulisses) - This Sunday
+   - Present timeline to TA (KP & Kevin) - Next Week Wed
 ## When did the meeting finish: 11:00pm
