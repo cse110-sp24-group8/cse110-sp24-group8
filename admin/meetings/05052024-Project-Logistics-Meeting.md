@@ -11,9 +11,7 @@ Project Logistics Meeting
 - Eric Nguyen
 - Sam
 - Ulisses
-
-- ## Absent: 
-- Brandon
+- Brandon 
 
 
 ## When and Where was meeting held: On Discord @ 10:00pm
