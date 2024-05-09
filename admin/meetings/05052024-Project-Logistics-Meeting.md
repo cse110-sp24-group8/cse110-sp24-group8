@@ -31,4 +31,5 @@ Project Logistics Meeting
    - Present timeline to TA (KP & Kevin) - Next Week Wed
    - CI/CD Assignment (Josh/Brandon/Ulisses) - This Sunday
    - Present timeline to TA (KP & Kevin) - Next Week Wed
+9. Meeting on Saturday for design 
 ## When did the meeting finish: 11:10pm
