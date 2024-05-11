@@ -1,29 +1,59 @@
 name:  CI/CD pipeline
 run-name: ${{ github.actor }}
-on: [push]
+
+#Specifies the events that trigger the workflow, triggers on all pushes and pull requests
+on: [push, pull_request]
+
+# Defines a job ('build-and-test') that runs on the latest Ubuntu runner available on GitHub Actions
 jobs:
-  check-bats-version:
+  build-and-test:
+    # Checks out the source code of the repository to the runner's file system
     runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v4 # using version 4 of Actions
+      # Sets up a specified version of Node.js on the runner, which is necessary to run Node.js applications
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+          cache: 'npm' # Caches npm modules to speed up subsequent workflow runs
+          
+        # Installs the project dependencies defined in package.json using npm
       - name: Install Dependencies
         run: npm install
         
-      - name: Install dependencies
-        run: npm install
-        
-      - name: Lint
+        # Runs the linter to check for syntax and style issues
+      - name: Run Lint
         run: npm run lint
         
-      - name: Run tests
-        run: npm test
+        # Runs unit tests defined in our project
+      - name: Run Unit tests
+        run: npm test # have to include path to run the specfic tests
         
+        # Generates documentation from your source code, typically using a tool like JSDoc
       - name: Generate Documentation
         run: npm run docs
+        
+        # Deploys the generated documentation to the 'gh-pages' branch of your GitHub repository
+      - name: Deploy Documentation
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add docs
+          git commit -m "Update documentation"
+          git push origin gh-pages
+          
+        # Integrates with Code Climate to perform code quality checks and potentially report on code coverage
+      - name: Code Quality Check
+        uses: paambaati/codeclimate-action@v2.7.5 # Uses a specific version of the Code Climate GitHub Action.
+        env:
+          # Set CC_TEST_REPORTER_ID via repository secrets
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }} # Uses a secret token for Code Climate authentication
+        with:
+          coverageCommand: npm run coverage # Specifies the command to run to collect coverage dat
+          debug: true
+
+      
         
 
           
