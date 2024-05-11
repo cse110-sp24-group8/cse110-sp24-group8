@@ -1,0 +1,29 @@
+name:  CI/CD pipeline
+run-name: ${{ github.actor }}
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v4 # using version 4 of Actions
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Lint
+        run: npm run lint
+        
+      - name: Run tests
+        run: npm test
+        
+      - name: Generate Documentation
+        run: npm run docs
+        
+
+          
