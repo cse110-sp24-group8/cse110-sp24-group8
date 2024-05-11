@@ -1,7 +1,7 @@
-"scripts": {
+{
+  "scripts": {
     "docs": "jsdoc -c jsdoc.json",
-    "lint": "eslint 'src/**/*.js'",  
-    "test": "jest --coverage"           
+    "lint": "eslint 'src/**/*.js'",
+    "test": "jest --coverage"
   }
-
-  
+}

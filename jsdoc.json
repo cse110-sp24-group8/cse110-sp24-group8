@@ -2,7 +2,7 @@
     "source": {
       "include": ["src"], 
       "exclude": ["nodemodules"], 
-      "includePattern": ".+\.js(doc|x)?$", 
+      "includePattern": ".+\\js(doc|x)?$", 
       "excludePattern": "(^|\/|\\)"
     },
     "plugins": [],
