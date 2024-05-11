@@ -1,57 +1,50 @@
-name:  CI/CD pipeline
+name: CI/CD Pipeline
 run-name: ${{ github.actor }}
 
-#Specifies the events that trigger the workflow, triggers on all pushes and pull requests
+# Specifies the events that trigger the workflow: triggers on all pushes and pull requests
 on: [push, pull_request]
 
-# Defines a job ('build-and-test') that runs on the latest Ubuntu runner available on GitHub Actions
 jobs:
   build-and-test:
-    # Checks out the source code of the repository to the runner's file system
     runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v4 # using version 4 of Actions
-      # Sets up a specified version of Node.js on the runner, which is necessary to run Node.js applications
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Using version 4 of the checkout action
+        
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
-          cache: 'npm' # Caches npm modules to speed up subsequent workflow runs
-          
-        # Installs the project dependencies defined in package.json using npm
+          node-version: '14'  # Specifies Node.js version 14
+          cache: 'npm'  # Caches npm modules to speed up subsequent workflow runs
+      
       - name: Install Dependencies
-        run: npm install
-        
-        # Runs the linter to check for syntax and style issues
+        run: npm install  # Installs the project dependencies defined in package.json using npm
+      
       - name: Run Lint
-        run: npm run lint
-        
-        # Runs unit tests defined in our project
-      - name: Run Unit tests
-        run: npm test # have to include path to run the specfic tests
-        
-        # Generates documentation from your source code, typically using a tool like JSDoc
+        run: npm run lint  # Runs the linter to check for syntax and style issues
+      
+      - name: Run Unit Tests
+        run: npm test  # Runs unit tests defined in the project; you can specify a path to run specific tests
+      
       - name: Generate Documentation
-        run: npm run docs
-        
-        # Deploys the generated documentation to the 'gh-pages' branch of your GitHub repository
+        run: npm run docs  # Generates documentation from your source code, typically using a tool like JSDoc
+      
       - name: Deploy Documentation
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
           git add docs
           git commit -m "Update documentation"
-          git push origin gh-pages
-          
-        # Integrates with Code Climate to perform code quality checks and potentially report on code coverage
+          git push origin gh-pages  # Deploys the generated documentation to the 'gh-pages' branch of your GitHub repository
+      
       - name: Code Quality Check
-        uses: paambaati/codeclimate-action@v2.7.5 # Uses a specific version of the Code Climate GitHub Action.
+        uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
         env:
-          # Set CC_TEST_REPORTER_ID via repository secrets
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }} # Uses a secret token for Code Climate authentication
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
         with:
-          coverageCommand: npm run coverage # Specifies the command to run to collect coverage dat
-          debug: true
+          coverageCommand: npm run coverage  # Specifies the command to run to collect coverage data
+          debug: true  # Enables debug output for the action
+
 
       
         
