@@ -6,9 +6,6 @@ export default [
   pluginJs.configs.recommended,
   {
     rules: {
-      "prettier/prettier": "error",
-    },
-    rules: {
       "consistent-return": 2,
       indent: [1, 4],
       "no-else-return": 1,
