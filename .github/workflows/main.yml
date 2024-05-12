@@ -22,15 +22,14 @@ jobs:
         run: npm run docs  # Generates documentation from your source code, typically using a tool like JSDoc
       - name: Deploy Documentation
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git fetch --depth=1 origin gh-pages  # Fetches the gh-pages branch
-          git checkout gh-pages  # Checks out the gh-pages branch
-          cp -R ./docs/* .  # Copies new docs over
+          cp -R ./docs/* .
           git add .
-          git commit -m "Update documentation"
-          git push origin gh-pages
-        
+          if git commit -m "Update documentation"; then
+            git push origin gh-pages
+          else
+            echo "No changes to commit"
+          fi
+        shell: /usr/bin/bash -e {0}
       - name: Code Quality Check
         uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
         env:
