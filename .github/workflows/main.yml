@@ -23,6 +23,8 @@ jobs:
       - name: Deploy Documentation
         run: |
           cp -R ./docs/* .
+          git config --global user.email "ulisessalinas0516@gmail.com"
+          git config --global user.name "Ulises Salinas"
           git add .
           if git commit -m "Update documentation"; then
             git push origin gh-pages
