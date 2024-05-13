@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1715559160935" clover="3.2.0">
+  <project timestamp="1715559160935" name="All files">
+    <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2" elements="8" coveredelements="8" complexity="0" loc="4" ncloc="4" packages="1" files="2" classes="2"/>
+    <file name="fibonacci.js" path="/Users/ulises/cse110-sp24-group8/src/scripts/fibonacci.js">
+      <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="3" count="181" type="cond" truecount="2" falsecount="0"/>
+      <line num="4" count="92" type="stmt"/>
+      <line num="6" count="89" type="stmt"/>
+    </file>
+    <file name="script.js" path="/Users/ulises/cse110-sp24-group8/src/scripts/script.js">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

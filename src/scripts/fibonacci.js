@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
-function fibonacci(n) {
+
+export function fibonacci(n) {
     if (n <= 1) {
         return n;
     }
