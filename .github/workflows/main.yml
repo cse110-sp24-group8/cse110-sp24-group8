@@ -27,7 +27,7 @@ jobs:
           git config --global user.name "Ulises Salinas"
           git add .
           if git commit -m "Update documentation"; then
-            git push origin gh-pages
+            git push
           else
             echo "No changes to commit"
           fi
