@@ -1,6 +1,11 @@
 # Specifies the events that trigger the workflow: triggers on all pushes and pull requests
 on: [push, pull_request]
 
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
