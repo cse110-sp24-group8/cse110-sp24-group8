@@ -1,5 +1,8 @@
 version: "2"
 checks:
+  method-complexity:
+    config:
+      threshold: 4 
   method-count:
     config:
       threshold: 20
