@@ -30,7 +30,7 @@ jobs:
           git push origin HEAD:main
         shell: /usr/bin/bash -e {0}
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Code Quality Check
         uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
         env:
