@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715559160935" clover="3.2.0">
-  <project timestamp="1715559160935" name="All files">
-    <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2" elements="8" coveredelements="8" complexity="0" loc="4" ncloc="4" packages="1" files="2" classes="2"/>
+<coverage generated="1715560258783" clover="3.2.0">
+  <project timestamp="1715560258783" name="All files">
+    <metrics statements="13" coveredstatements="7" conditionals="10" coveredconditionals="4" methods="3" coveredmethods="3" elements="26" coveredelements="14" complexity="0" loc="13" ncloc="13" packages="1" files="3" classes="3"/>
     <file name="fibonacci.js" path="/Users/ulises/cse110-sp24-group8/src/scripts/fibonacci.js">
       <metrics statements="3" coveredstatements="3" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <line num="3" count="181" type="cond" truecount="2" falsecount="0"/>
       <line num="4" count="92" type="stmt"/>
       <line num="6" count="89" type="stmt"/>
+    </file>
+    <file name="inefficient_code.js" path="/Users/ulises/cse110-sp24-group8/src/scripts/inefficient_code.js">
+      <metrics statements="9" coveredstatements="3" conditionals="8" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="2" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="3" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="4" count="3" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="8" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
     </file>
     <file name="script.js" path="/Users/ulises/cse110-sp24-group8/src/scripts/script.js">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

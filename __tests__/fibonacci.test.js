@@ -1,4 +1,4 @@
-import { fibonacci } from "../src/scripts/fibonacci"// Adjust the path as necessary
+import { fibonacci } from "../src/scripts/fibonacci";// Adjust the path as necessary
 
 describe('Fibonacci Function', () => {
   test('calculates correct Fibonacci value for 1', () => {

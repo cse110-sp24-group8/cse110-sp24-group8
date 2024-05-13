@@ -11,4 +11,4 @@ checks:
       threshold: 250
 exclude_patterns:
   - "**/*"  # Exclude all files initially
-  - "!src/scripts/main/public/js/**/*"  # Explicitly include your desired directory
+  #- "!src/scripts/main/public/js/**/*"  # Explicitly include your desired directory

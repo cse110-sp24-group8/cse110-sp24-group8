@@ -1,4 +1,4 @@
-function complexFunction(num) {
+export function complexFunction(num) {
     if (num > 10) {
         if (num < 20) {
             return num * 2;
