@@ -27,11 +27,13 @@ jobs:
           git config --global user.name "Ulises Salinas"
           git add .
           if git commit -m "Update documentation"; then
-            git push origin gh-pages
+            git push
           else
             echo "No changes to commit"
           fi
         shell: /usr/bin/bash -e {0}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Code Quality Check
         uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
         env:
