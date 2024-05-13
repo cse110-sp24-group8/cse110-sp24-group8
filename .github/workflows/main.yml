@@ -1,5 +1,13 @@
 # Specifies the events that trigger the workflow: triggers on all pushes and pull requests
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
 
 permissions:
   pull-requests: write
