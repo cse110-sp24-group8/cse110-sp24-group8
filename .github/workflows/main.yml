@@ -36,10 +36,9 @@ jobs:
         run: npm run docs  # Generates documentation from your source code, typically using a tool like JSDoc
       - name: Deploy Documentation
         run: |
-          cp -R ./docs/* .
           git config --global user.email "ulisessalinas0516@gmail.com"
           git config --global user.name "Ulises Salinas"
-          git add .
+          git add docs/
           git commit -m "Update documentation" || echo "No changes to commit"
           git push origin HEAD:main
         shell: /usr/bin/bash -e {0}
