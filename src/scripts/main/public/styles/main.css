@@ -28,8 +28,12 @@ main {
   background-color: var(--lecoder-purple, purple);
 }
 
-/* The div and h2 is the logo/name */
-.sidebar  div{
+/* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
+.sidebar nav{
+  display: flex;
+}
+
+.sidebar div{
   display: flex;
 }
 
@@ -38,7 +42,7 @@ main {
   
 }
 
-/* Styles the buttons*/
+/* Styles the buttons with the id "sideButtons"*/
 .sideButton {
   /* style to default button */
   border: none;

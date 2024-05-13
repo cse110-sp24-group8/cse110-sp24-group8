@@ -8,10 +8,12 @@
 
 #dashboardHolder {
   display: grid;
+  grid-gap: 0;
   flex: 4;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  padding: 10px;;
+  padding: 0px;
+  
 }
 
 #dashboardHolder > * {
@@ -25,6 +27,7 @@ h2 {
 
 #dueSoonContainer {
   background-color: var(--lecoder-gold,gold);
+  background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 #dueSoonContainer h3, ul{
@@ -38,7 +41,8 @@ h2 {
 }
 
 #progressContainer {
-  background-color: var(--lecoder-purple, purple);
+  background-color: var(--lecoder-purple, purple); 
+  background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -90,7 +94,8 @@ h2 {
 }
 
 #codeUpdateContainer {
-  background-color: var(--lecoder-purple, purple);
+  background-color: var(--lecoder-purple, purple); 
+  background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
   grid-column: span 2;
 }
 
@@ -111,3 +116,5 @@ h2 {
   align-content: center;
   justify-content: space-around;
 }
+
+
