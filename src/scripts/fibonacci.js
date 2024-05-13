@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function fibonacci(n) {
     if (n <= 1) {
         return n;
