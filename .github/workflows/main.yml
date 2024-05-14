@@ -40,4 +40,4 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
         with:
           coverageCommand: npm run coverage  # Specifies the command to run to collect coverage data
-          debug: true  # Enables debug output for the action
+          debug: true  # Enables debug output for the actions
