@@ -3,118 +3,118 @@
 @import url(main.css);
 
 * {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 #dashboardHolder {
-  display: grid;
-  grid-gap: 0;
-  flex: 4;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  padding: 0px;
-  
+    display: grid;
+    flex: 4;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    padding: 10px;
 }
 
 #dashboardHolder > * {
-  margin: 20px;
-  border-radius: 10px;
+    margin: 20px;
+    border-radius: 10px;
 }
 
 h2 {
-  font-size: 36px;
+    font-size: 36px;
 }
 
 #dueSoonContainer {
-  background-color: var(--lecoder-gold,gold);
-  background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background-color: var(--lecoder-gold, gold);
+    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
-#dueSoonContainer h3, ul{
-  margin-left: 1em;
-  color: var(--lecoder-purple, purple);
+#dueSoonContainer h3,
+ul {
+    margin-left: 1em;
+    color: var(--lecoder-purple, purple);
 }
 
-#dueSoonContainer h2{
-  text-align: center;
-  color: var(--lecoder-purple, purple);
+#dueSoonContainer h2 {
+    text-align: center;
+    color: var(--lecoder-purple, purple);
 }
 
 #progressContainer {
-  background-color: var(--lecoder-purple, purple); 
-  background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    background-color: var(--lecoder-purple, purple);
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.left-panel-progress strong{
-  padding: 1em;
-  color: white;
-  font-size: large;
-  width: 100%;
+.left-panel-progress strong {
+    padding: 1em;
+    color: white;
+    font-size: large;
+    width: 100%;
 }
 
 .left-panel-progress {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
 }
 
 .progress-container {
-  position: relative;
-  width: 100%;
+    position: relative;
+    width: 100%;
 }
 
 .progress-circle {
-  width: 100%;
-  height: 100%;
-  padding: 1em;
+    width: 100%;
+    height: 100%;
+    padding: 1em;
 }
 
 .progress {
-  transition: stroke-dasharray 2s;
-  animation: progressAnimation 2s forwards;
+    transition: stroke-dasharray 2s;
+    animation: progressAnimation 2s forwards;
 }
 
 /* Change the value of the to: stroke-dash array 141.5
    for the length of the progress bar. The number is calculated
    by (percent of the circle covered * 283 (circumference) = length)*/
 @keyframes progressAnimation {
-  from {
-    stroke-dasharray: 0 283;
-    stroke-dashoffset: 0;
-  }
-  to {
-    stroke-dasharray: 141.5 283;
-    stroke-dashoffset: 0;
-  }
+    from {
+        stroke-dasharray: 0 283;
+        stroke-dashoffset: 0;
+    }
+    to {
+        stroke-dasharray: 141.5 283;
+        stroke-dashoffset: 0;
+    }
 }
 
 #codeUpdateContainer {
-  background-color: var(--lecoder-purple, purple); 
-  background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
-  grid-column: span 2;
+    background-color: var(--lecoder-purple, purple);
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+    grid-column: span 2;
 }
 
 #codeUpdateWithButtons {
-  display: flex;
-  align-content: center;
-  justify-content: space-around;
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
 }
 
-#codeUpdateContainer  li, #codeUpdateContainer > h2 {
-  color: white;
-  margin-left: 1em;
+#codeUpdateContainer li,
+#codeUpdateContainer > h2 {
+    color: white;
+    margin-left: 1em;
 }
 
 #codeUpdateButtons {
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: space-around;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
 }
 
 
