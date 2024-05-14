@@ -25,6 +25,7 @@ h2 {
 
 #dueSoonContainer {
     background-color: var(--lecoder-gold, gold);
+    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 #dueSoonContainer h3,
@@ -40,6 +41,7 @@ ul {
 
 #progressContainer {
     background-color: var(--lecoder-purple, purple);
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,6 +94,7 @@ ul {
 
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
     grid-column: span 2;
 }
 
@@ -113,3 +116,5 @@ ul {
     align-content: center;
     justify-content: space-around;
 }
+
+

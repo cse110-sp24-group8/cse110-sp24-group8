@@ -31,13 +31,18 @@ main {
 /* The div and h2 is the logo/name */
 .sidebar div {
     display: flex;
+  
+/* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
+.sidebar nav{
+  display: flex;
+}
 }
 
 .sidebar h2 {
     color: white;
 }
 
-/* Styles the buttons*/
+/* Styles the buttons with the id "sideButtons"*/
 .sideButton {
     /* style to default button */
     border: none;
