@@ -1,0 +1,211 @@
+/*background- scrolling prevention*/
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.to-do-list .div {
+  overflow: hidden;
+  width: 100%;  /* responsive width */
+  height: 100vh;
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: auto;  /* centers the div horizontally */
+  margin-left: auto;
+}
+
+.tasks-container {
+  position: relative;  
+  padding: 10px;  
+  min-height: 100%;  
+  overflow-y: auto;
+}
+
+.to-do-list .overlap {
+  position: relative;
+  width: calc(100% - 20%);  /* 90% of the parent container */
+  height: 63px;
+  top: 100px;
+  left: 5%;  /* adjust left as percentage for better responsiveness */
+  background-color: #fdb927;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.to-do-list .group {
+  position: relative;
+  width: 163px;
+  height: 24px;
+  top: 20px;
+  left: 26px;
+}
+
+.group
+{
+  margin: 10px;
+}
+
+.to-do-list .rectangle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: 0;
+  background-color: #f6f6f6;
+  border-radius: 3px;
+}
+
+.to-do-list .text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  font-family: "Segoe UI-Bold", Helvetica;
+  font-weight: 700;
+  color: #552583;
+  font-size: 18px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+
+/* plus button (add task-list)*/
+.to-do-list .union-wrapper {
+  position: fixed;
+  width: 69px;
+  height: 69px;
+  top: 85%;
+
+  left: calc(50% + 100px);  /* Adjust this value to find the perfect spot */
+  transform: translate(-50%, -50%);
+  background-color: var(--variable-collection-laker-purple);
+  border-radius: 34.5px;
+  box-shadow: 2px 2px 15px #0000004c;
+}
+
+.union-wrapper:hover
+{
+  background-color: rgb(88, 101, 174);
+}
+
+.to-do-list .union {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 20px;
+  left: 20px;
+}
+
+.button-style {
+  background: grey;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-style:focus {
+  outline: none;  /* Removes the focus outline to keep the style clean */
+}
+
+.button-style:hover {
+  background-color: #ececec;  /* Light grey background on hover */
+}
+
+/* Hide the actual checkbox input */
+.rectangle-checkbox, .rectangle-2-checkbox {
+  display: none;
+}
+
+/* Basic checkbox styling remains the same */
+.rectangle, .rectangle-2 {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #f6f6f6;
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+}
+
+.rectangle-checkbox, .rectangle-2-checkbox {
+  display: none;
+}
+
+.rectangle::before, .rectangle-2::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+
+.rectangle-checkbox:checked + .rectangle::before,
+.rectangle-2-checkbox:checked + .rectangle-2::before {
+  display: block;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Adding strike-through effect */
+.text-wrapper{
+  position: relative;
+  transition: color 0.3s;
+}
+
+.text-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+  border-top: 2px solid red; /* Color of the strike-through line */
+  transform: scale(0);
+  transform-origin: left center;
+  transition: transform 0.3s;
+}
+
+
+.rectangle-checkbox:checked + .rectangle + .text-wrapper::after,
+.rectangle-2-checkbox:checked + .rectangle-2 + .text-wrapper::after{
+  transform: scale(1);
+}
+
+.text-wrapper:hover {
+  color: #888; /* Optional: change text color on hover */
+}
+
+.blur-effect {
+  filter: blur(1px);
+  transition: filter 0.3s ease;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 130px; /* Adjust as necessary to position correctly within the task bar */
+  top: 50%; /* Center vertically within the task bar */
+  transform: translateY(-50%); /* Ensure it's centered no matter the height */
+  background: none; /* Remove any background */
+  border: none; /* Remove borders */
+  color: red;
+  cursor: pointer;
+  font-size: 24px; /* Adjust size as necessary */
+  padding: 0; /* Remove padding */
+}
+
+.delete-btn:hover {
+  background-color: darkred;
+}
