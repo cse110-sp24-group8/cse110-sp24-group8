@@ -1,0 +1,233 @@
+/* team_calendar.css */
+@import url(main.css);
+:root {
+  --Linear-Laker-Gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+}
+* {
+    font-size: 18px;
+}
+.content-holder {
+  margin-top: -80px; 
+}
+#dashboardHolder {
+  display: grid;
+  flex: 4;
+  grid-template-rows: auto auto;
+  padding: 10px;
+  align-items: center; /* Vertically center items */
+  justify-items: center; /* Horizontally center items */
+}
+#dashboardHolder > * {
+    margin: 10px;
+}
+h2 {
+    font-size: 36px;
+}
+.date {
+  color: #515070;
+  font-family: "Segoe UI";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px;
+}
+#month_controls{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  line-height: 20px;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.3s;
+}
+
+/* Calendar settings */
+#calendar {
+  font-weight: bold;
+  border-style: solid;
+  padding: 3.2%;
+  position: relative;
+  width: 1003px;
+  height: 43px;
+  margin-bottom: 40px;
+  
+  flex-shrink: 0;
+  border-collapse: separate;
+  /* change border color */
+  /* border-color: black;*/
+  border:none;
+}
+#calendar th, #calendar td {
+  border: none;
+  text-align: center;
+  padding: 15px;
+  color: #515070;
+  text-align: center;
+  font-family: "Segoe UI";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 157.143% */
+}
+#calendar th {
+  background-color: #ffffff;
+  color: rgba(81, 80, 112, 0.60);
+  font-family: "Segoe UI";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700px;
+  line-height: 12px; /* 120% */
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+#calendar td {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#calendar td:hover {
+  border-radius: 106px;
+  background:  var(--Linear-Laker-Gold);
+  color: white;
+}
+/* Color is super weird does not work*/
+#calendar-details {
+  margin-top: -90px;
+  padding: 20px;
+  /*background-color: var(--lecoder-gold, gold);*/
+  background: var(--Linear-Laker-Gold);
+  /* background: linear-gradient(160deg, #ffce65 9.51%, #FDB927 86.81%);*/
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#calendar-details .icon {
+  margin-top:80px;
+  width: 58px;
+  height: 61px;
+  flex-shrink: 0;
+}
+.message {
+  color: #515070;
+  font-family: "Segoe UI";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+}
+.icon-button a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #000;
+}
+#prev_month {
+  left: 120px; /* Adjust as needed */
+}
+
+#next_month {
+  right: 120px; /* Adjust as needed */
+}
+/* "text" of circle button for prevMonth and nextMonth */
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 4px 16px;
+}
+/* Changing the color of the arrow when you hover them insuinating a "click"*/
+a:hover {
+  background: var(--Linear-Laker-Gold, linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%));
+  color: rgb(0, 0, 0);
+} 
+/* controls circle shap you see on the website for the "back" option*/
+.previous {
+  background-color: #ffffff;
+  color: white;
+}
+/* controls circle shap you see on the website for the "forward" option*/
+.next {
+  background-color: #ffffff;
+  color: white;
+}
+/* gets the round shape of the back and forward buttons */
+.round {
+  border-radius: 50%;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  #calendar {
+    width: 90%;
+  }
+
+  .content-holder {
+    margin-top: 0;
+    padding-top: 20px;
+  }
+
+  #calendar-details .icon {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  #calendar {
+    width: 100%;
+    padding: 1%;
+  }
+
+  #month_controls {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .icon-button {
+    position: static;
+    margin: 10px 0;
+  }
+
+  #calendar-details {
+    margin-top: -20px;
+  }
+
+  #calendar-details .icon {
+    width: 48px;
+    height: 51px;
+  }
+
+  .message {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 28px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  #calendar th, #calendar td {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  #calendar-details .icon {
+    width: 38px;
+    height: 41px;
+  }
+
+  .message {
+    font-size: 14px;
+  }
+}
