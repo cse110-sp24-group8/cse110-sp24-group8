@@ -1,0 +1,26 @@
+/* code-log.css */
+
+#codeLogHolder {
+    padding: 20px;
+    background-color: #fff;
+    position: relative; /* Ensure relative positioning for the button */
+    height: 100%; /* Full height for the container */
+  }
+  
+  .add-log-btn {
+    font-size: 48px; /* Increase font size for a larger plus sign */
+    background-color: var(--lecoder-purple, #552583); /* Use the same purple color */
+    color: var(--lecoder-gold, #FDB927); /* Set the color to yellow */
+    border: none;
+    border-radius: 50%;
+    width: 80px; /* Increase width to accommodate larger plus sign */
+    height: 80px; /* Increase height to accommodate larger plus sign */
+    position: fixed; /* Fixed position for the button */
+    bottom: 20px; /* 20px from the bottom */
+    right: 20px; /* 20px from the right */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
