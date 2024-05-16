@@ -8,7 +8,7 @@
   }
   
   .add-log-btn {
-    font-size: 48px; /* Increase font size for a larger plus sign */
+    font-size: 55px; /* Increase font size for a larger plus sign */
     background-color: var(--lecoder-purple, #552583); /* Use the same purple color */
     color: var(--lecoder-gold, #FDB927); /* Set the color to yellow */
     border: none;
