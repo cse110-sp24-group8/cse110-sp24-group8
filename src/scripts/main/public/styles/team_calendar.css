@@ -102,6 +102,7 @@ h2 {
   /* padding: 20px; */
   /*background-color: var(--lecoder-gold, gold);*/
   background: linear-gradient(to top,  #ffae00 75%, rgba(250, 210, 102, 0.722)  99%);
+  overflow-x: hidden;
   /* background: linear-gradient(360deg, rgba(253, 185, 39, 0.60) 10.51%, #ffae00 95%); */
   /* background: linear-gradient(160deg, #ffce65 9.51%, #FDB927 86.81%);*/
   display: flex;
@@ -109,6 +110,7 @@ h2 {
   align-items: center;
   width: 100%;
   height: 100%;
+  z-index: 3;
 }
 #calendar-details .icon {
   margin-top: 80px;
@@ -116,6 +118,19 @@ h2 {
   height: 61px;
   flex-shrink: 0;
 }
+#calendarBody td:not(:empty) {
+  user-select: auto;
+}
+#calendarBody td:empty:hover {
+  background: white; 
+  user-select: none;
+  cursor: auto;
+  /* need to fix, maybe javascript to not active hover on empty cells  */
+  background-color: transparent;
+  border-radius: 0%;
+
+}
+
 .message {
   color: #515070;
   font-family: 'Segoe UI';
@@ -173,9 +188,9 @@ a:hover {
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
-  #calendar {
+  /* #calendar {
     width: 90%;
-  }
+  } */
 
   .content-holder {
     margin-top: 0;
