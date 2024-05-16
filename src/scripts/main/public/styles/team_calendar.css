@@ -1,13 +1,17 @@
 /* team_calendar.css */
 @import url(main.css);
 :root {
-  --Linear-Laker-Gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  --Linear-Laker-Gold: linear-gradient(
+    160deg,
+    rgba(253, 185, 39, 0.6) 9.51%,
+    #fdb927 86.81%
+  );
 }
 * {
-    font-size: 18px;
+  font-size: 18px;
 }
 .content-holder {
-  margin-top: -80px; 
+  margin-top: -80px;
 }
 #dashboardHolder {
   display: grid;
@@ -18,20 +22,20 @@
   justify-items: center; /* Horizontally center items */
 }
 #dashboardHolder > * {
-    margin: 10px;
+  margin: 10px;
 }
 h2 {
-    font-size: 36px;
+  font-size: 36px;
 }
 .date {
   color: #515070;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 24px;
   font-style: normal;
   font-weight: 700;
   line-height: 22px;
 }
-#month_controls{
+#month_controls {
   text-align: center;
   display: flex;
   align-items: center;
@@ -52,20 +56,21 @@ h2 {
   width: 1003px;
   height: 43px;
   margin-bottom: 40px;
-  
+
   flex-shrink: 0;
   border-collapse: separate;
   /* change border color */
   /* border-color: black;*/
-  border:none;
+  border: none;
 }
-#calendar th, #calendar td {
+#calendar th,
+#calendar td {
   border: none;
   text-align: center;
   padding: 15px;
   color: #515070;
   text-align: center;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
@@ -73,8 +78,8 @@ h2 {
 }
 #calendar th {
   background-color: #ffffff;
-  color: rgba(81, 80, 112, 0.60);
-  font-family: "Segoe UI";
+  color: rgba(81, 80, 112, 0.6);
+  font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;
   font-weight: 700px;
@@ -88,46 +93,47 @@ h2 {
 }
 #calendar td:hover {
   border-radius: 106px;
-  background:  var(--Linear-Laker-Gold);
+  background: var(--Linear-Laker-Gold);
   color: white;
 }
 /* Color is super weird does not work*/
 #calendar-details {
   margin-top: -90px;
-  padding: 20px;
+  /* padding: 20px; */
   /*background-color: var(--lecoder-gold, gold);*/
-  background: var(--Linear-Laker-Gold);
+  background: linear-gradient(to top,  #ffae00 75%, rgba(250, 210, 102, 0.722)  99%);
+  /* background: linear-gradient(360deg, rgba(253, 185, 39, 0.60) 10.51%, #ffae00 95%); */
   /* background: linear-gradient(160deg, #ffce65 9.51%, #FDB927 86.81%);*/
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 #calendar-details .icon {
-  margin-top:80px;
+  margin-top: 80px;
   width: 58px;
   height: 61px;
   flex-shrink: 0;
 }
 .message {
   color: #515070;
-  font-family: "Segoe UI";
+  font-family: 'Segoe UI';
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 .icon-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
 }
 .icon-button a {
-    text-decoration: none;
-    font-size: 1.5em;
-    color: #000;
+  text-decoration: none;
+  font-size: 1.5em;
+  color: #000;
 }
 #prev_month {
   left: 120px; /* Adjust as needed */
@@ -144,9 +150,12 @@ a {
 }
 /* Changing the color of the arrow when you hover them insuinating a "click"*/
 a:hover {
-  background: var(--Linear-Laker-Gold, linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%));
+  background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
   color: rgb(0, 0, 0);
-} 
+}
 /* controls circle shap you see on the website for the "back" option*/
 .previous {
   background-color: #ffffff;
@@ -217,7 +226,8 @@ a:hover {
     font-size: 18px;
   }
 
-  #calendar th, #calendar td {
+  #calendar th,
+  #calendar td {
     font-size: 12px;
     padding: 10px;
   }
