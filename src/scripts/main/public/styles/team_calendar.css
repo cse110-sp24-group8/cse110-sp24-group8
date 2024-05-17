@@ -1,5 +1,7 @@
-/* team_calendar.css */
+/* Import main stylesheet */
 @import url(main.css);
+
+/* Define CSS variables */
 :root {
   --Linear-Laker-Gold: linear-gradient(
     160deg,
@@ -7,12 +9,18 @@
     #fdb927 86.81%
   );
 }
+
+/* Set a base font size for all elements */
 * {
   font-size: 18px;
 }
+
+/* Adjust margin for content holder */
 .content-holder {
   margin-top: -80px;
 }
+
+/* Define grid layout for dashboard holder */
 #dashboardHolder {
   display: grid;
   flex: 4;
@@ -21,12 +29,18 @@
   align-items: center; /* Vertically center items */
   justify-items: center; /* Horizontally center items */
 }
+
+/* Add margin to all direct children of dashboard holder */
 #dashboardHolder > * {
   margin: 10px;
 }
+
+/* Set font size for h2 headers */
 h2 {
   font-size: 36px;
 }
+
+/* Style for date elements */
 .date {
   color: #515070;
   font-family: 'Segoe UI';
@@ -35,6 +49,8 @@ h2 {
   font-weight: 700;
   line-height: 22px;
 }
+
+/* Style for month controls container */
 #month_controls {
   text-align: center;
   display: flex;
@@ -56,55 +72,56 @@ h2 {
   width: 1003px;
   height: 43px;
   margin-bottom: 40px;
-
   flex-shrink: 0;
   border-collapse: separate;
-  /* change border color */
-  /* border-color: black;*/
   border: none;
 }
+
+/* Style for table headers and cells within the calendar */
 #calendar th,
 #calendar td {
   border: none;
   text-align: center;
   padding: 15px;
   color: #515070;
-  text-align: center;
   font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: 22px; /* 157.143% */
+  line-height: 22px;
 }
+
+/* Additional style for table headers */
 #calendar th {
   background-color: #ffffff;
   color: rgba(81, 80, 112, 0.6);
   font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;
-  font-weight: 700px;
+  font-weight: 700;
   line-height: 12px; /* 120% */
   letter-spacing: 0.3px;
   text-transform: uppercase;
 }
+
+/* Style for table cells */
 #calendar td {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+
+/* Hover effect for table cells */
 #calendar td:hover {
   border-radius: 106px;
   background: var(--Linear-Laker-Gold);
   color: white;
 }
-/* Color is super weird does not work*/
+
+/* Style for calendar details section */
 #calendar-details {
   margin-top: -90px;
-  /* padding: 20px; */
-  /*background-color: var(--lecoder-gold, gold);*/
-  background: linear-gradient(to top,  #ffae00 75%, rgba(250, 210, 102, 0.722)  99%);
+  background: linear-gradient(to top, #ffae00 75%, rgba(250, 210, 102, 0.722) 99%);
   overflow-x: hidden;
-  /* background: linear-gradient(360deg, rgba(253, 185, 39, 0.60) 10.51%, #ffae00 95%); */
-  /* background: linear-gradient(160deg, #ffce65 9.51%, #FDB927 86.81%);*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -112,25 +129,30 @@ h2 {
   height: 100%;
   z-index: 3;
 }
+
+/* Style for icons within calendar details */
 #calendar-details .icon {
   margin-top: 80px;
   width: 58px;
   height: 61px;
   flex-shrink: 0;
 }
+
+/* Allow user selection for non-empty cells */
 #calendarBody td:not(:empty) {
   user-select: auto;
 }
+
+/* Disable hover effect for empty cells */
 #calendarBody td:empty:hover {
-  background: white; 
+  background: white;
   user-select: none;
   cursor: auto;
-  /* need to fix, maybe javascript to not active hover on empty cells  */
   background-color: transparent;
   border-radius: 0%;
-
 }
 
+/* Style for message elements */
 .message {
   color: #515070;
   font-family: 'Segoe UI';
@@ -139,31 +161,40 @@ h2 {
   font-weight: 700;
   line-height: normal;
 }
+
+/* Style for icon buttons */
 .icon-button {
   background: none;
   border: none;
   cursor: pointer;
   position: absolute;
 }
+
+/* Style for links within icon buttons */
 .icon-button a {
   text-decoration: none;
   font-size: 1.5em;
   color: #000;
 }
+
+/* Position adjustments for previous month button */
 #prev_month {
   left: 120px; /* Adjust as needed */
 }
 
+/* Position adjustments for next month button */
 #next_month {
   right: 120px; /* Adjust as needed */
 }
-/* "text" of circle button for prevMonth and nextMonth */
+
+/* Style for link elements */
 a {
   text-decoration: none;
   display: inline-block;
   padding: 4px 16px;
 }
-/* Changing the color of the arrow when you hover them insuinating a "click"*/
+
+/* Hover effect for link elements */
 a:hover {
   background: var(
     --Linear-Laker-Gold,
@@ -171,27 +202,26 @@ a:hover {
   );
   color: rgb(0, 0, 0);
 }
-/* controls circle shap you see on the website for the "back" option*/
+
+/* Style for previous button */
 .previous {
   background-color: #ffffff;
   color: white;
 }
-/* controls circle shap you see on the website for the "forward" option*/
+
+/* Style for next button */
 .next {
   background-color: #ffffff;
   color: white;
 }
-/* gets the round shape of the back and forward buttons */
+
+/* Round shape for previous and next buttons */
 .round {
   border-radius: 50%;
 }
 
-/* Media Queries for Responsiveness */
+/* Media query for screen width up to 1200px */
 @media (max-width: 1200px) {
-  /* #calendar {
-    width: 90%;
-  } */
-
   .content-holder {
     margin-top: 0;
     padding-top: 20px;
@@ -202,6 +232,7 @@ a:hover {
   }
 }
 
+/* Media query for screen width up to 768px */
 @media (max-width: 768px) {
   #calendar {
     width: 100%;
@@ -232,6 +263,7 @@ a:hover {
   }
 }
 
+/* Media query for screen width up to 480px */
 @media (max-width: 480px) {
   h2 {
     font-size: 28px;
@@ -256,3 +288,4 @@ a:hover {
     font-size: 14px;
   }
 }
+
