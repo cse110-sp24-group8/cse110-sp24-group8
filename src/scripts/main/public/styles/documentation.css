@@ -1,0 +1,63 @@
+/* documentation.css */
+
+@import url(main.css);
+@import url('https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css');
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Over write h1 tag in main.css */
+h1 {
+    color: black;
+    text-align: left;
+    font-size: 32px;
+}
+
+header h1 {
+    color: white;
+    text-align: center;
+    font-size: 48px;
+    margin: 0;
+}
+
+#documentationHolder {
+    background-color: var(--lecoder-gold);
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+}
+
+#file-selector {
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+#doc-wrapper {
+    background-color: white;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+
+#doc-wrapper div {
+    background-color: white;
+}
+
+#file-select {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+#create-file-button {
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+*::before{
+    box-sizing: content-box;
+    font-family: inherit;
+}
