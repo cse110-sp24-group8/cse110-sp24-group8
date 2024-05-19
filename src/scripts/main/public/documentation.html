@@ -55,13 +55,13 @@
         </header>
         <!--Majority of where the main features should be contained-->
         <section class="content-holder" id="documentationHolder">
-            <div id="file-selector">
+            <div id="file-wrapper">
               <select id="file-select" onchange="switchFile()">
                 <option value="" disabled selected>--Select a file--</option>
               </select>
               <button id="create-file-button" onclick="createNewFile()">Create New File</button>
             </div>
-            <div id="doc-wrapper">
+            <div id="textarea-wrapper">
                 <textarea id="file-content" name="content"></textarea>
             </div>
         </section>
