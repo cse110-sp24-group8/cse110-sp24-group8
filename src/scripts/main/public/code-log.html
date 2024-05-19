@@ -59,6 +59,33 @@
         </section>
       </section>
     </main>
-    <script src="scripts/code-log.js"></script>
+<div id="addLogModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="logDate">Date:</label>
+        <div class="input-group">
+          <img src="icons/calendar-icon.png" alt="Calendar Icon">
+          <input type="text" id="logDate" class="input-field" placeholder="mm/dd/yyyy">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="logTime">Time:</label>
+        <div class="input-group">
+          <img src="icons/calendar-icon.png" alt="Clock Icon">
+          <input type="text" id="logTime" class="input-field" placeholder="--:-- --">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="logContent"></label>
+      <textarea id="logContent" rows="10" cols="50" class="textarea-field"></textarea>
+    </div>
+    <button class="frame" onclick="addLog()">Add Log</button>
+  </div>
+</div>
+
+    <script src="code-log.js"></script>
   </body>
 </html>
