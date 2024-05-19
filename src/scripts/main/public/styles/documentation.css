@@ -1,13 +1,13 @@
 /* documentation.css */
 
 @import url(main.css);
-@import url('https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css');
+@import url(markdown.css);
 
 body {
     background-color: rgb(255, 255, 255);
 }
 
-/* Over write h1 tag in main.css */
+/* Over write h1 tag from main.css */
 h1 {
     color: black;
     text-align: left;
@@ -22,32 +22,40 @@ header h1 {
 }
 
 #documentationHolder {
-    background-color: var(--lecoder-gold);
+    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    border-radius: 10px;
     margin-left: 20px;
     margin-right: 20px;
     padding-bottom: 50px;
     margin-top: 20px;
 }
 
-#file-selector {
+#file-wrapper {
     margin-right: 50px;
     margin-left: 50px;
 }
 
-#doc-wrapper {
+#textarea-wrapper {
     background-color: white;
     margin-right: 50px;
     margin-left: 50px;
 }
 
-#doc-wrapper div {
+#textarea-wrapper div {
     background-color: white;
 }
 
 #file-select {
+    background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#file-select:hover {
+    color: var(--lecoder-gold);
 }
 
 #create-file-button {
@@ -55,6 +63,12 @@ header h1 {
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: 20px;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#create-file-button:hover {
+    color: var(--lecoder-gold);
 }
 
 *::before{
