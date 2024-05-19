@@ -3,29 +3,32 @@
 @import url(main.css);
 
 * {
-    font-size: 18px;
+    font-size: 1.125rem;
 }
 
 #dashboardHolder {
     display: grid;
-    flex: 4;
+    flex: 1;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    padding: 10px;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 #dashboardHolder > * {
-    margin: 20px;
-    border-radius: 10px;
+    margin: 0.4rem;
+    border-radius: 0.625rem;
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 2.25rem;
 }
 
 #dueSoonContainer {
     background-color: var(--lecoder-gold, gold);
     background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    white-space: normal;
+    /* height: fit-content; This line makes the box dynamic so that text will still fit regardless
+    *  Supposedly not using this because we'll use javascript to only show a few things at once.
+    */
 }
 
 #dueSoonContainer h3,
@@ -59,12 +62,12 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 100%;
+    height: auto;
 }
 
 .progress-container {
     position: relative;
-    width: 100%;
+    width: 50%;
 }
 
 .progress-circle {
@@ -116,5 +119,3 @@ ul {
     align-content: center;
     justify-content: space-around;
 }
-
-
