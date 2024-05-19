@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Journal Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Add Favicon-->
+    <link rel="stylesheet" href="../styles/team_calendar.css" />
+    <title>LeJournal Dashboard</title>
+  </head>
+  <body>
+    <!--Contains the 2 main component the sidebar and content-->
+    <main>
+      <nav class="sidebar">
+        <div id="logo">
+          <img src="../icons/journallogo-icon.png" alt="Journal Logo" />
+          <h2>LeJournal</h2>
+        </div>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img src="../icons/dashboard-icon.png" alt="Dashboard Icon"
+          /></span>
+          <span class="buttonText">Dashboard</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img src="../icons/tasklist-icon.png" alt="Task List Icon"
+          /></span>
+          <span class="buttonText">Task List</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img src="../icons/calendar-icon.png" alt="Calendar Icon"
+          /></span>
+          <span class="buttonText">Team Calendar</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img src="../icons/codelog-icon.png" alt="Code Log Icon"
+          /></span>
+          <span class="buttonText">Code Log</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img
+              src="../icons/documentation-icon.png"
+              alt="Documentation Icon"
+          /></span>
+          <span class="buttonText">Documentation</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+        <button class="sideButton">
+          <span class="buttonIcon"
+            ><img src="../icons/feedback-icon.png" alt="Feedback Icon"
+          /></span>
+          <span class="buttonText">Feedback</span>
+          <span class="buttonArrow">&rarr;</span>
+        </button>
+      </nav>
+      <!--This container includes the header and calendar-->
+      <section class="headerWithContent">
+        <header>
+          <h1>Team 8 Calendar</h1>
+        </header>
+        <!--Majority of where the main features should be contained-->
+        <section id="month_controls">
+          <button id="prev_month" class="icon-button">
+            <a href="#" class="previous round">&#8249;</a>
+          </button>
+          <span class="date" id="current_month">September 2022</span>
+          <button id="next_month" class="icon-button">
+            <a href="#" class="next round">&#8250;</a>
+          </button>
+        </section>
+        <section class="content-holder" id="dashboardHolder">
+          <section></section>
+          <table id="calendar">
+            <thead>
+              <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+              </tr>
+            </thead>
+            <tbody id="calendarBody"></tbody>
+          </table>
+        </section>
+        <section id="calendar-details">
+          <img
+            src="../icons/calendar-icon.svg"
+            alt="No Schedule Icon"
+            class="icon"
+          />
+          <p class="message">No Schedule Today</p>
+        </section>
+      </section>
+    </main>
+    <script src="../js/team_calendar.js"></script>
+  </body>
+</html>
