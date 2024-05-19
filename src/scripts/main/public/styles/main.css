@@ -24,19 +24,20 @@ main {
     width: 5%;
     padding: 0;
     margin: 0;
-    height: 100vh;
+    height: 95%;
     background-color: var(--lecoder-purple, purple);
+    text-align: center;
 }
 
-/* The div and h2 is the logo/name */
-.sidebar div {
-    display: flex;
-}
   
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
 .sidebar nav{
   display: flex;
 }
+
+.sidebar nav a{
+    display: block;
+  }
 
 .sidebar h2 {
     color: white;
@@ -52,10 +53,13 @@ main {
     cursor: pointer;
     border-radius: 10px;
 
-    /* adding our style to buttons */
+    /* adding our style to buttons. Note that we will have a version with text that opens up later*/
     display: flex;
-    align-content: center;
-    justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
@@ -66,17 +70,38 @@ main {
 }
 
 .headerWithContent {
-    height: 100vh;
+    height: auto;
     width: 95%;
 }
 
 header {
+    /*Aligning  the "Welcome, LeCoder!" with the icon. This requires a div to space out the objects evenly*/
+    /* display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	align-content: stretch; */
+
+    display: grid;
+    grid-template-columns: 5% 95%;
     background-color: var(--lecoder-purple, purple);
+    text-align: center;
+    /* padding-top: 1.7rem; */
 }
 
-h1 {
+header h1 {
     color: white;
     text-align: center;
-    font-size: 48px;
+    font-size: 3rem;
+    /* padding-top: 1.5rem; */
     margin: 0;
 }
+
+header img {
+    display: block;
+    margin: auto;
+    width: 75%;
+}
+
+

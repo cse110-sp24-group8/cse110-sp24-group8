@@ -11,14 +11,18 @@
   <body>
     <!--Contains the 2 main components the sidebar and content-->
     <!--Contains the 2 main components the sidebar and content-->
+
+    <header>
+      <img src="icons/journallogo-icon.png" alt="Journal Logo">
+      <h1>Welcome, LeCoder!</h1>
+      <!-- <div></div> -->
+    </header>
+
     <main>
       <nav class="sidebar">
-        <div id="logo">
-          <img src="icons/journallogo-icon.png" alt="Journal Logo">
-          <h2>LeJournal</h2>
-        </div>
         <a href="index.html" class="sideButton">
-          <span class="buttonIcon"><img src="icons/dashboard-icon.png" alt="Dashboard Icon"></span>
+          <!-- <span class="buttonIcon"><img src="icons/dashboard-icon.png" alt="Dashboard Icon"></span> -->
+          <img src="icons/dashboard-icon.png" alt="Dashboard Icon">
           <!-- <span class="buttonText">Dashboard</span>
           <span class="buttonArrow">&rarr;</span> -->
         </a>
@@ -49,26 +53,23 @@
         </a>
       </nav>
       <!--This container includes the header and the data content for format-->
-      <section class="headerWithContent">
-        <header>
-          <h1>Welcome, LeCoder!</h1>
-        </header>
+      
         <!--Majority of where the main features should be contained-->
         <section class="content-holder" id="dashboardHolder">
           <!--This contains the three components from Figma-->
           <section id="dueSoonContainer">
             <h2>Due Soon!</h2>
             <h3>May 13</h3>
-            <ul>
-              <li>Finish high fidelity wireframes</li>
-              <li>Learn E2E testing to implement for project</li>
-            </ul>
-            <h3>May 15</h3>
-            <ul>
-              <li>Finish CSE 110 Lab 6</li>
-              <li>Submit attendance form for lecture</li>
-              <li>Group meeting summary</li>
-            </ul>
+              <ul>
+                <li>Finish high fidelity wireframes</li>
+                <li>Learn E2E testing to implement for project</li>
+              </ul>
+              <h3>May 15</h3>
+              <ul>
+                <li>Finish CSE 110 Lab 6</li>
+                <li>Submit attendance form for lecture</li>
+                <li>Group meeting summary</li>
+              </ul>
           </section>
           <section id="progressContainer">
             <div class="left-panel-progress">
@@ -116,7 +117,6 @@
             </section>
           </section>
         </section>
-      </section>
     </main>
   </body>
 </html>
