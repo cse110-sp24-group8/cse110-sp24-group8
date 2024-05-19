@@ -18,20 +18,20 @@ html, body {
 
 /* Figma Styles of your File */
 :root {
-    /* Colors */
-    --linear-laker-gold: linear-gradient(
-      160.29deg,
-      rgba(253, 185, 39, 0.6) 0%,
-      rgba(253, 185, 39, 1) 100%
-    );
-    --linear-laker-purple: linear-gradient(
-      180deg,
-      rgba(85, 37, 131, 0.6) 0%,
-      rgba(85, 37, 131, 1) 100%
-    );
-  
-    /* Fonts */
-    /* Effects */
+  /* Colors */
+  --linear-laker-gold: linear-gradient(
+    160.29deg,
+    rgba(253, 185, 39, 0.6) 0%,
+    rgba(253, 185, 39, 1) 100%
+  );
+  --linear-laker-purple: linear-gradient(
+    180deg,
+    rgba(85, 37, 131, 0.6) 0%,
+    rgba(85, 37, 131, 1) 100%
+  );
+
+  /* Fonts */
+  /* Effects */
 }
 
 .feedback,
@@ -40,131 +40,103 @@ html, body {
 }
 
 .feedback {
-    background: #ffffff;
-    height: 830px;
-    position: relative;
-    overflow: hidden;
+  background: #ffffff;
+  height: 100%; /* Take full height */
+  position: relative;
+  overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: flex-start; /* Centers the feedbacklists horizontally */
-    margin-left: 20px;
-    margin-top:20px;
-    gap: 20px;
-    box-sizing: border-box; /* Includes padding in width calculation */
-    flex-wrap: wrap;
-
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 40px); /* Adjust width to account for the left and right margin */
+  align-items: flex-start; 
+  margin: 20px;
+  gap: 20px;
+  box-sizing: border-box; 
+  flex-wrap: wrap;
 }
 
 .feedbacklist {
-    width: 340px; /* Adjust width as needed */
-    background: #fff; /* Background color of the feedback list */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Adds shadow for better visibility */
-    border-radius: 8px;
-
+  width: 100%; /* Default width to 100% for mobile */
+  max-width: 340px; /* Maximum width for larger screens */
+  background: #fff; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
 
 .fieldD1, .fieldD2 {
-    display: flex;
-    flex-direction: column; /* Changes from row to column */
-    justify-content: space-between;
-    align-items: flex-start; /* Aligns text to the left */
-    padding: 10px;
-    width: 100%; /* Ensures it fills the parent container */
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .fieldD1 {
-    background: #FFD700; /* Gold color background */
+  background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
 }
 
 .fieldD2 {
-    background: white; /* Khaki color background */
-    border: 2px solid gold;
+  background: white;
+  border: 2px solid gold;
 }
 
-
-/* Individual element styles */
-.date-feedback,.time-feedback, .question-feedback, .answer-feedback{
-    margin: 0; /* Removes default margin */
-    padding: 0; /* Removes default padding */
-    width: 100%; /* Ensures each element fills its container */
+.date-feedback, .time-feedback, .question-feedback, .answer-feedback {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-.date-feedback, .time-feedback{
-    color: #ffffff;
-    font-family: "Rubik-Regular", sans-serif;
-    font-size: 24px;
-    font-weight: 400;
+.date-feedback, .time-feedback {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 400;
 }
 
-.user_question {
-    width: 100%; /* Ensures the textarea fills the container */
-    height: auto;  /* Adapts to content size, can override `rows` */
-    resize: vertical;
-    border: none; /* Removes border */
-    background: none; /* Removes background */
-    outline: none; /* Removes outline */
-    margin-bottom: 10px; /* Adds space between this and the next element */
-    padding:0;
-    color: #000000;
-    font-family: "Rubik-Regular", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    height: auto;
+.user_question, .user_answer {
+  width: 100%;
+  resize: vertical;
+  border: none;
+  background: none;
+  outline: none;
+  margin-bottom: 10px;
+  padding: 0;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-.user_answer {
-    width: 100%; /* Ensures the textarea fills the container */
-    resize: vertical;
-    border: none; /* Removes border */
-    background: none; /* Removes background */
-    outline: none; /* Removes outline */
-    margin-bottom: 10px; /* Adds space between this and the next element */
-    padding:0;
-    color: #000000;
-    font-family: "Rubik-Regular", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    height: auto;
+.question-feedback, .answer-feedback {
+  color: #7e25d7;
+  font-size: 24px;
+  font-weight: 400;
 }
 
-.question-feedback, .answer-feedback{
-    color: #7e25d7;
-    font-family: "Rubik-Regular", sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-}
-
-/* Ensures space between questions and answers */
 .question-feedback, .answer-feedback, .user_question {
-    margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
-
-/* Setting the style of the default text here*/
-.user_answer::placeholder {
-    font-style: italic; 
-    color: rgb(156, 149, 163);
+.user_answer::placeholder, .user_question::placeholder  {
+  font-style: italic;
+  color: red;
 }
 
-/* Plus button (add task-list) positioning at the bottom right of the screen*/
 .feedback .union-wrapper {
   position: fixed;
   width: 69px;
   height: 69px;
-  bottom: 20px;  /* Set distance from bottom */
-  right: 20px;   /* Set distance from right */
+  bottom: 20px;
+  right: 20px;
   background-color: var(--variable-collection-laker-purple);
   border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
-  transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
+  transform: translate(0, 0);
 }
 
-.union-wrapper :hover {
+.union-wrapper:hover {
   background-color: rgb(94, 95, 99);
 }
 
@@ -172,8 +144,8 @@ html, body {
   position: absolute;
   width: 32px;
   height: 32px;
-  top: 18.5px; /* Half of (69px - 32px) to center vertically */
-  left: 18.5px; /* Half of (69px - 32px) to center horizontally */
+  top: 18.5px;
+  left: 18.5px;
 }
 
 .button-style {
@@ -187,15 +159,13 @@ html, body {
 }
 
 .button-style:focus {
-  outline: none;  /* Removes the focus outline to keep the style clean */
+  outline: none;
 }
 
 .button-style:hover {
-  background-color: #ececec;  /* Light grey background on hover */
+  background-color: #ececec;
 }
 
-
-/* Styles for modal and modal content */
 .modal {
   display: none;
   position: fixed;
@@ -226,11 +196,21 @@ html, body {
   cursor: pointer;
 }
 
-/*Add the addFeedback style here*/
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 10px;
+    width: calc(100% - 20px); /* Adjust width to account for the reduced margin */
+  }
 
+  .feedbacklist {
+    width: 100%;
+    max-width: none;
+  }
 
-
-
-
-
-
+  .modal-content {
+    width: 90%;
+    height: auto;
+  }
+}

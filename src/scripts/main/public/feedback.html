@@ -53,89 +53,55 @@
         <header>
           <h1>Feedback</h1>
         </header>        
-        <body>
-          <div class="feedback">
+        <div class="feedback">
         
-            <div class="container">
+          <div class="container" id="feedbackContainer">
 
-                <div class="feedbacklist">
-                    <div class="fieldD1"> 
-                        <p class="date-feedback">Date: 5th May 2024</p>                        
-                        <p class="time-feedback">Time: 11:59pm</p>
-                    </div>
-                    <div class="fieldD2">
-                        <h2 class="question-feedback">Question:</h2>
-                        <textarea class="user_question" rows = "3" placeholder ="Pending Reply">How to center a div in HTML?</textarea>
-                        <h2 class="answer-feedback">Answer:</h2>
-                        <textarea class="user_answer" rows = "3" placeholder ="Pending Reply">No one knows that, move on.</textarea>
-                    </div>
-                </div>
-
-                <div class="feedbacklist">
-                    <div class="fieldD1"> 
-                        <p class="date-feedback">Date: 5th May 2024</p>                        
-                        <p class="time-feedback">Time: 11:59pm</p>
-                    </div>
-                    <div class="fieldD2">
-                        <h2 class="question-feedback">Question:</h2>
-                        <textarea class="user_question" rows = "3" placeholder ="Pending Reply">How to center a div in HTML?</textarea>
-                        <h2 class="answer-feedback">Answer:</h2>
-                        <textarea class="user_answer" rows = "3" placeholder ="Pending Reply"></textarea>
-                    </div>
-                </div>
-
-            
-            </div>
-
-            <!--Add button starts from here-->
-            <div class="modal" id="modal">
-              <div class="modal-content">
-                  <span class="close" id="closeModal">&times;</span>
-                  <!-- This div will be replaced with the content loaded from the external HTML file -->
-                  <div id="popupContent"></div>
+              <div class="feedbacklist">
+                  <div class="fieldD1"> 
+                      <p class="date-feedback">Date: May 5, 2024</p>                        
+                      <p class="time-feedback">Time: 11:59 PM</p>
+                  </div>
+                  <div class="fieldD2">
+                      <h2 class="question-feedback">Question:</h2>
+                      <textarea class="user_question" rows="3" placeholder="Enter a Question">How to center a div in HTML?</textarea>
+                      <h2 class="answer-feedback">Answer:</h2>
+                      <textarea class="user_answer" rows="3" placeholder="Enter received answer">No one knows that, move on.</textarea>
+                  </div>
               </div>
+
+              <div class="feedbacklist">
+                  <div class="fieldD1"> 
+                      <p class="date-feedback">Date: May 5, 2024</p>                        
+                      <p class="time-feedback">Time: 11:59 PM</p>
+                  </div>
+                  <div class="fieldD2">
+                      <h2 class="question-feedback">Question:</h2>
+                      <textarea class="user_question" rows="3" placeholder="Enter a Question">How to center a div in HTML?</textarea>
+                      <h2 class="answer-feedback">Answer:</h2>
+                      <textarea class="user_answer" rows="3" placeholder="Enter received answer"></textarea>
+                  </div>
+              </div>
+
+          </div>
+
+          <!--Add button starts from here-->
+          <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <!-- This div will be replaced with the content loaded from the external HTML file -->
+                <div id="popupContent"></div>
             </div>
+          </div>
 
-            <!--pop-up page for add tasklist-->
-            <div class="union-wrapper">
-                <button id="openModal" class = "button-style">
-                  <img class="union" src="img/union.svg" />
-                </button>
-            </div>
-
-            <script>
-              // Function to load content from external HTML file and display it in the modal
-              function loadPopupContent() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                  if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("popupContent").innerHTML = this.responseText;
-                  }
-                };
-
-                // You can change the addlist.html to addFeedback.html here
-                xhttp.open("GET", "addlist.html", true);
-                xhttp.send();
-              }
-
-              // Event listener for the button to open the modal
-              document.getElementById("openModal").addEventListener("click", function() {
-                loadPopupContent();
-                document.getElementById("modal").style.display = "block";
-              });
-
-              // Event listener for the close button of the modal
-              document.getElementById("closeModal").addEventListener("click", function() {
-                document.getElementById("modal").style.display = "none";
-                document.getElementById("popupContent").innerHTML = "";
-              });
-
-            </script>
-            </div>
-            
-          <script src="task_script.js"></script>
-        </body>
-        </section>
+          <!--pop-up page for add tasklist-->
+          <div class="union-wrapper">
+              <button id="openModal" class="button-style">
+                <img class="union" src="img/union.svg" />
+              </button>
+          </div>
+        
+        <script src="feedback.js"></script>
       </section>
     </main>
   </body>
