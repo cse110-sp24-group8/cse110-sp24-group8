@@ -8,6 +8,10 @@
   --variable-collection-laker-purple: rgba(85, 37, 131, 1);
 }
 
+.to-do-list{
+  width: 100%;
+}
+
 html, body {
   height: 100%;
   min-height: 100vh;
@@ -37,7 +41,7 @@ html, body {
   position: relative;
   width: calc(100% - 20%);  /* 90% of the parent container */
   height: 63px;
-  top: 100px;
+  top: 10px;
   left: 5%;  /* adjust left as percentage for better responsiveness */
   background: linear-gradient(-143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
   border-radius: 5px;
@@ -272,6 +276,43 @@ html, body {
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+@media (max-width: 978px) {
+  .sidebar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      min-height: 50px; /* Ensure minimum height to fit icons */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--lecoder-purple, purple);
+      z-index: 1000;
+      padding: 0.5rem 0; /* Add some padding for better appearance */
+  }
+
+  .to-do-list .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
+  .to-do-list {
+    padding-bottom: 60px;
+  }
+
+  header {
+    display: block;
+  }
+
+  header img {
+    display: none;
+  }
+
+  html {
+    overflow-y: auto;
+  }
+}
 
 
 
