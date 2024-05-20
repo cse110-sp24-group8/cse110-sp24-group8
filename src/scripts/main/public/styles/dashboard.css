@@ -2,15 +2,17 @@
 
 @import url(main.css);
 
-* {
-    font-size: 1.125rem;
-}
 
 #dashboardHolder {
     display: grid;
     flex: 1;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.4rem;
+    padding-bottom: 60px; /* Adjust according to the height of the fixed sidebar */
+    height: calc(100vh - 60px); /* Adjust height to fit the window height minus padding */
+    overflow-y: auto; /* Make the dashboard holder scrollable */
+    font-size: 1.125rem;
 }
 
 #dashboardHolder > * {
@@ -26,9 +28,6 @@ h2 {
     background-color: var(--lecoder-gold, gold);
     background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     white-space: normal;
-    /* height: fit-content; This line makes the box dynamic so that text will still fit regardless
-    *  Supposedly not using this because we'll use javascript to only show a few things at once.
-    */
 }
 
 #dueSoonContainer h3,
@@ -48,6 +47,8 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 1em;
 }
 
 .left-panel-progress strong {
@@ -62,12 +63,14 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    width: 100%;
     height: auto;
 }
 
 .progress-container {
     position: relative;
     width: 50%;
+    min-width: 200px;
 }
 
 .progress-circle {
@@ -81,9 +84,6 @@ ul {
     animation: progressAnimation 2s forwards;
 }
 
-/* Change the value of the to: stroke-dash array 141.5
-   for the length of the progress bar. The number is calculated
-   by (percent of the circle covered * 283 (circumference) = length)*/
 @keyframes progressAnimation {
     from {
         stroke-dasharray: 0 283;
@@ -105,6 +105,7 @@ ul {
     display: flex;
     align-content: center;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #codeUpdateContainer li,
@@ -122,7 +123,19 @@ ul {
 
 @media (max-width: 978px) {
     .sidebar {
-        display: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 50px; /* Ensure minimum height to fit icons */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: var(--lecoder-purple, purple);
+        z-index: 1000;
+        padding: 0.5rem 0; /* Add some padding for better appearance */
     }
 
     #dashboardHolder {
@@ -130,8 +143,10 @@ ul {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        padding-bottom: 200px; /* Adjust according to the height of the fixed sidebar */
+        height: auto; /* Adjust height for mobile */
     }
-    
+
     header {
         display: block;
     }

@@ -37,6 +37,7 @@ html, body {
 .feedback,
 .feedback * {
   box-sizing: border-box;
+  width: 100%;
 }
 
 .feedback {
@@ -214,3 +215,43 @@ html, body {
     height: auto;
   }
 }
+
+@media (max-width: 978px) {
+  .sidebar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 50px; /* Ensure the height of the sidebar */
+      min-height: 50px; /* Ensure minimum height to fit icons */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--lecoder-purple, purple);
+      z-index: 1000;
+      padding: 0.5rem 0; /* Add some padding for better appearance */
+  }
+
+  .feedback .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
+  .feedback{
+    padding-bottom: 200px;
+  }
+
+  header {
+    display: block;
+  }
+
+  header img {
+      display: none;
+  }
+
+  html {
+      overflow-y: auto;
+  }
+}
+
+

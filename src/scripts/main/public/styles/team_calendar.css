@@ -10,8 +10,8 @@
   );
 }
 
-/* Set a base font size for all elements */
-* {
+.headerWithContent {
+  width: 100%;
   font-size: 18px;
 }
 
@@ -52,11 +52,11 @@ h2 {
 
 /* Style for month controls container */
 #month_controls {
-  text-align: center;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content:center;
   position: relative;
+  gap: 20%;
   line-height: 20px;
   height: 100px;
   background-color: rgb(255, 255, 255);
@@ -167,7 +167,7 @@ h2 {
   background: none;
   border: none;
   cursor: pointer;
-  position: absolute;
+  position: relative; /* Changed from absolute to relative */
 }
 
 /* Style for links within icon buttons */
@@ -175,16 +175,6 @@ h2 {
   text-decoration: none;
   font-size: 1.5em;
   color: #000;
-}
-
-/* Position adjustments for previous month button */
-#prev_month {
-  left: 120px; /* Adjust as needed */
-}
-
-/* Position adjustments for next month button */
-#next_month {
-  right: 120px; /* Adjust as needed */
 }
 
 /* Style for link elements */
@@ -240,13 +230,7 @@ a:hover {
   }
 
   #month_controls {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .icon-button {
-    position: static;
-    margin: 10px 0;
+    padding: 0 5px;
   }
 
   #calendar-details {
@@ -287,5 +271,38 @@ a:hover {
   .message {
     font-size: 14px;
   }
+
+  #month_controls {
+    padding: 0 5px;
+  }
 }
 
+@media (max-width: 978px) {
+  .sidebar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      min-height: 50px; /* Ensure minimum height to fit icons */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--lecoder-purple, purple);
+      z-index: 1000;
+      padding: 0.5rem 0; /* Add some padding for better appearance */
+  }
+
+  header {
+    display: block;
+  }
+
+  header img {
+    display: none;
+  }
+
+  html {
+    overflow-y: auto;
+  }
+}
