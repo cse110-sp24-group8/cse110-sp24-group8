@@ -2,9 +2,6 @@
 
 @import url(main.css);
 
-* {
-    font-size: 1.125rem;
-}
 
 #dashboardHolder {
     display: grid;
@@ -13,6 +10,9 @@
     grid-template-rows: 1fr 1fr 1fr;
     gap: 0.4rem;
     padding-bottom: 60px; /* Adjust according to the height of the fixed sidebar */
+    height: calc(100vh - 60px); /* Adjust height to fit the window height minus padding */
+    overflow-y: auto; /* Make the dashboard holder scrollable */
+    font-size: 1.125rem;
 }
 
 #dashboardHolder > * {
@@ -143,7 +143,8 @@ ul {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
-        padding-bottom: 60px; /* Adjust according to the height of the fixed sidebar */
+        padding-bottom: 200px; /* Adjust according to the height of the fixed sidebar */
+        height: auto; /* Adjust height for mobile */
     }
 
     header {

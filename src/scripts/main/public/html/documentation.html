@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Journal Dashboard">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--Add Favicon-->
+    <link rel="stylesheet" href="../styles/documentation.css">
+    <title>Documentation</title>
+    <script src="../js/loadNav.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <img src="../icons/journallogo-icon.png" alt="Journal Logo">
+      <h1>Documentation</h1>
+      <!-- <div></div> -->
+    </header>
+    <!--Contains the 2 main components the sidebar and content-->
+    <main>
+      <nav class="sidebar">
+      </nav>
+      <!--This container includes the header and the data content for format-->
+        <!--Majority of where the main features should be contained-->
+        <section class="content-holder" id="documentationHolder">
+            <div id="file-wrapper">
+              <select id="file-select" onchange="switchFile()">
+                <option value="" disabled selected>--Select a file--</option>
+              </select>
+              <button id="create-file-button" onclick="createNewFile()">Create New File</button>
+            </div>
+            <div id="textarea-wrapper">
+                <textarea id="file-content" name="content"></textarea>
+            </div>
+        </section>
+    </main>
+  </body>
+  <script>
+    var simplemde = new SimpleMDE({ element: document.getElementById("file-content") });
+  </script>
+</html>
