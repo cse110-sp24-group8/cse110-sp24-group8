@@ -18,78 +18,81 @@ header h1 {
     margin: 0;
 }
 
-#textarea-wrapper {
-    background-color: white;
-    margin: 0 50px;
-}
-
-#textarea-wrapper div {
-    background-color: white;
-}
-
-#file-select, #create-file-button {
-    background-color: white;
-    margin: 20px 0;
-    border-radius: 20px;
-    border-style: none;
-}
-
-#file-select:hover, #create-file-button:hover {
-    color: var(--lecoder-gold);
-}
-
-*::before {
+::before {
     box-sizing: content-box;
     font-family: inherit;
 }
-
+/*plus icon at bottom right */
 .add-log-btn {
-    font-size: 36px;
-    background-color: #552583;
-    color: #FDB927;
-    border: none;
-    border-radius: 50%;
-    width: 69px;
-    height: 69px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 2px 2px 15px #0000004c;
-    transition: background-color 0.3s, transform 0.2s;
+  font-size: 50px;
+  background-color: #552583;
+  color: #FDB927;
+  border: none;
+  border-radius: 50%;
+  width: 69px;
+  height: 69px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 15px #0000004c;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .add-log-btn:hover {
-    background-color: rgb(88, 101, 174);
+  background-color: rgb(88, 101, 174);
 }
 
 .add-log-btn:active {
-    transform: translateY(2px);
+  transform: translateY(2px);
 }
 
+/* Updated "Add Log" Button */
+button.frame {
+  background-color: #552583;
+  color: white;
+  border: none;
+  padding: 10px 30px; /* Increased padding for larger button */
+  font-size: 24px; /* Increased font size */
+  font-weight: bold;
+  border-radius: 50px; /* More rounded corners */
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: center; /* Center alignment */
+}
+
+button.frame:hover {
+  background-color: #7350A1;
+}
+
+button.frame:active {
+  transform: translateY(2px);
+}
 .frame {
-    background-color: #552583;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 25px; /* More rounded corners */
-    cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s, transform 0.2s;
+  background-color: #552583;
+  color: white;
+  border: none;
+  width: 150px; /* Manually set width */
+  height: 60px; /* Manually set height */
+  font-size: 24px; /* Increased font size */
+  font-weight: bold;
+  border-radius: 30px; /* Adjusted border radius */
+  cursor: pointer;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: center; /* Center alignment */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; /* Adjust this value as needed for vertical alignment */
+  margin-bottom: 20px; /* Adjust this value as needed for vertical alignment */
+  position: relative; /* Ensure the button stays within the modal content */
 }
 
-.frame:hover {
-    background-color: #7350A1;
-}
-
-.frame:active {
-    transform: translateY(2px);
-}
 
 .modal {
     display: none;
@@ -114,6 +117,7 @@ header h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
+    
 }
 
 .input-group {
@@ -126,18 +130,18 @@ header h1 {
 .input-group img {
     position: absolute;
     left: 10px;
-    width: 24px;
-    height: 24px;
+    width: 30px; 
+    height: 30px; 
 }
 
 .input-group input {
-    padding-left: 40px;
+    padding-left: 45px;
     width: calc(100% - 50px);
     box-sizing: border-box;
     border: 1px solid #552583;
-    border-radius: 5px;
-    font-size: 16px;
-    height: 35px;
+    border-radius: 28px; /* Rounded corners */
+    font-size: 25px; /* Increase font size */
+    height: 60px; /* Increase height */
 }
 
 .textarea-field {
@@ -147,26 +151,37 @@ header h1 {
     margin-bottom: 20px;
     box-sizing: border-box;
     border: 1px solid #552583;
-    border-radius: 5px;
+    border-radius: 28px; /* Rounded corners */
     font-size: 16px;
     resize: vertical;
     background-color: white; 
 }
 
 .close {
-    color: #552583;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
+  color: #552583;
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed to align with inputs */
+  font-size: 36px; /* Increased font size */
+  font-weight: bold;
+  width: 36px; /* Defined width to match font size */
+  height: 36px; /* Defined height to match font size */
+  line-height: 36px; /* Ensure line-height matches height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s; /* Smooth transition for hover effect */
+  background-color: transparent; /* Ensuring background is transparent */
+  padding: 0; /* Remove any padding */
+  border: none; /* Remove any border */
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  transform: scale(1.2); /* Slightly increase size on hover */
 }
 
 .modal-header {
@@ -201,8 +216,9 @@ header h1 {
     padding-right: 35px;
     box-sizing: border-box;
     border: 1px solid #552583;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 15px; /* Rounded corners */
+    font-size: 24px; /* Increase font size */
+    height: 60px; /* Increase height */
 }
 
 button.frame {
@@ -214,6 +230,11 @@ button.frame {
     background-color: white !important;
     border: 1px solid #ddd; 
     border-radius: 5px 5px 0 0; 
+}
+/* Ensure the status bar (if any) is white */
+.editor-statusbar {
+  background-color: white !important;
+  color: black !important; /* Set text color to black for contrast */
 }
 
 /* Ensure editor area background is white */
@@ -229,6 +250,7 @@ button.frame {
 .editor-toolbar a:hover {
     color: #7350A1 !important; 
 }
+
 
 @media (max-width: 978px) {
     .sidebar {
