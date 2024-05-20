@@ -77,7 +77,7 @@ header h1 {
     padding: 10px 20px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 25px; /* More rounded corners */
     cursor: pointer;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s, transform 0.2s;
@@ -104,7 +104,7 @@ header h1 {
 }
 
 .modal-content {
-    background-color: #FDB927;
+    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     margin: 10% auto;
     padding: 20px;
     border-radius: 10px;
@@ -150,6 +150,7 @@ header h1 {
     border-radius: 5px;
     font-size: 16px;
     resize: vertical;
+    background-color: white; 
 }
 
 .close {
@@ -208,8 +209,25 @@ button.frame {
     align-self: center;
 }
 
+/* Set SimpleMDE toolbar background to white */
 .editor-toolbar {
     background-color: white !important;
+    border: 1px solid #ddd; 
+    border-radius: 5px 5px 0 0; 
+}
+
+/* Ensure editor area background is white */
+.CodeMirror {
+    background-color: white !important;
+}
+
+/* Adjust icons color */
+.editor-toolbar a {
+    color: #552583 !important;
+}
+
+.editor-toolbar a:hover {
+    color: #7350A1 !important; 
 }
 
 @media (max-width: 978px) {
@@ -220,13 +238,12 @@ button.frame {
         align-items: center;
         width: 100%;
         height: auto;
-        min-height: 50px; /* Ensure minimum height to fit icons */
-        position: fixed;
+        min-height: 50px; 
         bottom: 0;
         left: 0;
         background-color: var(--lecoder-purple, purple);
         z-index: 1000;
-        padding: 0.5rem 0; /* Add some padding for better appearance */
+        padding: 0.5rem 0;
     }
 
     header {
