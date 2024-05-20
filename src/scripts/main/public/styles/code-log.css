@@ -1,166 +1,243 @@
+@import url('main.css');
+@import url('markdown.css');
+
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+h1 {
+    color: black;
+    text-align: left;
+    font-size: 32px;
+}
+
+header h1 {
+    color: white;
+    text-align: center;
+    font-size: 48px;
+    margin: 0;
+}
+
+#textarea-wrapper {
+    background-color: white;
+    margin: 0 50px;
+}
+
+#textarea-wrapper div {
+    background-color: white;
+}
+
+#file-select, #create-file-button {
+    background-color: white;
+    margin: 20px 0;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#file-select:hover, #create-file-button:hover {
+    color: var(--lecoder-gold);
+}
+
+*::before {
+    box-sizing: content-box;
+    font-family: inherit;
+}
+
 .add-log-btn {
-  font-size: 36px;
-  background-color: #552583;
-  color: #FDB927;
-  border: none;
-  border-radius: 50%;
-  width: 69px;
-  height: 69px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 2px 2px 15px #0000004c;
-  transition: background-color 0.3s, transform 0.2s;
+    font-size: 36px;
+    background-color: #552583;
+    color: #FDB927;
+    border: none;
+    border-radius: 50%;
+    width: 69px;
+    height: 69px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 2px 2px 15px #0000004c;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .add-log-btn:hover {
-  background-color: rgb(88, 101, 174);
+    background-color: rgb(88, 101, 174);
 }
 
 .add-log-btn:active {
-  transform: translateY(2px);
+    transform: translateY(2px);
 }
 
 .frame {
-  background-color: #552583;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s, transform 0.2s;
+    background-color: #552583;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .frame:hover {
-  background-color: #7350A1;
+    background-color: #7350A1;
 }
 
 .frame:active {
-  transform: translateY(2px);
+    transform: translateY(2px);
 }
 
 .modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
-  background-color: #FDB927;
-  margin: 10% auto;
-  padding: 20px;
-  left: 10%;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 1050px;
-  height: auto;
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
+    background-color: #FDB927;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1050px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .input-group img {
-  position: absolute;
-  left: 10px;
-  width: 24px;
-  height: 24px;
+    position: absolute;
+    left: 10px;
+    width: 24px;
+    height: 24px;
 }
 
 .input-group input {
-  padding-left: 40px;
-  width: calc(100% - 50px);
-  box-sizing: border-box;
-  border: 1px solid #552583;
-  border-radius: 5px;
-  font-size: 16px;
-  height: 35px;
+    padding-left: 40px;
+    width: calc(100% - 50px);
+    box-sizing: border-box;
+    border: 1px solid #552583;
+    border-radius: 5px;
+    font-size: 16px;
+    height: 35px;
 }
 
 .textarea-field {
-  width: 100%;
-  height: calc(100% - 120px);
-  padding: 10px;
-  margin-bottom: 20px;
-  box-sizing: border-box;
-  border: 1px solid #552583;
-  border-radius: 5px;
-  font-size: 16px;
-  resize: vertical;
+    width: 100%;
+    height: calc(100% - 120px);
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #552583;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical;
 }
 
 .close {
-  color: #552583;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  font-size: 28px;
-  font-weight: bold;
+    color: #552583;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .modal-header {
-  font-size: 24px;
-  color: #552583;
-  margin-bottom: 20px;
-  width: 100%;
-  text-align: center;
+    font-size: 24px;
+    color: #552583;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .form-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
 }
 
 .form-group {
-  flex: 1;
+    flex: 1;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #552583;
-  font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+    color: #552583;
+    font-size: 18px;
 }
 
 .input-field {
-  width: 100%;
-  padding: 10px;
-  padding-right: 35px;
-  box-sizing: border-box;
-  border: 1px solid #552583;
-  border-radius: 5px;
-  font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    padding-right: 35px;
+    box-sizing: border-box;
+    border: 1px solid #552583;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 button.frame {
-  align-self: center;
+    align-self: center;
+}
+
+.editor-toolbar {
+    background-color: white !important;
+}
+
+@media (max-width: 978px) {
+    .sidebar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        min-height: 50px; /* Ensure minimum height to fit icons */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: var(--lecoder-purple, purple);
+        z-index: 1000;
+        padding: 0.5rem 0; /* Add some padding for better appearance */
+    }
+
+    header {
+        display: block;
+    }
+
+    header img {
+        display: none;
+    }
+
+    html {
+        overflow-y: auto;
+    }
 }
