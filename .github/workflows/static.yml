@@ -37,6 +37,8 @@ jobs:
         with:
           # Upload the entire repository
           path: './src/scripts/main/public/html/index.html'
+      - name: List directory contents
+        run: ls -R ${{ github.workspace }}
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
