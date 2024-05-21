@@ -61,7 +61,7 @@ main {
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
-    transition: .5s; /*Smoother change in color*/
+    /* transition: .5s; This fade color transition stopped working*/
 }
 
 .sideButton:hover {
@@ -69,6 +69,8 @@ main {
     --Linear-Laker-Gold,
     linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
   );
+
+  
 }
 
 .sidebar .toggle {
