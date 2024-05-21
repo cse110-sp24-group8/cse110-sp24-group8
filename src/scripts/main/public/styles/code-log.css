@@ -144,33 +144,31 @@ button.frame {
 }
 
 .close {
-  color: #552583;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 36px;
-  font-weight: bold;
-  width: 36px;
-  height: 36px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.2s, color 0.2s;
-  background-color: transparent;
-  padding: 0;
-  border: none;
-  box-sizing: content-box;
-  padding: 10px; 
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  transform: scale(1.2);
-}
+    color: #552583;
+    z-index: 100;  /* Higher than any surrounding elements */
+     position: absolute;  /* Confirm position is not affected by other CSS */
+    position: absolute;
+    right: 8px;
+    font-size: 55px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    transform: scale(1.2);
+  }
 
 .modal-header {
     font-size: 24px;
