@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Code Log">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/code-log.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="../styles/markdown.css"> <!-- Include the markdown.css file -->
+    <title>LeJournal Code Log</title>
+    <script src="../js/loadNav.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+</head>
+<body>
+    <!-- Main layout -->
+    <main>
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div id="logo">
+                <img src="icons/journallogo-icon.png" alt="Journal Logo">
+                <h2>LeJournal</h2>
+            </div>
+            <a href="index.html" class="sideButton">
+                <span class="buttonIcon"><img src="icons/dashboard-icon.png" alt="Dashboard Icon"></span>
+                <span class="buttonText">Dashboard</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+            <a href="task-list.html" class="sideButton">
+                <span class="buttonIcon"><img src="icons/tasklist-icon.png" alt="Task List Icon"></span>
+                <span class="buttonText">Task List</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+            <a href="calendar.html" class="sideButton">
+                <span class="buttonIcon"><img src="icons/calendar-icon.png" alt="Calendar Icon"></span>
+                <span class="buttonText">Team Calendar</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+            <a href="code-log.html" class="sideButton active">
+                <span class="buttonIcon"><img src="icons/codelog-icon.png" alt="Code Log Icon"></span>
+                <span class="buttonText">Code Log</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+            <a href="documentation.html" class="sideButton">
+                <span class="buttonIcon"><img src="icons/documentation-icon.png" alt="Documentation Icon"></span>
+                <span class="buttonText">Documentation</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+            <a href="feedback.html" class="sideButton">
+                <span class="buttonIcon"><img src="icons/feedback-icon.png" alt="Feedback Icon"></span>
+                <span class="buttonText">Feedback</span>
+                <span class="buttonArrow">&rarr;</span>
+            </a>
+        </nav>
+        <!-- Code Log Content -->
+        <section class="headerWithContent">
+            <header>
+                <h1>Code Log</h1>
+            </header>
+            <section class="content-holder" id="codeLogHolder">
+                <!-- Log entries will be dynamically added here -->
+                <button id="add-log-button" class="add-log-btn">+</button>
+            </section>
+        </section>
+    </main>
+
+    <div id="addLogModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="logDate"></label>
+                    <div class="input-group">
+                        <img src="icons/calendar-icon.png" alt="Calendar Icon">
+                        <input type="text" id="logDate" class="input-field" placeholder="Date:">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="logTime"></label>
+                    <div class="input-group">
+                        <img src="icons/calendar-icon.png" alt="Clock Icon">
+                        <input type="text" id="logTime" class="input-field" placeholder="Time:">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="logContent"></label>
+                <textarea id="logContent" rows="10" cols="50" class="textarea-field"></textarea>
+            </div>
+            <button class="frame" onclick="addLog()">Add Log</button>
+        </div>
+    </div>
+
+    <script src="../js/code-log.js"></script>
+</body>
+</html>
