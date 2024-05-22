@@ -17,9 +17,7 @@ header h1 {
     font-size: 48px;
     margin: 0;
 }
-.headerWithContent{
-    
-}
+
 
 ::before {
     box-sizing: content-box;
