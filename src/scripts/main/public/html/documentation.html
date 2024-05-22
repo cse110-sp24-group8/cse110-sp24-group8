@@ -21,18 +21,19 @@
       <nav class="sidebar">
       </nav>
       <!--This container includes the header and the data content for format-->
-        <!--Majority of where the main features should be contained-->
-        <section class="content-holder" id="documentationHolder">
-            <div id="file-wrapper">
-              <select id="file-select" onchange="switchFile()">
-                <option value="" disabled selected>--Select a file--</option>
-              </select>
-              <button id="create-file-button" onclick="createNewFile()">Create New File</button>
-            </div>
-            <div id="textarea-wrapper">
-                <textarea id="file-content" name="content"></textarea>
-            </div>
-        </section>
+      <!--Majority of where the main features should be contained-->
+      <section class="content-holder" id="documentationHolder">
+          <div id="file-wrapper">
+            <select id="file-select" onchange="switchFile()">
+              <option value="" disabled selected>--Select a file--</option>
+            </select>
+            <button id="create-file-button" onclick="createNewFile()">Create New File</button>
+          </div>
+          <div id="textarea-wrapper">
+              <textarea id="file-content" name="content"></textarea>
+          </div>
+          <button id="delete-file-button">Delete File</button>
+      </section>
     </main>
   </body>
   <script>
