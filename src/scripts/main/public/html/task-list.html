@@ -20,66 +20,47 @@
       <nav class="sidebar">
       </nav>
       <!--This container includes the header and the data content for format-->        
-        <body>
-          <div class="to-do-list">
-            <div class="div">
-              <div class = "tasks-container">
-                <div class="overlap">
-                  <label class="group">
-                    <input type="checkbox" id="task-checkbox" class="rectangle-checkbox">
-                    <div class="text-wrapper">Add new task-list to get started</div>
-                  </label>
-                  <button class="delete-btn">&#x2716;</button>
-                </div>
-              </div>  
-            </div>
-
-            <div class="modal" id="modal">
-              <div class="modal-content">
-                  <span class="close" id="closeModal">&times;</span>
-                  <!-- This div will be replaced with the content loaded from the external HTML file -->
-                  <div id="popupContent"></div>
-              </div>
-            </div>
-
-            <!--pop-up page for add tasklist-->
-            <div class="union-wrapper">
-                <button id="openModal" class = "button-style">
-                  <img class="union" src="../img/union.svg" />
+        <div class="to-do-list">
+          
+          <div class="div">
+            <div class = "tasks-container">
+              <div class="overlap">
+                <label class="group">
+                  <input type="checkbox" id="task-checkbox" class="rectangle-checkbox">
+                  <div class="text-wrapper">Add new task-list to get started</div>
+                </label>
+                
+                <!--delete button on the task-list-->
+                <button class="delete-btn">
+                  <img src= "../img/task-delete.svg" alt="Delete" width="26" height="26">
                 </button>
-            </div>
 
-            <script>
-              // Function to load content from external HTML file and display it in the modal
-              function loadPopupContent() {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                  if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("popupContent").innerHTML = this.responseText;
-                  }
-                };
-                xhttp.open("GET", "addlist.html", true);
-                xhttp.send();
-              }
+                <!--edit button on the task-list-->
+                <button class="edit-btn">
+                  <img src= "../img/task-edit.svg" alt="Edit" width="26" height="26">
+                </button>
 
-              // Event listener for the button to open the modal
-              document.getElementById("openModal").addEventListener("click", function() {
-                loadPopupContent();
-                document.getElementById("modal").style.display = "block";
-              });
-
-              // Event listener for the close button of the modal
-              document.getElementById("closeModal").addEventListener("click", function() {
-                document.getElementById("modal").style.display = "none";
-                document.getElementById("popupContent").innerHTML = "";
-              });
-
-            </script>
-            
-
+              </div>
+            </div>  
           </div>
-          <script src="../js/task_script.js"></script>
-        </body>
+
+          <!--pop-up page for add tasklist starts from here-->
+          <div class="modal" id="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&#x2716;</span>
+                <!-- This div will be replaced with the content loaded from the external HTML file -->
+                <div id="popupContent"></div>
+            </div>
+          </div>
+
+          <!--pop-up page for add tasklist-->
+          <div class="union-wrapper">
+              <button id="openModal" class = "button-style">
+                <img class="union" src="../img/union.svg" />
+              </button>
+          </div>
+        </div>
     </main>
+    <script src="../js/task_script.js"></script>
   </body>
 </html>

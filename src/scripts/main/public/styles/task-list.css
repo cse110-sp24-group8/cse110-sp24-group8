@@ -39,7 +39,7 @@ html, body {
 
 .to-do-list .overlap {
   position: relative;
-  width: calc(100% - 20%);  /* 90% of the parent container */
+  width: calc(100% - 15%);  /* 90% of the parent container */
   height: 63px;
   top: 10px;
   left: 5%;  /* adjust left as percentage for better responsiveness */
@@ -54,7 +54,7 @@ html, body {
   left: 70px;  /* Starting point of the text inside .overlap */
   right: 60px; /* Right padding to leave space for delete button or other elements */
   top: 30%;
-    font-family: 'Karla_regular';
+  font-family: 'Karla_regular';
   font-weight: 700;
   color: #552583;
   font-size: 18px;
@@ -74,21 +74,34 @@ html, body {
   cursor: pointer; 
 }
 
+/*delete button on the task-list*/
 .delete-btn {
-  position: absolute;
-  right: 15px; /* Adjust as necessary to position correctly within the task bar */
-  top: 50%; /* Center vertically within the task bar */
-  transform: translateY(-50%); /* Ensure it's centered no matter the height */
-  background: none; /* Remove any background */
-  border: none; /* Remove borders */
-  color: red;
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  bottom: 6px; /* Aligns the button to the bottom */
+  right: 7px; /* Aligns the button to the left */
+  border: none;
+  background: none;
   cursor: pointer;
-  font-size: 24px; /* Adjust size as necessary */
-  padding: 0; /* Remove padding */
+  padding: 0;
 }
 
-.delete-btn:hover {
-  background-color: darkred;
+.delete-btn img:hover {
+  filter:brightness(3);
+}
+
+/*edit button on the task-list*/
+.edit-btn {
+  position: absolute; /* Absolute positioning relative to the nearest positioned ancestor */
+  top: 6px; /* Aligns the button to the bottom */
+  right: 4px; /* Aligns the button to the left */
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.edit-btn img:hover {
+  filter:brightness(3); /* Inverts the colors of the image */
 }
 
 /* Plus button (add task-list) positioning at the bottom right of the screen*/
@@ -134,19 +147,37 @@ html, body {
   background-color: #ececec;  /* Light grey background on hover */
 }
 
-.rectangle-checkbox:checked + .text-wrapper::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color: red;
-  top: 60%;
-  left:0;
-  transform: translateY(-50%);
-  z-index: 1;
-
+/* Adding strike-through effect */
+.text-wrapper{
+  position: relative;
+  transition: color 0.4s;
 }
 
+.text-wrapper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  right: 0;
+  border-top: 2.5px solid red; /* Color of the strike-through line */
+  transform: scale(0);
+  transform-origin: left center;
+  transition: transform 0.4s;
+}
+
+
+.rectangle-checkbox:checked + .text-wrapper::after{
+  transform: scale(1);
+}
+
+.text-wrapper:hover {
+  color: #888; /* Optional: change text color on hover */
+}
+
+.blur-effect {
+  filter: blur(1px);
+  transition: filter 0.3s ease;
+}
 
 .rectangle-checkbox:checked + .text-wrapper {
   filter: blur(0.5px);
@@ -169,7 +200,7 @@ html, body {
 .modal-content {
   margin: 15% auto;
   padding: 20px;
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   height: 40%;
   border-radius: 10px;
@@ -192,12 +223,12 @@ html, body {
 }
 
 .add-list .text-wrapper {
-  width: 500px;
+  width: 85%;
   height: 40px;
   padding: 8px;
   margin: 10px 23px;
   top: 2px;
-  left: 3px;
+  left: 1px;
   border-radius: 3px;
   font-family: "Segoe UI-Regular", Helvetica;
   font-size: 18px;
@@ -312,6 +343,103 @@ html, body {
   html {
     overflow-y: auto;
   }
+}
+
+/*edit-list html style*/
+
+.edit-list .overlap-group1 {
+  position: absolute;
+  width: 95%;
+  height: 80%;
+  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}
+
+.edit-list .text-wrapper1 {
+  width: 90%;
+  height: 40px;
+  padding: 8px;
+  margin: 10px 23px;
+  top: 2px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+
+
+.edit-list .frame1 {
+  background-color: #552583;
+  color: #fff;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 20px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 90px;
+  height: 50px;
+}
+
+.edit-list .div-wrapper1 {
+  border-color: #552583;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 120px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 95px;
+  height: 50px;
+
+}
+
+.edit-list .text-wrapper1:hover {
+  border-color: #a3a3a3;
+}
+
+.edit-list .text-wrapper1:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
+}
+
+.edit-list .frame1, .edit-list .div-wrapper1 {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Segoe UI-Bold", Helvetica;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit-list .frame1:hover {
+  background-color: lightblue;
+  color: #552583;
+} 
+
+
+.edit-list .div-wrapper1:hover {
+  background-color: #6a3982;
+  color: whitesmoke;
+}
+
+.edit-list .frame1:active {
+  transform: translateY(2px);
+}
+
+.edit-list .div-wrapper1:active {
+  transform: translateY(2px);
+}
+
+/* General styles for interactive elements */
+.edit-list button, .edit-list input[type="text"], .edit-list input[type="checkbox"] {
+  border-radius: 3px;
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 
 
