@@ -27,7 +27,7 @@ jobs:
       - name: Run Unit Tests
         run: npm test ./__tests__/subtract.test.js # Runs unit tests defined in the project; you can specify a path to run specific tests
       - name: Code Quality Check
-        uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
+        uses: paambaati/codeclimate-action@v6.0.0  # Uses a specific version of the Code Climate GitHub Action
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
         with:
