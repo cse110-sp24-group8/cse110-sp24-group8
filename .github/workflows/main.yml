@@ -1,13 +1,5 @@
-# Specifies the events that trigger the workflow: triggers on all pushes and pull requests
-on:
-  push:
-    branches:
-      - main
-      - develop
-  pull_request:
-    branches:
-      - main
-      - develop
+# Specifies the events that trigger the workflow: triggers on all pull requests
+on: [pull_request]
 
 permissions:
   pull-requests: write
@@ -22,9 +14,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4 # Using version 4 of the checkout action
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Specifies Node.js version 14
+          node-version: '20'  # Specifies Node.js version 20
           cache: 'npm'  # Caches npm modules to speed up subsequent workflow runs
       - name: Install Dependencies
         run: npm install  # Installs the project dependencies defined in package.json using npm
@@ -35,7 +27,7 @@ jobs:
       - name: Run Unit Tests
         run: npm test ./__tests__/subtract.test.js # Runs unit tests defined in the project; you can specify a path to run specific tests
       - name: Code Quality Check
-        uses: paambaati/codeclimate-action@v2.7.5  # Uses a specific version of the Code Climate GitHub Action
+        uses: paambaati/codeclimate-action@v6.0.0  # Uses a specific version of the Code Climate GitHub Action
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
         with:

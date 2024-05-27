@@ -181,7 +181,7 @@ h2 {
 a {
   text-decoration: none;
   display: inline-block;
-  padding: 4px 16px;
+  /* padding: 4px 16px; */
 }
 
 /* Hover effect for link elements */
