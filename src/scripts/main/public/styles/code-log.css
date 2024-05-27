@@ -242,7 +242,31 @@ button.frame {
   border-radius: 5px 5px 0 0;
   opacity: 1;
 }
+/* Styles for log entries and container */
+.logs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+}
 
+.log-entry {
+  background-color: #f9f9f9;
+  border-left: 5px solid #552583;
+  padding: 10px;
+  border-radius: 5px;
+  flex: 1 1 300px; /* Adjust size here to control how many entries per row */
+}
+
+.log-entry p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.log-entry strong {
+  color: #552583;
+  font-size: 16px;
+}
 /* 
 @media (max-width: 978px) {
     .sidebar {

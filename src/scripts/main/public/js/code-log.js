@@ -14,12 +14,22 @@ function openModal() {
 function closeModal() {
   document.getElementById('addLogModal').style.display = 'none';
 }
-
-// Function to handle adding a log
 function addLog() {
-  // Add your logic to add the log here
+  const content = window.simplemde.value();  // Get markdown content
+  const date = document.getElementById('logDate').value;
+  const time = document.getElementById('logTime').value;
+  const entry = `<div class='log-entry'><strong>${date} ${time}</strong><p>${content}</p></div>`;
+
+  // Append to the logs container
+  document.getElementById('logsContainer').innerHTML += entry;
+
+  // Clear the markdown editor
+  window.simplemde.value('');
+
+  // Close the modal
   closeModal();
 }
+
 
 // Function to initialize SimpleMDE
 function initializeSimpleMDE() {
