@@ -79,7 +79,7 @@ ul {
     padding: 1em;
 }
 
-.progress {
+/* .progress {
     transition: stroke-dasharray 2s;
     animation: progressAnimation 2s forwards;
 }
@@ -93,7 +93,7 @@ ul {
         stroke-dasharray: 141.5 283;
         stroke-dashoffset: 0;
     }
-}
+} */
 
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
