@@ -246,6 +246,7 @@ button.frame {
 .logs-container {
   display: flex;
   flex-wrap: wrap;
+  
   gap: 10px;
   padding: 10px;
 }
@@ -255,7 +256,12 @@ button.frame {
   border-left: 5px solid #552583;
   padding: 10px;
   border-radius: 5px;
+  max-width: 400px;
+  max-height: 400px;
   flex: 1 1 300px; /* Adjust size here to control how many entries per row */
+  word-wrap: break-word; /* Ensures that long words break to fit within the width */
+  white-space: pre-wrap; /* Preserves white spaces and breaks lines as needed */
+  overflow-y: scroll;
 }
 
 .log-entry p {
