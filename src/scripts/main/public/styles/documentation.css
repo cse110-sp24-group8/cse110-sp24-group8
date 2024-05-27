@@ -21,7 +21,7 @@ header h1 {
     margin: 0;
 }
 
-#documentationHolder {
+.content-holder {
     background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     border-radius: 10px;
     margin-left: 20px;
@@ -34,7 +34,7 @@ header h1 {
     align-items: center;
 }
 
-#controls-wrapper {
+.controls-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,36 +43,23 @@ header h1 {
     box-sizing: border-box;
 }
 
-#file-wrapper {
+.file-wrapper {
     display: flex;
     align-items: center;
 }
 
-#textarea-wrapper {
+.textarea-wrapper {
     background-color: white;
     margin-right: 50px;
     margin-left: 50px;
     width: 95%;
 }
 
-#textarea-wrapper div {
+.textarea-wrapper div {
     background-color: white;
 }
 
-#file-select {
-    background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    border-radius: 20px;
-    border-style: none;
-}
-
-#file-select:hover {
-    color: var(--lecoder-gold);
-}
-
-#create-file-button {
+#fileSelect {
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -81,11 +68,24 @@ header h1 {
     border-style: none;
 }
 
-#create-file-button:hover {
+#fileSelect:hover {
     color: var(--lecoder-gold);
 }
 
-#delete-file-button {
+#createFileButton {
+    background-color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+    border-style: none;
+}
+
+#createFileButton:hover {
+    color: var(--lecoder-gold);
+}
+
+#deleteFileButton {
     background-color: var(--lecoder-purple);
     color: white;
     font-size: 20px;
@@ -94,7 +94,7 @@ header h1 {
     padding: 5px 10px 5px 10px;
 }
 
-#delete-file-button:hover {
+#deleteFileButton:hover {
     color: var(--lecoder-gold);
 }
 
@@ -120,7 +120,7 @@ header h1 {
         padding: 0.5rem 0; /* Add some padding for better appearance */
     }
 
-    #documentationHolder {
+    .content-holder {
         padding-bottom: 60px;
     }
 
