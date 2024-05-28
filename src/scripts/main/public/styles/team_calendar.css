@@ -208,11 +208,11 @@ a:hover {
 /* Round shape for previous and next buttons */
 .round {
   border-radius: 50%;
-  /* width: 40px;
+  width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
-  justify-content: center; */
+  justify-content: center;
 }
 
 /* Media query for screen width up to 1200px

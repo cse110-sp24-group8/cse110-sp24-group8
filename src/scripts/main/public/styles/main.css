@@ -61,7 +61,7 @@ main {
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
-    /* transition: .5s; This fade color transition stopped working*/
+    transition: .5s;
 }
 
 .sideButton:hover {
