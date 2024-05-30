@@ -8,11 +8,13 @@ document.getElementById('add-log-button').addEventListener('click', function() {
 // Function to open the modal
 function openModal() {
   document.getElementById('addLogModal').style.display = 'block';
+  document.getElementById('overlay').style.display = 'block'; // Show overlay
 }
 
 // Function to close the modal
 function closeModal() {
   document.getElementById('addLogModal').style.display = 'none';
+  document.getElementById('overlay').style.display = 'none'; // Hide overlay
 }
 
 window.onload = function() {
