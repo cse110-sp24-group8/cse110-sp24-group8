@@ -244,11 +244,16 @@ button.frame {
 }
 /* Styles for log entries and container */
 .logs-container {
+  max-height: 100%; /* Adjust this value as needed */
+  overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-  
   gap: 10px;
   padding: 10px;
+}
+
+#logsContainer {
+  overflow-y: scroll;
 }
 
 .log-entry {

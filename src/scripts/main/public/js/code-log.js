@@ -14,6 +14,20 @@ function openModal() {
 function closeModal() {
   document.getElementById('addLogModal').style.display = 'none';
 }
+
+window.onload = function() {
+  // Load logs from localStorage
+  let logs = localStorage.getItem('logs');
+  if (logs) {
+    logs = JSON.parse(logs);
+    const logsContainer = document.getElementById('logsContainer');
+    logs.forEach(log => {
+      const entry = `<div class='log-entry'><strong>${log.date} ${log.time}</strong><p>${log.content}</p></div>`;
+      logsContainer.innerHTML += entry;
+    });
+  }
+}
+
 function addLog() {
   const content = window.simplemde.value();  // Get markdown content
   const date = document.getElementById('logDate').value;
@@ -22,6 +36,16 @@ function addLog() {
 
   // Append to the logs container
   document.getElementById('logsContainer').innerHTML += entry;
+
+  // Save to localStorage
+  let logs = localStorage.getItem('logs');
+  if (logs) {
+    logs = JSON.parse(logs);
+  } else {
+    logs = [];
+  }
+  logs.push({date, time, content});
+  localStorage.setItem('logs', JSON.stringify(logs));
 
   // Clear the markdown editor
   window.simplemde.value('');
