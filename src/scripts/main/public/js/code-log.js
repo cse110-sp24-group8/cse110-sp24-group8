@@ -21,12 +21,11 @@ window.onload = function() {
   // Load logs from localStorage
   let logs = localStorage.getItem('logs');
   if (logs) {
-    logs = JSON.parse(logs);
-    const logsContainer = document.getElementById('logsContainer');
-    logs.forEach(log => {
-      const entry = `<div class='log-entry'><strong>${log.date} ${log.time}</strong><p>${log.content}</p></div>`;
-      logsContainer.innerHTML += entry;
-    });
+      logs = JSON.parse(logs);
+      const logsContainer = document.getElementById('logsContainer');
+      logs.forEach(log => {
+          addLogEntry(log.date, log.time, log.content, logsContainer);
+      });
   }
 }
 
@@ -37,22 +36,21 @@ function addLog() {
 
   // Add placeholder text if content is empty
   if (!content) {
-    content = "<span class='placeholder-text'>Empty</span>";
+      content = "<span class='placeholder-text'>Empty</span>";
   }
 
-  const entry = `<div class='log-entry'><strong>${date} ${time}</strong><p>${content}</p></div>`;
-
   // Append to the logs container
-  document.getElementById('logsContainer').innerHTML += entry;
+  const logsContainer = document.getElementById('logsContainer');
+  addLogEntry(date, time, content, logsContainer);
 
   // Save to localStorage
   let logs = localStorage.getItem('logs');
   if (logs) {
-    logs = JSON.parse(logs);
+      logs = JSON.parse(logs);
   } else {
-    logs = [];
+      logs = [];
   }
-  logs.push({date, time, content});
+  logs.push({ date, time, content });
   localStorage.setItem('logs', JSON.stringify(logs));
 
   // Clear the markdown editor
@@ -62,6 +60,13 @@ function addLog() {
   closeModal();
 }
 
+function addLogEntry(date, time, content, container) {
+  const entry = document.createElement('div');
+  entry.className = 'log-entry';
+  entry.innerHTML = `<div class='date-time-container'><div class='date'>Date: ${date}</div><div class='time'>Time: ${time}</div> </div> <p>${content}</p>
+  `;
+  container.appendChild(entry);
+}
 
 // Function to initialize SimpleMDE
 function initializeSimpleMDE() {
@@ -77,14 +82,14 @@ function setDateTimeFields() {
   const currentDate = new Date();  // Get the current date and time
   const formattedDate = formatDate(currentDate);  // Format the date
   const formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });  // Format the time
-  
+
   const dateField = document.getElementById('logDate');
   const timeField = document.getElementById('logTime');
 
   // Set the formatted date and time in the input fields
   dateField.value = formattedDate;
   timeField.value = formattedTime;
-  
+
   // Make the date and time fields read-only
   dateField.readOnly = true;
   timeField.readOnly = true;
@@ -112,6 +117,3 @@ function getSuffix(day) {
           return 'th';
   }
 }
-
-
-  
