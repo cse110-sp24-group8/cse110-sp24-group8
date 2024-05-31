@@ -31,7 +31,7 @@
             </select>
             <button id="createFileButton" onclick="createNewFile()">Create New File</button>
           </div>
-          <button id="deleteFileButton"><i class="fas fa-trash"></i></button>
+          <button id="deleteFileButton" onclick="deleteFile()"><i class="fas fa-trash"></i></button>
         </div>
         <div class="textarea-wrapper">
             <textarea id="fileContent" name="content"></textarea>
@@ -39,7 +39,5 @@
     </section>
   </main>
 </body>
-<script>
-  var simplemde = new SimpleMDE({ element: document.getElementById("fileContent") });
-</script>
+<script src="../js/documentation.js"></script>
 </html>
