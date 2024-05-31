@@ -257,18 +257,16 @@ button.frame {
 }
 
 .date-time-container {
-  background-color: #FDB927; /* Yellow background color */
-  padding: 2px 10px; /* Less padding for a slimmer bar */
-  border-radius: 5px; /* Smoothed corners */
-  margin-bottom: 5px; /* Space between date-time and content */
-  display: flex; /* Ensures inline alignment of date and time */
-  justify-content: space-between; /* Spaces out the date and time */
+  background-color: #FDB927; 
+  padding: 2px 10px;
+  border-radius: 5px; 
+  margin-bottom: 5px; 
 }
 
 .date, .time {
-  color: white;
-  margin: 0 10px; /* Adjusted margin for compact design */
-  font-size: 20px; /* Larger font size for better legibility */
+  display: block; 
+  color: white; 
+  font-size: 20px; 
 }
 
 .log-entry {
@@ -277,9 +275,7 @@ button.frame {
   border-radius: 5px;        
   max-width: 400px;
   max-height: 400px;
-  flex: 1 1 300px;           
-  word-wrap: break-word;      
-  white-space: pre-wrap;    
+  flex: 1 1 300px;             
   overflow-y: hidden;        
 }
 
