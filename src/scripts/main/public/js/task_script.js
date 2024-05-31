@@ -37,7 +37,7 @@ function loadEditContent(taskId) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("popupContent").innerHTML = this.responseText;
-            document.getElementById("popupContent").setAttribute('data-task-id', taskId); // Set task ID as data attribute
+            document.getElementById("popupContent").setAttribute('data-task-id', taskId);
             document.getElementById("modal").style.display = "block";
 
             const task = JSON.parse(localStorage.getItem('tasks')).find(t => t.id === parseInt(taskId));
@@ -45,11 +45,24 @@ function loadEditContent(taskId) {
                 document.querySelector('.edit-list .text-wrapper1').value = task.text;
                 document.querySelector('.edit-list .date-wrapper1').value = task.date;
             }
+
+            // Correctly place the event listener setup here after the content is loaded and elements are available
+            const saveButton = document.querySelector('.edit-list .frame1');
+            if (saveButton) {
+                saveButton.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    handleEditSubmit(taskId);
+                    document.getElementById("modal").style.display = "none"; // Close the modal
+                });
+            } else {
+                console.error('Save button not found.');
+            }
         }
     };
     xhttp.open("GET", "editlist.html", true);
     xhttp.send();
 }
+
 
 /**
  * Function to handle the submission of edited task
@@ -65,7 +78,6 @@ function handleEditSubmit(taskId) {
         tasks[taskIndex].date = newDate;
         localStorage.setItem('tasks', JSON.stringify(tasks)); // Overwrite the existing task in local storage
         updateTaskList(); // Refresh the task list
-        document.getElementById("modal").style.display = "none"; // Close the modal
     }
 }
 
@@ -112,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     text: inputText,
                     date: inputDate,
                     completed: false,
-                    completedDate: null // Add completedDate property to track completion time
+                    completedDate: null, // Add completedDate property to track completion time
                 };
                 tasks.push(newTask);
                 localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -132,66 +144,56 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function updateTaskList() {
     const tasksContainer = document.querySelector('.tasks-container');
-    tasksContainer.innerHTML = ''; // Clear existing tasks before re-rendering
+    tasksContainer.innerHTML = ''; // Clear the container before re-rendering tasks
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    // Split tasks into active and completed
-    const activeTasks = tasks.filter(task => !task.completed);
-    const completedTasks = tasks.filter(task => task.completed);
+    // Enhance tasks with a date object for sorting
+    tasks.forEach(task => {
+        if (task.date) {
+            task.dateObj = new Date(task.date);
+            task.dateObj.setHours(0, 0, 0, 0); // Normalize time part to midnight for fair comparison
+        } else {
+            task.dateObj = null;
+        }
+    });
 
-    // Sorting active tasks by due date, with the closest due date towards the top
-    activeTasks.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort by due date
+    // Sort tasks by empty dates, completion status, and due date
+    tasks.sort((a, b) => {
+        if (!a.date && !b.date) return a.completed - b.completed;
+        if (!a.date) return a.completed ? 1 : -1;
+        if (!b.date) return b.completed ? -1 : 1;
+        if (a.completed !== b.completed) return a.completed ? 1 : -1;
+        return a.dateObj - b.dateObj;
+    });
 
-    const today = new Date(); // Get today's date
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set today's date to midnight for comparison
 
-    // Render active tasks
-    activeTasks.forEach(task => {
+    // Render tasks
+    tasks.forEach(task => {
+        const isOverdue = !task.completed && task.dateObj && task.dateObj < today;
         const checkedAttribute = task.completed ? 'checked' : '';
+        const textDecoration = task.completed ? 'text-decoration: line-through; color: red;' : '';
+        const dateText = task.date ? (isOverdue ? `<span style="color: red;">OVERDUE</span>` : task.date) : "No date set";
 
-        // Check if the task date is before or equal to today
-        const isOverdue = new Date(task.date) < today;
-
-        // Set the text and color accordingly
-        const dateText = isOverdue ? '<span style="color: red;">OVERDUE</span>' : task.date;
-
-        const newTaskHtml = `
-        <div class="overlap" data-task-id="${task.id}">
-            <label class="group">
-                <input type="checkbox" class="rectangle-checkbox" ${checkedAttribute}>
-                <div class="text-wrapper">${task.text}</div>
-                <div class="date-wrapper">${dateText}</div>
-            </label>
-            <button class="delete-btn">
-                <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
-            </button>
-            <button class="edit-btn" data-task-id="${task.id}">
-                <img src="../img/task-edit.svg" alt="Edit" width="26" height="26">
-            </button>
-        </div>`;
-        tasksContainer.insertAdjacentHTML('beforeend', newTaskHtml);
+        const taskHtml = `
+            <div class="overlap" data-task-id="${task.id}">
+                <label class="group">
+                    <input type="checkbox" class="rectangle-checkbox" ${checkedAttribute} onchange="updateTaskCompletion('${task.id}', this.checked)">
+                    <div class="text-wrapper" style="${textDecoration}">${task.text}</div>
+                    <div class="date-wrapper">${dateText}</div>
+                </label>
+                <button class="delete-btn" onclick="handleTaskDeletion('${task.id}')">
+                    <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
+                </button>
+                <button class="edit-btn" onclick="loadEditContent('${task.id}')">
+                    <img src="../img/task-edit.svg" alt="Edit" width="26" height="26">
+                </button>
+            </div>`;
+        tasksContainer.insertAdjacentHTML('beforeend', taskHtml);
     });
 
-    // Render completed tasks
-    completedTasks.forEach(task => {
-        const newTaskHtml = `
-        <div class="overlap" data-task-id="${task.id}">
-            <label class="group">
-                <input type="checkbox" class="rectangle-checkbox" checked disabled>
-                <div class="text-wrapper" style="text-decoration: line-through; color: red;">${task.text}</div>
-                <div class="date-wrapper">${task.date}</div>
-            </label>
-            <button class="delete-btn">
-                <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
-            </button>
-            <button class="edit-btn" data-task-id="${task.id}">
-                <img src="../img/task-edit.svg" alt="Edit" width="26" height="26">
-            </button>
-        </div>`;
-        tasksContainer.insertAdjacentHTML('beforeend', newTaskHtml);
-    });
-
-    // Update total tasks and completed tasks count
-    updateTaskCounts();
+    updateTaskCounts(); // Update the count of total and completed tasks
 }
 
 /**
@@ -213,6 +215,7 @@ function handleTaskDeletion(taskId) {
     tasks = tasks.filter(task => task.id.toString() !== taskId);
     localStorage.setItem('tasks', JSON.stringify(tasks));
     updateTaskCounts(); // Update task counts after removing a task
+    updateTaskList();
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -258,6 +261,7 @@ function updateTaskCompletion(taskId, isCompleted) {
         task.completedDate = isCompleted ? new Date().toISOString() : null; // Update completedDate
         localStorage.setItem('tasks', JSON.stringify(tasks));
         updateTaskCounts(); // Update task counts after changing completion status
+        updateTaskList();
     }
 }
 
