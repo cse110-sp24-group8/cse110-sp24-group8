@@ -173,7 +173,7 @@ function updateTaskList() {
     tasks.forEach(task => {
         const isOverdue = !task.completed && task.dateObj && task.dateObj < today;
         const checkedAttribute = task.completed ? 'checked' : '';
-        const textDecoration = task.completed ? 'text-decoration: line-through; color: red;' : '';
+        const textDecoration = task.completed ? 'text-decoration: line-through; color: #DA70D6;' : '';
         const dateText = task.date ? (isOverdue ? `<span style="color: red;">OVERDUE</span>` : task.date) : "No date set";
 
         const taskHtml = `
