@@ -63,7 +63,6 @@ function loadEditContent(taskId) {
     xhttp.send();
 }
 
-
 /**
  * Function to handle the submission of edited task
  * @param {string} taskId - The ID of the task to be edited
@@ -93,12 +92,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Handle edit submission
     const saveButton = document.querySelector('.edit-list .frame1');
-    saveButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent form submission
+    if (saveButton) {
+        saveButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent form submission
 
-        const taskId = document.getElementById("popupContent").getAttribute('data-task-id');
-        handleEditSubmit(taskId);
-    });
+            const taskId = document.getElementById("popupContent").getAttribute('data-task-id');
+            handleEditSubmit(taskId);
+        });
+    }
 });
 
 /**
@@ -122,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const newTask = {
                     id: Date.now(),
                     text: inputText,
-                    date: inputDate,
+                    date: standardizeDate(inputDate),
                     completed: false,
                     completedDate: null, // Add completedDate property to track completion time
                 };
@@ -140,6 +141,55 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 /**
+ * Function to standardize a date string to 00:00 AM in UTC
+ * @param {string} date - The date string to standardize
+ * @returns {string} - The standardized date string
+ */
+function standardizeDate(date) {
+    const dateObj = new Date(date);
+    dateObj.setUTCHours(0, 0, 0, 0);
+    return dateObj.toISOString().split('T')[0];
+}
+
+/**
+ * Function to format date as "Today", "Tomorrow", or "10th May 2024"
+ * @param {string} date - The date to format
+ * @returns {string} - The formatted date string
+ */
+function formatDate(date) {
+    const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
+
+    const tomorrow = new Date(today);
+    tomorrow.setUTCDate(today.getUTCDate() + 1);
+
+    const dateToFormat = new Date(date);
+    dateToFormat.setUTCHours(0, 0, 0, 0);
+
+    if (dateToFormat.getTime() === today.getTime()) {
+        return '<span style="color:black;">Today</span>';
+    } else if (dateToFormat.getTime() === tomorrow.getTime()) {
+        return '<span style="color:black;">Tomorrow</span>';
+    } else {
+        const day = dateToFormat.getUTCDate();
+        const month = dateToFormat.toLocaleString('default', { month: 'long' });
+        const year = dateToFormat.getUTCFullYear();
+
+        const daySuffix = (day) => {
+            if (day > 3 && day < 21) return 'th'; // covers 11-20
+            switch (day % 10) {
+                case 1: return "st";
+                case 2: return "nd";
+                case 3: return "rd";
+                default: return "th";
+            }
+        };
+
+        return `${day}${daySuffix(day)} ${month} ${year}`;
+    }
+}
+
+/**
  * Function to update the tasks displayed in the DOM
  */
 function updateTaskList() {
@@ -147,11 +197,11 @@ function updateTaskList() {
     tasksContainer.innerHTML = ''; // Clear the container before re-rendering tasks
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    // Enhance tasks with a date object for sorting
+    // Enhance tasks with a standardized date object for sorting
     tasks.forEach(task => {
         if (task.date) {
             task.dateObj = new Date(task.date);
-            task.dateObj.setHours(0, 0, 0, 0); // Normalize time part to midnight for fair comparison
+            task.dateObj.setUTCHours(0, 0, 0, 0); // Standardize to 00:00 AM in UTC
         } else {
             task.dateObj = null;
         }
@@ -167,14 +217,14 @@ function updateTaskList() {
     });
 
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set today's date to midnight for comparison
+    today.setUTCHours(0, 0, 0, 0); // Set today's date to 00:00 AM in UTC for comparison
 
     // Render tasks
     tasks.forEach(task => {
         const isOverdue = !task.completed && task.dateObj && task.dateObj < today;
         const checkedAttribute = task.completed ? 'checked' : '';
         const textDecoration = task.completed ? 'text-decoration: line-through; color: #DA70D6;' : '';
-        const dateText = task.date ? (isOverdue ? `<span style="color: red;">OVERDUE</span>` : task.date) : "No date set";
+        const dateText = task.date ? (isOverdue ? `<span style="color: red;">OVERDUE</span>` : formatDate(task.date)) : "No date set";
 
         const taskHtml = `
             <div class="overlap" data-task-id="${task.id}">
