@@ -21,12 +21,13 @@ main {
 .sidebar {
     display: flex;
     flex-direction: column;
-    width: 5%;
+    /*WIDTH CAUSING DIFFERENCE IN SIDEBAR SIZE*/
+    /* width: 5% !important; */
     padding: 0;
     margin: 0;
     height: 92%;
     background-color: var(--lecoder-purple, purple);
-    text-align: center;
+    font-size: 80%;
 }
 
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
@@ -51,17 +52,18 @@ main {
     cursor: pointer;
     border-radius: 10px;
 
-    /* adding our style to buttons. Note that we will have a version with text that opens up later*/
+    /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
     display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+    text-align: center;
 	align-content: stretch;
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
-    /* transition: .5s; This fade color transition stopped working*/
+    text-decoration: none;
 }
 
 .sideButton:hover {
@@ -73,36 +75,11 @@ main {
   
 }
 
-.sidebar .toggle {
-    background-color: goldenrod;
-    position: absolute;
-    border-radius: 50%;
-    top: 55%;
-    left: 3.7%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    /*This makes it so that the arrow always stays above the taskbar and any other object. 
-    The default for other layers are 0(auto) so changing it to 1 brings it forward.*/
-    z-index: 1; 
-}
-
 header {
-    /*Aligning  the "Welcome, LeCoder!" with the icon. This requires a div to space out the objects evenly*/
-    /* display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch; */
-
     display: grid;
     grid-template-columns: 5% 95%;
     background-color: var(--lecoder-purple, purple);
     text-align: center;
-    /* padding-top: 1.7rem; */
 }
 
 header h1 {
@@ -115,6 +92,35 @@ header h1 {
 
 header img {
     display: block;
-    margin: auto;
-    width: 75%;
+    padding: auto;
+    width: 70%;
+}
+
+.slider {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    background-color: gray;
+    border-radius: 34px;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-color: white
+}
+
+input:checked + .slider {
+    background-color: black;
 }

@@ -14,29 +14,38 @@
     <header>
       <img src="./icons/journallogo-icon.png" alt="Journal Logo">
       <h1>Welcome, LeCoder!</h1>
-      <!-- <div></div> -->
+      
+      <label class="switch">
+        <input type="checkbox" id="themeToggle" onclick="toggleTheme()">
+        <span class="slider"></span>
+      </label>
     </header>
     <main>
       <nav class="sidebar">
         <a href="index.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/dashboard-icon.png" alt="Dashboard Icon"></span>
+          <span class="buttonIcon"><img src="./icons/dashboard-icon.png" alt="Dashboard Icon">Home</span>
         </a>
         <a href="./html/task-list.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/tasklist-icon.png" alt="Task List Icon"></span>
+          <span class="buttonIcon"><img src="./icons/tasklist-icon.png" alt="Task List Icon">Task List</span>
         </a>
         <a href="./html/team_calendar.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/calendar-icon.png" alt="Calendar Icon"></span>
+          <span class="buttonIcon"><img src="./icons/calendar-icon.png" alt="Calendar Icon">Calendar</span>
         </a>
         <a href="./html/code-log.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/codelog-icon.png" alt="Code Log Icon"></span>
+          <span class="buttonIcon"><img src="./icons/codelog-icon.png" alt="Code Log Icon">Code Log</span>
         </a>
         <a href="./html/documentation.html" class="sideButton">
-            <span class="buttonIcon"><img src="./icons/documentation-icon.png" alt="Documentation Icon"></span>
-            
+          <span class="buttonIcon"><img src="./icons/documentation-icon.png" alt="Documentation Icon">Docs</span>
         </a>
         <a href="./html/feedback.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/feedback-icon.png" alt="Feedback Icon"></span>
+          <span class="buttonIcon"><img src="./icons/feedback-icon.png" alt="Feedback Icon">Feedback</span>
         </a>
+
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" onclick="toggleTheme()">
+          <span class="slider"></span>
+        </label>
+
       </nav>
       <!--Majority of where the main features should be contained-->
       <section class="content-holder" id="dashboardHolder">
