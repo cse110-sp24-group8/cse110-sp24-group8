@@ -157,14 +157,21 @@ function standardizeDate(date) {
  * @returns {string} - The formatted date string
  */
 function formatDate(date) {
-    const today = new Date();
-    today.setUTCHours(0, 0, 0, 0);
+    
+    //PST timezone conversion
+    const getPSTDate = (date) => {
+        const dateString = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+        const pstDate = new Date(dateString);
+        pstDate.setHours(0, 0, 0, 0); // Set to start of the day
+        return pstDate;
+    };
 
+    const today = getPSTDate(new Date());
     const tomorrow = new Date(today);
-    tomorrow.setUTCDate(today.getUTCDate() + 1);
+    tomorrow.setDate(today.getDate() + 1);
 
-    const dateToFormat = new Date(date);
-    dateToFormat.setUTCHours(0, 0, 0, 0);
+    const dateToFormat = getPSTDate(date);
+    dateToFormat.setDate(dateToFormat.getDate()+1);
 
     if (dateToFormat.getTime() === today.getTime()) {
         return '<span style="color:black;">Today</span>';
@@ -245,6 +252,8 @@ function updateTaskList() {
 
     updateTaskCounts(); // Update the count of total and completed tasks
 }
+
+
 
 /**
  * Function to update the total tasks and completed tasks count
