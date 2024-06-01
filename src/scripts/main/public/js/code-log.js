@@ -63,10 +63,18 @@ function addLog() {
 function addLogEntry(date, time, content, container) {
   const entry = document.createElement('div');
   entry.className = 'log-entry';
-  entry.innerHTML = `<div class='date-time-container'> <div class='date'>Date: ${date}</div>
-                        <div class='time'>Time: ${time}</div> </div><p>${content}</p>`;
+  entry.innerHTML = `
+      <div class='fieldD1'>
+          <div class='date-codelog'>Date: ${date}</div>
+          <div class='time-codelog'>Time: ${time}</div>
+      </div>
+      <div class='fieldD2'>
+          <p>${content}</p>
+      </div>
+  `;
   container.appendChild(entry);
 }
+
 
 
 // Function to initialize SimpleMDE
