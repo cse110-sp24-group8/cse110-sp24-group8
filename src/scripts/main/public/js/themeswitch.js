@@ -1,5 +1,8 @@
 function setTheme(theme) {
     const root = document.documentElement;
+
+    //WILL NEED TO ADD THEMES LATER
+
     if (theme==='dark') {
       root.style.setProperty('background', 'var(--bg-color-dark)');
       root.style.setProperty('color','var(--text-color-dark)');
