@@ -17,6 +17,7 @@ main {
     height: 100vh;
 }
 
+
 /* Displays our buttons vertically*/
 .sidebar {
     display: flex;
@@ -66,7 +67,16 @@ main {
     text-decoration: none;
 }
 
-.sideButton:hover {
+.sideButton:hover      {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+
+  
+}
+
+.sideButton:focus    {
     background: var(
     --Linear-Laker-Gold,
     linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
