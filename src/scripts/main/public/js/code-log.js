@@ -8,13 +8,13 @@ document.getElementById('add-log-button').addEventListener('click', function() {
 // Function to open the modal
 function openModal() {
   document.getElementById('addLogModal').style.display = 'block';
-  document.getElementById('logsContainer').classList.add('hidden');
+  document.getElementById('overlay').style.display = 'block'; // Show overlay
 }
 
 // Function to close the modal
 function closeModal() {
   document.getElementById('addLogModal').style.display = 'none';
-  document.getElementById('logsContainer').classList.remove('hidden');
+  document.getElementById('overlay').style.display = 'none'; // Hide overlay
 }
 
 window.onload = function() {
@@ -31,15 +31,9 @@ window.onload = function() {
 }
 
 function addLog() {
-  let content = window.simplemde.value().trim();  // Get markdown content and trim it
+  const content = window.simplemde.value();  // Get markdown content
   const date = document.getElementById('logDate').value;
   const time = document.getElementById('logTime').value;
-
-  // Add placeholder text if content is empty
-  if (!content) {
-    content = "<span class='placeholder-text'>Empty</span>";
-  }
-
   const entry = `<div class='log-entry'><strong>${date} ${time}</strong><p>${content}</p></div>`;
 
   // Append to the logs container
