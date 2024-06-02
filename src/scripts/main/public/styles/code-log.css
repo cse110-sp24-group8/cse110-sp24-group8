@@ -255,13 +255,15 @@ button.frame {
 #logsContainer {
     height: 100%;
     overflow-y: auto;
+    padding-bottom: 100px;
+    
 }
 
 .log-entry {
     background: #ffffff;
-    width: calc(50% - 40px); /* Adjust this value to make the text boxes wider */
     margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    height: 250px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -285,7 +287,7 @@ button.frame {
 .fieldD2 {
     background: white;
     border: 2px solid gold;
-    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-y: scroll; /* Enable vertical scrolling */
     height: 150px; /* Set a fixed height for consistency */
 }
 
@@ -299,11 +301,12 @@ button.frame {
     font-size: 20px;
 }
 
-.hidden {
+/*.hidden {
     display: none;
-}
+}*/
 
 .placeholder-text {
+    padding: 2px;
     color: grey;
     font-style: italic;
 }
@@ -342,6 +345,7 @@ button.frame {
 
     .fieldD2 {
         height: auto; /* Adjust height for mobile view */
+        overflow-y: scroll;
     }
 }
 
