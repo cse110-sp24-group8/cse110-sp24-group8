@@ -48,7 +48,6 @@ main {
     border: none;
     outline: none;
     background: none;
-    
     cursor: pointer;
     border-radius: 10px;
 
@@ -62,11 +61,16 @@ main {
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
-    transition: .5s; /*Smoother change in color*/
+    transition: .5s;
 }
 
 .sideButton:hover {
-    background-color: var(--lecoder-light-purple, pink);
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+
+  
 }
 
 .sidebar .toggle {
@@ -80,6 +84,9 @@ main {
     justify-content: center;
     width: 50px;
     height: 50px;
+    /*This makes it so that the arrow always stays above the taskbar and any other object. 
+    The default for other layers are 0(auto) so changing it to 1 brings it forward.*/
+    z-index: 1; 
 }
 
 header {
