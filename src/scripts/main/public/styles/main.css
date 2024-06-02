@@ -65,6 +65,7 @@ main {
     color: white;
     flex: 1;
     text-decoration: none;
+    min-width: 5.25rem;
 }
 
 .sideButton:hover      {
