@@ -17,14 +17,14 @@ function loadPopupContent() {
  */
 document.getElementById("openModal").addEventListener("click", function() {
     loadPopupContent();
-    document.getElementById("modal").style.display = "block";
+    document.getElementById("pageModal").style.display = "block";
 });
 
 /**
  * Event listener for the close button of the modal
  */
 document.getElementById("closeModal").addEventListener("click", function() {
-    document.getElementById("modal").style.display = "none";
+    document.getElementById("pageModal").style.display = "none";
     document.getElementById("popupContent").innerHTML = "";
 });
 
@@ -38,7 +38,7 @@ function loadEditContent(taskId) {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("popupContent").innerHTML = this.responseText;
             document.getElementById("popupContent").setAttribute('data-task-id', taskId);
-            document.getElementById("modal").style.display = "block";
+            document.getElementById("pageModal").style.display = "block";
 
             const task = JSON.parse(localStorage.getItem('tasks')).find(t => t.id === parseInt(taskId));
             if (task) {
@@ -52,7 +52,7 @@ function loadEditContent(taskId) {
                 saveButton.addEventListener('click', function(event) {
                     event.preventDefault(); // Prevent form submission
                     handleEditSubmit(taskId);
-                    document.getElementById("modal").style.display = "none"; // Close the modal
+                    document.getElementById("pageModal").style.display = "none"; // Close the modal
                 });
             } else {
                 console.error('Save button not found.');
@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 localStorage.setItem('tasks', JSON.stringify(tasks));
                 updateTaskList();
 
-                document.getElementById("modal").style.display = "none";
+                document.getElementById("pageModal").style.display = "none";
                 document.getElementById("popupContent").innerHTML = "";
             } else {
                 alert('Please enter a task name.');
@@ -173,7 +173,10 @@ function formatDate(date) {
     const dateToFormat = getPSTDate(date);
     dateToFormat.setDate(dateToFormat.getDate()+1);
 
-    if (dateToFormat.getTime() === today.getTime()) {
+    if(dateToFormat.getTime()<today.getTime()){
+        return '<span style="color: red;">OVERDUE</span>';
+    }
+    else if (dateToFormat.getTime() === today.getTime()) {
         return '<span style="color:black;">Today</span>';
     } else if (dateToFormat.getTime() === tomorrow.getTime()) {
         return '<span style="color:black;">Tomorrow</span>';
@@ -224,14 +227,13 @@ function updateTaskList() {
     });
 
     const today = new Date();
-    today.setUTCHours(0, 0, 0, 0); // Set today's date to 00:00 AM in UTC for comparison
+    today.setHours(0, 0, 0, 0); 
 
     // Render tasks
     tasks.forEach(task => {
-        const isOverdue = !task.completed && task.dateObj && task.dateObj < today;
         const checkedAttribute = task.completed ? 'checked' : '';
         const textDecoration = task.completed ? 'text-decoration: line-through; color: #DA70D6;' : '';
-        const dateText = task.date ? (isOverdue ? `<span style="color: red;">OVERDUE</span>` : formatDate(task.date)) : "No date set";
+        const dateText = task.date ? formatDate(task.date) : "No date set";
 
         const taskHtml = `
             <div class="overlap" data-task-id="${task.id}">
