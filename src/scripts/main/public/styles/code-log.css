@@ -272,10 +272,6 @@ button.frame {
 .hidden {
   display: none;
 }
-.placeholder-text {
-  color: grey;
-  font-style: italic;
-}
 .log-entry p {
   margin: 5px 0;
   line-height: 1.5;
