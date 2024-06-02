@@ -18,68 +18,70 @@ header h1 {
     margin: 0;
 }
 
+
 ::before {
     box-sizing: content-box;
     font-family: inherit;
 }
 
 .add-log-btn {
-    font-size: 50px;
-    background-color: #552583;
-    color: #FDB927;
-    border: none;
-    border-radius: 50%;
-    width: 69px;
-    height: 69px;
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 2px 2px 15px #0000004c;
-    transition: background-color 0.3s, transform 0.2s;
+  font-size: 50px;
+  background-color: #552583;
+  color: #FDB927;
+  border: none;
+  border-radius: 50%;
+  width: 69px;
+  height: 69px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 15px #0000004c;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .add-log-btn:hover {
-    background-color: rgb(88, 101, 174);
+  background-color: rgb(88, 101, 174);
 }
 
 .add-log-btn:active {
-    transform: translateY(2px);
+  transform: translateY(2px);
 }
 
 button.frame {
-    background-color: #552583;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    align-self: center;
+  background-color: #552583;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: center;
 }
 
 .frame {
-    color: white;
-    border: none;
-    width: 150px;
-    height: 60px;
-    font-size: 24px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    align-self: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    position: relative;
+  color: white;
+  border: none;
+  width: 150px;
+  height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  position: relative;
 }
+
 
 .modal {
     display: none;
@@ -93,6 +95,7 @@ button.frame {
     margin-bottom: 4in;
     overflow: visible;
 }
+
 
 .modal-content {
     background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
@@ -118,8 +121,8 @@ button.frame {
 .input-group img {
     position: absolute;
     left: 10px;
-    width: 30px;
-    height: 30px;
+    width: 30px; 
+    height: 30px; 
 }
 
 .input-group input {
@@ -131,14 +134,12 @@ button.frame {
     font-size: 25px;
     height: 60px;
 }
-
-.CodeMirror-scroll {
+.CodeMirror-scroll{
     min-height: 3rem;
 }
-
 .textarea-field {
     width: 100%;
-    height: 200px;
+    height: calc(100% - 120px);
     padding: 10px;
     margin-bottom: 20px;
     box-sizing: border-box;
@@ -146,18 +147,19 @@ button.frame {
     border-radius: 28px;
     font-size: 16px;
     resize: vertical;
-    background-color: white;
+    background-color: white; 
 }
 
 .close {
     color: #552583;
     z-index: 100;  /* Higher than any surrounding elements */
-    position: absolute;  /* Confirm position is not affected by other CSS */
+     position: absolute;  /* Confirm position is not affected by other CSS */
+    position: absolute;
     right: 8px;
     font-size: 55px;
     font-weight: bold;
     display: flex;
-    align-items: center;
+    align-items: center;  
     justify-content: center;
     cursor: pointer;
     transition: transform 0.2s, color 0.2s;
@@ -167,13 +169,13 @@ button.frame {
     box-sizing: border-box;
     width: 56px;
     height: 56px;
-}
+  }
 
-.close:hover,
-.close:focus {
+  .close:hover,
+  .close:focus {
     color: black;
     transform: scale(1.2);
-}
+  }
 
 .modal-header {
     font-size: 24px;
@@ -216,13 +218,13 @@ button.frame {
     align-self: center;
 }
 
+
 .editor-statusbar {
     background-color: white !important;
     color: black !important;
 }
 
-.CodeMirror,
-.CodeMirror-scroll {
+.CodeMirror, .CodeMirror-scroll {
     background-color: white !important;
 }
 
@@ -231,120 +233,70 @@ button.frame {
 }
 
 .editor-toolbar a:hover {
-    color: #7350A1 !important;
+    color: #7350A1 !important; 
 }
 
 .modal .editor-toolbar {
-    background-color: white !important;
-    border: 1px solid #ddd;
-    border-radius: 5px 5px 0 0;
-    opacity: 1;
+  background-color: white !important;
+  border: 1px solid #ddd;
+  border-radius: 5px 5px 0 0;
+  opacity: 1;
 }
-
 /* Styles for log entries and container */
 .logs-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
-    box-sizing: border-box;
-    max-height: 100vh;
-    overflow-y: auto;
+  max-height: 100%; /* Adjust this value as needed */
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
 }
 
 #logsContainer {
-    height: 100%;
-    overflow-y: auto;
+  overflow-y: scroll;
+}
+
+.date-time-container {
+  background-color: #FDB927; 
+  padding: 2px 10px;
+  border-radius: 5px; 
+  margin-bottom: 5px; 
+}
+
+.date, .time {
+  display: block; 
+  color: white; 
+  font-size: 20px; 
 }
 
 .log-entry {
-    background: #ffffff;
-    width: calc(50% - 40px); /* Adjust this value to make the text boxes wider */
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+  background-color: #f9f9f9;
+  border: 1px solid #FDB927;  
+  border-radius: 5px;        
+  max-width: 400px;
+  max-height: 400px;
+  flex: 1 1 300px;             
+  overflow-y: hidden;        
 }
 
-.fieldD1,
-.fieldD2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-    width: 100%;
-    border-radius: 8px;
-}
-
-.fieldD1 {
-    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
-}
-
-.fieldD2 {
-    background: white;
-    border: 2px solid gold;
-    overflow-y: auto; /* Enable vertical scrolling */
-    height: 150px; /* Set a fixed height for consistency */
-}
-
-.date-codelog,
-.time-codelog {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    display: block;
-    color: white;
-    font-size: 20px;
-}
 
 .hidden {
-    display: none;
+  display: none;
 }
-
 .placeholder-text {
-    color: grey;
-    font-style: italic;
+  color: grey;
+  font-style: italic;
 }
-
 .log-entry p {
-    margin: 5px 0;
-    line-height: 1.5;
+  margin: 5px 0;
+  line-height: 1.5;
 }
 
 .log-entry strong {
-    color: #552583;
-    font-size: 16px;
+  color: #552583;
+  font-size: 16px;
 }
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        margin: 10px;
-        width: calc(100% - 20px);
-    }
-
-    .feedbacklist {
-        width: 100%;
-        max-width: none;
-    }
-
-    .modal-content {
-        width: 90%;
-        height: auto;
-    }
-
-    .log-entry {
-        width: calc(100% - 20px); /* Full width for mobile view */
-    }
-
-    .fieldD2 {
-        height: auto; /* Adjust height for mobile view */
-    }
-}
-
+/* 
 @media (max-width: 978px) {
     .sidebar {
         display: flex;
@@ -352,22 +304,13 @@ button.frame {
         justify-content: space-around;
         align-items: center;
         width: 100%;
-        height: 50px;
-        min-height: 50px;
-        position: fixed;
+        height: auto;
+        min-height: 50px; 
         bottom: 0;
         left: 0;
         background-color: var(--lecoder-purple, purple);
         z-index: 1000;
         padding: 0.5rem 0;
-    }
-
-    .feedback .union-wrapper {
-        bottom: 80px;
-    }
-
-    .feedback {
-        padding-bottom: 200px;
     }
 
     header {
@@ -381,4 +324,63 @@ button.frame {
     html {
         overflow-y: auto;
     }
+
+} */
+
+
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin: 10px;
+    width: calc(100% - 20px); /* Adjust width to account for the reduced margin */
+  }
+
+  .feedbacklist {
+    width: 100%;
+    max-width: none;
+  }
+
+  .modal-content {
+    width: 90%;
+    height: auto;
+  }
+}
+
+@media (max-width: 978px) {
+  .sidebar {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 50px; /* Ensure the height of the sidebar */
+      min-height: 50px; /* Ensure minimum height to fit icons */
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: var(--lecoder-purple, purple);
+      z-index: 1000;
+      padding: 0.5rem 0; /* Add some padding for better appearance */
+  }
+
+  .feedback .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+}
+
+.feedback{
+  padding-bottom: 200px;
+}
+
+header {
+  display: block;
+}
+
+header img {
+    display: none;
+}
+
+html {
+    overflow-y: auto;
+}
 }
