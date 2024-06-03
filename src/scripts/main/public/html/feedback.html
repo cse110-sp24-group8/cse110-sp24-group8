@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="description" content="Journal Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,67 +8,32 @@
     <link rel="stylesheet" href="../styles/feedback.css" />
     <script src="../js/loadNav.js"></script>
     <title>LeJournal TaskList</title>
-  </head>
-  <body>
+</head>
+<body>
     <header>
-      <img src="../icons/journallogo-icon.png" alt="Journal Logo">
-      <h1>Feedback</h1>
-      <!-- <div></div> -->
+        <img src="../icons/journallogo-icon.png" alt="Journal Logo">
+        <h1>Feedback</h1>
     </header>  
-    <!--Contains the 2 main components the sidebar and content-->
     <main>
-      <nav class="sidebar">
-      </nav>
-      <!--This container includes the header and the data content for format-->
+        <nav class="sidebar">
+        </nav>
         <div class="feedback">
-        
-          <div class="container" id="feedbackContainer">
-
-              <div class="feedbacklist">
-                  <div class="fieldD1"> 
-                      <p class="date-feedback">Date: May 5, 2024</p>                        
-                      <p class="time-feedback">Time: 11:59 PM</p>
-                  </div>
-                  <div class="fieldD2">
-                      <h2 class="question-feedback">Question:</h2>
-                      <textarea class="user_question" rows="3" placeholder="Enter a Question">How to center a div in HTML?</textarea>
-                      <h2 class="answer-feedback">Answer:</h2>
-                      <textarea class="user_answer" rows="3" placeholder="Enter received answer">No one knows that, move on.</textarea>
-                  </div>
-              </div>
-
-              <div class="feedbacklist">
-                  <div class="fieldD1"> 
-                      <p class="date-feedback">Date: May 5, 2024</p>                        
-                      <p class="time-feedback">Time: 11:59 PM</p>
-                  </div>
-                  <div class="fieldD2">
-                      <h2 class="question-feedback">Question:</h2>
-                      <textarea class="user_question" rows="3" placeholder="Enter a Question">How to center a div in HTML?</textarea>
-                      <h2 class="answer-feedback">Answer:</h2>
-                      <textarea class="user_answer" rows="3" placeholder="Enter received answer"></textarea>
-                  </div>
-              </div>
-
-          </div>
-
-          <!--Add button starts from here-->
-          <div class="modal" id="modal">
-            <div class="modal-content">
-                <span class="close" id="closeModal">&times;</span>
-                <!-- This div will be replaced with the content loaded from the external HTML file -->
-                <div id="popupContent"></div>
+            <div class="container" id="feedbackContainer">
+                <!-- Existing feedback items will be loaded here by JavaScript -->
             </div>
-          </div>
-
-          <!--pop-up page for add tasklist-->
-          <div class="union-wrapper">
-              <button id="openModal" class="button-style">
-                <img class="union" src="../img/union.svg" />
-              </button>
-          </div>
-        
-        <script src="../js/feedback.js"></script>
+            <div class="modal" id="modal">
+                <div class="modal-content">
+                    <span class="close" id="closeModal">&times;</span>
+                    <div id="popupContent"></div>
+                </div>
+            </div>
+            <div class="union-wrapper">
+                <button id="openModal" class="button-style">
+                    <img class="union" src="../img/union.svg" />
+                </button>
+            </div>
+        </div>
     </main>
-  </body>
+    <script src="../js/feedback.js"></script>
+</body>
 </html>
