@@ -280,6 +280,16 @@ button.frame {
     border-radius: 8px;
 }
 
+.delete-button {
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1.15em;
+    cursor: pointer;
+    color: red;
+  }
+
 .fieldD1 {
     background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
 }
