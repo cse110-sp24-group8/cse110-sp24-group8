@@ -74,7 +74,7 @@ function handleEditSubmit(taskId) {
     const taskIndex = tasks.findIndex(t => t.id === parseInt(taskId));
     if (taskIndex !== -1) {
         tasks[taskIndex].text = newText;
-        tasks[taskIndex].date = newDate;
+        tasks[taskIndex].date = newDate || 'No Due Date';
         localStorage.setItem('tasks', JSON.stringify(tasks)); // Overwrite the existing task in local storage
         updateTaskList(); // Refresh the task list
     }
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const newTask = {
                     id: Date.now(),
                     text: inputText,
-                    date: standardizeDate(inputDate),
+                    date: inputDate ? standardizeDate(inputDate) : null,
                     completed: false,
                     completedDate: null, // Add completedDate property to track completion time
                 };
@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * @returns {string} - The standardized date string
  */
 function standardizeDate(date) {
+    if (!date) return null;
     const dateObj = new Date(date);
     dateObj.setUTCHours(0, 0, 0, 0);
     return dateObj.toISOString().split('T')[0];
@@ -157,7 +158,8 @@ function standardizeDate(date) {
  * @returns {string} - The formatted date string
  */
 function formatDate(date) {
-    
+    if (!date) return 'No Due Date';
+
     //PST timezone conversion
     const getPSTDate = (date) => {
         const dateString = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
@@ -171,12 +173,11 @@ function formatDate(date) {
     tomorrow.setDate(today.getDate() + 1);
 
     const dateToFormat = getPSTDate(date);
-    dateToFormat.setDate(dateToFormat.getDate()+1);
+    dateToFormat.setDate(dateToFormat.getDate() + 1);
 
-    if(dateToFormat.getTime()<today.getTime()){
+    if (dateToFormat.getTime() < today.getTime()) {
         return '<span style="color: red;">OVERDUE</span>';
-    }
-    else if (dateToFormat.getTime() === today.getTime()) {
+    } else if (dateToFormat.getTime() === today.getTime()) {
         return '<span style="color:black;">Today</span>';
     } else if (dateToFormat.getTime() === tomorrow.getTime()) {
         return '<span style="color:black;">Tomorrow</span>';
@@ -219,10 +220,9 @@ function updateTaskList() {
 
     // Sort tasks by empty dates, completion status, and due date
     tasks.sort((a, b) => {
-        if (!a.date && !b.date) return a.completed - b.completed;
-        if (!a.date) return a.completed ? 1 : -1;
-        if (!b.date) return b.completed ? -1 : 1;
-        if (a.completed !== b.completed) return a.completed ? 1 : -1;
+        if (a.dateObj === b.dateObj) return a.completed - b.completed;
+        if (!a.dateObj) return 1;
+        if (!b.dateObj) return -1;
         return a.dateObj - b.dateObj;
     });
 
@@ -233,7 +233,7 @@ function updateTaskList() {
     tasks.forEach(task => {
         const checkedAttribute = task.completed ? 'checked' : '';
         const textDecoration = task.completed ? 'text-decoration: line-through; color: #DA70D6;' : '';
-        const dateText = task.date ? formatDate(task.date) : "No date set";
+        const dateText = task.date ? formatDate(task.date) : "No Due Date";
 
         const taskHtml = `
             <div class="overlap" data-task-id="${task.id}">
