@@ -311,9 +311,9 @@ button.frame {
     font-size: 20px;
 }
 
-/*.hidden {
+.hidden {
     display: none;
-}*/
+}
 
 .placeholder-text {
     padding: 2px;
