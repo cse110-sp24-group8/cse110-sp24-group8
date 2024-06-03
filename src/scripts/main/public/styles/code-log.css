@@ -335,13 +335,13 @@ button.frame {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .container {
+    .logsContainer {
         flex-direction: column;
         margin: 10px;
         width: calc(100% - 20px);
     }
 
-    .feedbacklist {
+    .log-entry {
         width: 100%;
         max-width: none;
     }
@@ -394,7 +394,7 @@ button.frame {
 
 
 @media (max-width: 768px) {
-  .container {
+  .logsContainer {
     flex-direction: column;
     margin: 10px;
     width: calc(100% - 20px); /* Adjust width to account for the reduced margin */
