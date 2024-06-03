@@ -255,8 +255,6 @@ function updateTaskList() {
     updateTaskCounts(); // Update the count of total and completed tasks
 }
 
-
-
 /**
  * Function to update the total tasks and completed tasks count
  */
@@ -264,6 +262,11 @@ function updateTaskCounts() {
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     const totalTasks = tasks.length;
     const completedTasks = tasks.filter(task => task.completed).length;
+
+    // Store the counts in localStorage
+    localStorage.setItem('totalTasks', totalTasks);
+    localStorage.setItem('completedTasks', completedTasks);
+
     console.log(`Total tasks: ${totalTasks}, Completed tasks: ${completedTasks}`);
 }
 
