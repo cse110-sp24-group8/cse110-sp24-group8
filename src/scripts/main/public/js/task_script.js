@@ -266,8 +266,6 @@ function updateTaskCounts() {
     // Store the counts in localStorage
     localStorage.setItem('totalTasks', totalTasks);
     localStorage.setItem('completedTasks', completedTasks);
-
-    console.log(`Total tasks: ${totalTasks}, Completed tasks: ${completedTasks}`);
 }
 
 /**
