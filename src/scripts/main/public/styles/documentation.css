@@ -75,7 +75,7 @@ header h1 {
     color: var(--lecoder-gold);
 }
 
-#createFileButton {
+.editFile {
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -84,7 +84,7 @@ header h1 {
     border-style: none;
 }
 
-#createFileButton:hover {
+.editFile:hover {
     color: var(--lecoder-gold);
 }
 
