@@ -49,22 +49,32 @@
           </table>
         </section>
         <section id="calendar-details">
-          <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
-          <p class="message">No Schedule Today</p>
-        </section>
+          <div id="task-list" class="half-section">
+              <h2>Tasks</h2>
+              <!-- Task items will be added dynamically here -->
+          </div>
       </section>
-    </main>
-    <div class="union-wrapper">
-      <button id="openModal" class="button-style">
-        <img class="union" src="../img/union.svg">
-      </button>
-    </div>
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <div id="popupContent"></div>
+      
+      
+      </section>
+      
+      <!--pop-up page for add tasklist starts from here-->
+      <div class="modal" id="pageModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&#x2716;</span>
+            <!-- This div will be replaced with the content loaded from the external HTML file -->
+            <div id="popupContent"></div>
+        </div>
+      </div>
+
+      <!--pop-up page for add tasklist-->
+      <div class="union-wrapper">
+          <button id="openModal" class = "button-style">
+            <img class="union" src="../img/union.svg" />
+          </button>
       </div>
     </div>
+    </main>
     <script src="../js/team_calendar.js"></script>
   </body>
 </html>
