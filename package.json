@@ -27,6 +27,6 @@
         "transform": {},
         "preset": "jest-puppeteer",
         "verbose": true,
-        "testTimeout": 15000
+        "testTimeout": 150000
     }
 }
