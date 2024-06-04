@@ -49,3 +49,10 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ### Resources/Libraries/Tools
 
 - (fill out)
+
+## Repository Organization
+
+- `/admin/meetings`: Stores our meeting notes.
+- `/admin/branding/images`: Branding-related information.
+- `/admin/videos`: Contain our introduction and status video.
+- `/admin/cipipepine`: Contains our CI/CD pipeline diagram.
