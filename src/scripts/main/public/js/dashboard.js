@@ -1,5 +1,31 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
+
+    const dueSection = document.getElementById('dueSoonContainer');
+    const dueSoonTitle = dueSection.nextSibling;
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    if (tasks){
+        tasks.forEach(task => {
+            console.log(task);
+            const date = document.createElement('h3');
+            const uList = document.createElement('ul');
+            const listItemText = document.createElement('li');
+            listItemText.innerHTML = task.text;
+            date.innerHTML = task.date;
+            dueSection.appendChild(date);
+            dueSection.appendChild(uList);
+            uList.appendChild(listItemText);
+            // Convert Dates to words
+            // Limit how much can be displayed
+        });
+    }
+    else {
+        console.log('Nothing is here');
+        const noTasks = document.createElement('h2');
+        noTasks.innerHTML = 'You have nothing Due Soon!'
+        dueSection.appendChild(noTasks);
+    }
+
     const progressBar = document.querySelector('.progress');
     const progressPercent = .3333333; //Waiting on JS from tasklist team to count the amount of tasks, temp value for now
 
@@ -21,7 +47,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     progressBar.style.animation = 'progressAnimation 2s forwards';
     
     changeProgressText(progressPercent);
-  });
+});
 
 
 /**
@@ -53,8 +79,6 @@ function changeProgressText(percent) {
  * @param {float} decimal the decimal percent
  * @returns {String} rounded percentage with 2 decimals
  */
-
-
 function convertToPercentage(decimal) {
     // Multiply by 100 to convert to percentage
     var percentage = decimal * 100;
