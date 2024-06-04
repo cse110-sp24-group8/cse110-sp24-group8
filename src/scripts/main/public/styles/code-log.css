@@ -2,32 +2,45 @@
 @import url('markdown.css');
 
 body {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    color: black;
-    text-align: left;
-    font-size: 32px;
+  color: black;
+  text-align: left;
+  font-size: 32px;
+}
+
+.content-holder{
+  box-sizing: border-box;
+  width: 100%;
+  overflow-y: auto;
 }
 
 header h1 {
-    color: white;
-    text-align: center;
-    font-size: 48px;
-    margin: 0;
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  margin: 0;
 }
 
-
 ::before {
-    box-sizing: content-box;
-    font-family: inherit;
+  box-sizing: content-box;
+  font-family: inherit;
 }
 
 .add-log-btn {
   font-size: 50px;
   background-color: #552583;
-  color: #FDB927;
+  color: #fdb927;
   border: none;
   border-radius: 50%;
   width: 69px;
@@ -82,158 +95,161 @@ button.frame {
   position: relative;
 }
 
-
 .modal {
-    display: none;
-    position: relative;
-    z-index: 1;
-    left: 4%;
-    top: 0.5%;
-    bottom: 10%;
-    width: 80%;
-    height: 75%;
-    margin-bottom: 4in;
-    overflow: visible;
+  display: none;
+  position: relative;
+  z-index: 1;
+  left: 4%;
+  top: 0.5%;
+  bottom: 10%;
+  width: 80%;
+  height: 75%;
+  margin-bottom: 4in;
+  overflow: visible;
 }
 
-
 .modal-content {
-    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
-    padding: 20px;
-    border-radius: 10px;
-    width: 95%;
-    max-height: auto;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    left: 7%;
-    overflow: scroll;
+  background: linear-gradient(
+    160deg,
+    rgba(253, 185, 39, 0.6) 9.51%,
+    #fdb927 86.81%
+  );
+  padding: 20px;
+  border-radius: 10px;
+  width: 95%;
+  max-height: auto;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  left: 7%;
+  overflow: scroll;
 }
 
 .input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .input-group img {
-    position: absolute;
-    left: 10px;
-    width: 30px; 
-    height: 30px; 
+  position: absolute;
+  left: 10px;
+  width: 30px;
+  height: 30px;
 }
 
 .input-group input {
-    padding-left: 45px;
-    width: calc(100% - 50px);
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 28px;
-    font-size: 25px;
-    height: 60px;
+  padding-left: 45px;
+  width: calc(100% - 50px);
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 28px;
+  font-size: 25px;
+  height: 60px;
 }
-.CodeMirror-scroll{
-    min-height: 3rem;
+
+.CodeMirror-scroll {
+  min-height: 3rem;
 }
+
 .textarea-field {
-    width: 100%;
-    height: calc(100% - 120px);
-    padding: 10px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 28px;
-    font-size: 16px;
-    resize: vertical;
-    background-color: white; 
+  width: 100%;
+  height: calc(100% - 120px);
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 28px;
+  font-size: 16px;
+  resize: vertical;
+  background-color: white;
 }
 
 .close {
-    color: #552583;
-    z-index: 100;  /* Higher than any surrounding elements */
-     position: absolute;  /* Confirm position is not affected by other CSS */
-    position: absolute;
-    right: 8px;
-    font-size: 55px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;  
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-    background-color: transparent;
-    padding: 10px;
-    border: none;
-    box-sizing: border-box;
-    width: 56px;
-    height: 56px;
-  }
+  color: #552583;
+  z-index: 100;
+  position: absolute;
+  right: 8px;
+  font-size: 55px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+  background-color: transparent;
+  padding: 10px;
+  border: none;
+  box-sizing: border-box;
+  width: 56px;
+  height: 56px;
+}
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    transform: scale(1.2);
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  transform: scale(1.2);
+}
 
 .modal-header {
-    font-size: 24px;
-    color: #552583;
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
+  font-size: 24px;
+  color: #552583;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 .form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 
 .form-group {
-    flex: 1;
+  flex: 1;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #552583;
-    font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+  color: #552583;
+  font-size: 18px;
 }
 
 .input-field {
-    width: 100%;
-    padding: 10px;
-    padding-right: 35px;
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 15px;
-    font-size: 24px;
-    height: 60px;
+  width: 100%;
+  padding: 10px;
+  padding-right: 35px;
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 15px;
+  font-size: 24px;
+  height: 60px;
 }
 
 button.frame {
-    align-self: center;
+  align-self: center;
 }
-
 
 .editor-statusbar {
-    background-color: white !important;
-    color: black !important;
+  background-color: white !important;
+  color: black !important;
 }
 
-.CodeMirror, .CodeMirror-scroll {
-    background-color: white !important;
+.CodeMirror,
+.CodeMirror-scroll {
+  background-color: white !important;
 }
 
 .editor-toolbar a {
-    color: #552583 !important;
+  color: #552583 !important;
 }
 
 .editor-toolbar a:hover {
-    color: #7350A1 !important; 
+  color: #7350a1 !important;
 }
 
 .modal .editor-toolbar {
@@ -243,47 +259,116 @@ button.frame {
   opacity: 1;
 }
 
-/* 
-@media (max-width: 978px) {
-    .sidebar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        min-height: 50px; 
-        bottom: 0;
-        left: 0;
-        background-color: var(--lecoder-purple, purple);
-        z-index: 1000;
-        padding: 0.5rem 0;
-    }
+/* Styles for log entries and container */
+.logs-container {
+  max-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-    header {
-        display: block;
-    }
+#logsContainer {
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 70px;
+}
 
-    header img {
-        display: none;
-    }
+#addLogModal {
+  z-index: 500;
+}
 
-    html {
-        overflow-y: auto;
-    }
+.log-entry {
+  background: #ffffff;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  max-height: 340px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 
-} */
+.fieldD1,
+.fieldD2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+}
 
+.delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.15em;
+  cursor: pointer;
+  color: red;
+}
 
+.fieldD1 {
+  background: linear-gradient(
+    281deg,
+    rgba(253, 185, 39, 0.6) 20.93%,
+    #fdb927 82.58%
+  );
+}
 
+.fieldD2 {
+  background: white;
+  border: 2px solid gold;
+  overflow-y: scroll;
+  height: 440px;
+}
+
+.date-codelog,
+.time-codelog {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.placeholder-text {
+  padding: 2px;
+  color: grey;
+  font-style: italic;
+}
+
+.log-entry p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+.log-entry strong {
+  color: #552583;
+  font-size: 16px;
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
-  .container {
+  #logs-container {
     flex-direction: column;
-    margin: 10px;
-    width: calc(100% - 20px); /* Adjust width to account for the reduced margin */
   }
 
-  .feedbacklist {
+  .content-holder {
+    padding-bottom: 200px;
+  }
+  .log-entry {
     width: 100%;
     max-width: none;
   }
@@ -296,38 +381,67 @@ button.frame {
 
 @media (max-width: 978px) {
   .sidebar {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      height: 50px; /* Ensure the height of the sidebar */
-      min-height: 50px; /* Ensure minimum height to fit icons */
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      background-color: var(--lecoder-purple, purple);
-      z-index: 1000;
-      padding: 0.5rem 0; /* Add some padding for better appearance */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lecoder-purple, purple);
+    z-index: 1000;
+    padding: 0.5rem 0;
   }
 
-  .feedback .union-wrapper {
-    bottom: 80px; /* Ensure the button is above the sidebar */
-}
+  header {
+    display: block;
+  }
 
-.feedback{
-  padding-bottom: 200px;
-}
-
-header {
-  display: block;
-}
-
-header img {
+  header img {
     display: none;
+  }
+
+  html {
+    overflow-y: auto;
+  }
 }
 
-html {
+@media (max-width: 978px) {
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    min-height: 50px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lecoder-purple, purple);
+    z-index: 1000;
+    padding: 0.5rem 0;
+  }
+
+  .modal-content .union-wrapper {
+    bottom: 80px;
+  }
+
+  header {
+    display: block;
+  }
+
+  header img {
+    display: none;
+  }
+
+  .content-holder{
+    box-sizing: border-box;
+    width: 100%;
     overflow-y: auto;
-}
+  }
+
+
 }

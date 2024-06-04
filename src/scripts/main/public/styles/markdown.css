@@ -192,6 +192,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror-sizer {
   position: relative;
   border-right: 30px solid transparent;
+  max-height: 300px !important;
+  min-height: 300px !important;
 }
 .CodeMirror-gutter-filler,
 .CodeMirror-hscrollbar,
