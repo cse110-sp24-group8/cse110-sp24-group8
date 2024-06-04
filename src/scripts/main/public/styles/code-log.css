@@ -261,7 +261,6 @@ button.frame {
 
 #logsContainer {
   height: 100%;
-  overflow-y: scroll;
   padding-bottom: 70px;
 }
 
