@@ -51,10 +51,16 @@ ul {
     padding: 1em;
 }
 
+#progressContainer button {
+    position: relative;
+    top: 20rem;
+    left: 15rem;
+}
+
 .left-panel-progress strong {
     padding: 1em;
     color: white;
-    font-size: large;
+    font-size: larger;
     width: 100%;
 }
 
@@ -79,21 +85,6 @@ ul {
     padding: 1em;
 }
 
-/* .progress {
-    transition: stroke-dasharray 2s;
-    animation: progressAnimation 2s forwards;
-}
-
-@keyframes progressAnimation {
-    from {
-        stroke-dasharray: 0 283;
-        stroke-dashoffset: 0;
-    }
-    to {
-        stroke-dasharray: 141.5 283;
-        stroke-dashoffset: 0;
-    }
-} */
 
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);

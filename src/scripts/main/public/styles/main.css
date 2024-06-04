@@ -22,21 +22,13 @@ main {
 .sidebar {
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-    /*WIDTH CAUSING DIFFERENCE IN SIDEBAR SIZE*/
-    /* width: 5% !important; */
-=======
->>>>>>> main
     padding: 0;
     margin: 0;
     height: 92%;
     background-color: var(--lecoder-purple, purple);
-<<<<<<< HEAD
     font-size: 80%;
-=======
     text-align: center;
     
->>>>>>> main
 }
 
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
@@ -74,12 +66,8 @@ main {
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
-<<<<<<< HEAD
     text-decoration: none;
     min-width: 5.25rem;
-=======
-    transition: .5s;
->>>>>>> main
 }
 
 .sideButton:hover      {
@@ -118,34 +106,7 @@ header h1 {
 header img {
     display: block;
     padding: auto;
+    margin: auto;
+    margin-left: 10px;
     width: 70%;
-}
-
-.slider {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    background-color: gray;
-    border-radius: 34px;
-}
-
-.slider::before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 50%;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-    background-color: white
-}
-
-input:checked + .slider {
-    background-color: black;
 }
