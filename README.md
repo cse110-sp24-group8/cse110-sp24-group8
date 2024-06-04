@@ -24,6 +24,8 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - Used [Retrium](https://app.retrium.com/) to brainstorm problems and solutions for possible dev journal features
 - Ultilized [Figma](https://www.figma.com/) to design wireframing, low-fidelity mockup, and high-fidelity mockup
 
+## CI/CD Pipeline
+
 ## Project Structure
 
 - (fill out)
