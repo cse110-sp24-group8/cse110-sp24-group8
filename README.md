@@ -10,14 +10,14 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## Features
 
-- Dashboard: 
-- TaskList:
-- Calendar:
-- Code Log:
-- Documentation:
-- Feedback: 
-- Markdown Editor: Utilize powerful markdown capabilities to format your notes with ease, adding structure and emphasis.
-- Data Management: Rely on local storage to securely manage your data, ensuring your notes and tasks are always saved.
+- Dashboard: Serve as the home page of the dev journal, offering widgets that provide overviews of information from other features.
+- TaskList: Efficiently organize your tasks, track due dates, and mark items as completed to stay on top of your to-do list.
+- Calendar: Keep track of important dates, deadlines, and events with a fully integrated calendar, allowing you to add entries on specific days to manage your schedule effectively.
+- Code Log: Document your coding progress, changes, and decisions with detailed logs using the markdown editor, making it easier to track the evolution of your work.
+- Documentation: Utilize the markdown editor to create, store, and access detailed documentation effortlessly.
+- Feedback: Collect and manage feedback from peers and users to continually refine and enhance your ideas.
+- Markdown Editor: Leverage the powerful markdown capabilities to effortlessly format your notes, adding structure and emphasis as needed.
+- Data Management: Count on local storage to securely handle your data, guaranteeing constant preservation of your notes and tasks.
 
 ## Brainstorming/Design Process
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
@@ -30,7 +30,7 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## Acknowledgements
 
-### Contributors ([Learn More About our Team](/admin/team.md)!)
+### Contributors ([Learn More About our Team!](/admin/team.md))
 
 - Arthur Cheung
 - Brandon Luu
