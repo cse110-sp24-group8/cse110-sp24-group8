@@ -52,10 +52,10 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## Repository Organization
 
-- `/admin/meetings`: Stores our meeting notes.
 - `/admin/branding/images`: Branding-related information.
-- `/admin/videos`: Contain our introduction and status video.
 - `/admin/cipipepine`: Contains our CI/CD pipeline diagram.
+- `/admin/meetings`: Stores our meeting notes.
 - `/admin/misc`: Contains our team contract information.
+- `/admin/videos`: Contain our introduction and status video.
 - `/src/scripts/main/public`: Contains our source code for our project.
 - `/specs/adrs`: Houses Architectural Design Records detailing significant project decisions.
