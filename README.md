@@ -11,3 +11,12 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 ## Learn More About our [Team](/admin/team.md)!
+
+## Features
+
+- Dashboard:
+- TaskList:
+- Calendar:
+- Code Log:
+- Documentation:
+- Feedback:
