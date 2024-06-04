@@ -37,7 +37,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Check if the date has tasks and highlight if it does
                     if (taskDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "#FF0000";
+                        cell.style.color = "#fdb927";
+                        cell.style.fontWeight = "bold";
+                        cell.style.fontSize = "1em"; // Larger text for emphasis
+
                     }
     
                     row.appendChild(cell);
@@ -52,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayTasks(date) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const filteredTasks = tasks.filter(task => task.date === date);
-        const taskContentContainer = document.getElementById('task-content'); // Get the task content container
-        taskContentContainer.innerHTML = ''; // Clear existing content in the task container
+        const taskContentContainer = document.getElementById('task-content'); 
+        taskContentContainer.innerHTML = ''; 
     
         if (filteredTasks.length === 0) {
             taskContentContainer.innerHTML = `
@@ -62,33 +65,48 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         } else {
             filteredTasks.forEach(task => {
-                const checkedAttribute = task.completed ? 'checked' : '';
-                const textDecoration = task.completed ? 'text-decoration: line-through;' : '';
-                const taskHtml = `
-                    <div class="overlap" data-task-id="${task.id}">
-                        <label class="group">
-                            <input type="checkbox" class="rectangle-checkbox" ${checkedAttribute} onchange="updateTaskCompletion(${task.id}, this.checked)">
-                            <div class="text-wrapper" style="${textDecoration}">${task.text}</div>
-                        </label>
-                    </div>`;
-                taskContentContainer.innerHTML += taskHtml; // Append the task HTML to the content container
+                const taskElement = document.createElement('div');
+                taskElement.className = 'overlap';
+                taskElement.dataset.taskId = task.id;
+                taskElement.innerHTML = `
+                    <label class="group">
+                        <input type="checkbox" class="rectangle-checkbox" ${task.completed ? 'checked' : ''}>
+                        <div class="text-wrapper" style="${task.completed ? 'text-decoration: line-through;' : ''}">${task.text}</div>
+                    </label>
+                `;
+    
+                // Append the task element to the container
+                taskContentContainer.appendChild(taskElement);
+    
+                // Find the checkbox in the newly created task element
+                const checkbox = taskElement.querySelector('.rectangle-checkbox');
+                checkbox.addEventListener('change', function() {
+                    updateTaskCompletion(task.id, this.checked);
+                });
             });
         }
     }
     
     
+    
     function updateTaskCompletion(taskId, isCompleted) {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
-        const taskIndex = tasks.findIndex(t => t.id === taskId);
+        const taskIndex = tasks.findIndex(t => t.id == taskId);
+    
         if (taskIndex !== -1) {
             tasks[taskIndex].completed = isCompleted;
             tasks[taskIndex].completedDate = isCompleted ? new Date().toISOString() : null;
             localStorage.setItem('tasks', JSON.stringify(tasks));
+    
+            const taskElement = document.querySelector(`.overlap[data-task-id="${taskId}"]`);
+            if (taskElement) {
+                const textWrapper = taskElement.querySelector('.text-wrapper');
+                textWrapper.style.textDecoration = isCompleted ? 'line-through' : 'none';
+            }
         }
     }
     
-    
-    
+       
     
     displayCalendar(currentMonth, currentYear);
 
