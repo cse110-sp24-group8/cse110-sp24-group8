@@ -22,4 +22,22 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ## Brainstorming/Design Process
 
 - Used [Retrium](https://app.retrium.com/) to brainstorm problems and solutions for possible dev journal features
-- Ultilized [Figma](https://www.figma.com/) to design wireframing, low-fidelity mockup, and hi-fidelity mockup
+- Ultilized [Figma](https://www.figma.com/) to design wireframing, low-fidelity mockup, and high-fidelity mockup
+
+## Acknowledgements
+
+### Contributors
+
+- Arthur Cheung
+- Brandon Luu
+- Eric Huang
+- Joshua Chen
+- Kaustubh Paliwal
+- Kevin Kuang
+- Nicholas Nguyen
+- Samvathna Em
+- Ulises Salinas
+
+### Resources/Libraries/Tools
+
+- (fill out)
