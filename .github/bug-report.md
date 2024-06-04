@@ -1,3 +1,12 @@
+---
+name: Bug Report
+about: Describe this issue template's purpose here.
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 ## Bug Report
 
 **Describe the bug**
@@ -61,4 +70,4 @@ Explain why this task is necessary.
 3. Step three
 
 **Additional context**
-Add any other context or screenshots about the task here. 
+Add any other context or screenshots about the task here.

@@ -22,13 +22,21 @@ main {
 .sidebar {
     display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     /*WIDTH CAUSING DIFFERENCE IN SIDEBAR SIZE*/
     /* width: 5% !important; */
+=======
+>>>>>>> main
     padding: 0;
     margin: 0;
     height: 92%;
     background-color: var(--lecoder-purple, purple);
+<<<<<<< HEAD
     font-size: 80%;
+=======
+    text-align: center;
+    
+>>>>>>> main
 }
 
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
@@ -50,6 +58,8 @@ main {
     border: none;
     outline: none;
     background: none;
+    /* width: 5%; Currently deciding width or having the size not be 5%.*/
+    min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
     cursor: pointer;
     border-radius: 10px;
 
@@ -64,8 +74,12 @@ main {
     background-color: var(--lecoder-purple, purple);
     color: white;
     flex: 1;
+<<<<<<< HEAD
     text-decoration: none;
     min-width: 5.25rem;
+=======
+    transition: .5s;
+>>>>>>> main
 }
 
 .sideButton:hover      {
