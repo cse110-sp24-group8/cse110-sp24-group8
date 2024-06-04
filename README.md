@@ -20,7 +20,8 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - Feedback:
 
 ## Brainstorming/Design Process
-
+![Retrium](https://assets-global.website-files.com/5e31ea2e5be31e39206629a4/5e31ea2e5be31e7974662afd_Logo-Retrium%402x.png)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 - Used [Retrium](https://app.retrium.com/) to brainstorm problems and solutions for possible dev journal features
 - Ultilized [Figma](https://www.figma.com/) to design wireframing, low-fidelity mockup, and high-fidelity mockup
 
