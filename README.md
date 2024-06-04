@@ -4,10 +4,6 @@
 
 Welcome to LeJournal, your all-in-one web dev journal that empowers developers to manage tasks, integrate calendar events, log code, document projects, and track user feedback seamlessly. Experience a new level of productivity and organization tailored specifically for developers.
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-
 ## Features
 
 - `Dashboard`: Serve as the home page of the dev journal, offering widgets that provide overviews of information from other features.
@@ -25,7 +21,6 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - Ultilized [Figma](https://www.figma.com/) for designing wireframes, low-fidelity mockups, and high-fidelity mockups, streamlining the entire design process from conceptualization to finalization.
 
 ## CI/CD Pipeline
-
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
 We've integrated GitHub Actions into our project for seamless Continuous Integration and Deployment, featuring a robust pipeline that encompasses:
@@ -33,6 +28,13 @@ We've integrated GitHub Actions into our project for seamless Continuous Integra
 - `JSDoc`:
 - `Superlinter`:
 - `Jest and Puppeteer`:
+
+## Coding Process
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+
+- (fill out)
 
 ## Repository Structure
 
