@@ -5,10 +5,24 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+html, body {
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   color: black;
   text-align: left;
   font-size: 32px;
+}
+
+.content-holder{
+  box-sizing: border-box;
+  width: 100%;
+  overflow-y: auto;
 }
 
 header h1 {
@@ -32,16 +46,14 @@ header h1 {
   width: 69px;
   height: 69px;
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 2px 2px 15px #0000004c;
-  transition:
-    background-color 0.3s,
-    transform 0.2s;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .add-log-btn:hover {
@@ -61,9 +73,7 @@ button.frame {
   font-weight: bold;
   border-radius: 50px;
   cursor: pointer;
-  transition:
-    background-color 0.3s,
-    transform 0.2s;
+  transition: background-color 0.3s, transform 0.2s;
   align-self: center;
 }
 
@@ -139,9 +149,11 @@ button.frame {
   font-size: 25px;
   height: 60px;
 }
+
 .CodeMirror-scroll {
   min-height: 3rem;
 }
+
 .textarea-field {
   width: 100%;
   height: calc(100% - 120px);
@@ -157,8 +169,7 @@ button.frame {
 
 .close {
   color: #552583;
-  z-index: 100; /* Higher than any surrounding elements */
-  position: absolute; /* Confirm position is not affected by other CSS */
+  z-index: 100;
   position: absolute;
   right: 8px;
   font-size: 55px;
@@ -167,9 +178,7 @@ button.frame {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition:
-    transform 0.2s,
-    color 0.2s;
+  transition: transform 0.2s, color 0.2s;
   background-color: transparent;
   padding: 10px;
   border: none;
@@ -249,14 +258,16 @@ button.frame {
   border-radius: 5px 5px 0 0;
   opacity: 1;
 }
+
 /* Styles for log entries and container */
 .logs-container {
-  max-height: 100%; /* Adjust this value as needed */
+  max-height: 100%;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   padding: 10px;
+  box-sizing: border-box;
 }
 
 #logsContainer {
@@ -314,8 +325,8 @@ button.frame {
 .fieldD2 {
   background: white;
   border: 2px solid gold;
-  overflow-y: scroll; /* Enable vertical scrolling */
-  height: 440px; /*what dictates the height for the log entry */
+  overflow-y: scroll;
+  height: 440px;
 }
 
 .date-codelog,
@@ -350,27 +361,16 @@ button.frame {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .logsContainer {
+  #logs-container {
     flex-direction: column;
-    margin: 10px;
-    width: calc(
-      100% - 20px
-    ); /* Adjust width to account for the reduced margin */
-    overflow-y: auto;
   }
 
   .content-holder {
-    width: calc(
-      100% - 20px
-    ); /* Adjust width to account for the reduced margin*/
-    margin: 0 20px; /*Add a 20px margin to the left and right*/
-    max-width: none;
+    padding-bottom: 200px;
   }
-
   .log-entry {
-    width: 100%; /* Adjust width to account for the reduced margin */
+    width: 100%;
     max-width: none;
-
   }
 
   .modal-content {
@@ -402,6 +402,10 @@ button.frame {
   header img {
     display: none;
   }
+
+  html {
+    overflow-y: auto;
+  }
 }
 
 @media (max-width: 978px) {
@@ -411,22 +415,18 @@ button.frame {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 50px; /* Ensure the height of the sidebar */
-    min-height: 50px; /* Ensure minimum height to fit icons */
+    height: 50px;
+    min-height: 50px;
     position: fixed;
     bottom: 0;
     left: 0;
     background-color: var(--lecoder-purple, purple);
     z-index: 1000;
-    padding: 0.5rem 0; /* Add some padding for better appearance */
+    padding: 0.5rem 0;
   }
 
   .modal-content .union-wrapper {
-    bottom: 80px; /* Ensure the button is above the sidebar */
-  }
-
-  .modal-content {
-    padding-bottom: 200px;
+    bottom: 80px;
   }
 
   header {
@@ -436,4 +436,12 @@ button.frame {
   header img {
     display: none;
   }
+
+  .content-holder{
+    box-sizing: border-box;
+    width: 100%;
+    overflow-y: auto;
+  }
+
+
 }
