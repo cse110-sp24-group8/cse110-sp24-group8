@@ -2,45 +2,46 @@
 @import url('markdown.css');
 
 body {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 h1 {
-    color: black;
-    text-align: left;
-    font-size: 32px;
+  color: black;
+  text-align: left;
+  font-size: 32px;
 }
 
 header h1 {
-    color: white;
-    text-align: center;
-    font-size: 48px;
-    margin: 0;
+  color: white;
+  text-align: center;
+  font-size: 48px;
+  margin: 0;
 }
 
-
 ::before {
-    box-sizing: content-box;
-    font-family: inherit;
+  box-sizing: content-box;
+  font-family: inherit;
 }
 
 .add-log-btn {
   font-size: 50px;
   background-color: #552583;
-  color: #FDB927;
+  color: #fdb927;
   border: none;
   border-radius: 50%;
   width: 69px;
   height: 69px;
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 2px 2px 15px #0000004c;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
 }
 
 .add-log-btn:hover {
@@ -60,7 +61,9 @@ button.frame {
   font-weight: bold;
   border-radius: 50px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition:
+    background-color 0.3s,
+    transform 0.2s;
   align-self: center;
 }
 
@@ -82,158 +85,162 @@ button.frame {
   position: relative;
 }
 
-
 .modal {
-    display: none;
-    position: relative;
-    z-index: 1;
-    left: 4%;
-    top: 0.5%;
-    bottom: 10%;
-    width: 80%;
-    height: 75%;
-    margin-bottom: 4in;
-    overflow: visible;
+  display: none;
+  position: relative;
+  z-index: 1;
+  left: 4%;
+  top: 0.5%;
+  bottom: 10%;
+  width: 80%;
+  height: 75%;
+  margin-bottom: 4in;
+  overflow: visible;
 }
 
-
 .modal-content {
-    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
-    padding: 20px;
-    border-radius: 10px;
-    width: 95%;
-    max-height: auto;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    left: 7%;
-    overflow: scroll;
+  background: linear-gradient(
+    160deg,
+    rgba(253, 185, 39, 0.6) 9.51%,
+    #fdb927 86.81%
+  );
+  padding: 20px;
+  border-radius: 10px;
+  width: 95%;
+  max-height: auto;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  left: 7%;
+  overflow: scroll;
 }
 
 .input-group {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .input-group img {
-    position: absolute;
-    left: 10px;
-    width: 30px; 
-    height: 30px; 
+  position: absolute;
+  left: 10px;
+  width: 30px;
+  height: 30px;
 }
 
 .input-group input {
-    padding-left: 45px;
-    width: calc(100% - 50px);
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 28px;
-    font-size: 25px;
-    height: 60px;
+  padding-left: 45px;
+  width: calc(100% - 50px);
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 28px;
+  font-size: 25px;
+  height: 60px;
 }
-.CodeMirror-scroll{
-    min-height: 3rem;
+.CodeMirror-scroll {
+  min-height: 3rem;
 }
 .textarea-field {
-    width: 100%;
-    height: calc(100% - 120px);
-    padding: 10px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 28px;
-    font-size: 16px;
-    resize: vertical;
-    background-color: white; 
+  width: 100%;
+  height: calc(100% - 120px);
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 28px;
+  font-size: 16px;
+  resize: vertical;
+  background-color: white;
 }
 
 .close {
-    color: #552583;
-    z-index: 100;  /* Higher than any surrounding elements */
-     position: absolute;  /* Confirm position is not affected by other CSS */
-    position: absolute;
-    right: 8px;
-    font-size: 55px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;  
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.2s, color 0.2s;
-    background-color: transparent;
-    padding: 10px;
-    border: none;
-    box-sizing: border-box;
-    width: 56px;
-    height: 56px;
-  }
+  color: #552583;
+  z-index: 100; /* Higher than any surrounding elements */
+  position: absolute; /* Confirm position is not affected by other CSS */
+  position: absolute;
+  right: 8px;
+  font-size: 55px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    color 0.2s;
+  background-color: transparent;
+  padding: 10px;
+  border: none;
+  box-sizing: border-box;
+  width: 56px;
+  height: 56px;
+}
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    transform: scale(1.2);
-  }
+.close:hover,
+.close:focus {
+  color: black;
+  transform: scale(1.2);
+}
 
 .modal-header {
-    font-size: 24px;
-    color: #552583;
-    margin-bottom: 20px;
-    width: 100%;
-    text-align: center;
+  font-size: 24px;
+  color: #552583;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
 }
 
 .form-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 
 .form-group {
-    flex: 1;
+  flex: 1;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #552583;
-    font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+  color: #552583;
+  font-size: 18px;
 }
 
 .input-field {
-    width: 100%;
-    padding: 10px;
-    padding-right: 35px;
-    box-sizing: border-box;
-    border: 1px solid #552583;
-    border-radius: 15px;
-    font-size: 24px;
-    height: 60px;
+  width: 100%;
+  padding: 10px;
+  padding-right: 35px;
+  box-sizing: border-box;
+  border: 1px solid #552583;
+  border-radius: 15px;
+  font-size: 24px;
+  height: 60px;
 }
 
 button.frame {
-    align-self: center;
+  align-self: center;
 }
-
 
 .editor-statusbar {
-    background-color: white !important;
-    color: black !important;
+  background-color: white !important;
+  color: black !important;
 }
 
-.CodeMirror, .CodeMirror-scroll {
-    background-color: white !important;
+.CodeMirror,
+.CodeMirror-scroll {
+  background-color: white !important;
 }
 
 .editor-toolbar a {
-    color: #552583 !important;
+  color: #552583 !important;
 }
 
 .editor-toolbar a:hover {
-    color: #7350A1 !important; 
+  color: #7350a1 !important;
 }
 
 .modal .editor-toolbar {
@@ -245,7 +252,7 @@ button.frame {
 /* Styles for log entries and container */
 .logs-container {
   max-height: 100%; /* Adjust this value as needed */
-  overflow-y: scroll;
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -253,76 +260,82 @@ button.frame {
 }
 
 #logsContainer {
-    height: 100%;
-    overflow-y: auto;
-    padding-bottom: 100px;
-    
+  width: calc(100vw - 40px);
+  height: 100%;
+}
+
+#addLogModal {
+  z-index: 500;
 }
 
 .log-entry {
-    background: #ffffff;
-    margin-bottom: 20px;
-    width: 100%; 
-    max-width: 340px; 
-    height: 100%;
-    max-height: 340px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    position: relative; 
+  background: #ffffff;
+  width: 100%;
+  max-width: 340px;
+  height: 100%;
+  max-height: 340px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-right: 30px;
 }
 
 .fieldD1,
 .fieldD2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 10px;
-    width: 100%;
-    border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .delete-button {
-    position: absolute; 
-    top: 10px;          
-    right: 10px;       
-    background: none;
-    border: none;
-    font-size: 1.15em;
-    cursor: pointer;
-    color: red;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.15em;
+  cursor: pointer;
+  color: red;
 }
 
 .fieldD1 {
-    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+  background: linear-gradient(
+    281deg,
+    rgba(253, 185, 39, 0.6) 20.93%,
+    #fdb927 82.58%
+  );
 }
 
 .fieldD2 {
-    background: white;
-    border: 2px solid gold;
-    overflow-y: scroll; /* Enable vertical scrolling */
-    height: 440px; /*what dictates the height for the log entry */
+  background: white;
+  border: 2px solid gold;
+  overflow-y: scroll; /* Enable vertical scrolling */
+  height: 440px; /*what dictates the height for the log entry */
 }
 
 .date-codelog,
 .time-codelog {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    display: block;
-    color: white;
-    font-size: 20px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 20px;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .placeholder-text {
-    padding: 2px;
-    color: grey;
-    font-style: italic;
+  padding: 2px;
+  color: grey;
+  font-style: italic;
 }
 
 .log-entry p {
@@ -337,74 +350,26 @@ button.frame {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    .logsContainer {
-        flex-direction: column;
-        margin: 10px;
-        width: calc(100% - 20px);
-    }
-
-    .log-entry {
-        width: 100%;
-        max-width: none;
-    }
-
-    .modal-content {
-        width: 90%;
-        height: auto;
-    }
-
-    .log-entry {
-        width: calc(100% - 20px); /* Full width for mobile view */
-    }
-
-    .fieldD2 {
-        height: auto; /* Adjust height for mobile view */
-        overflow-y: scroll;
-    }
-}
-
-@media (max-width: 978px) {
-    .sidebar {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        width: 100%;
-        height: auto;
-        min-height: 50px; 
-        bottom: 0;
-        left: 0;
-        background-color: var(--lecoder-purple, purple);
-        z-index: 1000;
-        padding: 0.5rem 0;
-    }
-
-    header {
-        display: block;
-    }
-
-    header img {
-        display: none;
-    }
-
-    html {
-        overflow-y: auto;
-    }
-
-} 
-
-
-
-@media (max-width: 768px) {
   .logsContainer {
     flex-direction: column;
     margin: 10px;
-    width: calc(100% - 20px); /* Adjust width to account for the reduced margin */
+    width: calc(
+      100% - 20px
+    ); /* Adjust width to account for the reduced margin */
+  }
+
+  .content-holder {
+    width: calc(
+      100% - 20px
+    ); /* Adjust width to account for the reduced margin*/
+    margin: 0 40px; /*Add a 20px margin to the left and right*/
+    max-width: none;
   }
 
   .log-entry {
-    width: 100%;
+    width: 100%; /* Adjust width to account for the reduced margin */
     max-width: none;
+
   }
 
   .modal-content {
@@ -415,38 +380,67 @@ button.frame {
 
 @media (max-width: 978px) {
   .sidebar {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      width: 100%;
-      height: 50px; /* Ensure the height of the sidebar */
-      min-height: 50px; /* Ensure minimum height to fit icons */
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      background-color: var(--lecoder-purple, purple);
-      z-index: 1000;
-      padding: 0.5rem 0; /* Add some padding for better appearance */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    min-height: 50px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lecoder-purple, purple);
+    z-index: 1000;
+    padding: 0.5rem 0;
+  }
+
+  header {
+    display: block;
+  }
+
+  header img {
+    display: none;
+  }
+
+  html {
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 978px) {
+  .sidebar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50px; /* Ensure the height of the sidebar */
+    min-height: 50px; /* Ensure minimum height to fit icons */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: var(--lecoder-purple, purple);
+    z-index: 1000;
+    padding: 0.5rem 0; /* Add some padding for better appearance */
   }
 
   .modal-content .union-wrapper {
     bottom: 80px; /* Ensure the button is above the sidebar */
-}
+  }
 
-.modal-content{
-  padding-bottom: 200px;
-}
+  .modal-content {
+    padding-bottom: 200px;
+  }
 
-header {
-  display: block;
-}
+  header {
+    display: block;
+  }
 
-header img {
+  header img {
     display: none;
-}
+  }
 
-html {
+  html {
     overflow-y: auto;
-}
+  }
 }

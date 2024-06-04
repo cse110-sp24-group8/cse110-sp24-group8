@@ -218,6 +218,7 @@ html, body {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .container {
+    background-color: red;
     flex-direction: column;
     margin: 10px;
     width: calc(100% - 20px); /* Adjust width to account for the reduced margin */

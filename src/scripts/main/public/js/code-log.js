@@ -2,7 +2,7 @@ initializeSimpleMDE();
 
 // Event listener for the 'Add Log' button
 document
-  .getElementById('add-log-button')
+  .getElementById('addLogButton')
   .addEventListener('click', function () {
     openModal();
     setDateTimeFields();
