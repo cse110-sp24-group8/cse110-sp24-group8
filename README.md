@@ -3,4 +3,4 @@
 
 # LeCoders - Webdev Journal
 
-[team-logo](/src/scripts/main/public/icons/journallogo-icon.png)
+![team-logo](/src/scripts/main/public/icons/journallogo-icon.png)
