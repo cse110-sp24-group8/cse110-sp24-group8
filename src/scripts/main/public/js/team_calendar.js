@@ -10,11 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
         let startingDay = firstDay.getDay();
         let calendarBody = document.getElementById("calendarBody");
         calendarBody.innerHTML = '';
-
+    
         const monthNames = ["January", "February", "March", "April", "May", "June",
                             "July", "August", "September", "October", "November", "December"];
         document.getElementById("current_month").textContent = `${monthNames[month]} ${year}`;
-        
+    
+        // Get all tasks and create a set of dates that have tasks
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const taskDates = new Set(tasks.map(task => task.date));
+    
         let date = 1;
         for (let i = 0; i < 6; i++) {
             let row = document.createElement("tr");
@@ -25,9 +29,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else if (date > daysInMonth) {
                     row.appendChild(cell);
                 } else {
+                    let fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                     cell.textContent = date;
-                    cell.dataset.date = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                    cell.dataset.date = fullDate;
                     cell.onclick = () => displayTasks(cell.dataset.date);
+    
+                    // Check if the date has tasks and highlight if it does
+                    if (taskDates.has(fullDate)) {
+                        cell.style.fontWeight = "bold";
+                        cell.style.color = "#FF0000";
+                    }
+    
                     row.appendChild(cell);
                     date++;
                 }
@@ -35,15 +47,16 @@ document.addEventListener('DOMContentLoaded', function() {
             calendarBody.appendChild(row);
         }
     }
+    
 
     function displayTasks(date) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const filteredTasks = tasks.filter(task => task.date === date);
-        const taskListContainer = document.getElementById('task-list');
-        taskListContainer.innerHTML = ''; // Clear existing content
+        const taskContentContainer = document.getElementById('task-content'); // Get the task content container
+        taskContentContainer.innerHTML = ''; // Clear existing content in the task container
     
         if (filteredTasks.length === 0) {
-            taskListContainer.innerHTML = `
+            taskContentContainer.innerHTML = `
                 <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
                 <p class="message">No Schedule Today</p>
             `;
@@ -58,10 +71,11 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="text-wrapper" style="${textDecoration}">${task.text}</div>
                         </label>
                     </div>`;
-                taskListContainer.innerHTML += taskHtml; // Append the task HTML to the container
+                taskContentContainer.innerHTML += taskHtml; // Append the task HTML to the content container
             });
         }
     }
+    
     
     function updateTaskCompletion(taskId, isCompleted) {
         const tasks = JSON.parse(localStorage.getItem('tasks'));

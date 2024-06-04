@@ -131,14 +131,6 @@ h2 {
   z-index: 3;
 }
 
-/* Style for icons within calendar details */
-#calendar-details .icon {
-  margin-top: 80px;
-  width: 58px;
-  height: 61px;
-  flex-shrink: 0;
-}
-
 /* Allow user selection for non-empty cells */
 #calendarBody td:not(:empty) {
   user-select: auto;
@@ -151,16 +143,6 @@ h2 {
   cursor: auto;
   background-color: transparent;
   border-radius: 0%;
-}
-
-/* Style for message elements */
-.message {
-  color: #515070;
-  font-family: 'Segoe UI';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
 }
 
 /* Style for icon buttons */
@@ -415,6 +397,7 @@ a:hover {
 }
 
 .add-list .date-wrapper {
+  position:absolute;
   width: 50%;
   height: 30px;
   padding: 8px;
@@ -428,7 +411,6 @@ a:hover {
   outline: none;
   color: var(--lecoder-purple, purple);
 }
-
 
 .add-list .frame {
   background-color: #552583;
@@ -501,16 +483,68 @@ a:hover {
 
 
 /* Ensures the task list container is styled appropriately */
-#task-list {
+#calendar-details {
+  display: flex;
+  flex-direction: row;  /* Align children side by side */
+  align-items: stretch; /* Stretch children to fill the container height */
+  justify-content: space-between; /* Distribute space between but not around items */
+}
+
+/* Style for icons within calendar details */
+#calendar-details .icon {
+  margin-top: 20px;
+  width: 58px;
+  height: 61px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* Style for message elements */
+.message {
+  color: #515070;
+  font-family: 'Segoe UI';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.half-section {
+  flex: 1;  /* Each section takes half of the flex container */
   display: flex;
   flex-direction: column;
-  width: 100%;  /* Adjust width as necessary */
+  justify-content: flex-start; /* Align content to start vertically */
+  min-height: 200px; /* Ensure there's a minimum height */
+}
+
+#task-list, #event-list {
+  align-items: center;  /* Align content in the center horizontally */
+  overflow: visible; /* Make sure content is not clipped */
+  width: 50%;        /* Confirm the width is sufficient */
+}
+
+#task-list h2, #event-list h2 {
+  align-items: center;  /* Align content in the center horizontally */
+  top: 10px;
+  font-family: 'Karla_regular';
+  font-size: 17px;
+  position: relative;  /* Ensures the header is positioned relative to its normal flow */
+  color: var(--lecoder-purple, purple);
+  margin-top: 0px;  /* Eliminate any default margin */
+}
+
+#task-content {
+  width: 100%;  /* Ensure it uses the full width of #task-list */
+  padding: 10px; /* Add padding for spacing around tasks */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Styling for each task container */
 .overlap {
   position: relative;
-  width: 45%;  /* Adjust based on container width */
+  width: 100%;  /* Adjust based on container width */
   height: 40px;
   margin: 5px 5%;  /* Center and add spacing */
   background: white;
