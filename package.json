@@ -4,7 +4,7 @@
         "prettier-check": "prettier --write 'src/**/*.{js,css,md}'",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
-        "e2etest": "jest __tests__/e2e-tests.js --maxWorkers=1",
+        "e2etest": "jest __tests__/e2e.test.js --maxWorkers=1",
         "dev": "node live-server.js"
     },
     "devDependencies": {
