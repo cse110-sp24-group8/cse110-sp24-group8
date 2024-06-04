@@ -1,6 +1,4 @@
-# cse110-sp24-group8
-
-# LeJournal
+# LeJournal - cse110-sp24-group8
 
 <img src="./src/scripts/main/public/icons/journallogo-icon.png" width="200">
 
@@ -20,3 +18,8 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - Code Log:
 - Documentation:
 - Feedback:
+
+## Brainstorming/Design Process
+
+- Used Retrium to brainstorm problems and solutions for possible dev journal features
+- Ultilized Figma to design wireframing, low-fidelity mockup, and hi-fidelity mockup
