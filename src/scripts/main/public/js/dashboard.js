@@ -1,35 +1,52 @@
 /**
  * event listener to change the percentage of the circle depending on the amount of tasks completed
  */
-
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
 
+    // Controls and parses the Due Soon Container
     const dueSection = document.getElementById('dueSoonContainer');
-    const dueSoonTitle = dueSection.nextSibling;
     var tasks = JSON.parse(localStorage.getItem('tasks'));
-    if (tasks){
-        tasks.forEach(task => {
-            console.log(task);
-            const date = document.createElement('h3');
-            const uList = document.createElement('ul');
-            const listItemText = document.createElement('li');
-            listItemText.innerHTML = task.text;
-            date.innerHTML = task.date;
-            dueSection.appendChild(date);
-            dueSection.appendChild(uList);
-            uList.appendChild(listItemText);
-            // Convert Dates to words
-            // Limit how much can be displayed
-        });
+    if (tasks && (tasks.length !== 0)){
+        // Runs through all tasks
+        for (const task of tasks) {
+            const listOfH3 = dueSection.querySelectorAll('h3');
+            const indexOfh3 = Array.from(listOfH3).findIndex(h3 => h3.innerHTML == monthDayDate(task.date));
+            // We only want 3 dates to show
+            if (listOfH3.length !== 3 && indexOfh3 === -1) {
+                const date = document.createElement('h3');
+                const uList = document.createElement('ul');
+                const listItemText = document.createElement('li');
+                listItemText.innerHTML = task.text;
+                date.innerHTML = monthDayDate(task.date);
+                dueSection.appendChild(date);
+                dueSection.appendChild(uList);
+                uList.appendChild(listItemText);
+            }
+            // Check if the date was already parsed
+            if (indexOfh3 !== -1) {
+                const listSibling = listOfH3[indexOfh3].nextElementSibling;
+                // Only want 3 tasks to show per day
+                if (listSibling.querySelectorAll('li').length < 3) {
+                    const listItemText = document.createElement('li');
+                    listItemText.innerHTML = task.text;
+                    listSibling.appendChild(listItemText);
+                }
+                else {
+                    const listItemText = document.createElement('li');
+                    listItemText.innerHTML = 'You have more for this day ...';
+                    listSibling.appendChild(listItemText);
+                }
+            }
+        }
     }
     else {
-        console.log('Nothing is here');
         const noTasks = document.createElement('h2');
         noTasks.innerHTML = 'You have nothing Due Soon!'
         dueSection.appendChild(noTasks);
     }
 
+    // Controls the Progress Bar and how it displays
     const progressBar = document.querySelector('.progress');
     const totalTasks = localStorage.getItem('totalTasks');
     const completedTasks = localStorage.getItem('completedTasks');
@@ -94,4 +111,22 @@ function convertToPercentage(decimal) {
 
     // Convert back to string with % symbol
     return percentage.toFixed(2) + '%';
+}
+
+/**
+ * Converts date of YYYY-MM-DD to Month, Day
+ * 
+ * @param {String} dateString
+ * @returns {String} Month, Day
+ */
+function monthDayDate(dateString) {
+    // Split the date string and create a Date object with local time
+    const [year, month, day] = dateString.split('-').map(Number);
+    const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
+
+    // Format the date to "Month Day" format
+    const options = { month: 'long', day: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+
+    return formattedDate;
 }
