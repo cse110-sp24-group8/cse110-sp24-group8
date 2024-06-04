@@ -260,8 +260,9 @@ button.frame {
 }
 
 #logsContainer {
-  width: calc(100vw - 40px);
   height: 100%;
+  overflow-y: scroll;
+  padding-bottom: 70px;
 }
 
 #addLogModal {
@@ -278,7 +279,6 @@ button.frame {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-right: 30px;
 }
 
 .fieldD1,
@@ -356,13 +356,14 @@ button.frame {
     width: calc(
       100% - 20px
     ); /* Adjust width to account for the reduced margin */
+    overflow-y: scroll;
   }
 
   .content-holder {
     width: calc(
       100% - 20px
     ); /* Adjust width to account for the reduced margin*/
-    margin: 0 40px; /*Add a 20px margin to the left and right*/
+    margin: 0 20px; /*Add a 20px margin to the left and right*/
     max-width: none;
   }
 
