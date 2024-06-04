@@ -261,6 +261,7 @@ button.frame {
 
 #logsContainer {
   height: 100%;
+  overflow-y: auto;
   padding-bottom: 70px;
 }
 
@@ -355,7 +356,7 @@ button.frame {
     width: calc(
       100% - 20px
     ); /* Adjust width to account for the reduced margin */
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 
   .content-holder {
@@ -401,10 +402,6 @@ button.frame {
   header img {
     display: none;
   }
-
-  html {
-    overflow-y: auto;
-  }
 }
 
 @media (max-width: 978px) {
@@ -438,9 +435,5 @@ button.frame {
 
   header img {
     display: none;
-  }
-
-  html {
-    overflow-y: auto;
   }
 }
