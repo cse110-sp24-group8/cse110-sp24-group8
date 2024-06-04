@@ -262,8 +262,10 @@ button.frame {
 .log-entry {
     background: #ffffff;
     margin-bottom: 20px;
-    width: 250px;
-    height: 250px;
+    width: 100%; 
+    max-width: 340px; 
+    height: 100%;
+    max-height: 340px;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
@@ -300,7 +302,7 @@ button.frame {
     background: white;
     border: 2px solid gold;
     overflow-y: scroll; /* Enable vertical scrolling */
-    height: 150px; /* Set a fixed height for consistency */
+    height: 440px; /*what dictates the height for the log entry */
 }
 
 .date-codelog,
