@@ -1,3 +1,7 @@
+/**
+ * event listener to change the percentage of the circle depending on the amount of tasks completed
+ */
+
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
 
@@ -27,7 +31,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     const progressBar = document.querySelector('.progress');
-    const progressPercent = .3333333; //Waiting on JS from tasklist team to count the amount of tasks, temp value for now
+    const totalTasks = localStorage.getItem('totalTasks');
+    const completedTasks = localStorage.getItem('completedTasks');
+    const progressPercent = completedTasks / totalTasks
 
     let progressKeyframes = `@keyframes progressAnimation {
         from {
