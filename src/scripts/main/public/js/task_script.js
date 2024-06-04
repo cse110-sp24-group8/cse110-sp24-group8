@@ -211,23 +211,29 @@ function updateTaskList() {
     // Enhance tasks with a standardized date object for sorting
     tasks.forEach(task => {
         if (task.date) {
-            task.dateObj = new Date(task.date);
-            task.dateObj.setUTCHours(0, 0, 0, 0); // Standardize to 00:00 AM in UTC
+            task.dateObj = new Date(standardizeDate(task.date));
         } else {
-            task.dateObj = null;
+            // Assign a past date to tasks without a specified due date to bring them to the top
+            task.dateObj = new Date('1970-01-01T00:00:00Z');
         }
     });
 
-    // Sort tasks by empty dates, completion status, and due date
+    // Sort tasks by completion status first, then by due date (or lack thereof)
     tasks.sort((a, b) => {
-        if (a.dateObj === b.dateObj) return a.completed - b.completed;
-        if (!a.dateObj) return 1;
-        if (!b.dateObj) return -1;
-        return a.dateObj - b.dateObj;
+        if (a.completed && !b.completed) {
+            return 1; // Completed tasks go to the bottom
+        } else if (!a.completed && b.completed) {
+            return -1; // Incomplete tasks stay on top
+        } else {
+            // If both tasks are either completed or incomplete, sort by date
+            if (!a.date && b.date) {
+                return -1; // No due date tasks come after incomplete but before completed tasks with dates
+            } else if (a.date && !b.date) {
+                return 1; // Tasks with dates come before no due date when both are incomplete
+            }
+            return a.dateObj - b.dateObj; // Sort by date ascending
+        }
     });
-
-    const today = new Date();
-    today.setHours(0, 0, 0, 0); 
 
     // Render tasks
     tasks.forEach(task => {
@@ -254,6 +260,8 @@ function updateTaskList() {
 
     updateTaskCounts(); // Update the count of total and completed tasks
 }
+
+
 
 /**
  * Function to update the total tasks and completed tasks count
