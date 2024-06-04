@@ -8,19 +8,18 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
-## Learn More About our [Team](/admin/team.md)!
-
 ## Features
 
-- Dashboard:
+- Dashboard: 
 - TaskList:
 - Calendar:
 - Code Log:
 - Documentation:
-- Feedback:
+- Feedback: 
+- Markdown Editor: Utilize powerful markdown capabilities to format your notes with ease, adding structure and emphasis.
+- Data Management: Rely on local storage to securely manage your data, ensuring your notes and tasks are always saved.
 
 ## Brainstorming/Design Process
-![Retrium](https://assets-global.website-files.com/5e31ea2e5be31e39206629a4/5e31ea2e5be31e7974662afd_Logo-Retrium%402x.png)
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 - Used [Retrium](https://app.retrium.com/) to brainstorm problems and solutions for possible dev journal features
 - Ultilized [Figma](https://www.figma.com/) to design wireframing, low-fidelity mockup, and high-fidelity mockup
@@ -31,7 +30,7 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## Acknowledgements
 
-### Contributors
+### Contributors ([Learn More About our Team](/admin/team.md)!)
 
 - Arthur Cheung
 - Brandon Luu
