@@ -26,11 +26,23 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## CI/CD Pipeline
 
-- (fill out)
+![Github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
-## Project Structure
+We've integrated GitHub Actions into our project for seamless Continuous Integration and Deployment, featuring a robust pipeline that encompasses:
 
-- (fill out)
+- `JSDoc`:
+- `Superlinter`:
+- `Jest and Puppeteer`:
+
+## Repository Structure
+
+- `/admin/branding/images`: Branding-related information.
+- `/admin/cipipepine`: Contains our CI/CD pipeline diagram.
+- `/admin/meetings`: Stores our meeting notes.
+- `/admin/misc`: Contains our team contract information.
+- `/admin/videos`: Contain our introduction and status video.
+- `/src/scripts/main/public`: Contains our source code for our project.
+- `/specs/adrs`: Houses Architectural Design Records detailing significant project decisions.
 
 ## Acknowledgements
 
@@ -49,13 +61,3 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ### Resources/Libraries/Tools
 
 - (fill out)
-
-## Repository Organization
-
-- `/admin/branding/images`: Branding-related information.
-- `/admin/cipipepine`: Contains our CI/CD pipeline diagram.
-- `/admin/meetings`: Stores our meeting notes.
-- `/admin/misc`: Contains our team contract information.
-- `/admin/videos`: Contain our introduction and status video.
-- `/src/scripts/main/public`: Contains our source code for our project.
-- `/specs/adrs`: Houses Architectural Design Records detailing significant project decisions.
