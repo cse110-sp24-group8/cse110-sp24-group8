@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         // Runs through all tasks
         for (const task of tasks) {
             const listOfH3 = dueSection.querySelectorAll('h3');
-            const indexOfh3 = Array.from(listOfH3).findIndex(h3 => h3.innerHTML == monthDayDate(task.date));
+            const indexOfh3 = Array.from(listOfH3).findIndex(h3 => h3.innerHTML === monthDayDate(task.date));
             // We only want 3 dates to show
             if (listOfH3.length !== 3 && indexOfh3 === -1 && task.completed === false) {
                 const date = document.createElement('h3');
@@ -36,9 +36,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 }
                 else {
                     // Check if this was already printed the current bug prints multiple times
-                    const listItemText = document.createElement('li');
-                    listItemText.innerHTML = 'You have more for this day ...';
-                    listSibling.appendChild(listItemText);
+                    const moreTaskText = 'You have more tasks for this day ...';
+                    const listLiIndex = Array.from(listSibling.querySelectorAll('li')).findIndex(li => li.innerHTML === moreTaskText);
+                    if (listLiIndex === -1) {
+                        const listItemText = document.createElement('li');
+                        listItemText.innerHTML = moreTaskText;
+                        listSibling.appendChild(listItemText);
+                    }
                 }
             }
         }
