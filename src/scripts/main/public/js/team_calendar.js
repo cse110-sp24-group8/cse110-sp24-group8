@@ -2,19 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
+    let selectedDate = currentDate.toISOString().split('T')[0]; // Format today's date as 'YYYY-MM-DD'
     let notes = JSON.parse(localStorage.getItem('tasks')) || {};
-  
+
     function displayCalendar(month, year) {
         let firstDay = new Date(year, month, 1);
         let daysInMonth = new Date(year, month + 1, 0).getDate();
         let startingDay = firstDay.getDay();
         let calendarBody = document.getElementById("calendarBody");
         calendarBody.innerHTML = '';
-    
+
         const monthNames = ["January", "February", "March", "April", "May", "June",
                             "July", "August", "September", "October", "November", "December"];
         document.getElementById("current_month").textContent = `${monthNames[month]} ${year}`;
-    
+
         // Get all tasks and create a set of dates that have tasks
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const taskDates = new Set(tasks.map(task => task.date));
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fetch events and prepare to highlight dates with events
         const events = JSON.parse(localStorage.getItem('events')) || [];
         const eventDates = new Set(events.map(event => event.date));
-    
+
         let date = 1;
         for (let i = 0; i < 6; i++) {
             let row = document.createElement("tr");
@@ -36,24 +37,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     let fullDate = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
                     cell.textContent = date;
                     cell.dataset.date = fullDate;
+                    cell.classList.add('calendar-cell');
                     cell.onclick = () => {
-                        displayTasks(cell.dataset.date);
-                        displayEvents(cell.dataset.date);
+                        selectedDate = cell.dataset.date;
+                        displayTasks(selectedDate);
+                        displayEvents(selectedDate);
+                        highlightSelectedDate();
                     };
 
-                    if(taskDates.has(fullDate) && eventDates.has(fullDate))
-                    {
+                    if (taskDates.has(fullDate) && eventDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "#fdb927";
+                        cell.style.color = "rgba(85, 37, 131, 1)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
-                        cell.style.textDecoration = "underline";                      
+                        cell.style.textDecoration = "underline";
                     }
-    
+
                     // Check if the date has tasks and highlight if it does
                     if (taskDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "#fdb927";
+                        cell.style.color = "rgba(85, 37, 131, 1)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
                     }
@@ -63,7 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         cell.style.textDecoration = "underline";
                     }
 
-    
+                    if (fullDate === selectedDate) {
+                        cell.classList.add('selected-date');
+                    }
+
                     row.appendChild(cell);
                     date++;
                 }
@@ -71,14 +77,22 @@ document.addEventListener('DOMContentLoaded', function() {
             calendarBody.appendChild(row);
         }
     }
-    
+
+    function highlightSelectedDate() {
+        document.querySelectorAll('.calendar-cell').forEach(cell => {
+            cell.classList.remove('selected-date');
+            if (cell.dataset.date === selectedDate) {
+                cell.classList.add('selected-date');
+            }
+        });
+    }
 
     function displayTasks(date) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const filteredTasks = tasks.filter(task => task.date === date);
-        const taskContentContainer = document.getElementById('task-content'); 
-        taskContentContainer.innerHTML = ''; 
-    
+        const taskContentContainer = document.getElementById('task-content');
+        taskContentContainer.innerHTML = '';
+
         if (filteredTasks.length === 0) {
             taskContentContainer.innerHTML = `
                 <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
@@ -95,11 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="text-wrapper" style="${task.completed ? 'text-decoration: line-through;' : ''}">${task.text}</div>
                     </label>
                 `;
-    
-                // Append the task element to the container
+
                 taskContentContainer.appendChild(taskElement);
-    
-                // Find the checkbox in the newly created task element
+
                 const checkbox = taskElement.querySelector('.rectangle-checkbox');
                 checkbox.addEventListener('change', function() {
                     updateTaskCompletion(task.id, this.checked);
@@ -107,15 +119,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
+
     function displayEvents(date) {
         const events = JSON.parse(localStorage.getItem('events')) || [];
         const filteredEvents = events.filter(event => event.date === date);
         const eventContentContainer = document.getElementById('event-content');
-    
-        // Clear previous content
+
         eventContentContainer.innerHTML = '';
-    
+
         if (filteredEvents.length === 0) {
             eventContentContainer.innerHTML = `
                 <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
@@ -142,26 +153,28 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-    
-    
+
     function updateTaskCompletion(taskId, isCompleted) {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const taskIndex = tasks.findIndex(t => t.id == taskId);
-    
+
         if (taskIndex !== -1) {
             tasks[taskIndex].completed = isCompleted;
             tasks[taskIndex].completedDate = isCompleted ? new Date().toISOString() : null;
             localStorage.setItem('tasks', JSON.stringify(tasks));
-    
+
             const taskElement = document.querySelector(`.overlap[data-task-id="${taskId}"]`);
             if (taskElement) {
                 const textWrapper = taskElement.querySelector('.text-wrapper');
                 textWrapper.style.textDecoration = isCompleted ? 'line-through' : 'none';
             }
         }
-    }   
-    
+    }
+
     displayCalendar(currentMonth, currentYear);
+    highlightSelectedDate(); // Highlight today's date by default
+    displayTasks(selectedDate); // Display tasks for today's date
+    displayEvents(selectedDate); // Display events for today's date
 
     document.getElementById("prev_month").addEventListener("click", function() {
         if (currentMonth === 0) {
@@ -171,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentMonth--;
         }
         displayCalendar(currentMonth, currentYear);
+        highlightSelectedDate(); // Maintain the highlight on the selected date
     });
 
     document.getElementById("next_month").addEventListener("click", function() {
@@ -181,6 +195,7 @@ document.addEventListener('DOMContentLoaded', function() {
             currentMonth++;
         }
         displayCalendar(currentMonth, currentYear);
+        highlightSelectedDate(); // Maintain the highlight on the selected date
     });
 });
 
@@ -207,9 +222,6 @@ document.getElementById("closeModal").addEventListener("click", function() {
     document.getElementById("popupContent").innerHTML = "";
 });
 
-/**
- * Add event listener to handle event adding, event deletion, and event editing
- */
 document.addEventListener("DOMContentLoaded", function() {
     const popupContent = document.getElementById("popupContent");
 
@@ -218,10 +230,9 @@ document.addEventListener("DOMContentLoaded", function() {
         return;
     }
 
-    // Delegate click events within popupContent
     popupContent.addEventListener('click', function(event) {
         if (event.target.classList.contains('frame')) {
-            event.preventDefault(); // Prevent default action of the button
+            event.preventDefault();
 
             const titleField = document.querySelector('.add-list .text-wrapper');
             const dateField = document.querySelector('.add-list .date-wrapper');
@@ -251,17 +262,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             events.push(newEvent);
             localStorage.setItem('events', JSON.stringify(events));
-            updateEventList(); // Ensure this function correctly updates the UI
+            updateEventList(dateText);
 
             document.getElementById("pageModal").style.display = "none";
-            document.getElementById("popupContent").innerHTML = ""; // Clear the modal content
+            document.getElementById("popupContent").innerHTML = "";
         }
     });
 });
 
-/**
- * Function to update the events displayed in the DOM
- */
 function updateEventList(targetDate) {
     const eventContentContainer = document.getElementById('event-content');
     if (!eventContentContainer) {
@@ -269,10 +277,9 @@ function updateEventList(targetDate) {
         return;
     }
 
-    eventContentContainer.innerHTML = ''; // Clear the container before re-rendering events
+    eventContentContainer.innerHTML = '';
     let events = JSON.parse(localStorage.getItem('events')) || [];
 
-    // Filter events by the target date and sort them by time
     events = events.filter(event => event.date === targetDate);
     events.sort((a, b) => {
         return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
@@ -296,28 +303,16 @@ function updateEventList(targetDate) {
     });
 }
 
-
-
-/**
- * Function to load edit content from external HTML file and display it in the modal
- * @param {string} eventId - The ID of the event to be edited
- */
 function loadEditContent(eventId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("popupContent").innerHTML = this.responseText;
 
-            // Ensure the modal content is fully loaded
             document.getElementById("popupContent").setAttribute('data-event-id', eventId);
             document.getElementById("pageModal").style.display = "block";
 
-            // Debugging output
-            console.log("Modal content loaded.");
-
-            // Fetch the event and attempt to populate the form
             const event = JSON.parse(localStorage.getItem('events')).find(e => e.id === parseInt(eventId));
-            console.log("Event data to populate:", event);
 
             if (event) {
                 let textWrapper = document.querySelector('.edit-list .text-wrapper');
@@ -335,11 +330,10 @@ function loadEditContent(eventId) {
                 console.error("Event not found with ID:", eventId);
             }
 
-            // Attach event listener to the save button if found
             const saveButton = document.querySelector('.edit-list .frame');
             if (saveButton) {
                 saveButton.addEventListener('click', function(event) {
-                    event.preventDefault(); // Prevent the form from submitting normally
+                    event.preventDefault();
                     handleEditSubmit(eventId);
                     document.getElementById("pageModal").style.display = "none";
                 });
@@ -352,10 +346,6 @@ function loadEditContent(eventId) {
     xhttp.send();
 }
 
-/**
- * Function to handle the submission of edited event
- * @param {string} eventId - The ID of the event to be edited
- */
 function handleEditSubmit(eventId) {
     const newTitle = document.querySelector('.edit-list .text-wrapper').value;
     const newDate = document.querySelector('.edit-list .date-wrapper').value;
@@ -368,15 +358,13 @@ function handleEditSubmit(eventId) {
         events[eventIndex].date = newDate;
         events[eventIndex].time = newTime;
 
-        // Overwrite the existing event in local storage and sort events
         localStorage.setItem('events', JSON.stringify(events.sort((a, b) => {
             return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
         })));
 
-        updateEventList(newDate); // Refresh the event list for the specific date to reflect changes
+        updateEventList(newDate);
     }
 }
-
 
 document.addEventListener("DOMContentLoaded", function() {
     const eventsContainer = document.querySelector('.event-content');
@@ -389,34 +377,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// Listen for delete button clicks on the event content container
 document.getElementById('event-content').addEventListener('click', function(event) {
     if (event.target.closest('.delete-btn')) {
         const eventElement = event.target.closest('.overlap');
         const eventId = eventElement.dataset.eventId;
         handleEventDeletion(eventId);
-        eventElement.remove(); // Removes the event from the DOM
+        eventElement.remove();
     }
 });
 
-/**
- * Function to handle the deletion of an event
- * @param {string} eventId - The ID of the event to be deleted
- */
 function handleEventDeletion(eventId) {
     let events = JSON.parse(localStorage.getItem('events')) || [];
-    // Filter out the event to delete
     events = events.filter(event => event.id.toString() !== eventId);
-    localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with the filtered list
-
-    // Filter out the event to delete
-    events = events.filter(event => event.id.toString() !== eventId);
-    localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with the filtered list
+    localStorage.setItem('events', JSON.stringify(events));
 }
-
-
-
-
-
-
 

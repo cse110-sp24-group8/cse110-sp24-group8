@@ -119,6 +119,17 @@ h2 {
   color: white;
 }
 
+/* Hover effect for table cells */
+.calendar-cell.selected-date{
+  border-radius: 106px;
+  background: var(--Linear-Laker-Gold);
+  color: white;
+}
+
+.calendar-cell {
+  cursor: pointer;
+}
+
 /* Style for calendar details section */
 #calendar-details {
   margin-top: -90px;
@@ -199,16 +210,28 @@ a:hover {
   justify-content: center;
 }
 
-/* Media query for screen width up to 1200px
-@media (max-width: 1200px) {
-  .content-holder {
-    margin-top: 0;
-    padding-top: 20px;
-  }
+.union-wrapper {
+  position: fixed;
+  width: 69px;
+  height: 69px;
+  bottom: 20px;  /* Set distance from bottom */
+  right: 20px;   /* Set distance from right */
+  background-color: var(--variable-collection-laker-purple);
+  border-radius: 34.5px;
+  box-shadow: 2px 2px 15px #0000004c;
+  transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
+}
 
-  #calendar-details .icon {
-    margin-top: 30px;
-  }
+.union-wrapper:hover {
+  background-color: rgb(88, 101, 174);
+}
+
+.union {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 18.5px; /* Half of (69px - 32px) to center vertically */
+  left: 18.5px; /* Half of (69px - 32px) to center horizontally */
 }
 
 /* Media query for screen width up to 768px */
@@ -234,6 +257,11 @@ a:hover {
   .message {
     font-size: 16px;
   }
+
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
 }
 
 /* Media query for screen width up to 480px */
@@ -264,6 +292,11 @@ a:hover {
   #month_controls {
     padding: 0 5px;
   }
+  
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
 }
 
 @media (max-width: 978px) {
@@ -294,30 +327,10 @@ a:hover {
   html {
     overflow-y: auto;
   }
-}
-
-.union-wrapper {
-  position: fixed;
-  width: 69px;
-  height: 69px;
-  bottom: 70px;  /* Set distance from bottom */
-  right: 20px;   /* Set distance from right */
-  background-color: var(--variable-collection-laker-purple);
-  border-radius: 34.5px;
-  box-shadow: 2px 2px 15px #0000004c;
-  transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
-}
-
-.union-wrapper:hover {
-  background-color: rgb(88, 101, 174);
-}
-
-.union {
-  position: absolute;
-  width: 32px;
-  height: 32px;
-  top: 18.5px; /* Half of (69px - 32px) to center vertically */
-  left: 18.5px; /* Half of (69px - 32px) to center horizontally */
+  
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
 }
 
 .button-style {
@@ -542,6 +555,14 @@ a:hover {
   align-items: center;  /* Align content in the center horizontally */
   overflow:visible;
   width: 50%;        /* Confirm the width is sufficient */
+}
+
+#task-list{
+  padding-left: 69px;
+}
+
+#event-list{
+  padding-right: 69px;
 }
 
 #task-list h2, #event-list h2 {
