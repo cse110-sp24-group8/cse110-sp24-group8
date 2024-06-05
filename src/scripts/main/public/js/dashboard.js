@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const listOfH3 = dueSection.querySelectorAll('h3');
             const indexOfh3 = Array.from(listOfH3).findIndex(h3 => h3.innerHTML === monthDayDate(task.date));
             // We only want 3 dates to show
-            if (listOfH3.length !== 3 && indexOfh3 === -1 && task.completed === false) {
+            if (listOfH3.length !== 3 && indexOfh3 === -1 && task.completed === false && task.date !== null) {
                 const date = document.createElement('h3');
                 const uList = document.createElement('ul');
                 const listItemText = document.createElement('li');
@@ -63,23 +63,26 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const progressBar = document.querySelector('.progress');
     const totalTasks = localStorage.getItem('totalTasks');
     const completedTasks = localStorage.getItem('completedTasks');
-    let progressPercent = completedTasks / totalTasks
+    let progressPercent = completedTasks / totalTasks;
+    console.log('Test');
 
     if(isNaN(progressPercent)) {
         progressPercent = 1;
     }
 
-    if(isNaN(progressPercent)) {
-        progressPercent = 1;
-    }
+    //Will use later for changing the task amount
 
-    if(isNaN(progressPercent)) {
-        progressPercent = 1;
-    }
+    // if(isNaN(progressPercent)) {
+    //     progressPercent = 1;
+    // }
 
-    if(isNaN(progressPercent)) {
-        progressPercent = 1;
-    }
+    // if(isNaN(progressPercent)) {
+    //     progressPercent = 1;
+    // }
+
+    // if(isNaN(progressPercent)) {
+    //     progressPercent = 1;
+    // }
     let progressKeyframes = `@keyframes progressAnimation {
         from {
             stroke-dasharray: 0 283;
@@ -189,7 +192,9 @@ function convertToPercentage(decimal) {
  */
 function monthDayDate(dateString) {
     // Split the date string and create a Date object with local time
+ 
     const [year, month, day] = dateString.split('-').map(Number);
+
     const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
 
     // Format the date to "Month Day" format
