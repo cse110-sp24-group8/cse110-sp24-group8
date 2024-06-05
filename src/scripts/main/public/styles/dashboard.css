@@ -48,14 +48,9 @@ ul {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 1em;
+    padding: 1em; 
 }
 
-#progressContainer button {
-    position: relative;
-    top: 20rem;
-    left: 15rem;
-}
 
 .left-panel-progress strong {
     padding: 1em;
@@ -77,6 +72,7 @@ ul {
     position: relative;
     width: 50%;
     min-width: 200px;
+    text-align: right;
 }
 
 .progress-circle {

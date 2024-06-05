@@ -50,7 +50,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const progressBar = document.querySelector('.progress');
     const totalTasks = localStorage.getItem('totalTasks');
     const completedTasks = localStorage.getItem('completedTasks');
-    const progressPercent = completedTasks / totalTasks
+    let progressPercent = completedTasks / totalTasks
+
+    if(isNaN(progressPercent)) {
+        progressPercent = 1;
+    }
+
+    if(isNaN(progressPercent)) {
+        progressPercent = 1;
+    }
+
+    if(isNaN(progressPercent)) {
+        progressPercent = 1;
+    }
+
+    if(isNaN(progressPercent)) {
+        progressPercent = 1;
+    }
 
     let progressKeyframes = `@keyframes progressAnimation {
         from {
