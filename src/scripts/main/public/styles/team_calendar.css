@@ -366,7 +366,7 @@ a:hover {
   color: var(--variable-collection-laker-purple); /* Ensures the color is correct */
   position: absolute;
   top: 20px;  /* Adjusted for clear visibility */
-  right: 19px;
+  right: 0%;
   font-size: 28px; /* Makes it larger and more visible */
   cursor: pointer;
   z-index: 1050;  /* Higher than the modal-content to ensure it's on top */
@@ -397,7 +397,7 @@ a:hover {
   color: var(--lecoder-purple, purple);
 }
 
-.add-list .date-wrapper {
+.add-list .date-wrapper{
   position:absolute;
   width: 50%;
   height: 30px;
@@ -411,6 +411,22 @@ a:hover {
   transition: border-color 0.3s, box-shadow 0.3s;
   outline: none;
   color: var(--lecoder-purple, purple);
+}
+
+.add-list .time-wrapper{
+  flex-direction: column;
+  position:absolute;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin: 10px 23px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+  top: 88px;
 }
 
 .add-list .frame {
