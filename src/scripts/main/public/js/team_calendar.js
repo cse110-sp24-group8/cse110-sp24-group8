@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Get all tasks and create a set of dates that have tasks
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const taskDates = new Set(tasks.map(task => task.date));
+
+        // Fetch events and prepare to highlight dates with events
+        const events = JSON.parse(localStorage.getItem('events')) || [];
+        const eventDates = new Set(events.map(event => event.date));
     
         let date = 1;
         for (let i = 0; i < 6; i++) {
@@ -36,6 +40,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         displayTasks(cell.dataset.date);
                         displayEvents(cell.dataset.date);
                     };
+
+                    if(taskDates.has(fullDate) && eventDates.has(fullDate))
+                    {
+                        cell.style.fontWeight = "bold";
+                        cell.style.color = "#fdb927";
+                        cell.style.fontWeight = "bold";
+                        cell.style.fontSize = "1em"; // Larger text for emphasis
+                        cell.style.textDecoration = "underline";                      
+                    }
     
                     // Check if the date has tasks and highlight if it does
                     if (taskDates.has(fullDate)) {
@@ -43,8 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         cell.style.color = "#fdb927";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
-
                     }
+
+                    // Underline dates with events
+                    if (eventDates.has(fullDate)) {
+                        cell.style.textDecoration = "underline";
+                    }
+
     
                     row.appendChild(cell);
                     date++;
@@ -64,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (filteredTasks.length === 0) {
             taskContentContainer.innerHTML = `
                 <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
-                <p class="message">No Schedule Today</p>
+                <p class="message">No Tasks</p>
             `;
         } else {
             filteredTasks.forEach(task => {
@@ -101,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (filteredEvents.length === 0) {
             eventContentContainer.innerHTML = `
                 <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
-                <p class="message">No events scheduled for this date.</p>
+                <p class="message">No Events</p>
             `;
         } else {
             filteredEvents.forEach(event => {
@@ -112,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <label class="group">
                         <div class="text-content-wrapper">${event.title}</div>
                         <div class="time-wrapper">${event.time}</div>
-                        <button class="delete-btn" onclick="handleTaskDeletion('${event.id}')">
+                        <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                             <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                         </button>
                         <button class="edit-btn" onclick="loadEditContent('${event.id}')">
@@ -141,9 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 textWrapper.style.textDecoration = isCompleted ? 'line-through' : 'none';
             }
         }
-    }
-    
-       
+    }   
     
     displayCalendar(currentMonth, currentYear);
 
@@ -239,6 +255,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = ""; // Clear the modal content
+
+            location.reload();
         }
     });
 });
@@ -246,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
 /**
  * Function to update the events displayed in the DOM
  */
-function updateEventList() {
+function updateEventList(targetDate) {
     const eventContentContainer = document.getElementById('event-content');
     if (!eventContentContainer) {
         console.error('Event content container not found');
@@ -256,6 +274,12 @@ function updateEventList() {
     eventContentContainer.innerHTML = ''; // Clear the container before re-rendering events
     let events = JSON.parse(localStorage.getItem('events')) || [];
 
+    // Filter events by the target date and sort them by time
+    events = events.filter(event => event.date === targetDate);
+    events.sort((a, b) => {
+        return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
+    });
+
     events.forEach(event => {
         const eventElement = document.createElement('div');
         eventElement.className = 'overlap';
@@ -264,7 +288,7 @@ function updateEventList() {
             <label class="group">
                 <div class="text-content-wrapper">${event.title}</div>
                 <div class="time-wrapper">${event.time}</div>
-                <button class="delete-btn" onclick="handleTaskDeletion('${event.id}')">
+                <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                     <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                 </button>
                 <button class="edit-btn" onclick="loadEditContent('${event.id}')">
@@ -274,9 +298,10 @@ function updateEventList() {
         `;
         
         eventContentContainer.appendChild(eventElement);
-        
     });
 }
+
+
 
 /**
  * Function to load edit content from external HTML file and display it in the modal
@@ -296,7 +321,7 @@ function loadEditContent(eventId) {
             console.log("Modal content loaded.");
 
             // Fetch the event and attempt to populate the form
-            const event = JSON.parse(localStorage.getItem('events')).find(e => e.id === eventId);
+            const event = JSON.parse(localStorage.getItem('events')).find(e => e.id === parseInt(eventId));
             console.log("Event data to populate:", event);
 
             if (event) {
@@ -332,8 +357,6 @@ function loadEditContent(eventId) {
     xhttp.send();
 }
 
-
-
 /**
  * Function to handle the submission of edited event
  * @param {string} eventId - The ID of the event to be edited
@@ -343,15 +366,23 @@ function handleEditSubmit(eventId) {
     const newDate = document.querySelector('.edit-list .date-wrapper').value;
     const newTime = document.querySelector('.edit-list .time-wrapper').value;
     const events = JSON.parse(localStorage.getItem('events'));
-    const eventIndex = events.findIndex(e => e.id === eventId);
+    const eventIndex = events.findIndex(e => e.id === parseInt(eventId));
+
     if (eventIndex !== -1) {
         events[eventIndex].title = newTitle;
         events[eventIndex].date = newDate;
         events[eventIndex].time = newTime;
-        localStorage.setItem('events', JSON.stringify(events)); // Overwrite the existing event in local storage
-        updateEventList(newDate); // Refresh the event list to reflect changes
+
+        // Overwrite the existing event in local storage and sort events
+        localStorage.setItem('events', JSON.stringify(events.sort((a, b) => {
+            return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
+        })));
+
+        updateEventList(newDate); // Refresh the event list for the specific date to reflect changes
+        location.reload();
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const eventsContainer = document.querySelector('.event-content');
@@ -363,6 +394,37 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 });
+
+// Listen for delete button clicks on the event content container
+document.getElementById('event-content').addEventListener('click', function(event) {
+    if (event.target.closest('.delete-btn')) {
+        const eventElement = event.target.closest('.overlap');
+        const eventId = eventElement.dataset.eventId;
+        handleEventDeletion(eventId);
+        eventElement.remove(); // Removes the event from the DOM
+    }
+});
+
+/**
+ * Function to handle the deletion of an event
+ * @param {string} eventId - The ID of the event to be deleted
+ */
+function handleEventDeletion(eventId) {
+    let events = JSON.parse(localStorage.getItem('events')) || [];
+    // Filter out the event to delete
+    events = events.filter(event => event.id.toString() !== eventId);
+    localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with the filtered list
+
+    // Filter out the event to delete
+    events = events.filter(event => event.id.toString() !== eventId);
+    localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with the filtered list
+
+    location.reload();
+}
+
+
+
+
 
 
 

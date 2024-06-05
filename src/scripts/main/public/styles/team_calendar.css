@@ -623,7 +623,7 @@ a:hover {
 .text-content-wrapper{
   cursor: pointer;
   position: absolute;
-  left: 50px;  /* Starting point of the text inside .overlap */
+  left: 7px;  /* Starting point of the text inside .overlap */
   top: 20%;
   font-family: 'Karla_regular';
   font-weight: 700;
@@ -640,7 +640,7 @@ a:hover {
   font-size: 12px;
   color: #552583;
   position: absolute;
-  left: 50px;
+  left: 9px;
   bottom: 10px;
 }
 
