@@ -1,4 +1,4 @@
-/* main.css */
+/* main.css Eric's branch */
 
 /* Using Better CSS Layout*/
 @import url(var.css);
@@ -17,6 +17,7 @@ main {
     height: 100vh;
 }
 
+
 /* Displays our buttons vertically*/
 .sidebar {
     display: flex;
@@ -25,6 +26,7 @@ main {
     margin: 0;
     height: 92%;
     background-color: var(--lecoder-purple, purple);
+    font-size: 100%;
     text-align: center;
     
 }
@@ -44,29 +46,32 @@ main {
 
 /* Styles the buttons with the id "sideButtons"*/
 .sideButton {
-    /* style to default button */
-    border: none;
-    outline: none;
-    background: none;
-    /* width: 5%; Currently deciding width or having the size not be 5%.*/
-    min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
-    cursor: pointer;
-    border-radius: 10px;
+     /* style to default button */
+     border: none;
+     outline: none;
+     background: none;
+     /* width: 5%; Currently deciding width or having the size not be 5%.*/
+     min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
+     cursor: pointer;
+     border-radius: 10px;
+ 
+     /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
+     display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+     justify-content: center;
+     align-items: center;
+     align-content: stretch;
+     background-color: var(--lecoder-purple, purple);
+     color: white;
+     flex: 1;
+     text-decoration: none;
 
-    /* adding our style to buttons. Note that we will have a version with text that opens up later*/
-    display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
-    background-color: var(--lecoder-purple, purple);
-    color: white;
-    flex: 1;
-    transition: .5s;
 }
 
-.sideButton:hover {
+
+
+.sideButton:hover      {
     background: var(
     --Linear-Laker-Gold,
     linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
@@ -75,36 +80,20 @@ main {
   
 }
 
-.sidebar .toggle {
-    background-color: goldenrod;
-    position: absolute;
-    border-radius: 50%;
-    top: 55%;
-    left: 3.7%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    /*This makes it so that the arrow always stays above the taskbar and any other object. 
-    The default for other layers are 0(auto) so changing it to 1 brings it forward.*/
-    z-index: 1; 
+.sideButton:focus    {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+
+  
 }
 
 header {
-    /*Aligning  the "Welcome, LeCoder!" with the icon. This requires a div to space out the objects evenly*/
-    /* display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch; */
-
     display: grid;
     grid-template-columns: 5% 95%;
     background-color: var(--lecoder-purple, purple);
     text-align: center;
-    /* padding-top: 1.7rem; */
 }
 
 header h1 {
@@ -117,6 +106,30 @@ header h1 {
 
 header img {
     display: block;
+    padding: auto;
     margin: auto;
+    margin-left: 10px;
     width: 75%;
 }
+
+@media (max-width: 978px) {
+    html, body {
+        overflow: hidden;
+    }
+
+    .sidebar {
+        min-width: 0px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sideButton {
+        min-width: 0px;
+    }
+
+    .sidebar a span{
+        display: none;
+    }
+        
+    }
+

@@ -6,34 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/x-icon" href="~/admin/branding/images/Sunshine%20LeBron.png">
     <link rel="stylesheet" href="./styles/dashboard.css">
+    <script src="/src/scripts/main/public/js/dashboard.js"></script>
+
     <title>LeJournal Dashboard</title>
   </head>
   <body>
     <header>
       <img src="./icons/journallogo-icon.png" alt="Journal Logo">
       <h1>Welcome, LeCoder!</h1>
-      <!-- <div></div> -->
+
     </header>
     <main>
       <nav class="sidebar">
         <a href="index.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/dashboard-icon.png" alt="Dashboard Icon"></span>
+          <img src="./icons/dashboard-icon.png" alt="Dashboard Icon">
+          <span class="buttonIcon">Home</span>
         </a>
         <a href="./html/task-list.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/tasklist-icon.png" alt="Task List Icon"></span>
+          <img src="./icons/tasklist-icon.png" alt="Task List Icon">
+          <span class="buttonIcon">Task List</span>
         </a>
         <a href="./html/team_calendar.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/calendar-icon.png" alt="Calendar Icon"></span>
+          <img src="./icons/calendar-icon.png" alt="Calendar Icon">
+          <span class="buttonIcon">Calendar</span>
         </a>
         <a href="./html/code-log.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/codelog-icon.png" alt="Code Log Icon"></span>
+          <img src="./icons/codelog-icon.png" alt="Code Log Icon">
+          <span class="buttonIcon">Code log</span>
         </a>
         <a href="./html/documentation.html" class="sideButton">
-            <span class="buttonIcon"><img src="./icons/documentation-icon.png" alt="Documentation Icon"></span>
-            
+          <img src="./icons/documentation-icon.png" alt="Documentation Icon">
+          <span class="buttonIcon">Docs</span>
         </a>
         <a href="./html/feedback.html" class="sideButton">
-          <span class="buttonIcon"><img src="./icons/feedback-icon.png" alt="Feedback Icon"></span>
+          <img src="./icons/feedback-icon.png" alt="Feedback Icon">
+          <span class="buttonIcon">Feedback</span>
         </a>
       </nav>
       <!--Majority of where the main features should be contained-->
@@ -41,24 +48,12 @@
         <!--This contains the three components from Figma-->
         <section id="dueSoonContainer">
           <h2>Due Soon!</h2>
-          <h3>May 13</h3>
-            <ul>
-              <li>Finish high fidelity wireframes</li>
-              <li>Learn E2E testing to implement for project</li>
-            </ul>
-            <h3>May 15</h3>
-            <ul>
-              <li>Finish CSE 110 Lab 6</li>
-              <li>Submit attendance form for lecture</li>
-              <li>Group meeting summary</li>
-            </ul>
         </section>
           <section id="progressContainer">
-            <div class="left-panel-progress">
-              <strong>Your tasks for the week are almost done!</strong>
-              <button>View All Tasks</button>
-            </div>
             <div class="progress-container">
+              <div class="left-panel-progress">
+                <strong>Your tasks for the week are almost done!</strong>
+              </div>
               <svg class="progress-circle" viewBox="0 0 100 100">
                 <circle
                   class="bg-circle"
@@ -80,7 +75,7 @@
                   stroke-dasharray="0 283"
                   transform="rotate(270 50 50)"
                 />
-                <text
+                <text id="percent"
                   x="50%"
                   y="50%"
                   dominant-baseline="middle"
@@ -88,43 +83,29 @@
                   font-size="20px"
                   fill="#FDB927"
                 >
-                  50%
+                
+                  0%
+                  
                 </text>
               </svg>
+  
             </div>
+            <button onclick="window.location.href='./html/task-list.html'">View All Tasks</button>
           </section>
           <section id="codeUpdateContainer">
             <h2>Recent Code Updates</h2>
             <section id="codeUpdateWithButtons">
               <section id="contentCodeUpdate">
+                <h3>Documentation Updates</h3>
                 <ul>
-                  <li>
-                    Arthur, style.css (May 22, 13:01:03):
-                    <ul>
-                      <li>
-                        Finished writing the CSS for the side bar navigation
-                      </li>
-                      <li>Wrote GET function for collaborative features</li>
-                    </ul>
-                  </li>
-                  <li>
-                    Josh, index.html (May 22, 13:00:30):
-                    <ul>
-                      <li>Layed out high fidelity structure of the site</li>
-                      <li>Incorporated important components for each page</li>
-                    </ul>
-                  </li>
-                  <li>
-                    KP, style.css (May 20, 09:09:09)
-                    <ul>
-                      <li>Provided the theme and color scheme of the site</li>
-                    </ul>
-                  </li>
+                </ul>
+                <h3>Code Log Updates</h3>
+                <ul>
                 </ul>
               </section>
               <section id="codeUpdateButtons">
-                <button>View Code Log</button>
-                <button>View Documentation</button>
+                  <button onclick="window.location.href='./html/code-log.html'">View Code Log</button>
+                  <button onclick="window.location.href='./html/documentation.html'">View Documentation</button>
               </section>
             </section>
           </section>
