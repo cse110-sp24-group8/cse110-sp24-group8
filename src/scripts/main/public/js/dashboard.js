@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     if(isNaN(progressPercent)) {
         progressPercent = 1;
     }
-
     let progressKeyframes = `@keyframes progressAnimation {
         from {
             stroke-dasharray: 0 283;
@@ -94,11 +93,51 @@ document.addEventListener("DOMContentLoaded", (event) => {
     let animationElement = document.createElement('style');
     animationElement.innerHTML = progressKeyframes;
     document.head.appendChild(animationElement);
-
     progressBar.style.transition = 'stroke-dasharray 2s';
     progressBar.style.animation = 'progressAnimation 2s forwards';
-    
     changeProgressText(progressPercent);
+
+    // These functions will dynamically parse documentation and code log
+    const codeUpdate = document.getElementById('contentCodeUpdate');
+    const codeUpdateUL = codeUpdate.querySelectorAll('ul');
+    const logs = JSON.parse(localStorage.getItem('logs'));
+    const fileKeys = [];
+
+    // Iterate over all keys in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('file_')) {
+            fileKeys.push(key);
+        }
+    }
+    console.log(fileKeys.length);
+    if (fileKeys.length === 0) {
+        const nothingTextLi = document.createElement('li');
+        nothingTextLi.innerHTML = 'None';
+        codeUpdateUL[0].appendChild(nothingTextLi);
+    }
+    else {
+        console.log(fileKeys);
+    }
+
+    if (!logs || logs.length == 0) {
+        const nothingTextLi = document.createElement('li');
+        nothingTextLi.innerHTML = 'None';
+        codeUpdateUL[1].appendChild(nothingTextLi);
+    }
+    else {
+        let i = logs.length-1;
+        while ((i > -1) && (i > logs.length-1 - 3)) {
+            const logListItem = document.createElement('li');
+            const content = logs[i].content;
+            const lines = content.split('\n');
+            const firstLine = lines[0];
+            const cleanedFirstLine = firstLine.replace(/^#+\s*/, '').trim();
+            logListItem.innerHTML = monthDayTime(logs[i].date, logs[i].time) + ' '  + cleanedFirstLine;
+            codeUpdateUL[1].appendChild(logListItem);
+            i--;
+        }
+    }
 });
 
 
@@ -157,5 +196,20 @@ function monthDayDate(dateString) {
     const options = { month: 'long', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
 
+    return formattedDate;
+}
+
+/**
+ * Converts date of Month Day, Year with time to "(Month, Day, Time)"
+ * 
+ * @param {String} dateString
+ * @param {String} timeString
+ * @returns {String} "(Month, Day, Time)"
+ */
+function monthDayTime(dateString, timeString) {
+    // Split the date string and create a Date object with local time
+    const datePart = dateString.split(',')[0];
+    // Combine the extracted date part and time string into the desired format
+    const formattedDate = `(${datePart}, ${timeString})`;
     return formattedDate;
 }

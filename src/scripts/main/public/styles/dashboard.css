@@ -93,7 +93,7 @@ ul {
 }
 
 #codeUpdateContainer li,
-#codeUpdateContainer > h2 {
+#codeUpdateContainer > h2, #codeUpdateContainer h3 {
     color: white;
     margin-left: 1em;
 }
