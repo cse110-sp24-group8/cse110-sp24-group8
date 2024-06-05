@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const listOfH3 = dueSection.querySelectorAll('h3');
             const indexOfh3 = Array.from(listOfH3).findIndex(h3 => h3.innerHTML == monthDayDate(task.date));
             // We only want 3 dates to show
-            if (listOfH3.length !== 3 && indexOfh3 === -1) {
+            if (listOfH3.length !== 3 && indexOfh3 === -1 && task.completed === false) {
                 const date = document.createElement('h3');
                 const uList = document.createElement('ul');
                 const listItemText = document.createElement('li');
@@ -26,11 +26,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // Check if the date was already parsed
             if (indexOfh3 !== -1) {
                 const listSibling = listOfH3[indexOfh3].nextElementSibling;
-                // Only want 3 tasks to show per day
-                if (listSibling.querySelectorAll('li').length < 3) {
-                    const listItemText = document.createElement('li');
-                    listItemText.innerHTML = task.text;
-                    listSibling.appendChild(listItemText);
+                // Only want 3 tasks to show per day and only shows uncompleted tasks
+                if ((listSibling.querySelectorAll('li').length < 3)) {
+                    if (task.completed === false) {
+                        const listItemText = document.createElement('li');
+                        listItemText.innerHTML = task.text;
+                        listSibling.appendChild(listItemText);
+                    }
                 }
                 else {
                     const listItemText = document.createElement('li');
@@ -41,6 +43,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     }
     else {
+        const noTasks = document.createElement('h2');
+        noTasks.innerHTML = 'You have nothing Due Soon!'
+        dueSection.appendChild(noTasks);
+    }
+    // Accounts for all completed tasks
+    if (dueSection.children.length == 1) {
         const noTasks = document.createElement('h2');
         noTasks.innerHTML = 'You have nothing Due Soon!'
         dueSection.appendChild(noTasks);
