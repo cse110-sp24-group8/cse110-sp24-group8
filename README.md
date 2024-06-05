@@ -59,12 +59,36 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## CI/CD Pipeline
 ![Github Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-(Needs work)
-We've integrated GitHub Actions into our project for seamless Continuous Integration and Deployment, featuring a robust pipeline that encompasses:
+![JSDoc](https://img.shields.io/badge/JSDoc-8FC743?style=for-the-badge&logo=jsdoc&logoColor=white)
+![Jest](https://img.shields.io/badge/Jest-323330?style=for-the-badge&logo=Jest&logoColor=white)
+![Puppeteer](https://img.shields.io/badge/Puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white)
+![Code Climate](https://img.shields.io/badge/Code_Climate-000000?style=for-the-badge&logo=code-climate&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white)
 
-- `JSDoc`:
-- `Superlinter`:
-- `Jest and Puppeteer`:
+
+(Needs work)
+We've integrated GitHub Actions into our project for seamless Continuous Integration and Deployment (using 2 different workflows), featuring a robust pipeline that encompasses:
+
+### CI
+
+This workflow is triggered on all pull requests 
+
+- `Eslint`: Our workflow uses Eslint which is JS focused. This helps us identify errors, enforce coding standards, and potential issues based on our custom rules. Additionally, it helps us ensure consistency across our code base, making our code base more readable and easier for collaboration between developers.
+- `Prettier`: Our workflow runs prettier to automatically format our code, using our custom rules (tabwidth 2 etc.). Futhermore, prettier also ensures our code style is conistent across our codebase, improving readablity and maintability.
+- `Jest and Puppeteer`: Our workflow then proceeds to run Unit tests using Jest to test individual functions. For E2E testing, we use Puppeteer alongside Jest, simulating a browser to test user interactions and verify our web application works properly.
+- `Code Climate`: Our workflow runs code climate to analyze our code maintability, code quality, and test coverage. This helps identify duplication and also complexity issues in our code base. This will lead to  higher code quality and a more efficient development process, making our web application more reliable.
+- `JSDoc`: Our worklow at the end then generates documentation from our JS documentation to ensure our code is documented and easily understandable by other developers.
+### CD
+This workflow triggers on pushes/merges to `main` 
+#### Note
+ We use the template offered by Github which deploys static webpages, which is ideal for projects that primarily use JS, HTML, and CSS. This workflow deploys our web application every time a merge/push to `main` occurs so we can easily rollback (autmoating our development).
+
+ - `Depployment Process`: 
+    1) `Build Step`: transforms source files into a final(ready) format and  minify files to improve load times.
+    2) `Deployment Step`: Upload the built project files and specifies the path for the static files to be uploaded. Then this will deploy to github pages (`actions/deploy-pages@v4`)
+
+- `Benefits`: This ensures the latest version of our project is always being deployed to Github Pages (pushes/merges to main). This workflow helps us achieve the CD process, keeping our website up to date and allowing us to continously deliver new features to our users (or possible bugs fixes). This also allows us to rollback to a previous stable version if our newest changes causes issues to our website.
 
 ## Repository Structure
 
