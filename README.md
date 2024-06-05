@@ -4,6 +4,9 @@
 
 Welcome to LeJournal, your all-in-one web dev journal that empowers developers to manage tasks, integrate calendar events, log code, document projects, and track user feedback seamlessly. Experience a new level of productivity and organization tailored specifically for developers.
 
+## Demo 
+(Insert final demo Youtube Video Link here) 
+
 ## Features
 
 - `Dashboard`: Serve as the home page of the dev journal, offering widgets that provide overviews of information from other features.
