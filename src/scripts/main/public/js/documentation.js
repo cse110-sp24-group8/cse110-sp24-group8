@@ -1,8 +1,14 @@
+/*
+ * Initializes the page once the DOM is fully loaded, sets up the SimpleMDE editor, and loads the existing files.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     var simplemde = new SimpleMDE({ element: document.getElementById("fileContent") });
     const storagePrefix = 'file_';
     let currentFile = '';
 
+    /*
+     * Loads the files from localStorage into the file selection dropdown.
+     */
     function loadFiles() {
         const fileSelect = document.getElementById('fileSelect');
         fileSelect.innerHTML = '<option value="" disabled selected>--Select a file--</option>';
@@ -18,6 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /*
+     * Initializes the default 'Untitled' file if no files exist in localStorage.
+     */
     function initializeUntitled() {
         const filesExist = Object.keys(localStorage).some(key => key.startsWith(storagePrefix));
         if (!filesExist) {
@@ -33,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /*
+     * Creates a new file with the user-provided name.
+     * Prompts the user for the new file name.
+     * @returns {void}
+     */
     window.createNewFile = function () {
         const fileName = prompt('Enter the name for the new file:');
         if (fileName && !localStorage.getItem(storagePrefix + fileName)) {
@@ -50,6 +64,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /*
+     * Renames the current file to a new user-provided name.
+     * Prompts the user for the new file name.
+     * @returns {void}
+     */
     window.renameFile = function () {
         const newFileName = prompt('Enter the new name for the file:');
         if (newFileName && !localStorage.getItem(storagePrefix + newFileName)) {
@@ -66,6 +85,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /*
+     * Switches to the selected file and loads its content into the editor.
+     * @returns {void}
+     */
     window.switchFile = function () {
         const fileSelect = document.getElementById('fileSelect');
         const selectedFile = fileSelect.value;
@@ -76,6 +99,10 @@ document.addEventListener('DOMContentLoaded', function () {
         simplemde.value(localStorage.getItem(storagePrefix + currentFile));
     }
 
+    /*
+     * Deletes the current file after confirming with the user.
+     * @returns {void}
+     */
     window.deleteFile = function () {
         if (currentFile) {
             const confirmed = confirm(`Are you sure you want to delete the file "${currentFile}"?`);
@@ -90,6 +117,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    /*
+     * Saves the current file content to localStorage whenever the content changes.
+     */
     simplemde.codemirror.on('change', function() {
         if (currentFile) {
             localStorage.setItem(storagePrefix + currentFile, simplemde.value());

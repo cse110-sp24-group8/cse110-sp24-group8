@@ -4,27 +4,32 @@
   <meta charset="utf-8">
   <meta name="description" content="Journal Dashboard">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!--Add Favicon-->
+  <!-- Link to Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Link to external CSS file -->
   <link rel="stylesheet" href="../styles/documentation.css">
   <title>Documentation</title>
+  <!-- JavaScript to load navigation -->
   <script src="../js/loadNav.js"></script>
+  <!-- Link to SimpleMDE Markdown Editor -->
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 </head>
 <body>
+  <!-- Header section with logo and title -->
   <header>
     <img src="../icons/journallogo-icon.png" alt="Journal Logo">
     <h1>Documentation</h1>
-    <!-- <div></div> -->
+    <!-- <div></div> Placeholder for potential future content -->
   </header>
-  <!--Contains the 2 main components the sidebar and content-->
+  <!-- Main section containing sidebar and content -->
   <main>
     <nav class="sidebar">
+      <!-- Sidebar for navigation (empty for now) -->
     </nav>
-    <!--This container includes the header and the data content for format-->
-    <!--Majority of where the main features should be contained-->
+    <!-- Content holder section for main features -->
     <section class="content-holder">
         <div class="controls-wrapper">
+          <!-- File selection and action buttons -->
           <div class="file-wrapper">
             <select id="fileSelect" onchange="switchFile()">
               <option value="" disabled selected>--Select a file--</option>
@@ -32,13 +37,17 @@
             <button class="editFile" id="createFileButton" onclick="createNewFile()">Create New File</button>
             <button class="editFile" id="renameFileButton" onclick="renameFile()">Rename File</button>
           </div>
-          <button id="deleteFileButton" onclick="deleteFile()"><i class="fas fa-trash"></i></button>
+          <button id="deleteFileButton" onclick="deleteFile()">
+            <img src= "../img/task-delete.svg" alt="Delete" width="30" height="30">
+          </button>
         </div>
+        <!-- Text area for file content -->
         <div class="textarea-wrapper">
             <textarea id="fileContent" name="content"></textarea>
         </div>
     </section>
   </main>
+  <!-- Link to external JavaScript file -->
+  <script src="../js/documentation.js"></script>
 </body>
-<script src="../js/documentation.js"></script>
 </html>
