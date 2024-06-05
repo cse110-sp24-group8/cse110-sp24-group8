@@ -1,4 +1,4 @@
-/* main.css */
+/* main.css Eric's branch */
 
 /* Using Better CSS Layout*/
 @import url(var.css);
@@ -46,26 +46,26 @@ main {
 
 /* Styles the buttons with the id "sideButtons"*/
 .sideButton {
-    /* style to default button */
-    border: none;
-    outline: none;
-    background: none;
-    /* width: 5%; Currently deciding width or having the size not be 5%.*/
-    min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
-    cursor: pointer;
-    border-radius: 10px;
-
-    /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
-    display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: stretch;
-    background-color: var(--lecoder-purple, purple);
-    color: white;
-    flex: 1;
-    text-decoration: none;
+     /* style to default button */
+     border: none;
+     outline: none;
+     background: none;
+     /* width: 5%; Currently deciding width or having the size not be 5%.*/
+     min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
+     cursor: pointer;
+     border-radius: 10px;
+ 
+     /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
+     display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+     justify-content: center;
+     align-items: center;
+     align-content: stretch;
+     background-color: var(--lecoder-purple, purple);
+     color: white;
+     flex: 1;
+     text-decoration: none;
 
 }
 
@@ -119,7 +119,12 @@ header img {
 
     .sidebar {
         min-width: 0px;
-        
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sideButton {
+        min-width: 0px;
     }
 
     .sidebar a span{

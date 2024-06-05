@@ -124,6 +124,7 @@ ul {
         background-color: var(--lecoder-purple, purple);
         z-index: 1000;
         padding: 0.5rem 0; /* Add some padding for better appearance */
+        min-width: 0px;
     }
 
     #dashboardHolder {
