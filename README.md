@@ -7,7 +7,7 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ## Demo 
 (Insert final demo Youtube Video Link here) 
 
-## Features
+## Features 
 
 - `Dashboard`: Serve as the home page of the dev journal, offering widgets that provide overviews of information from other features.
 - `TaskList`: Efficiently organize your tasks, track due dates, and mark items as completed to stay on top of your to-do list.
@@ -15,12 +15,13 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - `Code Log`: Document your coding progress, changes, and decisions with detailed logs using the markdown editor, making it easier to track the evolution of your work.
 - `Documentation`: Utilize the markdown editor to create, store, and access detailed documentation effortlessly.
 - `Feedback`: Collect and manage feedback from peers and users to continually refine and enhance your ideas.
-- `Markdown Editor`: Leverage the powerful markdown capabilities to effortlessly format your notes, adding structure and emphasis as needed.
-- `Data Management`: Count on local storage to securely handle your data, guaranteeing constant preservation of your notes and tasks.
+
+## Relevant Links 
+- We are using Github Pages to host our web app. You can find our live site [here](https://cse110-sp24-group8.github.io/cse110-sp24-group8/)
 
 ## Brainstorming/Design Process
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-- Used [Retrium](https://app.retrium.com/) to facilitate brainstorming sessions for identifying problems and solutions related to potential features for the dev journal.
+- Used [Retrium](https://app.retrium.com/) to facilitate brainstorming sessions for identifying themes for problems and solutions related to potential features for the dev journal.
 - Ultilized [Figma](https://www.figma.com/) for designing wireframes, low-fidelity mockups, and high-fidelity mockups, streamlining the entire design process from conceptualization to finalization.
 
 ## CI/CD Pipeline
