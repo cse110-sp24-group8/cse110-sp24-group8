@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     }
                 }
                 else {
+                    // Check if this was already printed the current bug prints multiple times
                     const listItemText = document.createElement('li');
                     listItemText.innerHTML = 'You have more for this day ...';
                     listSibling.appendChild(listItemText);
