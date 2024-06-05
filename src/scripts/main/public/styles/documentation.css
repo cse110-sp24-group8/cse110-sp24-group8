@@ -1,13 +1,10 @@
 /* documentation.css */
 
+/* Import additional stylesheets */
 @import url(main.css);
 @import url(markdown.css);
 
-body {
-    background-color: rgb(255, 255, 255);
-}
-
-/* Over write h1 tag from main.css */
+/* Override h1 tag styles from main.css */
 h1 {
     color: black;
     text-align: left;
@@ -21,12 +18,34 @@ header h1 {
     margin: 0;
 }
 
+/* Adjust minimum height for CodeMirror editor */
+.CodeMirror {
+    min-height: 55vh;
+}
+
+/* Set default font for all elements */
+* {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+.file-wrapper {
+    font-family: 'Karla_regular';
+}
+
+header h1 {
+    font-family: 'Karla_regular';
+}
+
+/* Set background color for the body */
+body {
+    background-color: rgb(255, 255, 255);
+}
+
+/* Style for content holder section */
 .content-holder {
     background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     border-radius: 10px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-top: 20px;
+    margin: 20px;
     margin-bottom: 12vh;
     width: 92.5%;
     display: flex;
@@ -36,6 +55,7 @@ header h1 {
     padding-bottom: 5%;
 }
 
+/* Style for controls wrapper */
 .controls-wrapper {
     display: flex;
     justify-content: space-between;
@@ -45,29 +65,30 @@ header h1 {
     box-sizing: border-box;
 }
 
+/* Style for file wrapper */
 .file-wrapper {
     display: flex;
     align-items: center;
 }
 
+/* Style for text area wrapper */
 .textarea-wrapper {
     background-color: white;
-    margin-right: 50px;
-    margin-left: 50px;
+    margin: 0 50px;
     width: 95%;
 }
 
+/* Style for inner elements of text area wrapper */
 .textarea-wrapper div {
     background-color: white;
 }
 
+/* Style for file selection dropdown */
 #fileSelect {
     background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin: 20px;
     border-radius: 20px;
-    border-style: none;
+    border: none;
     text-align: center;
 }
 
@@ -75,37 +96,38 @@ header h1 {
     color: var(--lecoder-gold);
 }
 
+/* Style for edit file buttons */
 .editFile {
     background-color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin: 20px;
     border-radius: 20px;
-    border-style: none;
+    border: none;
 }
 
 .editFile:hover {
     color: var(--lecoder-gold);
 }
 
+/* Style for delete file button */
 #deleteFileButton {
-    background-color: var(--lecoder-purple);
-    color: white;
-    font-size: 20px;
-    border-radius: 20px;
-    border-style: none;
-    padding: 5px 10px 5px 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-#deleteFileButton:hover {
-    color: var(--lecoder-gold);
+/* Style for delete file button image on hover */
+#deleteFileButton img:hover {
+    filter: brightness(3);
 }
 
-*::before{
+/* Set box-sizing and font for all elements */
+*::before {
     box-sizing: content-box;
     font-family: inherit;
 }
 
+/* Responsive styles for sidebar and content holder */
 @media (max-width: 978px) {
     .sidebar {
         display: flex;
