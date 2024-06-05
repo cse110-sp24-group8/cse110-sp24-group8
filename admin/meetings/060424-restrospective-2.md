@@ -1,4 +1,5 @@
 # Sprint Retrospective 2
+![image](https://github.com/cse110-sp24-group8/cse110-sp24-group8/assets/86510539/8b3cf4f2-e63c-404b-88c8-c7c5fdcd4851)
 
 **What Went Well:**
 1. **Collaboration, Communication Engagement**
