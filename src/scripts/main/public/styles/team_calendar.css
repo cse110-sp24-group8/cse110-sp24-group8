@@ -8,11 +8,13 @@
     rgba(253, 185, 39, 0.6) 9.51%,
     #fdb927 86.81%
   );
+  --variable-collection-laker-purple: rgba(85, 37, 131, 1);
 }
 
 .headerWithContent {
   width: 100%;
   font-size: 18px;
+  overflow-y: auto;
 }
 
 /* Adjust margin for content holder */
@@ -117,6 +119,17 @@ h2 {
   color: white;
 }
 
+/* Hover effect for table cells */
+.calendar-cell.selected-date{
+  border-radius: 106px;
+  background: var(--Linear-Laker-Gold);
+  color: white;
+}
+
+.calendar-cell {
+  cursor: pointer;
+}
+
 /* Style for calendar details section */
 #calendar-details {
   margin-top: -90px;
@@ -128,14 +141,6 @@ h2 {
   width: 100%;
   height: 100%;
   z-index: 3;
-}
-
-/* Style for icons within calendar details */
-#calendar-details .icon {
-  margin-top: 80px;
-  width: 58px;
-  height: 61px;
-  flex-shrink: 0;
 }
 
 /* Allow user selection for non-empty cells */
@@ -150,16 +155,6 @@ h2 {
   cursor: auto;
   background-color: transparent;
   border-radius: 0%;
-}
-
-/* Style for message elements */
-.message {
-  color: #515070;
-  font-family: 'Segoe UI';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
 }
 
 /* Style for icon buttons */
@@ -215,16 +210,28 @@ a:hover {
   justify-content: center;
 }
 
-/* Media query for screen width up to 1200px
-@media (max-width: 1200px) {
-  .content-holder {
-    margin-top: 0;
-    padding-top: 20px;
-  }
+.union-wrapper {
+  position: fixed;
+  width: 69px;
+  height: 69px;
+  bottom: 20px;  /* Set distance from bottom */
+  right: 20px;   /* Set distance from right */
+  background-color: var(--variable-collection-laker-purple);
+  border-radius: 34.5px;
+  box-shadow: 2px 2px 15px #0000004c;
+  transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
+}
 
-  #calendar-details .icon {
-    margin-top: 30px;
-  }
+.union-wrapper:hover {
+  background-color: rgb(88, 101, 174);
+}
+
+.union {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 18.5px; /* Half of (69px - 32px) to center vertically */
+  left: 18.5px; /* Half of (69px - 32px) to center horizontally */
 }
 
 /* Media query for screen width up to 768px */
@@ -250,6 +257,11 @@ a:hover {
   .message {
     font-size: 16px;
   }
+
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
 }
 
 /* Media query for screen width up to 480px */
@@ -280,6 +292,11 @@ a:hover {
   #month_controls {
     padding: 0 5px;
   }
+  
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
+
 }
 
 @media (max-width: 978px) {
@@ -310,4 +327,489 @@ a:hover {
   html {
     overflow-y: auto;
   }
+  
+  .union-wrapper {
+    bottom: 80px; /* Ensure the button is above the sidebar */
+  }
 }
+
+.button-style {
+  background: grey;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-style:focus {
+  outline: none;  /* Removes the focus outline to keep the style clean */
+}
+
+.button-style:hover {
+  background-color: #ececec;  /* Light grey background on hover */
+}
+
+/*Modal Page Element*/
+/* Styles for modal and modal content */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  margin: 15% auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 600px;
+  height: 40%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.close {
+  color: var(--variable-collection-laker-purple); /* Ensures the color is correct */
+  position: absolute;
+  top: 20px;  /* Adjusted for clear visibility */
+  right: 0%;
+  font-size: 28px; /* Makes it larger and more visible */
+  cursor: pointer;
+  z-index: 1050;  /* Higher than the modal-content to ensure it's on top */
+  background-color: transparent;  /* Ensures no background interference */
+  border: none; /* Removes any default border */
+  outline: none; /* Removes focus outline for aesthetics */
+}
+
+.add-list .overlap-group {
+  position: absolute;
+  width: 100%;
+  height: 34%;
+  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+}
+
+.add-list .text-wrapper {
+  width: 85%;
+  height: 40px;
+  padding: 8px;
+  margin: 10px 23px;
+  top: 2px;
+  left: 1px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+}
+
+.add-list .date-wrapper{
+  position:absolute;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin: 10px 23px;
+  top: 50px;
+  left: 1px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+}
+
+.add-list .time-wrapper{
+  flex-direction: column;
+  position:absolute;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin: 10px 23px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  left:0px;
+  color: var(--lecoder-purple, purple);
+  top: 88px;
+}
+
+.add-list .frame {
+  background-color: #552583;
+  color: #fff;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 20px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 90px;
+  height: 50px;
+}
+
+.add-list .div-wrapper {
+  border-color: #552583;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 120px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 95px;
+  height: 50px;
+
+}
+
+.add-list .text-wrapper:hover {
+  border-color: #a3a3a3;
+}
+
+.add-list .text-wrapper:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
+}
+
+.add-list .frame, .add-list .div-wrapper {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Segoe UI-Bold", Helvetica;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-list .frame:hover {
+  background-color: lightblue;
+  color: #552583;
+} 
+
+.add-list .div-wrapper:hover {
+  background-color: #6a3982;
+  color: whitesmoke;
+}
+
+.add-list .frame:active {
+  transform: translateY(2px);
+}
+
+.add-list .div-wrapper:active {
+  transform: translateY(2px);
+}
+
+/* General styles for interactive elements */
+.add-list button, .add-list input[type="text"], .add-list input[type="checkbox"] {
+  border-radius: 3px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+/* Ensures the task list container is styled appropriately */
+#calendar-details {
+  display: flex;
+  flex-direction: row;  /* Align children side by side */
+  align-items: stretch; /* Stretch children to fill the container height */
+  justify-content: space-between; /* Distribute space between but not around items */
+  min-height: 40%;
+  height: fit-content;
+  padding-bottom: 5%;
+}
+
+/* Style for icons within calendar details */
+#calendar-details .icon {
+  margin-top: 20px;
+  width: 58px;
+  height: 61px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+/* Style for message elements */
+.message {
+  color: #515070;
+  font-family: 'Segoe UI';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.half-section {
+  flex: 1;  /* Each section takes half of the flex container */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align content to start vertically */
+  min-height: 200px; /* Ensure there's a minimum height */
+}
+
+#task-list, #event-list {
+  align-items: center;  /* Align content in the center horizontally */
+  overflow:visible;
+  width: 50%;        /* Confirm the width is sufficient */
+}
+
+#task-list{
+  padding-left: 69px;
+}
+
+#event-list{
+  padding-right: 69px;
+}
+
+#task-list h2, #event-list h2 {
+  align-items: center;  /* Align content in the center horizontally */  
+  padding: 15px;
+  background-color: white;
+  font-family: 'Karla_regular';
+  font-size: 17px;
+  position: relative;  /* Ensures the header is positioned relative to its normal flow */
+  color: var(--lecoder-purple, purple);
+  border-radius: 20%;
+}
+
+#task-content {
+  width: 100%;  /* Ensure it uses the full width of #task-list */
+  padding: 20px; /* Add padding for spacing around tasks */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styling for each task container */
+.overlap {
+  position: relative;
+  width: 100%;  /* Adjust based on container width */
+  height: 40px;
+  margin: 5px 5%;  /* Center and add spacing */
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center; /* Align checkbox and text vertically */
+  padding-left: 20px; /* Space for checkbox */
+}
+
+/* Styling for text wrappers to ensure visibility */
+.text-wrapper {
+  cursor: pointer;
+  position: absolute;
+  left: 50px;  /* Starting point of the text inside .overlap */
+  top: 30%;
+  font-family: 'Karla_regular';
+  font-weight: 700;
+  color: #552583;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides text that overflows */
+  text-overflow: ellipsis; 
+}
+
+/* Larger checkbox for better interaction */
+.rectangle-checkbox {
+  transform: scale(1.4);
+  cursor: pointer;
+}
+
+#event-content {
+  width: 100%;  /* Ensure it uses the full width of #task-list */
+  padding: 20px; /* Add padding for spacing around tasks */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styling for each task container */
+.overlap {
+  position: relative;
+  width: 100%;  /* Adjust based on container width */
+  height: 50px;
+  margin: 5px 5%;  /* Center and add spacing */
+  background: white;
+  border-radius: 5px;
+  display: flex;
+  align-items: center; /* Align checkbox and text vertically */
+  padding-left: 20px; /* Space for checkbox */
+}
+
+.text-content-wrapper{
+  cursor: pointer;
+  position: absolute;
+  left: 7px;  /* Starting point of the text inside .overlap */
+  top: 20%;
+  font-family: 'Karla_regular';
+  font-weight: 700;
+  color: #552583;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap; /* Prevents text from wrapping */
+  overflow: hidden; /* Hides text that overflows */
+  text-overflow: ellipsis; 
+}
+
+.time-wrapper {
+  font-size: 12px;
+  color: #552583;
+  position: absolute;
+  left: 9px;
+  bottom: 10px;
+}
+
+.edit-btn{
+  top:0px;
+  position: absolute;
+  right:0px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-btn{
+  position: absolute;
+  right:4px;
+  bottom: 0px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/*Styling for editEvent.html page*/
+.edit-list .overlap-group {
+  position: absolute;
+  width: 100%;
+  height: 34%;
+  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+}
+
+.edit-list .text-wrapper {
+  width: 85%;
+  height: 40px;
+  padding: 8px;
+  margin: 10px 23px;
+  top: 2px;
+  left: 1px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+}
+
+.edit-list .date-wrapper{
+  position:absolute;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin: 10px 23px;
+  top: 50px;
+  left: 1px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+}
+
+.edit-list .time-wrapper{
+  flex-direction: column;
+  position:absolute;
+  width: 50%;
+  height: 30px;
+  padding: 8px;
+  margin: 10px 23px;
+  border-radius: 3px;
+  font-family: "Segoe UI-Regular", Helvetica;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+  color: var(--lecoder-purple, purple);
+  left: 0px;
+  top: 88px;
+}
+
+.edit-list .frame {
+  background-color: #552583;
+  color: #fff;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 20px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 90px;
+  height: 50px;
+}
+
+.edit-list .div-wrapper {
+  border-color: #552583;
+  border: none;
+  position: absolute;
+  bottom: 20px; /* Adjust the distance from the bottom */
+  right: 120px; /* Adjust the distance from the right */
+  padding: 8px; /* Keep the padding consistent */
+  font-size: 16px; /* Adjust the font size as needed */
+  width: 95px;
+  height: 50px;
+
+}
+
+.edit-list .text-wrapper:hover {
+  border-color: #a3a3a3;
+}
+
+.edit-list .text-wrapper:focus {
+  border-color: #555;
+  box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
+}
+
+.edit-list .frame, .edit-list .div-wrapper {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Segoe UI-Bold", Helvetica;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.edit-list .frame:hover {
+  background-color: lightblue;
+  color: #552583;
+} 
+
+.edit-list .div-wrapper:hover {
+  background-color: #6a3982;
+  color: whitesmoke;
+}
+
+.edit-list .frame:active {
+  transform: translateY(2px);
+}
+
+.edit-list .div-wrapper:active {
+  transform: translateY(2px);
+}
+
+/* General styles for interactive elements */
+.edit-list button, .edit-list input[type="text"], .edit-list input[type="checkbox"] {
+  border-radius: 3px;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+
+
+

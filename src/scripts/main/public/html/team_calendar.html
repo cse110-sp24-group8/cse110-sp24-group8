@@ -12,7 +12,7 @@
   <body>
     <header>
       <img src="../icons/journallogo-icon.png" alt="Journal Logo">
-      <h1>Team 8 Calendar</h1>
+      <h1>Calendar</h1>
       <!-- <div></div> -->
     </header>
     <!-- Contains the 2 main components: the sidebar and content -->
@@ -49,22 +49,40 @@
           </table>
         </section>
         <section id="calendar-details">
-          <img src="../icons/calendar-icon.svg" alt="No Schedule Icon" class="icon">
-          <p class="message">No Schedule Today</p>
+          <div id="task-list" class="half-section">
+              <h2>Tasks</h2>
+              <div id = "task-content">
+                <!-- Task items will be added dynamically here -->
+              </div>
+          </div>
+          <div id="event-list" class="half-section">
+              <h2>Events</h2>
+              <div id = "event-content">
+              <!-- Event items will be added dynamically here -->
+              </div>
+          </div>
         </section>
+      
+      
       </section>
-    </main>
-    <div class="union-wrapper">
-      <button id="openModal" class="button-style">
-        <img class="union" src="../img/union.svg">
-      </button>
-    </div>
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <span class="close" id="closeModal">&times;</span>
-        <div id="popupContent"></div>
+      
+      <!--pop-up page for add tasklist starts from here-->
+      <div class="modal" id="pageModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&#x2716;</span>
+            <!-- This div will be replaced with the content loaded from the external HTML file -->
+            <div id="popupContent"></div>
+        </div>
+      </div>
+
+      <!--pop-up page for add tasklist-->
+      <div class="union-wrapper">
+          <button id="openModal" class = "button-style">
+            <img class="union" src="../img/union.svg" />
+          </button>
       </div>
     </div>
+    </main>
     <script src="../js/team_calendar.js"></script>
   </body>
 </html>
