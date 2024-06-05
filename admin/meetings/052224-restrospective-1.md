@@ -1,4 +1,4 @@
-# Sprint Retrospective 2
+# Sprint Retrospective 1
 
 
 ![image](https://github.com/cse110-sp24-group8/cse110-sp24-group8/assets/86510539/dcf94946-fb1a-486d-bf9e-988f5e91ea70)
