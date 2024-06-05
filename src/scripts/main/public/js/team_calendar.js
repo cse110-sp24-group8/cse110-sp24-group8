@@ -255,8 +255,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = ""; // Clear the modal content
-
-            location.reload();
         }
     });
 });
@@ -281,23 +279,20 @@ function updateEventList(targetDate) {
     });
 
     events.forEach(event => {
-        const eventElement = document.createElement('div');
-        eventElement.className = 'overlap';
-        eventElement.dataset.eventId = event.id;
-        eventElement.innerHTML = `
-            <label class="group">
-                <div class="text-content-wrapper">${event.title}</div>
-                <div class="time-wrapper">${event.time}</div>
-                <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
-                    <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
-                </button>
-                <button class="edit-btn" onclick="loadEditContent('${event.id}')">
-                    <img src="../img/task-edit.svg" alt="Edit" width="26" height="26">
-                </button>
-            </label>
-        `;
-        
-        eventContentContainer.appendChild(eventElement);
+        const eventElement = `
+            <div class="overlap" data-task-id="${event.id}">
+                <label class="group">
+                    <div class="text-content-wrapper">${event.title}</div>
+                    <div class="time-wrapper">${event.time}</div>
+                    <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
+                        <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
+                    </button>
+                    <button class="edit-btn" onclick="loadEditContent('${event.id}')">
+                        <img src="../img/task-edit.svg" alt="Edit" width="26" height="26">
+                    </button>
+                </label>
+            </div>`;
+        eventContentContainer.insertAdjacentHTML('beforeend', eventElement);
     });
 }
 
@@ -379,7 +374,6 @@ function handleEditSubmit(eventId) {
         })));
 
         updateEventList(newDate); // Refresh the event list for the specific date to reflect changes
-        location.reload();
     }
 }
 
@@ -418,8 +412,6 @@ function handleEventDeletion(eventId) {
     // Filter out the event to delete
     events = events.filter(event => event.id.toString() !== eventId);
     localStorage.setItem('events', JSON.stringify(events)); // Update localStorage with the filtered list
-
-    location.reload();
 }
 
 
