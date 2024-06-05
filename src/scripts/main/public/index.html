@@ -50,10 +50,10 @@
           <h2>Due Soon!</h2>
         </section>
           <section id="progressContainer">
-            <div class="left-panel-progress">
-              <strong>Your tasks for the week are almost done!</strong>
-            </div>
             <div class="progress-container">
+              <div class="left-panel-progress">
+                <strong>Your tasks for the week are almost done!</strong>
+              </div>
               <svg class="progress-circle" viewBox="0 0 100 100">
                 <circle
                   class="bg-circle"
@@ -88,10 +88,9 @@
                   
                 </text>
               </svg>
-              <a href="./html/task-list.html">
-                <button>View All Tasks</button>
-             </a>
+  
             </div>
+            <button onclick="window.location.href='./html/task-list.html'">View All Tasks</button>
           </section>
           <section id="codeUpdateContainer">
             <h2>Recent Code Updates</h2>
@@ -123,12 +122,8 @@
                 </ul>
               </section>
               <section id="codeUpdateButtons">
-                <a href="./html/code-log.html">
-                  <button>View Code Log</button>
-                </a>
-                <a href="./html/documentation.html">
-                  <button>View Documentation</button>
-                </a>
+                  <button onclick="window.location.href='./html/code-log.html'">View Code Log</button>
+                  <button onclick="window.location.href='./html/documentation.html'">View Documentation</button>
               </section>
             </section>
           </section>

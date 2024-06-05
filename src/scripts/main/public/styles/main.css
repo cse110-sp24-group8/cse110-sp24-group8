@@ -26,7 +26,7 @@ main {
     margin: 0;
     height: 92%;
     background-color: var(--lecoder-purple, purple);
-    font-size: 80%;
+    font-size: 100%;
     text-align: center;
     
 }
@@ -59,7 +59,7 @@ main {
     display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	justify-content: space-evenly;
+	justify-content: center;
 	align-items: center;
 	align-content: stretch;
     background-color: var(--lecoder-purple, purple);
