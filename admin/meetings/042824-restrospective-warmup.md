@@ -1,4 +1,4 @@
-# Sprint Retrospective 1
+# Sprint Retrospective Warmup
 
 - Getting everyone set up on Retrium
 - SS will be sent later
