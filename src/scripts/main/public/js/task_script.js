@@ -261,8 +261,6 @@ function updateTaskList() {
     updateTaskCounts(); // Update the count of total and completed tasks
 }
 
-
-
 /**
  * Function to update the total tasks and completed tasks count
  */

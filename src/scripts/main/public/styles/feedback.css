@@ -127,16 +127,16 @@ html, body {
 }
 
 /* Delete button styling */
-.delete-btn {
-  position: absolute;
-  height: fit-content;
-  width: fit-content;
-  right: 5%;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-}
+  .delete-btn {
+    position: absolute;
+    height: fit-content;
+    width: fit-content;
+    right: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
 
 .delete-btn img {
   width: 26px;

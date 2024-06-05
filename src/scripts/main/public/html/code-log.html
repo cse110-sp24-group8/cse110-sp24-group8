@@ -1,22 +1,15 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="description" content="Code Log" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="../styles/dashboard.css">-->
     <link rel="stylesheet" href="../styles/code-log.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
     <link rel="stylesheet" href="../styles/markdown.css" />
-    <!-- Include the markdown.css file -->
     <title>LeJournal Code Log</title>
-    <script src="../js/loadNav.js"></script>
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <header>
       <img src="../icons/journallogo-icon.png" alt="Journal Logo" />
       <h1>Code Log</h1>
@@ -24,99 +17,40 @@
     <!-- Main layout -->
     <main>
       <!-- Sidebar Navigation -->
-      <nav class="sidebar"></nav>
+      <nav class="sidebar bottom-fixed"></nav>
       <!-- Code Log Content -->
-      <!-- <section class="headerWithContent"> -->
+      <section class="content-holder" >
         <div id="addLogModal" class="modal">
-            <div class="modal-content">
-              <span class="close" onclick="closeModal()">&times;</span>
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="logDate"></label>
-                  <div class="input-group">
-                    <img src="../icons/calendar-icon.png" alt="Calendar Icon" />
-                    <input
-                      type="text"
-                      id="logDate"
-                      class="input-field"
-                      placeholder="Date:"
-                    />
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="logTime"></label>
-                  <div class="input-group">
-                    <img src="../icons/calendar-icon.png" alt="Clock Icon" />
-                    <input
-                      type="text"
-                      id="logTime"
-                      class="input-field"
-                      placeholder="Time:"
-                    />
-                  </div>
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="form-row">
+              <div class="form-group">
+                <div class="input-group">
+                  <img src="../icons/calendar-icon.png" alt="Calendar Icon" />
+                  <input type="text" id="logDate" class="input-field" placeholder="Date:" />
                 </div>
               </div>
               <div class="form-group">
-                <label for="logContent"></label>
-                <textarea
-                  id="logContent"
-                  rows="10"
-                  cols="50"
-                  class="textarea-field"
-                ></textarea>
+                <div class="input-group">
+                  <img src="../icons/calendar-icon.png" alt="Clock Icon" />
+                  <input type="text" id="logTime" class="input-field" placeholder="Time:" />
+                </div>
               </div>
-              <button class="frame" onclick="addLog()">Add Log</button>
             </div>
-        </div>
-      <section class="content-holder" id="codeLogHolder">
-        <!-- Log entries will be dynamically added here -->
-        <button id="add-log-button" class="add-log-btn">+</button>
-      </section>
-      <!-- </section> -->
-    </main>
-
-    <!-- <div id="addLogModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="logDate"></label>
-            <div class="input-group">
-              <img src="../icons/calendar-icon.png" alt="Calendar Icon" />
-              <input
-                type="text"
-                id="logDate"
-                class="input-field"
-                placeholder="Date:"
-              />
+            <div class="form-group">
+              <textarea id="logContent" rows="10" cols="50" class="textarea-field"></textarea>
             </div>
+            <button class="frame" onclick="addLog()">Add Log</button>
           </div>
-          <div class="form-group">
-            <label for="logTime"></label>
-            <div class="input-group">
-              <img src="../icons/calendar-icon.png" alt="Clock Icon" />
-              <input
-                type="text"
-                id="logTime"
-                class="input-field"
-                placeholder="Time:"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="logContent"></label>
-          <textarea
-            id="logContent"
-            rows="10"
-            cols="50"
-            class="textarea-field"
-          ></textarea>
-        </div>
-        <button class="frame" onclick="addLog()">Add Log</button>
       </div>
-    </div> -->
-
+        <!-- Logs Container -->
+        <div id="logsContainer" class="logs-container"></div>
+        <!-- Button to add a log -->
+        <button id="addLogButton" class="add-log-btn">+</button>
+      </section>
+    </main>
+    <script src="../js/loadNav.js"></script>
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script src="../js/code-log.js"></script>
-  </body>
-</html>
+</body>
+</html> 
