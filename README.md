@@ -17,7 +17,9 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 - `Feedback`: Collect and manage feedback from peers and users to continually refine and enhance your ideas.
 
 ## Relevant Links 
-- We are using Github Pages to host our web app. You can find our live site [here](https://cse110-sp24-group8.github.io/cse110-sp24-group8/)!
+![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
+![Github Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
+- We are using Github Pages to host our web app. You can find our live site [here](https://cse110-sp24-group8.github.io/cse110-sp24-group8/).
 - Our SSOT (Single Source of Truth) is our Github Repository which can be found [here](https://github.com/cse110-sp24-group8/cse110-sp24-group8).
 - Learn more about our [team](https://github.com/cse110-sp24-group8/cse110-sp24-group8/blob/main/admin/team.md).
 
