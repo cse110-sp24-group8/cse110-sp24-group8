@@ -24,8 +24,8 @@ jobs:
         run: npm run lint  # Runs the linter to check for syntax and style issues
       - name: Check formatting with Prettier
         run: npm run prettier-check
-      #- name: Run Unit Tests
-        #run: npm test ./__tests__/subtract.test.js # Runs unit tests defined in the project; you can specify a path to run specific tests
+      - name: Run Unit Tests
+        run: npm test ./__tests__/subtract.test.js # Runs unit tests defined in the project; you can specify a path to run specific tests
       - name: Run E2E Tests
         run: |
           npm run dev &
