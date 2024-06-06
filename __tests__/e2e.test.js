@@ -1,24 +1,22 @@
-describe("Basic user flow for Website", () => {
-  // First, visit the feedback page
+describe("Exhaustive E2E testing based on user flow for website.", () => {
+  // First, visit the app hosted by live server
   beforeAll(async () => {
       await page.goto("http://127.0.0.1:6969");
   });
 
-  test('Add a feedback ticket', async () => {
-      await page.goto("http://127.0.0.1:6969/html/feedback.html");
-      // Ensure the modal button exists
-      const modalButtonExists = await page.$('.union') !== null;
-      console.log('Modal button exists:', modalButtonExists);
-      expect(modalButtonExists).toBe(true);
 
-      // Click the button to open the modal
-      await page.waitForSelector('.union');
-      await page.evaluate(() => document.querySelector('.union').scrollIntoView());
-      await page.click('.union');
+  //We will write all of the tests in this e2e.test.js file. 
 
-      // Check if the feedback ticket is added
-      await page.waitForSelector('.feedbacklist');
-      const feedbackListCount = await page.$$eval('.feedbacklist', (els) => els.length);
-      expect(feedbackListCount).toBeGreaterThan(0);
+  //Dashboard basic button tests
+  describe("Dashboard Page Tests", () => {
+    test("Test view all tasks button", async () => {
+      await page.waitForSelector('#viewAllTasksButton');
+      await page.click('#viewAllTasksButton');
+      const taskListUrl = await page.url();
+      expect(taskListUrl).toContain('html/task-list.html');
+    });
+
   });
+
+
 });
