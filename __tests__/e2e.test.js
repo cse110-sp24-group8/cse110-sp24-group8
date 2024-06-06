@@ -7,7 +7,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
   //We will write all of the tests in this e2e.test.js file. 
 
-  //Dashboard basic button tests
+  //Dashboard basic button tests & basic sidebar navigation back to dashboard
   describe("Dashboard Page Tests", () => {
     test("Test view all tasks button", async () => {
       await page.waitForSelector('#viewAllTasksButton');
@@ -33,6 +33,38 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await page.click('.sideButton img[alt="Dashboard Icon"]');
     });
   });
+
+  //Task List Tests
+  describe("Task List Page Tests", () => {
+    beforeAll(async () => {
+      await page.goto("http://127.0.0.1:6969/html/task-list.html");
+    });
+    
+    test("Click the button to add a task and test cross button", async () => {
+      await page.waitForSelector('.union');
+      await page.click('.union');
+      await page.waitForSelector('#closeModal');
+      await page.click('#closeModal');
+      const modalVisible = await page.$eval('#pageModal', el => el.style.display === 'block');
+      expect(modalVisible).toBe(false);
+      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
+      expect(tasks).toBeNull();
+    });
+    
+    test("Click the button to add a task and test cancel button", async () => {
+      await page.waitForSelector('.union');
+      await page.click('.union');
+      await page.click('#cancel');
+      const modalVisible = await page.$eval('#pageModal', el => el.style.display === 'block');
+      expect(modalVisible).toBe(false);
+      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
+      expect(tasks).toBeNull();
+    });
+
+    
+  });
+  
+  
 
 
 });
