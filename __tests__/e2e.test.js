@@ -77,7 +77,34 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
   
   });
   
-  
+
+  // Code Log Tests
+describe("Code Log Tests", () => {
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:6969/html/code-log.html");
+  });
+
+  // Test the functionality to add a log entry and then close the modal using the cross button
+  describe("Add and cancel a log entry", () => {
+    test("Click the button to add a log entry and close modal with cross button", async () => {
+      // Ensure the add log entry button is present and click it
+      await page.waitForSelector('.add-log-btn');
+      await page.click('.add-log-btn');
+
+      // Check if the add log modal appears
+      const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
+      expect(modalVisibleBefore).toBe(true);
+
+      await page.waitForSelector('.close');
+      await page.click('.close');
+      // Verify the modal is closed
+      const modalVisibleAfter = await page.$eval('#addLogModal', el => el.style.display === 'none');
+      expect(modalVisibleAfter).toBe(true);
+    });
+  });
+
+});
+
 
 
 });
