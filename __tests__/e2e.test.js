@@ -38,6 +38,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
   describe("Task List Page Tests", () => {
     beforeAll(async () => {
       await page.goto("http://127.0.0.1:6969/html/task-list.html");
+      await page.evaluate(() => localStorage.clear());
     });
     
     test("Click the button to add a task and test cross button", async () => {
@@ -61,7 +62,19 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(tasks).toBeNull();
     });
 
-    
+    test("Click the button to add a task with no title and no date", async () => {
+      await page.waitForSelector('.union');
+      await page.click('.union');
+
+      // Handle the alert dialog
+      page.on('dialog', async dialog => {
+        expect(dialog.message()).toBe('Please enter a task name.');
+        await dialog.dismiss();
+      });
+
+      await page.click('#addTaskButton');
+    });
+  
   });
   
   
