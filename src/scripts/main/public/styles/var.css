@@ -11,9 +11,14 @@
     --step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
     --step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
 
+    /*Laker color theme*/
     --lecoder-purple: #552583;
     --lecoder-gold: #fdb927;
     --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+
+    /*Light color theme*/
+
 }
 
 @font-face {

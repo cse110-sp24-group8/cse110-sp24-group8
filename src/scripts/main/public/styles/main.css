@@ -63,7 +63,7 @@ main {
      align-items: center;
      align-content: stretch;
      background-color: var(--lecoder-purple, purple);
-     color: white;
+     color: var(--lecoder-header-color, white);
      flex: 1;
      text-decoration: none;
 
@@ -97,7 +97,7 @@ header {
 }
 
 header h1 {
-    color: white;
+    color: var(--lecoder-header-color);
     text-align: center;
     font-size: 3rem;
     padding: 1rem;

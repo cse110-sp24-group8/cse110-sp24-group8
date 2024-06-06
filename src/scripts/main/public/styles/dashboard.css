@@ -3,6 +3,10 @@
 @import url(main.css);
 
 
+:root {
+    --clr-body-bg: hsl(0 0% 90%);
+}
+
 #dashboardHolder {
     display: grid;
     flex: 1;
@@ -22,6 +26,10 @@
 
 h2 {
     font-size: 2.25rem;
+}
+
+h1 {
+    color: var(--lecoder-gold); 
 }
 
 #dueSoonContainer {
@@ -56,6 +64,7 @@ ul {
    grid-row-start: 2;
    grid-column-start: 2;
    border-radius: 50px;
+   border: 0;
 }
 
 #progressContainer strong {
@@ -107,7 +116,125 @@ ul {
 
 #codeUpdateButtons button{
     border-radius: 50px;
+    border: 0;
 }
+
+
+#themeSwitcher {
+    grid-column-end: 3;
+}
+
+#themeSwitcher > fieldset {      
+    border: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row; /* Arrange items vertically */
+    gap: 2rem;
+    width: fit-content;
+    background-color: var(--lecoder-light-purple);
+    padding: 1rem 1rem;
+    top: 0.6rem;
+    right: 0.6rem;
+    border-radius: 50px;
+    margin-inline: auto;
+}
+
+#themeSwitcher input[type="radio"] {
+    appearance: none;
+    width: .7rem;
+    height: .7rem;
+    outline: 3px solid;
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+
+#themeSwitcher input[type="radio"]#laker {
+    color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#laker:checked {
+    background-color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#light {
+    color: white;
+}
+
+#themeSwitcher input[type="radio"]#light:checked {
+    background-color: white;
+}
+
+#themeSwitcher input[type="radio"]#dark {
+    color: black;
+}
+
+#themeSwitcher input[type="radio"]#dark:checked {
+    background-color: black;
+}
+
+#themeSwitcher input[type="radio"]#christmas {
+    color: red;
+}
+
+#themeSwitcher input[type="radio"]#christmas:checked {
+    background-color: green;
+}
+
+#themeSwitcher input[type="radio"]#halloween {
+    color: black;
+}
+
+#themeSwitcher input[type="radio"]#halloween:checked {
+    background-color: #ffa31a;
+}
+
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+:root:has(#laker:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+}
+
+:root:has(#light:checked) {
+    --lecoder-purple: rgba(211, 179, 179, 0.712);
+    --lecoder-gold: #e7e4dc;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+}
+
+:root:has(#dark:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+}
+
+:root:has(#lchristmas:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+}
+
+:root:has(#halloween:checked) {
+    --lecoder-purple: black;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+}
+
+
 
 @media (max-width: 978px) {
     .sidebar {
