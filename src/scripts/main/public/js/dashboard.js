@@ -100,28 +100,33 @@ document.addEventListener("DOMContentLoaded", (event) => {
     progressBar.style.animation = 'progressAnimation 2s forwards';
     changeProgressText(progressPercent);
 
-    // These functions will dynamically parse documentation and code log
+    // These functions will dynamically parse events and code log
     const codeUpdate = document.getElementById('contentCodeUpdate');
     const codeUpdateUL = codeUpdate.querySelectorAll('ul');
     const logs = JSON.parse(localStorage.getItem('logs'));
-    const fileKeys = [];
+    const events = JSON.parse(localStorage.getItem('events'));
 
-    // Iterate over all keys in localStorage
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith('file_')) {
-            fileKeys.push(key);
-        }
-    }
-    console.log(fileKeys.length);
-    if (fileKeys.length === 0) {
+    if (!events || events.length == 0) {
         const nothingTextLi = document.createElement('li');
         nothingTextLi.innerHTML = 'None';
         codeUpdateUL[0].appendChild(nothingTextLi);
     }
     else {
-        console.log(fileKeys);
+        for (event of events) {
+            if (codeUpdateUL[0].children.length !== 3 && event.date !== "") {
+                const eventLi = document.createElement('li');
+                if (event.time !== "") {
+                    eventLi.innerHTML = '(' + monthDayDate(event.date)+ ', ' + event.time + ') ' +  event.title;
+                }
+                else {  
+                    eventLi.innerHTML = '(' + monthDayDate(event.date)+ ') ' + event.title;
+                }
+                codeUpdateUL[0].appendChild(eventLi); 
+            }
+        }
     }
+
+    
 
     if (!logs || logs.length == 0) {
         const nothingTextLi = document.createElement('li');
@@ -192,11 +197,8 @@ function convertToPercentage(decimal) {
  */
 function monthDayDate(dateString) {
     // Split the date string and create a Date object with local time
- 
     const [year, month, day] = dateString.split('-').map(Number);
-
     const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
-
     // Format the date to "Month Day" format
     const options = { month: 'long', day: 'numeric' };
     const formattedDate = date.toLocaleDateString('en-US', options);
