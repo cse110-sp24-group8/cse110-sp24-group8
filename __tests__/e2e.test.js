@@ -48,6 +48,8 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await page.click('#closeModal');
       const modalVisible = await page.$eval('#pageModal', el => el.style.display === 'block');
       expect(modalVisible).toBe(false);
+
+      //Task List should still be empty
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
       expect(tasks).toBeNull();
     });
@@ -58,6 +60,8 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await page.click('#cancel');
       const modalVisible = await page.$eval('#pageModal', el => el.style.display === 'block');
       expect(modalVisible).toBe(false);
+
+      //Task List should still be empty
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
       expect(tasks).toBeNull();
     });
@@ -71,9 +75,87 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
         expect(dialog.message()).toBe('Please enter a task name.');
         await dialog.dismiss();
       });
-
+      
+      //Task List should still be empty
       await page.click('#addTaskButton');
+      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
+      expect(tasks).toBeNull();
     });
+
+    test("Click the button to add a task with a date but no title", async () => {
+
+      await page.waitForSelector('.union');
+      await page.click('.union');
+
+      page.on('dialog', async dialog => {
+        expect(dialog.message()).toBe('Please enter a task name.');
+      });
+
+      // Set a date in the date picker
+      await page.waitForSelector('.date-wrapper');
+      await page.click('.date-wrapper');
+      await page.type('.date-wrapper', '06062024'); // Example date
+      
+      // Attempt to add the task
+      //Task List should still be empty
+      await page.click('#addTaskButton'); 
+      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
+      expect(tasks).toBeNull();
+      await page.click('#closeModal'); 
+    });
+
+    //Yes title no date
+    test("Add a task with title 'hi1' and no date", async () => {
+      // Open the modal to add a task
+      await page.click('.union');
+  
+      // Type the task title
+      await page.type('.text-wrapper', 'hi1');
+  
+      // Click the add task button
+      await page.click('#addTaskButton');
+  
+      // Check the local storage for tasks
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+  
+      // Verify the number of tasks in local storage
+      expect(tasks.length).toBe(1);
+  
+      // Verify the task's contents
+      expect(tasks[0].text).toBe('hi1');
+      expect(tasks[0].date).toBe(null);
+
+      //Check displayed content to be accurate
+      const taskText = await page.$eval('.text-wrapper', el => el.textContent.trim());
+      const taskDate = await page.$eval('.date-wrapper', el => el.textContent.trim());
+      expect(taskText).toBe('hi1');
+      expect(taskDate).toBe('No Due Date');
+    });
+
+    //check local storage & organization by date of tasks.
+
+    //Yes title yes date, today
+    //check local storage & organization by date of tasks.
+
+    //yes title yes date, tommorow
+    //check local storage & organization by date of tasks.
+
+    //yes title yes date, anytime in the past, should be OVERDUE
+    //check local storage & organization by date of tasks.
+  
+    //add 5 more tasks yes title yes date, all today. check local storage & dashboard (due soon & percentage)
+    
+    //strikethrough 2.
+
+    //unstrikethrough 1. 
+
+    //delete 3. check local storage & dashboard.
+
+    //edit, change content, cancel edit.
+    //edit, change content, cross edit. 
+    //edit, change content, save edit. 
+
+    
   
   });
   
