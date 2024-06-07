@@ -16,6 +16,9 @@
     --lecoder-gold: #fdb927;
     --lecoder-light-purple: #b67af3;
     --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+
 
     /*Light color theme*/
 

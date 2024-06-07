@@ -15,7 +15,7 @@
     gap: 0.4rem;
     padding-bottom: 60px; /* Adjust according to the height of the fixed sidebar */
     height: calc(100vh - 60px); /* Adjust height to fit the window height minus padding */
-    overflow-y: auto; /* Make the dashboard holder scrollable */
+    overflow-y: auto; 
     font-size: 1.125rem;
 }
 
@@ -40,7 +40,7 @@ h1 {
 
 #dueSoonContainer h3,
 ul {
-    margin-left: 1em;
+    margin-left: 1rem;
     color: var(--lecoder-purple, purple);
 }
 
@@ -57,7 +57,7 @@ ul {
     grid-template-rows: 90% 10%;
     justify-content: space-between;
     align-items: center;
-    padding: 1em; 
+    padding: 1rem; 
 }
 
 #progressContainer button {
@@ -65,6 +65,8 @@ ul {
    grid-column-start: 2;
    border-radius: 50px;
    border: 0;
+   color: var(--lecoder-header-color,white);
+   background-color: var(--lecoder-light-purple);
 }
 
 #progressContainer strong {
@@ -117,124 +119,9 @@ ul {
 #codeUpdateButtons button{
     border-radius: 50px;
     border: 0;
-}
-
-
-#themeSwitcher {
-    grid-column-end: 3;
-}
-
-#themeSwitcher > fieldset {      
-    border: 0;
-    position: absolute;
-    display: flex;
-    flex-direction: row; /* Arrange items vertically */
-    gap: 2rem;
-    width: fit-content;
+    color: var(--lecoder-header-color,white);
     background-color: var(--lecoder-light-purple);
-    padding: 1rem 1rem;
-    top: 0.6rem;
-    right: 0.6rem;
-    border-radius: 50px;
-    margin-inline: auto;
 }
-
-#themeSwitcher input[type="radio"] {
-    appearance: none;
-    width: .7rem;
-    height: .7rem;
-    outline: 3px solid;
-    outline-offset: 3px;
-    border-radius: 50%;
-}
-
-#themeSwitcher input[type="radio"]#laker {
-    color: #552583;
-}
-
-#themeSwitcher input[type="radio"]#laker:checked {
-    background-color: #552583;
-}
-
-#themeSwitcher input[type="radio"]#light {
-    color: white;
-}
-
-#themeSwitcher input[type="radio"]#light:checked {
-    background-color: white;
-}
-
-#themeSwitcher input[type="radio"]#dark {
-    color: black;
-}
-
-#themeSwitcher input[type="radio"]#dark:checked {
-    background-color: black;
-}
-
-#themeSwitcher input[type="radio"]#christmas {
-    color: red;
-}
-
-#themeSwitcher input[type="radio"]#christmas:checked {
-    background-color: green;
-}
-
-#themeSwitcher input[type="radio"]#halloween {
-    color: black;
-}
-
-#themeSwitcher input[type="radio"]#halloween:checked {
-    background-color: #ffa31a;
-}
-
-
-.visually-hidden {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-}
-
-:root:has(#laker:checked) {
-    --lecoder-purple: #552583;
-    --lecoder-gold: #fdb927;
-    --lecoder-light-purple: #b67af3;
-    --lecoder-header-color: white;
-}
-
-:root:has(#light:checked) {
-    --lecoder-purple: rgba(225, 225, 225, 0.712);
-    --lecoder-gold: #e7e4dc;
-    --lecoder-light-purple: #b7b7b7;
-    --lecoder-header-color: black;
-}
-
-:root:has(#dark:checked) {
-    --lecoder-purple: #552583;
-    --lecoder-gold: #fdb927;
-    --lecoder-light-purple: #b67af3;
-    --lecoder-header-color: white;
-}
-
-:root:has(#lchristmas:checked) {
-    --lecoder-purple: #552583;
-    --lecoder-gold: #fdb927;
-    --lecoder-light-purple: #b67af3;
-    --lecoder-header-color: white;
-}
-
-:root:has(#halloween:checked) {
-    --lecoder-purple: black;
-    --lecoder-gold: #fdb927;
-    --lecoder-light-purple: #b67af3;
-    --lecoder-header-color: white;
-}
-
-
 
 @media (max-width: 978px) {
     .sidebar {
@@ -252,6 +139,7 @@ ul {
         z-index: 1000;
         padding: 0.5rem 0; /* Add some padding for better appearance */
         min-width: 0px;
+        
     }
 
     #dashboardHolder {

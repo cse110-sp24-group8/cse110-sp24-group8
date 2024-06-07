@@ -10,6 +10,7 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 main {
@@ -21,14 +22,18 @@ main {
 /* Displays our buttons vertically*/
 .sidebar {
     display: flex;
-    flex-direction: column;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-start;
     padding: 0;
     margin: 0;
-    height: 92%;
+    height: 95%;
     background-color: var(--lecoder-purple, purple);
     font-size: 100%;
     text-align: center;
-    
+    /* height: fit-content; */
 }
 
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
@@ -45,33 +50,30 @@ main {
 }
 
 /* Styles the buttons with the id "sideButtons"*/
+
 .sideButton {
-     /* style to default button */
+
      border: none;
      outline: none;
      background: none;
-     /* width: 5%; Currently deciding width or having the size not be 5%.*/
-     min-width: 5.25rem; /*Should stop sidebar from shrinking under 5.25rem (1px = 0.063rem )*/
+     min-width: 5.25rem;
      cursor: pointer;
      border-radius: 10px;
  
-     /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
      display: flex;
      flex-direction: column;
-     flex-wrap: nowrap;
+     flex-wrap: wrap;
      justify-content: center;
      align-items: center;
      align-content: stretch;
+
      background-color: var(--lecoder-purple, purple);
      color: var(--lecoder-header-color, white);
      flex: 1;
      text-decoration: none;
-
 }
 
-
-
-.sideButton:hover      {
+.sideButton:hover {
     background: var(
     --Linear-Laker-Gold,
     linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
@@ -112,6 +114,129 @@ header img {
     width: 75%;
 }
 
+#themeSwitcher {
+    grid-column-end: 3;
+}
+
+#themeSwitcher > fieldset {      
+    border: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row; /* affects whether vertical or horizontal*/
+    gap: 2rem;
+    width: fit-content;
+    background-color: var(--lecoder-light-purple);
+    padding: 1rem 1rem;
+    top: 0.6rem;
+    right: 0.6rem;
+    border-radius: 50px;
+    margin-inline: auto;
+}
+
+#themeSwitcher input[type="radio"] {
+    appearance: none;
+    width: .7rem;
+    height: .7rem;
+    outline: 3px solid;
+    outline-offset: 3px;
+    border-radius: 50%;
+}
+
+#themeSwitcher input[type="radio"]#laker {
+    color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#laker:checked {
+    background-color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#light {
+    color: white;
+}
+
+#themeSwitcher input[type="radio"]#light:checked {
+    background-color: white;
+}
+
+#themeSwitcher input[type="radio"]#dark {
+    color: black;
+}
+
+#themeSwitcher input[type="radio"]#dark:checked {
+    background-color: black;
+}
+
+#themeSwitcher input[type="radio"]#christmas {
+    color: red;
+}
+
+#themeSwitcher input[type="radio"]#christmas:checked {
+    background-color: green;
+}
+
+#themeSwitcher input[type="radio"]#halloween {
+    color: black;
+}
+
+#themeSwitcher input[type="radio"]#halloween:checked {
+    background-color: #ffa31a;
+}
+
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+:root:has(#laker:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#light:checked) {
+    --lecoder-purple: rgba(225, 225, 225, 0.712);
+    --lecoder-gold: #e7e4dc;
+    --lecoder-light-purple: #b7b7b7;
+    --lecoder-header-color: black;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#dark:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#lchristmas:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#halloween:checked) {
+    --lecoder-purple: black;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: #ffa31a;
+    
+}
+
 @media (max-width: 978px) {
     html, body {
         overflow: hidden;
@@ -133,3 +258,22 @@ header img {
         
     }
 
+    @media (max-height: 750px) {
+        html, body {
+            overflow: hidden;
+        }
+    
+        .sidebar {
+            min-width: 0px; 
+            text-transform: hidden;
+        }
+    
+        .sideButton {
+            min-width: 0px;
+        }
+    
+        .sidebar a span{
+            display: none;
+        }
+            
+        }
