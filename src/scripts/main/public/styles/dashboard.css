@@ -34,14 +34,14 @@ h1 {
 
 #dueSoonContainer {
     background-color: var(--lecoder-gold, gold);
-    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     white-space: normal;
 }
 
 #dueSoonContainer h3,
 ul {
     margin-left: 1rem;
-    color: var(--lecoder-purple, purple);
+    color: var(--lecoder-header-color, purple);
 }
 
 #dueSoonContainer h2 {
@@ -51,7 +51,7 @@ ul {
 
 #progressContainer {
     background-color: var(--lecoder-purple, purple);
-    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+    background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 90% 10%;
@@ -89,10 +89,23 @@ ul {
     grid-column-start: 2;
 }
 
+.progress-circle #percent {
+    fill: var(--lecoder-gold,gold);
+}
+
+.progress-circle .bg-circle {
+    stroke: var(--lecoder-light-gold,gold);
+}
+
+.progress-circle .progress {
+    stroke: var(--lecoder-gold,gold);
+}
+
+
 
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
-    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+    background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     grid-column: span 2;
 }
 
