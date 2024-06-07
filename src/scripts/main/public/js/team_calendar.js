@@ -245,12 +245,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const titleText = titleField.value;
             const dateText = dateField.value;
-            const timeText = timeField.value;
-
-            if (titleText.trim() === "") {
-                alert('Please enter an event title.');
+            let timeText = timeField.value;
+            if (titleText.trim() === "" & dateText.trim() === "") {
+                alert('Please enter the event title and date title.');
                 return;
             }
+              
+            if (titleText.trim() === "") {
+                alert('Please enter the event title.');
+                return;
+            }
+
+            if (dateText.trim() === "") {
+                alert('Please enter the event date.');
+                return;
+            }
+
+            timeText = timeText ? formatTimeTo12Hr(timeText) : "";
 
             let events = JSON.parse(localStorage.getItem('events')) || [];
             const newEvent = {
@@ -266,9 +277,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = "";
+            
+            location.reload();
         }
     });
 });
+
+//formatting the AM and PM time function
+function formatTimeTo12Hr(timeText) {
+    if (!timeText) return ""; // Return empty if no time provided
+
+    let [hour, minute] = timeText.split(':');
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12 || 12; // Convert hour to 12-hour format
+    return `${hour}:${minute} ${ampm}`;
+}
+
+//converting 12-hour format back to 24-hour format
+function formatTimeTo24Hr(timeText) {
+    const [time, modifier] = timeText.split(' ');
+    let [hour, minute] = time.split(':');
+    hour = parseInt(hour);
+
+    if (modifier === 'PM' && hour !== 12) {
+        hour = hour + 12;
+    } else if (modifier === 'AM' && hour === 12) {
+        hour = 0;
+    }
+
+    return `${hour.toString().padStart(2, '0')}:${minute}`;
+}
 
 function updateEventList(targetDate) {
     const eventContentContainer = document.getElementById('event-content');
@@ -290,7 +328,7 @@ function updateEventList(targetDate) {
             <div class="overlap" data-task-id="${event.id}">
                 <label class="group">
                     <div class="text-content-wrapper">${event.title}</div>
-                    <div class="time-wrapper">${event.time}</div>
+                    <div class="time-wrapper">${event.time || ""}</div>
                     <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                         <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                     </button>
@@ -322,7 +360,7 @@ function loadEditContent(eventId) {
                 if (textWrapper && dateWrapper && timeWrapper) {
                     textWrapper.value = event.title;
                     dateWrapper.value = event.date;
-                    timeWrapper.value = event.time;
+                    timeWrapper.value = event.time ? formatTimeTo24Hr(event.time) : "";
                 } else {
                     console.error("Form fields not found");
                 }
@@ -330,7 +368,7 @@ function loadEditContent(eventId) {
                 console.error("Event not found with ID:", eventId);
             }
 
-            const saveButton = document.querySelector('.edit-list .frame');
+            const saveButton = document.querySelector('.edit-list .frame1');
             if (saveButton) {
                 saveButton.addEventListener('click', function(event) {
                     event.preventDefault();
@@ -356,7 +394,8 @@ function handleEditSubmit(eventId) {
     if (eventIndex !== -1) {
         events[eventIndex].title = newTitle;
         events[eventIndex].date = newDate;
-        events[eventIndex].time = newTime;
+
+        events[eventIndex].time = formatTimeTo12Hr(newTime);
 
         localStorage.setItem('events', JSON.stringify(events.sort((a, b) => {
             return new Date(`${a.date}T${a.time}`) - new Date(`${b.date}T${b.time}`);
@@ -368,13 +407,15 @@ function handleEditSubmit(eventId) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const eventsContainer = document.querySelector('.event-content');
-    eventsContainer.addEventListener('click', function(event) {
-        if (event.target.closest('.edit-btn')) {
-            const eventElement = event.target.closest('.overlap');
-            const eventId = eventElement.dataset.eventId;
-            loadEditContent(eventId);
-        }
-    });
+    if (eventsContainer) {
+        eventsContainer.addEventListener('click', function(event) {
+            if (event.target.closest('.edit-btn')) {
+                const eventElement = event.target.closest('.overlap');
+                const eventId = eventElement.dataset.eventId;
+                loadEditContent(eventId);
+            }
+        });
+    } 
 });
 
 document.getElementById('event-content').addEventListener('click', function(event) {
