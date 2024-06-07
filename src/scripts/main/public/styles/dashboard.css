@@ -46,7 +46,7 @@ ul {
 
 #dueSoonContainer h2 {
     text-align: center;
-    color: var(--lecoder-purple, purple);
+    color: var(--lecoder-header-color, purple);
 }
 
 #progressContainer {
@@ -69,7 +69,7 @@ ul {
 
 #progressContainer strong {
     padding: 1em;
-    color: white;
+    color: var(--lecoder-header-color, white);
     font-size: 2rem;
     grid-row-start: 1;
 }
@@ -103,7 +103,7 @@ ul {
 
 #codeUpdateContainer li,
 #codeUpdateContainer > h2, #codeUpdateContainer h3 {
-    color: white;
+    color: var(--lecoder-header-color,white);
     margin-left: 1em;
 }
 
@@ -207,10 +207,10 @@ ul {
 }
 
 :root:has(#light:checked) {
-    --lecoder-purple: rgba(211, 179, 179, 0.712);
+    --lecoder-purple: rgba(225, 225, 225, 0.712);
     --lecoder-gold: #e7e4dc;
-    --lecoder-light-purple: #b67af3;
-    --lecoder-header-color: white;
+    --lecoder-light-purple: #b7b7b7;
+    --lecoder-header-color: black;
 }
 
 :root:has(#dark:checked) {
@@ -283,5 +283,9 @@ ul {
     #dashboardHolder > * {
         width: 95%;
         margin: 1rem;
+    }
+
+    #themeSwitcher > form {
+        flex-direction: column;
     }
 }
