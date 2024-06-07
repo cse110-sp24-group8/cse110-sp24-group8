@@ -499,10 +499,11 @@ test("Add a log entry with 'refresh'", async () => {
     const lastLogEntryA = document.querySelector('.logs-container .log-entry:last-child');
     const dateDisplayedA = lastLogEntryA.querySelector('.date-codelog').textContent.includes('Date:');
     const timeDisplayedA = lastLogEntryA.querySelector('.time-codelog').textContent.includes('Time:');
-    const contentDisplayedA= lastLogEntryA.querySelector('.fieldD2 pre').textContent.trim() === 'refresh text test';
+    const contentDisplayedA= lastLogEntryA.querySelector('.fieldD2 pre').textContent.trim() === 'refresh test';
 
     return dateDisplayedA && timeDisplayedA && contentDisplayedA;
   });
+  expect(isLogEntryCorrectA).toBe(true);
 
 
 });
