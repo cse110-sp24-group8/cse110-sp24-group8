@@ -206,27 +206,82 @@ describe("Code Log Tests", () => {
     await page.goto("http://127.0.0.1:6969/html/code-log.html");
   });
 
-  // Test the functionality to add a log entry and then close the modal using the cross button
   describe("Add and cancel a log entry", () => {
     test("Click the button to add a log entry and close modal with cross button", async () => {
-      // Ensure the add log entry button is present and click it
       await page.waitForSelector('.add-log-btn');
       await page.click('.add-log-btn');
 
-      // Check if the add log modal appears
       const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
       expect(modalVisibleBefore).toBe(true);
 
       await page.waitForSelector('.close');
       await page.click('.close');
-      // Verify the modal is closed
       const modalVisibleAfter = await page.$eval('#addLogModal', el => el.style.display === 'none');
       expect(modalVisibleAfter).toBe(true);
     });
   });
 
+
+test("Add an empty log entry", async () => {
+  await page.waitForSelector('.add-log-btn');
+  await page.click('.add-log-btn');
+  const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
+  expect(modalVisibleBefore).toBe(true);
+
+  await page.waitForSelector('button.frame');
+  await page.evaluate(() => {
+    const addButton = document.querySelector('button.frame');
+    addButton.scrollIntoView();
+  });
+
+  await page.click('button.frame');
+
+  await page.waitForSelector('.log-entry');
+  const isLogEntryCorrect = await page.evaluate(() => {
+    const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+    const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
+    const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
+    const isEmptyDisplayed = lastLogEntry.querySelector('.fieldD2 .placeholder-text') && lastLogEntry.querySelector('.fieldD2 .placeholder-text').textContent.trim() === 'Empty';
+
+    return dateDisplayed && timeDisplayed && isEmptyDisplayed;
+  });
+
+  expect(isLogEntryCorrect).toBe(true);
+});
+//text test 
+test("Add a log entry with 'general text test'", async () => {
+  await page.waitForSelector('.add-log-btn');
+  await page.click('.add-log-btn');
+  await page.waitForSelector('.CodeMirror');
+  await page.click('.CodeMirror'); 
+  await page.type('.CodeMirror', 'general text test'); 
+  await page.waitForSelector('button.frame');
+  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+  await page.click('button.frame');
+  await page.waitForSelector('.log-entry');
+
+  const isLogEntryCorrect = await page.evaluate(() => {
+    const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+    const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
+    const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
+    const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'general text test';
+
+    return dateDisplayed && timeDisplayed && contentDisplayed;
+  });
+
+  expect(isLogEntryCorrect).toBe(true);
+});
+//delete functionality
+test("Add a log entry with 'general text test'", async () => {
+  await page.click('delete-button');
+
+  const modalDeleted = await page.$eval('#addLogModal', el => el.style.display === 'none');
+  expect(modalDeleted).toBe(true);
+
 });
 
 
 
+
+});
 });

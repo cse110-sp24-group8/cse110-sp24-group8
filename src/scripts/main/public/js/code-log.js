@@ -81,7 +81,6 @@ function addLogEntry(date, time, content, container) {
 
 
 
-
   const deleteButton = entry.querySelector('.delete-button');
   deleteButton.addEventListener('click', function () {
     // Remove the log entry from the screen
