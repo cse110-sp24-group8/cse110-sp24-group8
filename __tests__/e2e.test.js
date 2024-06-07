@@ -110,7 +110,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await page.click('.union');
   
       // Type the task title
-      await page.type('.text-wrapper', 'hi1');
+      await page.type('input[type="text"].text-wrapper', 'hi1');
   
       // Click the add task button
       await page.click('#addTaskButton');
@@ -132,10 +132,50 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(taskDate).toBe('No Due Date');
     });
 
-    //check local storage & organization by date of tasks.
 
     //Yes title yes date, today
-    //check local storage & organization by date of tasks.
+    test("Add a task with title 'hi2' and today's date", async () => {
+      // Open the modal to add a task
+      await page.click('.union');
+  
+      // Type the task title in the specific input field
+      await page.type('input[type="text"].text-wrapper', 'hi2');
+  
+      // Select today's date in dd/mm/yyyy format
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, '0');
+      const month = String(today.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+      const year = today.getFullYear();
+      const formattedToday = `${day}/${month}/${year}`;
+  
+      // Set the date input value
+      await page.evaluate((formattedToday) => {
+        document.querySelector('input[type="date"].date-wrapper').value = formattedToday.split('/').reverse().join('-'); // Set value in yyyy-mm-dd format
+      }, formattedToday);
+  
+      // Click the add task button
+      await page.click('#addTaskButton');
+  
+      // Check the local storage for tasks
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+  
+      // Verify the number of tasks in local storage
+      expect(tasks.length).toBe(2);
+  
+      // Verify the task's contents for hi2
+      expect(tasks[1].text).toBe('hi2');
+      expect(tasks[1].date).toBe(`${year}-${month}-${day}`); // Ensure it is in yyyy-mm-dd format
+  
+      // Verify the displayed task text and date in the DOM
+      const taskTexts = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const taskDates = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+  
+      expect(taskTexts[0]).toBe('hi1');
+      expect(taskDates[0]).toBe('No Due Date');
+      expect(taskTexts[1]).toBe('hi2');
+      expect(taskDates[1]).toBe('<span style="color:black;">Today</span>');
+    });
+    
 
     //yes title yes date, tommorow
     //check local storage & organization by date of tasks.
