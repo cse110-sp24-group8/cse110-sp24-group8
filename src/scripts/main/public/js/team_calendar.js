@@ -245,8 +245,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             const titleText = titleField.value;
             const dateText = dateField.value;
-            const timeText = timeField.value;
-
+            let timeText = timeField.value;
             if (titleText.trim() === "" & dateText.trim() === "") {
                 alert('Please enter the event title and date title.');
                 return;
@@ -262,12 +261,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
+            timeText = timeText ? formatTimeTo12Hr(timeText) : "";
+
             let events = JSON.parse(localStorage.getItem('events')) || [];
             const newEvent = {
                 id: Date.now(),
                 title: titleText,
                 date: dateText,
-                time: formatTimeTo12Hr(timeText),
+                time: timeText,
             };
 
             events.push(newEvent);
@@ -284,10 +285,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //formatting the AM and PM time function
 function formatTimeTo12Hr(timeText) {
-    const [hour, minute] = timeText.split(':');
+    if (!timeText) return ""; // Return empty if no time provided
+
+    let [hour, minute] = timeText.split(':');
     const ampm = hour >= 12 ? 'PM' : 'AM';
-    const formattedHour = hour % 12 || 12; 
-    return `${formattedHour}:${minute} ${ampm}`;
+    hour = hour % 12 || 12; // Convert hour to 12-hour format
+    return `${hour}:${minute} ${ampm}`;
 }
 
 //converting 12-hour format back to 24-hour format
@@ -325,7 +328,7 @@ function updateEventList(targetDate) {
             <div class="overlap" data-task-id="${event.id}">
                 <label class="group">
                     <div class="text-content-wrapper">${event.title}</div>
-                    <div class="time-wrapper">${event.time}</div>
+                    <div class="time-wrapper">${event.time || ""}</div>
                     <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                         <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                     </button>
@@ -357,7 +360,7 @@ function loadEditContent(eventId) {
                 if (textWrapper && dateWrapper && timeWrapper) {
                     textWrapper.value = event.title;
                     dateWrapper.value = event.date;
-                    timeWrapper.value = formatTimeTo24Hr(event.time);
+                    timeWrapper.value = event.time ? formatTimeTo24Hr(event.time) : "";
                 } else {
                     console.error("Form fields not found");
                 }
@@ -391,6 +394,7 @@ function handleEditSubmit(eventId) {
     if (eventIndex !== -1) {
         events[eventIndex].title = newTitle;
         events[eventIndex].date = newDate;
+
         events[eventIndex].time = formatTimeTo12Hr(newTime);
 
         localStorage.setItem('events', JSON.stringify(events.sort((a, b) => {
