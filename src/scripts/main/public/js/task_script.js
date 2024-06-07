@@ -43,7 +43,7 @@ function loadEditContent(taskId) {
             const task = JSON.parse(localStorage.getItem('tasks')).find(t => t.id === parseInt(taskId));
             if (task) {
                 document.querySelector('.edit-list .text-wrapper1').value = task.text;
-                document.querySelector('.edit-list .date-wrapper1').value = task.date;
+                document.querySelector('.edit-list .date-wrapper1').value = task.date || '';
             }
 
             // Correctly place the event listener setup here after the content is loaded and elements are available
@@ -70,15 +70,19 @@ function loadEditContent(taskId) {
 function handleEditSubmit(taskId) {
     const newText = document.querySelector('.edit-list .text-wrapper1').value;
     const newDate = document.querySelector('.edit-list .date-wrapper1').value;
+    const standardizedDate = newDate ? standardizeDate(newDate) : 'No Due Date'; // Standardize or use default
+
     const tasks = JSON.parse(localStorage.getItem('tasks'));
     const taskIndex = tasks.findIndex(t => t.id === parseInt(taskId));
+
     if (taskIndex !== -1) {
         tasks[taskIndex].text = newText;
-        tasks[taskIndex].date = newDate || 'No Due Date';
-        localStorage.setItem('tasks', JSON.stringify(tasks)); // Overwrite the existing task in local storage
-        updateTaskList(); // Refresh the task list
+        tasks[taskIndex].date = standardizedDate;
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        updateTaskList();
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const tasksContainer = document.querySelector('.tasks-container');
@@ -146,11 +150,15 @@ document.addEventListener("DOMContentLoaded", function() {
  * @returns {string} - The standardized date string
  */
 function standardizeDate(date) {
-    if (!date) return null;
+    if (!date) return null; // Return null if date is falsy
     const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) {
+        return null; // Return null if the date is invalid
+    }
     dateObj.setUTCHours(0, 0, 0, 0);
     return dateObj.toISOString().split('T')[0];
 }
+
 
 /**
  * Function to format date as "Today", "Tomorrow", or "10th May 2024"
@@ -158,7 +166,9 @@ function standardizeDate(date) {
  * @returns {string} - The formatted date string
  */
 function formatDate(date) {
-    if (!date) return 'No Due Date';
+    if (!date || date === 'No Due Date') {
+        return 'No Due Date'; // Return default text if no valid date
+    }
 
     //PST timezone conversion
     const getPSTDate = (date) => {
