@@ -83,6 +83,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     // if(isNaN(progressPercent)) {
     //     progressPercent = 1;
     // }
+
+    // Changes progress animation 
     let progressKeyframes = `@keyframes progressAnimation {
         from {
             stroke-dasharray: 0 283;
@@ -127,7 +129,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     
-
+    // Parses at most 3 logs to show in the recent updates
     if (!logs || logs.length == 0) {
         const nothingTextLi = document.createElement('li');
         nothingTextLi.innerHTML = 'None';
