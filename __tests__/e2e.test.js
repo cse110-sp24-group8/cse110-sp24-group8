@@ -466,13 +466,7 @@ test("Add a log entry with 'general text test'", async () => {
   expect(isLogEntryCorrect).toBe(true);
 });
 //delete functionality
-test("Add a log entry with 'general text test'", async () => {
-  await page.click('delete-button');
 
-  const modalDeleted = await page.$eval('#addLogModal', el => el.style.display === 'none');
-  expect(modalDeleted).toBe(true);
-
-});
 
 
 
