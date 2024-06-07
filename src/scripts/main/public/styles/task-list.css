@@ -11,7 +11,7 @@
 .to-do-list{
   width: 100%;
   height: calc(100vh - 100px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 html, body {
@@ -23,6 +23,15 @@ html, body {
 }
 
 .to-do-list .div {
+  width: 100%; 
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: auto; 
+  margin-left: auto;
+  overflow: visible;
+}
+
+.to-do-list .div-add {
   width: 100%; 
   height: 100vh;
   position: relative;
@@ -36,7 +45,6 @@ html, body {
   position: relative;  
   padding: 10px;  
   min-height: 100%;  
-  overflow-y: auto;
 }
 
 .to-do-list .overlap {
