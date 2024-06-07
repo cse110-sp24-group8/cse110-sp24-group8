@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Controls and parses the Due Soon Container
     const dueSection = document.getElementById('dueSoonContainer');
-    var tasks = JSON.parse(localStorage.getItem('tasks'));
+    let tasks = JSON.parse(localStorage.getItem('tasks'));
     if (tasks && (tasks.length !== 0)){
         // Runs through all tasks
         for (const task of tasks) {

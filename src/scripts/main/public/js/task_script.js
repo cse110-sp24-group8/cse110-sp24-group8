@@ -235,6 +235,8 @@ function updateTaskList() {
         }
     });
 
+    localStorage.setItem('tasks', JSON.stringify(tasks)); // Saves sorted list to Local Storage
+
     // Render tasks
     tasks.forEach(task => {
         const checkedAttribute = task.completed ? 'checked' : '';
