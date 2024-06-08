@@ -212,16 +212,21 @@ function loadPopupContent() {
     xhttp.send();
 }
 
-document.getElementById("openModal").addEventListener("click", function() {
+let openModalElement = document.getElementById("openModal");
+if (openModalElement) {
+  openModalElement.addEventListener("click", function() {
     loadPopupContent();
     document.getElementById("pageModal").style.display = "block";
-});
+  });
+}
 
-document.getElementById("closeModal").addEventListener("click", function() {
+let closeModalElement = document.getElementById("closeModal");
+if (closeModalElement) {
+  closeModalElement.addEventListener("click", function() {
     document.getElementById("pageModal").style.display = "none";
     document.getElementById("popupContent").innerHTML = "";
-});
-
+  });
+}
 document.addEventListener("DOMContentLoaded", function() {
     const popupContent = document.getElementById("popupContent");
 
@@ -284,7 +289,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //formatting the AM and PM time function
-function formatTimeTo12Hr(timeText) {
+export function formatTimeTo12Hr(timeText) {
     if (!timeText) return ""; // Return empty if no time provided
 
     let [hour, minute] = timeText.split(':');
@@ -294,7 +299,7 @@ function formatTimeTo12Hr(timeText) {
 }
 
 //converting 12-hour format back to 24-hour format
-function formatTimeTo24Hr(timeText) {
+export function formatTimeTo24Hr(timeText) {
     const [time, modifier] = timeText.split(' ');
     let [hour, minute] = time.split(':');
     hour = parseInt(hour);
@@ -418,18 +423,20 @@ document.addEventListener("DOMContentLoaded", function() {
     } 
 });
 
-document.getElementById('event-content').addEventListener('click', function(event) {
+let eventContentElement = document.getElementById('event-content');
+if (eventContentElement) {
+  eventContentElement.addEventListener('click', function(event) {
     if (event.target.closest('.delete-btn')) {
-        const eventElement = event.target.closest('.overlap');
-        const eventId = eventElement.dataset.eventId;
-        handleEventDeletion(eventId);
-        eventElement.remove();
+      const eventElement = event.target.closest('.overlap');
+      const eventId = eventElement.dataset.eventId;
+      handleEventDeletion(eventId);
+      eventElement.remove();
     }
-});
+  });
+}
 
 function handleEventDeletion(eventId) {
     let events = JSON.parse(localStorage.getItem('events')) || [];
     events = events.filter(event => event.id.toString() !== eventId);
     localStorage.setItem('events', JSON.stringify(events));
 }
-
