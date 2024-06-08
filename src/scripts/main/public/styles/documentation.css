@@ -90,6 +90,7 @@ body {
     border-radius: 20px;
     border: none;
     text-align: center;
+    cursor: pointer;
 }
 
 #fileSelect:hover {
@@ -97,14 +98,15 @@ body {
 }
 
 /* Style for edit file buttons */
-.editFile {
+.edit-file {
     background-color: white;
     margin: 20px;
     border-radius: 20px;
     border: none;
+    cursor: pointer;
 }
 
-.editFile:hover {
+.edit-file:hover {
     color: var(--lecoder-gold);
 }
 
@@ -159,5 +161,34 @@ body {
 
     html {
         overflow-y: auto;
+    }
+
+    /* Adjust controls wrapper for small screens */
+    .controls-wrapper {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0 10px;
+        gap: 10px; /* Adjust gap between elements */
+    }
+
+    /* Adjust file wrapper for small screens */
+    .file-wrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px; /* Adjust gap between elements */
+    }
+
+    /* Adjust delete button for small screens */
+    #deleteFileButton {
+        margin-top: 0;
+        margin-left: 5px;
+    }
+
+    /* Reduce margins for file select and edit buttons */
+    #fileSelect,
+    .edit-file {
+        margin: 5px;
     }
 }
