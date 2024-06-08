@@ -23,3 +23,21 @@
   <span class="buttonIcon" tabindex="5">Feedback</span>
 </a>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM fully loaded and parsed");
+    const sideButtons = document.querySelectorAll('.sideButton');
+    console.log("Buttons found:", sideButtons.length);
+
+    const currentUrl = window.location.href;
+    console.log("Current URL:", currentUrl);
+
+    sideButtons.forEach(button => {
+        console.log("Checking button href:", button.getAttribute('href'));
+        if (currentUrl.endsWith(button.getAttribute('href'))) {
+            console.log("Match found, adding active class");
+            button.classList.add('active');
+        }
+    });
+});
+</script>
