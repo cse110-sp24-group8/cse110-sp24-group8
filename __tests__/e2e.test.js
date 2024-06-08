@@ -831,12 +831,168 @@ test("Delete 10 log entries", async () => {
   console.log(`Total delete clicks made: ${clickCount}`);
 });
 
-
-
+});
 
 
   //Documentation Tests
 
 
-  //Feedback Tests
+  // Feedback Tests
+describe("Feedback Tests", () => {
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:6969/html/feedback.html");
+  });
+
+  test("Add feedback logs", async () => {
+    const feedbackEntries = [
+      { question: 'is this a test?', answer: 'yes, this is a test.' },
+      { question: 'oh i see', answer: 'your welcome' },
+      { question: 'another question', answer: 'another answer' },
+      { question: 'final question', answer: 'final answer' }
+    ];
+
+    for (const entry of feedbackEntries) {
+      await page.waitForSelector('.feedback .union-wrapper');
+      await page.click('.feedback .union-wrapper');
+      await page.waitForSelector('.user_question');
+      await page.click('.user_question');
+      await page.type('.user_question', entry.question);
+      await page.waitForSelector('.user_answer');
+      await page.click('.user_answer');
+      await page.type('.user_answer', entry.answer);
+      await page.evaluate(() => document.querySelector('.feedbacklist:last-child').scrollIntoView());
+    }
+
+    await page.reload();
+
+    // Verify the feedback log entries
+    const isFeedbackLogsCorrect = await page.evaluate(() => {
+      const entries = document.querySelectorAll('.feedbacklist');
+      const questions = [...entries].map(entry => entry.querySelector('.user_question').textContent.trim());
+      const answers = [...entries].map(entry => entry.querySelector('.user_answer').textContent.trim());
+
+      return questions.includes('is this a test?') && answers.includes('yes, this is a test.')
+        && questions.includes('oh i see') && answers.includes('your welcome')
+        && questions.includes('another question') && answers.includes('another answer')
+        && questions.includes('final question') && answers.includes('final answer');
+    });
+
+    expect(isFeedbackLogsCorrect).toBe(true);
+  });
+
+  test("Edit feedback log entry", async () => {
+    // Click to edit the specific feedback entry
+    await page.waitForSelector('.user_question');
+    await page.click('.user_question');
+
+
+    for (let i = 0; i < 15; i++) {
+      await page.keyboard.press('Backspace');
+    }
+    await page.type('.user_question', 'thank you cse110');
+
+    await page.waitForSelector('.user_answer');
+    await page.click('.user_answer');
+
+    for (let i = 0; i < 15; i++) {
+      await page.keyboard.press('Backspace');
+    }
+    await page.type('.user_answer', 'goodbye');
+
+    await page.reload();
+
+  });
+
+  test("Delete feedback log entry", async () => {
+    await page.waitForSelector('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+
+
+    await page.reload();
+
+    // Verify the feedback log entry is deleted
+    const isFeedbackLogDeleted = await page.evaluate(() => {
+      const lastFeedbackEntry = document.querySelector('.feedbacklist:last-child');
+      if (!lastFeedbackEntry) return true;
+
+      const questionDisplayed = lastFeedbackEntry.querySelector('.user_question').textContent.includes('is this a test?');
+      const answerDisplayed = lastFeedbackEntry.querySelector('.user_answer').textContent.includes('yes, this is a test.');
+
+      return !(questionDisplayed && answerDisplayed);
+    });
+
+    expect(isFeedbackLogDeleted).toBe(true);
+  });
+
+describe("Documentation Page Tests", () => {
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:6969/html/documentation.html");
+  });
+
+  test("Create, refresh, and edit files", async () => {
+
+    await page.waitForSelector('#createFileButton');
+    page.once('dialog', async dialog => {
+      expect(dialog.type()).toBe('prompt');
+      expect(dialog.message()).toBe('Enter the name for the new file:');
+      await dialog.accept('file2');
+    });
+    await page.click('#createFileButton');
+    await page.waitForFunction(() => {
+      const fileSelect = document.getElementById('fileSelect');
+      return Array.from(fileSelect.options).some(option => option.value === 'file2');
+    });
+    await page.select('#fileSelect', 'file2');
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror');
+    await page.type('.CodeMirror', 'file2');
+    let content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('file2');
+
+    await page.reload();
+
+    // Select file1 (untitled file)
+    await page.waitForSelector('#fileSelect');
+    await page.select('#fileSelect', 'Untitled');  // Assuming the default file name is 'Untitled'
+
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror');
+    await page.evaluate(() => {
+      const cm = document.querySelector('.CodeMirror').CodeMirror;
+      cm.setValue('');  
+    });
+    await page.type('.CodeMirror', 'edited file1');
+
+    content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('edited file1');
+
+    // Rename the file to 'renamed'
+    await page.waitForSelector('#renameFileButton');
+    page.once('dialog', async dialog => {
+      expect(dialog.type()).toBe('prompt');
+      expect(dialog.message()).toBe('Enter the new name for the file:');
+      await dialog.accept('renamed');
+    });
+    await page.click('#renameFileButton');
+    await page.waitForFunction(() => {
+      const fileSelect = document.getElementById('fileSelect');
+      return Array.from(fileSelect.options).some(option => option.value === 'renamed');
+    });
+    await page.select('#fileSelect', 'renamed');
+    
+
+    content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('edited file1');
+  });
+});
+
 });
