@@ -25,11 +25,11 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await page.click('.sideButton img[alt="Dashboard Icon"]');
     });
 
-    test("Test view documentation button", async () => {
-      await page.waitForSelector('#viewDocumentationButton');
-      await page.click('#viewDocumentationButton');
+    test("Test view events button", async () => {
+      await page.waitForSelector('#viewEventsButton');
+      await page.click('#viewEventsButton');
       const documentationUrl = await page.url();
-      expect(documentationUrl).toContain('html/documentation.html');
+      expect(documentationUrl).toContain('html/team_calendar.html');
       await page.click('.sideButton img[alt="Dashboard Icon"]');
     });
   });
@@ -63,7 +63,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
       //Task List should still be empty
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
-      expect(tasks).toBeNull();
+      expect(tasks).toBe("[]");
     });
 
     test("Click the button to add a task with no title and no date", async () => {
@@ -79,7 +79,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       //Task List should still be empty
       await page.click('#addTaskButton');
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
-      expect(tasks).toBeNull();
+      expect(tasks).toBe("[]");
     });
 
     test("Click the button to add a task with a date but no title", async () => {
@@ -99,9 +99,9 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       // Attempt to add the task
       //Task List should still be empty
       await page.click('#addTaskButton'); 
-      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
-      expect(tasks).toBeNull();
       await page.click('#closeModal'); 
+      const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
+      expect(tasks).toBe("[]");
     });
 
     //Yes title no date
@@ -255,9 +255,9 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       // Verify the number of tasks in local storage
       expect(tasks.length).toBe(4);
   
-      // Verify the task's contents for hi4
-      expect(tasks[3].text).toBe('hi4');
-      expect(tasks[3].date).toBe(`${year}-${month}-${day}`); // Ensure it is in yyyy-mm-dd format
+      // Verify the task's contents for hi4. Overdue so it should be before hi2 and hi3, but after hi1.
+      expect(tasks[1].text).toBe('hi4');
+      expect(tasks[1].date).toBe(`${year}-${month}-${day}`); // Ensure it is in yyyy-mm-dd format
   
       // Verify the displayed task text and date in the DOM
       const taskTexts = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
@@ -278,43 +278,49 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
     });
 
     //add 5 more tasks yes title yes date, all arbitrary dates. check local storage & cross functionality with dashboard (due soon & percentage) & calendar (tasks show up on correct dates)
-    test("Add tasks hi5 - hi10 with arbitrary dates, check order, text, Due Soon section, and percentage of tasks done", async () => {
+    test("Add tasks hi5 - hi12 with arbitrary dates, check order, text, Due Soon section, and percentage of tasks done", async () => {
       const addTask = async (title, date) => {
-        await page.click('.union');
-        await page.type('input[type="text"].text-wrapper', title);
-        if (date) {
-          await page.evaluate((date) => {
-            document.querySelector('input[type="date"].date-wrapper').value = date.split('/').reverse().join('-');
-          }, date);
-        }
-        await page.click('#addTaskButton');
+          await page.click('.union');
+          await page.type('input[type="text"].text-wrapper', title);
+          if (date) {
+              await page.evaluate((date) => {
+                  document.querySelector('input[type="date"].date-wrapper').value = date.split('/').reverse().join('-');
+              }, date);
+          }
+          await page.click('#addTaskButton');
       };
   
       // Helper function to format the date
       const formatDate = (date) => {
-        const day = date.getUTCDate();
-        const month = date.toLocaleString('default', { month: 'long' });
-        const year = date.getUTCFullYear();
-        const daySuffix = (day) => {
-          if (day > 3 && day < 21) return 'th'; // covers 11-20
-          switch (day % 10) {
-            case 1: return "st";
-            case 2: return "nd";
-            case 3: return "rd";
-            default: return "th";
-          }
-        };
-        return `${day}${daySuffix(day)} ${month} ${year}`;
+          const day = date.getUTCDate();
+          const month = date.toLocaleString('default', { month: 'long' });
+          const year = date.getUTCFullYear();
+          const daySuffix = (day) => {
+              if (day > 3 && day < 21) return 'th'; // covers 11-20
+              switch (day % 10) {
+                  case 1: return "st";
+                  case 2: return "nd";
+                  case 3: return "rd";
+                  default: return "th";
+              }
+          };
+          return `${day}${daySuffix(day)} ${month} ${year}`;
+      };
+  
+      const formatDueSoonDate = (date) => {
+          const day = date.getUTCDate();
+          const month = date.toLocaleString('default', { month: 'long' });
+          return `${month} ${day}`;
       };
   
       const today = new Date();
       const getDate = (daysToAdd) => {
-        const date = new Date(today);
-        date.setDate(today.getDate() + daysToAdd);
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
+          const date = new Date(today);
+          date.setDate(today.getDate() + daysToAdd);
+          const day = String(date.getDate()).padStart(2, '0');
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const year = date.getFullYear();
+          return `${day}/${month}/${year}`;
       };
   
       // Adding tasks with arbitrary dates
@@ -324,26 +330,30 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       await addTask('hi8', getDate(-1)); // Yesterday
       await addTask('hi9', null); // No due date
       await addTask('hi10', getDate(0)); // Today
+      await addTask('hi11', getDate(0)); // Today
+      await addTask('hi12', getDate(0)); // Today
   
       // Check the local storage for tasks
       const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
   
       // Verify the number of tasks in local storage
-      expect(tasks.length).toBe(10);
+      expect(tasks.length).toBe(12);
   
-      // Expected order: hi9 (No Due Date), hi1 (No Due Date), hi6 (Overdue), hi8 (Overdue), hi4 (Overdue), hi10 (Today), hi2 (Today), hi7 (Tomorrow), hi3 (Tomorrow), hi5 (5 days from now)
-      const expectedOrder = ['hi1', 'hi9', 'hi6', 'hi4', 'hi8', 'hi2', 'hi10', 'hi3', 'hi7', 'hi5'];
+      // Expected order: hi1 (No Due Date), hi9 (No Due Date), hi6 (Overdue), hi4 (Overdue), hi8 (Overdue), hi2 (Today), hi10 (Today), hi11 (Today), hi12 (Today), hi3 (Tomorrow), hi7 (Tomorrow), hi5 (5 days from now)
+      const expectedOrder = ['hi1', 'hi9', 'hi6', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5'];
       const expectedDates = [
-        'No Due Date',
-        'No Due Date',
-        '<span style="color: red;">OVERDUE</span>',
-        '<span style="color: red;">OVERDUE</span>',
-        '<span style="color: red;">OVERDUE</span>',
-        '<span style="color:black;">Today</span>',
-        '<span style="color:black;">Today</span>',
-        '<span style="color:black;">Tomorrow</span>',
-        '<span style="color:black;">Tomorrow</span>',
-        formatDate(new Date(getDate(5).split('/').reverse().join('-')))
+          'No Due Date',
+          'No Due Date',
+          '<span style="color: red;">OVERDUE</span>',
+          '<span style="color: red;">OVERDUE</span>',
+          '<span style="color: red;">OVERDUE</span>',
+          '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Tomorrow</span>',
+          '<span style="color:black;">Tomorrow</span>',
+          formatDate(new Date(getDate(5).split('/').reverse().join('-')))
       ];
   
       // Verify the displayed task text and date in the DOM
@@ -351,22 +361,22 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       const taskDates = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
   
       for (let i = 0; i < expectedOrder.length; i++) {
-        expect(taskTexts[i]).toBe(expectedOrder[i]);
-        expect(taskDates[i]).toBe(expectedDates[i]);
+          expect(taskTexts[i]).toBe(expectedOrder[i]);
+          expect(taskDates[i]).toBe(expectedDates[i]);
       }
   
       // Verify the text color is red for the overdue tasks
       const overdueTaskColors = await page.$$eval('.tasks-container .date-wrapper span[style="color: red;"]', els => els.map(el => window.getComputedStyle(el).color));
       overdueTaskColors.forEach(color => {
-        expect(color).toBe('rgb(255, 0, 0)');
+          expect(color).toBe('rgb(255, 0, 0)');
       });
   
       // Navigate to the dashboard
       await page.click('.sideButton img[alt="Dashboard Icon"]');
-  
+      
       // Verify the tasks in the Due Soon section
       const dueSoonTasks = await page.$$eval('#dueSoonContainer ul li', els => els.map(el => el.textContent.trim()));
-      expect(dueSoonTasks).toEqual(['hi10', 'hi2', 'hi7', 'hi3', 'hi5']); // Tasks due today, tomorrow, and s
+      expect(dueSoonTasks).toEqual(['hi6', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'You have more tasks for this day ...']); // Tasks due 3 days ago, yesterday, and today
   
       // Verify the percentage of tasks done shows 0%
       const percentageDone = await page.$eval('#percent', el => el.textContent.trim());
@@ -375,12 +385,31 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       // Verify the local storage for total and completed tasks
       const totalTasks = await page.evaluate(() => localStorage.getItem('totalTasks'));
       const completedTasks = await page.evaluate(() => localStorage.getItem('completedTasks'));
-      expect(totalTasks).toBe('10');
+      expect(totalTasks).toBe('12');
       expect(completedTasks).toBe('0');
+  
+      // Verify the displayed dates in the Due Soon section
+      const dueSoonDates = await page.$$eval('#dueSoonContainer h3', els => els.map(el => el.textContent.trim()));
+      const expectedDatesInDueSoon = [getDate(-3), getDate(-1), getDate(0)].map(dateStr => formatDueSoonDate(new Date(dateStr.split('/').reverse().join('-'))));
+      expect(dueSoonDates).toEqual(expectedDatesInDueSoon);
+
+      // Reload the page
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      await page.reload();
+
+      // Verify the displayed task text and date in the DOM again after reload
+      const reloadedTaskTexts = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const reloadedTaskDates = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+
+      for (let i = 0; i < expectedOrder.length; i++) {
+          expect(reloadedTaskTexts[i]).toBe(expectedOrder[i]);
+          expect(reloadedTaskDates[i]).toBe(expectedDates[i]);
+      }
     });
 
-    //strikethrough 3 of the tasks. Check dashboard (removed from due soon and percentage increase.)
+    //Strikethrough hi1. Check order (hi1 should be at the bottom now), but still there. Reload and check for strike through. Check dashboard (removed from due soon and percentage increase.)
 
+    //Strikethrough hi6. Do the same checkings has striking through hi1. Also check that in dashboard, hi6 and its date (3 days ago) are completely removed from the Due Soon section. Check the correct percentage is displayed.
     //unstrikethrough 1. Check dashboard (added back to due soon and percentage increase.)
 
     //delete the 2 that are still struck through. check local storage & dashboard.
