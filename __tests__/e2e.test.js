@@ -7,7 +7,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
   //We will write all of the tests in this e2e.test.js file. 
 
-  //Dashboard basic button tests & basic sidebar navigation tests
+  /*//Dashboard basic button tests & basic sidebar navigation tests
   describe("Dashboard Page Tests", () => {
     test("Test view all tasks button", async () => {
       await page.waitForSelector('#viewAllTasksButton');
@@ -653,12 +653,107 @@ test("Delete 10 log entries", async () => {
   console.log(`Total delete clicks made: ${clickCount}`);
 });
 
+});
 
 
-
-
+*/
   //Documentation Tests
 
 
-  //Feedback Tests
+  // Feedback Tests
+describe("Feedback Tests", () => {
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:6969/html/feedback.html");
+  });
+
+  test("Add feedback logs", async () => {
+    const feedbackEntries = [
+      { question: 'is this a test?', answer: 'yes, this is a test.' },
+      { question: 'oh i see', answer: 'your welcome' },
+      { question: 'another question', answer: 'another answer' },
+      { question: 'final question', answer: 'final answer' }
+    ];
+
+    for (const entry of feedbackEntries) {
+      await page.waitForSelector('.feedback .union-wrapper');
+      await page.click('.feedback .union-wrapper');
+      await page.waitForSelector('.user_question');
+      await page.click('.user_question');
+      await page.type('.user_question', entry.question);
+      await page.waitForSelector('.user_answer');
+      await page.click('.user_answer');
+      await page.type('.user_answer', entry.answer);
+      await page.evaluate(() => document.querySelector('.feedbacklist:last-child').scrollIntoView());
+    }
+
+    await page.reload();
+
+    // Verify the feedback log entries
+    const isFeedbackLogsCorrect = await page.evaluate(() => {
+      const entries = document.querySelectorAll('.feedbacklist');
+      const questions = [...entries].map(entry => entry.querySelector('.user_question').textContent.trim());
+      const answers = [...entries].map(entry => entry.querySelector('.user_answer').textContent.trim());
+
+      return questions.includes('is this a test?') && answers.includes('yes, this is a test.')
+        && questions.includes('oh i see') && answers.includes('your welcome')
+        && questions.includes('another question') && answers.includes('another answer')
+        && questions.includes('final question') && answers.includes('final answer');
+    });
+
+    expect(isFeedbackLogsCorrect).toBe(true);
+  });
+
+  test("Edit feedback log entry", async () => {
+    // Click to edit the specific feedback entry
+    await page.waitForSelector('.user_question');
+    await page.click('.user_question');
+
+
+    for (let i = 0; i < 15; i++) {
+      await page.keyboard.press('Backspace');
+    }
+    await page.type('.user_question', 'thank you cse110');
+
+    await page.waitForSelector('.user_answer');
+    await page.click('.user_answer');
+
+    for (let i = 0; i < 15; i++) {
+      await page.keyboard.press('Backspace');
+    }
+    await page.type('.user_answer', 'goodbye');
+
+    await page.reload();
+
+  });
+
+  test("Delete feedback log entry", async () => {
+    await page.waitForSelector('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+    await page.click('.feedbacklist .delete-btn');
+
+
+    await page.reload();
+
+    // Verify the feedback log entry is deleted
+    const isFeedbackLogDeleted = await page.evaluate(() => {
+      const lastFeedbackEntry = document.querySelector('.feedbacklist:last-child');
+      if (!lastFeedbackEntry) return true;
+
+      const questionDisplayed = lastFeedbackEntry.querySelector('.user_question').textContent.includes('is this a test?');
+      const answerDisplayed = lastFeedbackEntry.querySelector('.user_answer').textContent.includes('yes, this is a test.');
+
+      return !(questionDisplayed && answerDisplayed);
+    });
+
+    expect(isFeedbackLogDeleted).toBe(true);
+  });
+
 });
+
+});
+
+
+
+
