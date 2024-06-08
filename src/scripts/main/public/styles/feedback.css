@@ -241,7 +241,7 @@ html, body {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 4rem; /* Ensure the height of the sidebar */
+    height: auto; /* Ensure the height of the sidebar */
     min-height: 50px; /* Ensure minimum height to fit icons */
     position: fixed;
     bottom: 0;
