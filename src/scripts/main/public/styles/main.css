@@ -144,6 +144,7 @@ header img {
     border-radius: 50%;
 }
 
+
 #themeSwitcher input[type="radio"]#laker {
     color: #552583;
 }
@@ -264,6 +265,10 @@ header img {
     }
 
     .sidebar a span{
+        display: none;
+    }
+
+    #themeSwitcher {
         display: none;
     }
     
