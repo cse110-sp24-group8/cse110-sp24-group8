@@ -174,7 +174,7 @@ header img {
 }
 
 #themeSwitcher input[type="radio"]#christmas:checked {
-    background-color: green;
+    background-color: rgb(3, 99, 11);
 }
 
 #themeSwitcher input[type="radio"]#halloween {
@@ -227,13 +227,13 @@ header img {
 }
 
 :root:has(#christmas:checked) {
-    --lecoder-purple:#f90b0b;
-    --lecoder-gold: #3c8d0d;
-    --lecoder-light-purple: #3c8d0d;
-    --lecoder-light-gold: white;
+    --lecoder-purple:#960606;
+    --lecoder-gold: #960606;
+    --lecoder-light-purple: #3e8f0f;
+    --lecoder-light-gold: #ffdbdb;
     --lecoder-header-color: white;
-    --lecoder-gradient-gold: linear-gradient(160deg, rgb(241, 237, 237) 9.51%, #f90b0b 86.81%);
-    --lecoder-gradient-purple: linear-gradient(20deg, #f90b0b 0%, #e9e9e9 100%);
+    --lecoder-gradient-gold: linear-gradient(160deg, #f7a3a3  9.51%, #f7a3a3 86.81%);
+    --lecoder-gradient-purple: linear-gradient(20deg, #f7a3a3 0%, #f7a3a3 100%);
 }
 
 :root:has(#halloween:checked) {
