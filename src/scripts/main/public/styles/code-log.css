@@ -19,6 +19,13 @@ h1 {
   font-size: 32px;
 }
 
+#codeLogButton{
+  background: var(
+      --Linear-Laker-Gold,
+      linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
 .content-holder{
   box-sizing: border-box;
   width: 100%;

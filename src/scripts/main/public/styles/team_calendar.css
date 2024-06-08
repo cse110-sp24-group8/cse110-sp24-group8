@@ -11,6 +11,13 @@
   --variable-collection-laker-purple: rgba(85, 37, 131, 1);
 }
 
+#calendarButton{
+  background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
 .headerWithContent {
   width: 100%;
   font-size: 18px;
