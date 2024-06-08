@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 const localStorageMock = (() => {
     let store = {};
     return {

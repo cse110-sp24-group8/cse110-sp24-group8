@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
  * @param {float} taskListPercent the decimal percent from 0 to 1. e.g. .25 is 25%
  * @returns {float} The number that determines the circle length
  */
-function progressCalculator(taskListPercent) {
+export function progressCalculator(taskListPercent) {
     return taskListPercent * 283;
 }
 
@@ -168,7 +168,7 @@ function progressCalculator(taskListPercent) {
  * @param {float} percent 
  * @returns {void} 
  */
-function changeProgressText(percent) {
+export function changeProgressText(percent) {
     let percentText = document.getElementById('percent');
     // percentText.textContent = `${convertToPercentage((percent))}`; 
     percentText.textContent = `${Math.floor(percent * 100)}%`; //currently just an integer
@@ -180,7 +180,7 @@ function changeProgressText(percent) {
  * @param {float} decimal the decimal percent
  * @returns {String} rounded percentage with 2 decimals
  */
-function convertToPercentage(decimal) {
+export function convertToPercentage(decimal) {
     // Multiply by 100 to convert to percentage
     var percentage = decimal * 100;
 
@@ -197,7 +197,7 @@ function convertToPercentage(decimal) {
  * @param {String} dateString
  * @returns {String} Month, Day
  */
-function monthDayDate(dateString) {
+export function monthDayDate(dateString) {
     // Split the date string and create a Date object with local time
     const [year, month, day] = dateString.split('-').map(Number);
     const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
@@ -215,7 +215,7 @@ function monthDayDate(dateString) {
  * @param {String} timeString
  * @returns {String} "(Month, Day, Time)"
  */
-function monthDayTime(dateString, timeString) {
+export function monthDayTime(dateString, timeString) {
     // Split the date string and create a Date object with local time
     const datePart = dateString.split(',')[0];
     // Combine the extracted date part and time string into the desired format

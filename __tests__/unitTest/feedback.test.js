@@ -1,7 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-
 import { JSDOM } from 'jsdom';
 
 document.body.innerHTML = `
