@@ -678,10 +678,72 @@ describe("Feedback Tests", () => {
     expect(isFeedbackLogDeleted).toBe(true);
   });
 
+describe("Documentation Page Tests", () => {
+  beforeAll(async () => {
+    await page.goto("http://127.0.0.1:6969/html/documentation.html");
+  });
+
+  test("Create, refresh, and edit files", async () => {
+
+    await page.waitForSelector('#createFileButton');
+    page.once('dialog', async dialog => {
+      expect(dialog.type()).toBe('prompt');
+      expect(dialog.message()).toBe('Enter the name for the new file:');
+      await dialog.accept('file2');
+    });
+    await page.click('#createFileButton');
+    await page.waitForFunction(() => {
+      const fileSelect = document.getElementById('fileSelect');
+      return Array.from(fileSelect.options).some(option => option.value === 'file2');
+    });
+    await page.select('#fileSelect', 'file2');
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror');
+    await page.type('.CodeMirror', 'file2');
+    let content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('file2');
+
+    await page.reload();
+
+    // Select file1 (untitled file)
+    await page.waitForSelector('#fileSelect');
+    await page.select('#fileSelect', 'Untitled');  // Assuming the default file name is 'Untitled'
+
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror');
+    await page.evaluate(() => {
+      const cm = document.querySelector('.CodeMirror').CodeMirror;
+      cm.setValue('');  
+    });
+    await page.type('.CodeMirror', 'edited file1');
+
+    content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('edited file1');
+
+    // Rename the file to 'renamed'
+    await page.waitForSelector('#renameFileButton');
+    page.once('dialog', async dialog => {
+      expect(dialog.type()).toBe('prompt');
+      expect(dialog.message()).toBe('Enter the new name for the file:');
+      await dialog.accept('renamed');
+    });
+    await page.click('#renameFileButton');
+    await page.waitForFunction(() => {
+      const fileSelect = document.getElementById('fileSelect');
+      return Array.from(fileSelect.options).some(option => option.value === 'renamed');
+    });
+    await page.select('#fileSelect', 'renamed');
+    
+
+    content = await page.evaluate(() => {
+      return document.querySelector('.CodeMirror').CodeMirror.getValue();
+    });
+    expect(content).toBe('edited file1');
+  });
 });
 
-
-
-
-
-
+});
