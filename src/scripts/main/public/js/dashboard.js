@@ -198,14 +198,16 @@ function convertToPercentage(decimal) {
  * @returns {String} Month, Day
  */
 function monthDayDate(dateString) {
-    // Split the date string and create a Date object with local time
-    const [year, month, day] = dateString.split('-').map(Number);
-    const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
-    // Format the date to "Month Day" format
-    const options = { month: 'long', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options);
+    if (dateString !== null) {
+        // Split the date string and create a Date object with local time
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
+        // Format the date to "Month Day" format
+        const options = { month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options);
 
-    return formattedDate;
+        return formattedDate;
+    }
 }
 
 /**
