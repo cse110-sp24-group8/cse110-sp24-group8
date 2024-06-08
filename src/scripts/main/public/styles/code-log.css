@@ -426,7 +426,7 @@ button.frame {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: auto;
     min-height: 50px;
     position: fixed;
     bottom: 0;
@@ -453,6 +453,4 @@ button.frame {
     width: 100%;
     overflow-y: auto;
   }
-
-
 }
