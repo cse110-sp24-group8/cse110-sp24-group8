@@ -748,7 +748,7 @@ a:focus {
   top: 88px;
 }
 
-.edit-list .frame {
+.edit-list .frame1 {
   background-color: #552583;
   color: #fff;
   border: none;
@@ -783,7 +783,7 @@ a:focus {
   box-shadow: 0 0 5px rgba(85, 85, 85, 0.5);
 }
 
-.edit-list .frame, .edit-list .div-wrapper {
+.edit-list .frame1, .edit-list .div-wrapper {
   padding: 10px 20px;
   border-radius: 5px;
   font-family: "Segoe UI-Bold", Helvetica;
@@ -793,7 +793,7 @@ a:focus {
   transition: background-color 0.3s, transform 0.2s;
 }
 
-.edit-list .frame:hover {
+.edit-list .frame1:hover {
   background-color: lightblue;
   color: #552583;
 } 
@@ -803,7 +803,7 @@ a:focus {
   color: whitesmoke;
 }
 
-.edit-list .frame:active {
+.edit-list .frame1:active {
   transform: translateY(2px);
 }
 

@@ -7,7 +7,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
   //We will write all of the tests in this e2e.test.js file. 
 
-  //Dashboard basic button tests & basic sidebar navigation back to dashboard
+  //Dashboard basic button tests & basic sidebar navigation tests
   describe("Dashboard Page Tests", () => {
     test("Test view all tasks button", async () => {
       await page.waitForSelector('#viewAllTasksButton');
@@ -34,7 +34,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
     });
   });
 
-  //Task List Tests
+  //Task List Tests & Cross Features with Dashboard Tests (Due Soon & Percentage) & Cross Features with Calendar (Tasks Show Up on Calendar)
   describe("Task List Page Tests", () => {
     beforeAll(async () => {
       await page.goto("http://127.0.0.1:6969/html/task-list.html");
@@ -277,7 +277,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(overdueTaskColor).toBe('rgb(255, 0, 0)');
     });
 
-    //add 5 more tasks yes title yes date, all today. check local storage & cross functionality with dashboard (due soon & percentage). Dates are arbitrary.
+    //add 5 more tasks yes title yes date, all arbitrary dates. check local storage & cross functionality with dashboard (due soon & percentage) & calendar (tasks show up on correct dates)
     test("Add tasks hi5 - hi10 with arbitrary dates, check order, text, Due Soon section, and percentage of tasks done", async () => {
       const addTask = async (title, date) => {
         await page.click('.union');
@@ -379,134 +379,136 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(completedTasks).toBe('0');
     });
 
-    //strikethrough 2 of the tasks
+    //strikethrough 3 of the tasks. Check dashboard (removed from due soon and percentage increase.)
 
-    //unstrikethrough 1. 
+    //unstrikethrough 1. Check dashboard (added back to due soon and percentage increase.)
 
-    //delete 3. check local storage & dashboard.
+    //delete the 2 that are still struck through. check local storage & dashboard.
 
-    //edit, change content, cancel edit.
-    //edit, change content, cross edit. 
-    //edit, change content, save edit. 
+    //edit, change content, cancel edit. Check  local storage & dashboard & calendar
+    //edit, change content, cross edit. Check  local storage & dashboard.
+    //edit, change content, save edit. Check  local storage & dashboard.
 
     
   
   });
-  
+  //Calendar Tests & Cross Features with Dashboard (Events in Recent Updates) & Cross Features with Task List (Strikethrough tasks are applied globally)  
 
-  // Code Log Tests
-describe("Code Log Tests", () => {
-  beforeAll(async () => {
-    await page.goto("http://127.0.0.1:6969/html/code-log.html");
-  });
 
-  describe("Add and cancel a log entry", () => {
-    test("Click the button to add a log entry and close modal with cross button", async () => {
-      await page.waitForSelector('.add-log-btn');
-      await page.click('.add-log-btn');
 
-      const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
-      expect(modalVisibleBefore).toBe(true);
-
-      await page.waitForSelector('.close');
-      await page.click('.close');
-      const modalVisibleAfter = await page.$eval('#addLogModal', el => el.style.display === 'none');
-      expect(modalVisibleAfter).toBe(true);
+  //Code Log Tests & Cross Features with Dashboard (Code Log Updates in Recent Updates)
+  describe("Code Log Tests", () => {
+    beforeAll(async () => {
+      await page.goto("http://127.0.0.1:6969/html/code-log.html");
     });
+
+    describe("Add and cancel a log entry", () => {
+      test("Click the button to add a log entry and close modal with cross button", async () => {
+        await page.waitForSelector('.add-log-btn');
+        await page.click('.add-log-btn');
+
+        const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
+        expect(modalVisibleBefore).toBe(true);
+
+        await page.waitForSelector('.close');
+        await page.click('.close');
+        const modalVisibleAfter = await page.$eval('#addLogModal', el => el.style.display === 'none');
+        expect(modalVisibleAfter).toBe(true);
+      });
+    });
+
+
+  test("Add an empty log entry", async () => {
+    await page.waitForSelector('.add-log-btn');
+    await page.click('.add-log-btn');
+    const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
+    expect(modalVisibleBefore).toBe(true);
+
+    await page.waitForSelector('button.frame');
+    await page.evaluate(() => {
+      const addButton = document.querySelector('button.frame');
+      addButton.scrollIntoView();
+    });
+
+    await page.click('button.frame');
+
+    await page.waitForSelector('.log-entry');
+    const isLogEntryCorrect = await page.evaluate(() => {
+      const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+      const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
+      const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
+      const isEmptyDisplayed = lastLogEntry.querySelector('.fieldD2 .placeholder-text') && lastLogEntry.querySelector('.fieldD2 .placeholder-text').textContent.trim() === 'Empty';
+
+      return dateDisplayed && timeDisplayed && isEmptyDisplayed;
+    });
+
+    expect(isLogEntryCorrect).toBe(true);
+  });
+  //text test 
+  test("Add a log entry with 'general text test'", async () => {
+    await page.waitForSelector('.add-log-btn');
+    await page.click('.add-log-btn');
+
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror'); 
+    await page.type('.CodeMirror', 'general text test'); 
+
+    await page.waitForSelector('button.frame');
+    await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+    await page.click('button.frame');
+    await page.waitForSelector('.log-entry');
+
+    const isLogEntryCorrect = await page.evaluate(() => {
+      const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+      const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
+      const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
+      const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'general text test';
+
+      return dateDisplayed && timeDisplayed && contentDisplayed;
+    });
+
+    expect(isLogEntryCorrect).toBe(true);
   });
 
 
-test("Add an empty log entry", async () => {
-  await page.waitForSelector('.add-log-btn');
-  await page.click('.add-log-btn');
-  const modalVisibleBefore = await page.$eval('#addLogModal', el => el.style.display === 'block');
-  expect(modalVisibleBefore).toBe(true);
+  //refresh test
+  test("Add a log entry with 'refresh'", async () => {
+    await page.waitForSelector('.add-log-btn');
+    await page.click('.add-log-btn');
 
-  await page.waitForSelector('button.frame');
-  await page.evaluate(() => {
-    const addButton = document.querySelector('button.frame');
-    addButton.scrollIntoView();
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror'); 
+    await page.type('.CodeMirror', 'refresh test'); 
+
+    await page.waitForSelector('button.frame');
+    await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+    await page.click('button.frame');
+    await page.waitForSelector('.log-entry');
+
+    const isLogEntryCorrect = await page.evaluate(() => {
+      const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+      const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
+      const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
+      const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'refresh test';
+
+      return dateDisplayed && timeDisplayed && contentDisplayed;
+    });
+
+    expect(isLogEntryCorrect).toBe(true);
+
+    await page.reload();
+    const isLogEntryCorrectA = await page.evaluate(() => {
+      const lastLogEntryA = document.querySelector('.logs-container .log-entry:last-child');
+      const dateDisplayedA = lastLogEntryA.querySelector('.date-codelog').textContent.includes('Date:');
+      const timeDisplayedA = lastLogEntryA.querySelector('.time-codelog').textContent.includes('Time:');
+      const contentDisplayedA= lastLogEntryA.querySelector('.fieldD2 pre').textContent.trim() === 'refresh test';
+
+      return dateDisplayedA && timeDisplayedA && contentDisplayedA;
+    });
+    expect(isLogEntryCorrectA).toBe(true);
+
+
   });
-
-  await page.click('button.frame');
-
-  await page.waitForSelector('.log-entry');
-  const isLogEntryCorrect = await page.evaluate(() => {
-    const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
-    const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
-    const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
-    const isEmptyDisplayed = lastLogEntry.querySelector('.fieldD2 .placeholder-text') && lastLogEntry.querySelector('.fieldD2 .placeholder-text').textContent.trim() === 'Empty';
-
-    return dateDisplayed && timeDisplayed && isEmptyDisplayed;
-  });
-
-  expect(isLogEntryCorrect).toBe(true);
-});
-//text test 
-test("Add a log entry with 'general text test'", async () => {
-  await page.waitForSelector('.add-log-btn');
-  await page.click('.add-log-btn');
-
-  await page.waitForSelector('.CodeMirror');
-  await page.click('.CodeMirror'); 
-  await page.type('.CodeMirror', 'general text test'); 
-
-  await page.waitForSelector('button.frame');
-  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
-  await page.click('button.frame');
-  await page.waitForSelector('.log-entry');
-
-  const isLogEntryCorrect = await page.evaluate(() => {
-    const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
-    const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
-    const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
-    const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'general text test';
-
-    return dateDisplayed && timeDisplayed && contentDisplayed;
-  });
-
-  expect(isLogEntryCorrect).toBe(true);
-});
-
-
-//refresh test
-test("Add a log entry with 'refresh'", async () => {
-  await page.waitForSelector('.add-log-btn');
-  await page.click('.add-log-btn');
-
-  await page.waitForSelector('.CodeMirror');
-  await page.click('.CodeMirror'); 
-  await page.type('.CodeMirror', 'refresh test'); 
-
-  await page.waitForSelector('button.frame');
-  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
-  await page.click('button.frame');
-  await page.waitForSelector('.log-entry');
-
-  const isLogEntryCorrect = await page.evaluate(() => {
-    const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
-    const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
-    const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
-    const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'refresh test';
-
-    return dateDisplayed && timeDisplayed && contentDisplayed;
-  });
-
-  expect(isLogEntryCorrect).toBe(true);
-
-  await page.reload();
-  const isLogEntryCorrectA = await page.evaluate(() => {
-    const lastLogEntryA = document.querySelector('.logs-container .log-entry:last-child');
-    const dateDisplayedA = lastLogEntryA.querySelector('.date-codelog').textContent.includes('Date:');
-    const timeDisplayedA = lastLogEntryA.querySelector('.time-codelog').textContent.includes('Time:');
-    const contentDisplayedA= lastLogEntryA.querySelector('.fieldD2 pre').textContent.trim() === 'refresh test';
-
-    return dateDisplayedA && timeDisplayedA && contentDisplayedA;
-  });
-  expect(isLogEntryCorrectA).toBe(true);
-
-
-});
 //delete functionality 
 
  
@@ -549,5 +551,10 @@ test("Add a log entry with 'refresh'", async () => {
 
 
 });*/
-});
+  });
+
+  //Documentation Tests
+
+
+  //Feedback Tests
 });

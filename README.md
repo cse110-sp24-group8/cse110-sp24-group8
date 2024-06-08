@@ -11,7 +11,7 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 
 ## Features 
 
-- `Dashboard`: Serve as the home page of the dev journal, offering widgets that provide overviews of information from other features.
+- `Dashboard`: Serves as the home page of the dev journal, offering widgets that provide overviews of information from other features.
 - `TaskList`: Efficiently organize your tasks, track due dates, and mark items as completed to stay on top of your to-do list.
 - `Calendar`: Keep track of important dates, deadlines, and events with a fully integrated calendar, allowing you to add entries on specific days to manage your schedule effectively.
 - `Code Log`: Document your coding progress, changes, and decisions with detailed logs using the markdown editor, making it easier to track the evolution of your work.
@@ -21,14 +21,14 @@ Welcome to LeJournal, your all-in-one web dev journal that empowers developers t
 ## Relevant Links 
 ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Github Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=GitHub%20Pages&logoColor=white)
-- We are using Github Pages to host our web app. You can find our live site [here](https://cse110-sp24-group8.github.io/cse110-sp24-group8/).
-- Our SSOT (Single Source of Truth) is our Github Repository which can be found [here](https://github.com/cse110-sp24-group8/cse110-sp24-group8).
+- We are using GitHub Pages to host our web app. You can find our live site [here](https://cse110-sp24-group8.github.io/cse110-sp24-group8/).
+- Our SSOT (Single Source of Truth) is our GitHub Repository which can be found [here](https://github.com/cse110-sp24-group8/cse110-sp24-group8).
 - Learn more about our [team](/admin/team.md).
 
 ## Brainstorming/Design Process
 ![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
 - Used [Retrium](https://app.retrium.com/) to facilitate brainstorming sessions for identifying for problems and solutions related to potential features for the dev journal.
-- Ultilized [Figma](https://www.figma.com/) for designing wireframes, low-fidelity mockups, and high-fidelity mockups, streamlining the entire design process from conceptualization to finalization. 
+- Utilized [Figma](https://www.figma.com/) for designing wireframes, low-fidelity mockups, and high-fidelity mockups, streamlining the entire design process from conceptualization to finalization. 
 - Our high-fidelity diagrams can be viewed [here](https://www.figma.com/design/iuuBu34fkbDqax3Vnc2bUJ/High-Fidelity-Diagram?node-id=0-1&t=GznIrdROIvAf74bI-0)
 - 1. Personal Issues & Conflicts
 - 2. Continuity in Work
@@ -74,21 +74,21 @@ We've integrated GitHub Actions into our project for seamless Continuous Integra
 
 This workflow is triggered on all pull requests 
 
-- `Eslint`: Our workflow uses Eslint which is JS focused. This helps us identify errors, enforce coding standards, and potential issues based on our custom rules. Additionally, it helps us ensure consistency across our code base, making our code base more readable and easier for collaboration between developers.
-- `Prettier`: Our workflow runs prettier to automatically format our code, using our custom rules (tabwidth 2 etc.). Futhermore, prettier also ensures our code style is conistent across our codebase, improving readablity and maintability.
+- `Eslint`: Our workflow uses Eslint which is JS focused. This helps us identify errors, and enforce coding standards, and potential issues based on our custom rules. Additionally, it helps us ensure consistency across our code base, making it more readable and easier for developers to collaborate.
+- `Prettier`: Our workflow runs prettier to automatically format our code, using our custom rules (tabwidth 2 etc.). Furthermore, prettier also ensures our code style is consistent across our codebase, improving readablity and maintability.
 - `Jest and Puppeteer`: Our workflow then proceeds to run Unit tests using Jest to test individual functions. For E2E testing, we use Puppeteer alongside Jest, simulating a browser to test user interactions and verify our web application works properly.
 - `Code Climate`: Our workflow runs code climate to analyze our code maintability, code quality, and test coverage. This helps identify duplication and also complexity issues in our code base. This will lead to  higher code quality and a more efficient development process, making our web application more reliable.
-- `JSDoc`: Our worklow at the end then generates documentation from our JS documentation to ensure our code is documented and easily understandable by other developers.
+- `JSDoc`: Our workflow at the end then generates documentation from our JS documentation to ensure our code is documented and easily understandable by other developers.
 ### CD
-This workflow triggers on pushes/merges to `main` 
+This workflow triggers pushes/merges to `main` 
 #### Note
  We use the template offered by Github which deploys static webpages, which is ideal for projects that primarily use JS, HTML, and CSS. This workflow deploys our web application every time a merge/push to `main` occurs so we can easily rollback (autmoating our development).
 
- - `Depployment Process`: 
-    1) `Build Step`: transforms source files into a final(ready) format and  minify files to improve load times.
-    2) `Deployment Step`: Upload the built project files and specifies the path for the static files to be uploaded. Then this will deploy to github pages (`actions/deploy-pages@v4`)
+ - `Deployment Process`: 
+    1) `Build Step`: transforms source files into a final(ready) format and  minifies files to improve load times.
+    2) `Deployment Step`: Upload the built project files and specify the path for the static files to be uploaded. Then this will deploy to GitHub pages (`actions/deploy-pages@v4`)
 
-- `Benefits`: This ensures the latest version of our project is always being deployed to Github Pages (pushes/merges to main). This workflow helps us achieve the CD process, keeping our website up to date and allowing us to continously deliver new features to our users (or possible bugs fixes). This also allows us to rollback to a previous stable version if our newest changes causes issues to our website.
+- `Benefits`: This ensures the latest version of our project is always being deployed to Github Pages (pushes/merges to main). This workflow helps us achieve the CD process, keeping our website up to date and allowing us to continously deliver new features to our users (or possible bugs fixes). This also allows us to roll back to a previous stable version if our newest changes causes issues to our website.
 
 ## Repository Structure
 
