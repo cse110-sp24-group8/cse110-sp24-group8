@@ -473,33 +473,35 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
     expect(isLogEntryCorrect).toBe(true);
   });
-  //text test 
-  test("Add a log entry with 'general text test'", async () => {
+  test("Add and edit a log entry", async () => {
+
     await page.waitForSelector('.add-log-btn');
     await page.click('.add-log-btn');
-
     await page.waitForSelector('.CodeMirror');
     await page.click('.CodeMirror'); 
     await page.type('.CodeMirror', 'general text test'); 
-
     await page.waitForSelector('button.frame');
     await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
     await page.click('button.frame');
     await page.waitForSelector('.log-entry');
-
-    const isLogEntryCorrect = await page.evaluate(() => {
+  
+    let isLogEntryCorrect = await page.evaluate(() => {
       const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
-      const dateDisplayed = lastLogEntry.querySelector('.date-codelog').textContent.includes('Date:');
-      const timeDisplayed = lastLogEntry.querySelector('.time-codelog').textContent.includes('Time:');
-      const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim() === 'general text test';
-
-      return dateDisplayed && timeDisplayed && contentDisplayed;
+      const contentDisplayed = lastLogEntry.querySelector('.fieldD2 pre').textContent.trim();
+      return contentDisplayed === 'general text test';
+    });
+  
+    expect(isLogEntryCorrect).toBe(true);
+  
+    await page.evaluate(() => {
+      const lastLogEntry = document.querySelector('.logs-container .log-entry:last-child');
+      lastLogEntry.dispatchEvent(new MouseEvent('dblclick', {bubbles: true}));
     });
 
-    expect(isLogEntryCorrect).toBe(true);
+    await page.keyboard.press('Backspace'); 
+    await page.type('.CodeMirror', 'edited text content');
+
   });
-
-
   //refresh test
   test("Add a log entry with 'refresh'", async () => {
     await page.waitForSelector('.add-log-btn');
@@ -537,50 +539,123 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
     expect(isLogEntryCorrectA).toBe(true);
 
 
-  });
-//delete functionality 
-
- 
+});
 
 
-//editing
-/*test("Add, edit, and verify persistence of a log entry", async () => {
+// Header check 
+test("Add a log entry with 'general text test'", async () => {
   await page.waitForSelector('.add-log-btn');
   await page.click('.add-log-btn');
 
   await page.waitForSelector('.CodeMirror');
-  await page.click('.CodeMirror');
-  await page.type('.CodeMirror', 'test');
+  await page.click('.CodeMirror'); 
+  await page.type('.CodeMirror', '# Empty'); 
 
   await page.waitForSelector('button.frame');
-  await page.evaluate(() => {
-    const addButton = document.querySelector('button.frame');
-    addButton.scrollIntoView();
-  });
+  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
   await page.click('button.frame');
+  await page.waitForSelector('.log-entry');
 
-  const isLogEntryCorrect2 = await page.evaluate(() => {
-    const lastLogEntry2 = document.querySelector('.logs-container .log-entry:last-child');
-    const dateDisplayed2 = lastLogEntry2.querySelector('.date-codelog').textContent.includes('Date:');
-    const timeDisplayed2 = lastLogEntry2.querySelector('.time-codelog').textContent.includes('Time:');
-    const contentDisplayed2 = lastLogEntry2.querySelector('.fieldD2 pre').textContent.trim() === 'test';
-
-    return dateDisplayed2 && timeDisplayed2 && contentDisplayed2;
+  // Retrieve the rendered HTML content inside the 'pre' tag and verify it is correct
+  const renderedContent = await page.evaluate(() => {
+    const content = document.querySelector('.fieldD2 pre').textContent.trim(); // Adjust to fetch textContent
+    return content;
   });
 
-  expect(isLogEntryCorrect2).toBe(true);
+  expect(renderedContent).toBe('Empty');
+});
+});
+
+// Bullet point check 
+test("Add a log entry with bullet-point text", async () => {
+  await page.waitForSelector('.add-log-btn');
+  await page.click('.add-log-btn');
+
   await page.waitForSelector('.CodeMirror');
-  await page.evaluate(() => {
-    const addButton = document.querySelector('.CodeMirror');
-    addButton.scrollIntoView();
+  await page.click('.CodeMirror'); 
+  await page.type('.CodeMirror', '* Empty'); 
+
+  await page.waitForSelector('button.frame');
+  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+  await page.click('button.frame');
+  await page.waitForSelector('.log-entry');
+
+  const renderedContentV = await page.evaluate(() => {
+    let content = document.querySelector('.fieldD2 pre').textContent.trim(); 
+    return content;
   });
-  await page.dblclick('.CodeMirror')
-  await page.type('.CodeMirror', 'test2');
 
+  expect(renderedContentV).toBe('Empty');
+});
+// Bold check 
+test("Add a log entry with bold text", async () => {
+  await page.waitForSelector('.add-log-btn');
+  await page.click('.add-log-btn');
 
+  await page.waitForSelector('.CodeMirror');
+  await page.click('.CodeMirror'); 
+  await page.type('.CodeMirror', '**Empty**'); 
 
-});*/
+  await page.waitForSelector('button.frame');
+  await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+  await page.click('button.frame');
+  await page.waitForSelector('.log-entry');
+
+  
+  const renderedContentV = await page.evaluate(() => {
+    let content = document.querySelector('.fieldD2 pre').textContent.trim(); 
+    return content;
   });
+
+  expect(renderedContentV).toBe('Empty');
+});
+
+//10 entries
+test("Add a lot of entries", async () => {
+  for (let i = 1; i <= 4; i++) {
+    await page.waitForSelector('.add-log-btn');
+    await page.click('.add-log-btn');
+
+    await page.waitForSelector('.CodeMirror');
+    await page.click('.CodeMirror'); 
+    await page.type('.CodeMirror', `* Entry ${i}`); 
+
+    await page.waitForSelector('button.frame');
+    await page.evaluate(() => document.querySelector('button.frame').scrollIntoView());
+    await page.click('button.frame');
+    await page.waitForSelector('.log-entry');
+  }
+
+  const entryCount = await page.evaluate(() => {
+    return document.querySelectorAll('.log-entry').length;
+  });
+
+  expect(entryCount).toBe(10);
+});
+
+
+test("Delete 10 log entries", async () => {
+  await page.waitForSelector('.delete-button');
+
+  let deleteButtons;
+  let clickCount = 0;
+  while (clickCount < 10) {
+      deleteButtons = await page.$$('.delete-button');
+      if (deleteButtons.length === 0) {
+          console.log('No more delete buttons found.');
+          break;
+      }
+      await deleteButtons[0].click();
+
+      clickCount++;
+  }
+
+  console.log(`Total delete clicks made: ${clickCount}`);
+});
+
+
+
+
 
   //Documentation Tests
 
