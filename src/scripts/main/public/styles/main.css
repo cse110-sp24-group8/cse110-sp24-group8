@@ -208,9 +208,9 @@ header img {
 
 :root:has(#light:checked) {
     --lecoder-purple: rgba(194, 192, 192, 1);
-    --lecoder-gold: #050505;
+    --lecoder-gold: #838383;
     --lecoder-light-purple: #838383;
-    --lecoder-light-gold: #838383;
+    --lecoder-light-gold: black;
     --lecoder-header-color: black;
     --lecoder-gradient-gold: linear-gradient(160deg, #c2c0c0 .51%, #c2c0c0 86.81%);
     --lecoder-gradient-purple: linear-gradient(20deg, #c2c0c0 0%, #c2c0c0 100%);
@@ -218,12 +218,12 @@ header img {
 
 :root:has(#dark:checked) {
     --lecoder-purple: black;
-    --lecoder-gold: #000000;
+    --lecoder-gold: white;
     --lecoder-light-purple: #808080;
-    --lecoder-light-gold: white;
+    --lecoder-light-gold: black;
     --lecoder-header-color: rgb(255, 255, 255);
-    --lecoder-gradient-gold: linear-gradient(160deg, grey 9.51%, grey 86.81%);
-    --lecoder-gradient-purple: linear-gradient(20deg, grey 0%, grey 100%);
+    --lecoder-gradient-gold: linear-gradient(160deg, #424549, #424549);
+    --lecoder-gradient-purple: linear-gradient(20deg, #424549, #424549);
 }
 
 :root:has(#christmas:checked) {
