@@ -69,6 +69,16 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(dueSoonDates).toEqual(expectedDueSoonDates);
   };
 
+  // Helper function to strikethrough a task by clicking its checkbox
+  const strikeThroughTask = async (taskText) => {
+    const taskIndex = await page.$$eval('.tasks-container .text-wrapper', (els, taskText) => {
+        return els.findIndex(el => el.textContent.trim() === taskText);
+    }, taskText);
+
+    const taskCheckboxSelector = `.tasks-container .overlap:nth-child(${taskIndex + 1}) input[type="checkbox"]`;
+    await page.click(taskCheckboxSelector);
+  };
+
   // Dashboard basic button tests & basic sidebar navigation tests
   describe("Dashboard Page Tests", () => {
     test("Test view all tasks button", async () => {
@@ -278,15 +288,6 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
     // Strikethrough hi1
     test("Strikethrough hi1, check order, strike-through persistence, dashboard updates, and reload", async () => {
-      // Strikethrough hi1 by clicking the checkbox
-      const strikeThroughTask = async (taskText) => {
-          const taskIndex = await page.$$eval('.tasks-container .text-wrapper', (els, taskText) => {
-              return els.findIndex(el => el.textContent.trim() === taskText);
-          }, taskText);
-
-          const taskCheckboxSelector = `.tasks-container .overlap:nth-child(${taskIndex + 1}) input[type="checkbox"]`;
-          await page.click(taskCheckboxSelector);
-      };
       await strikeThroughTask('hi1');
 
       const expectedOrderAfterStrike = ['hi9', 'hi6', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi1'];
@@ -338,17 +339,265 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       expect(completedTasksAfterStrike).toBe('1');
     });
 
+    // Strikethrough hi6
+    test("Strikethrough hi6, check order, strike-through persistence, dashboard updates, and reload", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      await strikeThroughTask('hi6');
+      const expectedOrderAfterStrike = ['hi9', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi1', 'hi6'];
+      const expectedDatesAfterStrike = [
+          'No Due Date', '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
+          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-'))), 'No Due Date', '<span style="color: red;">OVERDUE</span>'
+      ];
+    
+      const taskTextsAfterStrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const taskDatesAfterStrike = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+      const taskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
+    
+      for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
+          expect(taskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
+          expect(taskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
+          if (expectedOrderAfterStrike[i] === 'hi6') {
+              expect(taskStrikeThroughStyles[i]).toContain('line-through');
+          }
+      }
+    
+      // Reload the page and check persistence of strike-through
+      await page.reload();
+    
+      const reloadedTaskTextsAfterStrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const reloadedTaskDatesAfterStrike = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+      const reloadedTaskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
+    
+      for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
+          expect(reloadedTaskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
+          expect(reloadedTaskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
+          if (expectedOrderAfterStrike[i] === 'hi6') {
+              expect(reloadedTaskStrikeThroughStyles[i]).toContain('line-through');
+          }
+      }
+    
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+    
+      const dueSoonTasksAfterStrike = await page.$$eval('#dueSoonContainer ul li', els => els.map(el => el.textContent.trim()));
+      const expectedDueSoonTasks = [
+          'hi4', 'hi8', // Yesterday's tasks
+          'hi2', 'hi10', 'hi11', 'You have more tasks for this day ...', // Today's tasks
+          'hi3', 'hi7'  // Tomorrow's tasks
+      ];
+    
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(getDate(-1).split('/').reverse().join('-'))),
+          formatDueSoonDate(new Date(getDate(0).split('/').reverse().join('-'))),
+          formatDueSoonDate(new Date(getDate(1).split('/').reverse().join('-')))
+      ];
+    
+      expect(dueSoonTasksAfterStrike).toEqual(expectedDueSoonTasks);
+    
+      const percentageDoneAfterStrike = await page.$eval('#percent', el => el.textContent.trim());
+      expect(percentageDoneAfterStrike).toBe('16%');
+    
+      const totalTasksAfterStrike = await page.evaluate(() => localStorage.getItem('totalTasks'));
+      const completedTasksAfterStrike = await page.evaluate(() => localStorage.getItem('completedTasks'));
+      expect(totalTasksAfterStrike).toBe('12');
+      expect(completedTasksAfterStrike).toBe('2');
+    });
+    //unstrikethrough hi1. Check dashboard (added back to due soon and percentage decrease.). hi6 should still be struckthrough and "completed"
+    test("Unstrikethrough hi1, check dashboard updates and reload", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      await strikeThroughTask('hi1'); // Unstrikethrough
+      const expectedOrderAfterUnstrike = ['hi9','hi1', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi6'];
+      const expectedDatesAfterUnstrike = [
+          'No Due Date', 'No Due Date','<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
+          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
+          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-'))), '<span style="color: red;">OVERDUE</span>'
+      ];
+  
+      const taskTextsAfterUnstrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const taskDatesAfterUnstrike = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+      const taskStrikeThroughStylesAfterUnstrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
+  
+      for (let i = 0; i < expectedOrderAfterUnstrike.length; i++) {
+          expect(taskTextsAfterUnstrike[i]).toBe(expectedOrderAfterUnstrike[i]);
+          expect(taskDatesAfterUnstrike[i]).toBe(expectedDatesAfterUnstrike[i]);
+          if (expectedOrderAfterUnstrike[i] === 'hi1') {
+              expect(taskStrikeThroughStylesAfterUnstrike[i]).not.toContain('line-through');
+          }
+      }
+  
+      // Reload the page and check persistence of unstrike-through
+      await page.reload();
+  
+      const reloadedTaskTextsAfterUnstrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => el.textContent.trim()));
+      const reloadedTaskDatesAfterUnstrike = await page.$$eval('.tasks-container .date-wrapper', els => els.map(el => el.innerHTML.trim()));
+      const reloadedTaskStrikeThroughStylesAfterUnstrike = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
+  
+      for (let i = 0; i < expectedOrderAfterUnstrike.length; i++) {
+          expect(reloadedTaskTextsAfterUnstrike[i]).toBe(expectedOrderAfterUnstrike[i]);
+          expect(reloadedTaskDatesAfterUnstrike[i]).toBe(expectedDatesAfterUnstrike[i]);
+          if (expectedOrderAfterUnstrike[i] === 'hi1') {
+              expect(reloadedTaskStrikeThroughStylesAfterUnstrike[i]).not.toContain('line-through');
+          }
+      }
+  
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+  
+      const dueSoonTasksAfterUnstrike = await page.$$eval('#dueSoonContainer ul li', els => els.map(el => el.textContent.trim()));
+      const expectedDueSoonTasks = [
+          'hi4', 'hi8', // Yesterday's tasks
+          'hi2', 'hi10', 'hi11', 'You have more tasks for this day ...', // Today's tasks
+          'hi3', 'hi7'  // Tomorrow's tasks
+      ];
+  
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(getDate(-1).split('/').reverse().join('-'))),
+          formatDueSoonDate(new Date(getDate(0).split('/').reverse().join('-'))),
+          formatDueSoonDate(new Date(getDate(1).split('/').reverse().join('-')))
+      ];
+  
+      expect(dueSoonTasksAfterUnstrike).toEqual(expectedDueSoonTasks);
+  
+      const percentageDoneAfterUnstrike = await page.$eval('#percent', el => el.textContent.trim());
+      expect(percentageDoneAfterUnstrike).toBe('8%');
+  
+      const totalTasksAfterUnstrike = await page.evaluate(() => localStorage.getItem('totalTasks'));
+      const completedTasksAfterUnstrike = await page.evaluate(() => localStorage.getItem('completedTasks'));
+      expect(totalTasksAfterUnstrike).toBe('12');
+      expect(completedTasksAfterUnstrike).toBe('1');
+  });
+
+    //DELETE, not strikethrough, hi1, hi2, hi10, hi11, hi4, hi8, hi3, and hi7. Check that the percentage has increased (should now be be 1/4). Also check Due Soon is correct. 
+    test("Delete tasks hi1, hi2, hi10, hi11, hi4, hi8, hi3, and hi7, check percentage and Due Soon section", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      const deleteTask = async (taskText) => {
+          const taskIndex = await page.$$eval('.tasks-container .text-wrapper', (els, taskText) => {
+              return els.findIndex(el => el.textContent.trim() === taskText);
+          }, taskText);
+          
+          const taskDeleteSelector = `.tasks-container .overlap:nth-child(${taskIndex + 1}) .delete-btn img`;
+          await page.click(taskDeleteSelector);
+      };
+  
+      await deleteTask('hi1');
+      await deleteTask('hi2');
+      await deleteTask('hi10');
+      await deleteTask('hi11');
+      await deleteTask('hi4');
+      await deleteTask('hi8');
+      await deleteTask('hi3');
+      await deleteTask('hi7');
+  
+      // Check local storage
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+      expect(tasks.length).toBe(4);  // 12 tasks initially - 8 deleted
+  
+      // Check percentage of tasks done
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+      const percentageDone = await page.$eval('#percent', el => el.textContent.trim());
+      expect(percentageDone).toBe('25%');  // 2 out of 8 tasks completed is 25%
+  
+      const expectedDueSoonTasks = ['hi12', 'hi5'];
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(getDate(0).split('/').reverse().join('-'))),  // Today's date
+          formatDueSoonDate(new Date(getDate(5).split('/').reverse().join('-')))   // 5 days later
+      ];
+      await checkDueSoonSection(expectedDueSoonTasks, expectedDueSoonDates);
+    });
+
+    //Press the edit button for hi12. Change the title to bla12 then press cancel. Check local storage & dashboard & calendar. hi12 should still be there.
+    test("Edit hi12, change title to bla12, then press cancel, check local storage & dashboard & calendar", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      const editTask = async (taskText, newText, newDate, shouldSave) => {
+          const taskIndex = await page.$$eval('.tasks-container .text-wrapper', (els, taskText) => {
+              return els.findIndex(el => el.textContent.trim() === taskText);
+          }, taskText);
+          
+          const taskEditSelector = `.tasks-container .overlap:nth-child(${taskIndex + 1}) .edit-btn img`;
+          await page.click(taskEditSelector);
+          
+          await page.waitForSelector('.edit-list .text-wrapper1');
+          await page.click('.edit-list .text-wrapper1', { clickCount: 3 });
+          await page.type('.edit-list .text-wrapper1', newText);
+  
+          if (newDate) {
+              await page.click('.edit-list .date-wrapper1', { clickCount: 3 });
+              await page.type('.edit-list .date-wrapper1', newDate);
+          }
+  
+          if (shouldSave) {
+              await page.click('.edit-list .frame1');
+          } else {
+              await page.click('#closeModal');
+          }
+      };
+  
+      await editTask('hi12', 'bla12', null, false);
+  
+      // Check local storage
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+      const task = tasks.find(t => t.text === 'hi12');
+      expect(task).toBeDefined();
+  
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+      
+      // Check Due Soon section
+      const expectedDueSoonTasks = ['hi12', 'hi5'];
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(getDate(0).split('/').reverse().join('-'))),  // Today's date
+          formatDueSoonDate(new Date(getDate(5).split('/').reverse().join('-')))   // 5 days later
+      ];
+      await checkDueSoonSection(expectedDueSoonTasks, expectedDueSoonDates);
+    });
+    //Press the edit button for hi12. Change the title to bla12 then press the cross to cancel. Check local storage & dashboard & calendar. hi12 should still be there.
+    test("Edit hi12, change title to bla12, then press the cross to cancel, check local storage & dashboard & calendar", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      await editTask('hi12', 'bla12', null, false);
+  
+      // Check local storage
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+      const task = tasks.find(t => t.text === 'hi12');
+      expect(task).toBeDefined();
+  
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+  
+      // Check Due Soon section
+      const expectedDueSoonTasks = ['hi12', 'hi5'];
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(getDate(0).split('/').reverse().join('-'))),  // Today's date
+          formatDueSoonDate(new Date(getDate(5).split('/').reverse().join('-')))   // 5 days later
+      ];
+      await checkDueSoonSection(expectedDueSoonTasks, expectedDueSoonDates);
+    });
+
+    //Press the edit button for hi12. Change the title to bla12 and the date to the day after tommorow (i.e 2 days after today) then press save. Check local storage & dashboard & calendar. Should now be bla12 with the date in the June 12th 2025 format in task list, and June 12 format in the Due Soon. (shouldn't be june 12 as the date, i just wanted to give an example)
+    test("Edit hi12, change title to bla12 and date to day after tomorrow, then press save, check local storage & dashboard & calendar", async () => {
+      await page.click('.sideButton img[alt="Task List Icon"]');
+      const dayAfterTomorrow = getDate(2).split('/').reverse().join('-');
+      await editTask('hi12', 'bla12', dayAfterTomorrow, true);
+  
+      // Check local storage
+      const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
+      const task = tasks.find(t => t.text === 'bla12');
+      expect(task).toBeDefined();
+      expect(task.date).toBe(dayAfterTomorrow);
+  
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+  
+      // Check Due Soon section
+      const expectedDueSoonTasks = ['bla12', 'hi5'];
+      const expectedDueSoonDates = [
+          formatDueSoonDate(new Date(dayAfterTomorrow.split('-').join('/'))),  // The day after tomorrow's date
+          formatDueSoonDate(new Date(getDate(5).split('/').reverse().join('-')))   // 5 days later
+      ];
+      await checkDueSoonSection(expectedDueSoonTasks, expectedDueSoonDates);
+    });
+
+    //Cross functionality with Calendar. Go to calendar
+
   });
     
-    //Strikethrough hi6. Do the same checkings has striking through hi1. Also check that in dashboard, hi6 and its date (3 days ago) are completely removed from the Due Soon section. Check the correct percentage is displayed.
-    //unstrikethrough 1. Check dashboard (added back to due soon and percentage increase.)
-
-    //delete the 2 that are still struck through. check local storage & dashboard.
-
-    //edit, change content, cancel edit. Check  local storage & dashboard & calendar
-    //edit, change content, cross edit. Check  local storage & dashboard.
-    //edit, change content, save edit. Check  local storage & dashboard.
-
   
   //Calendar Tests & Cross Features with Dashboard (Events in Recent Updates) & Cross Features with Task List (Strikethrough tasks are applied globally)  
 
