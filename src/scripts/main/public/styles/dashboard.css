@@ -183,11 +183,11 @@ ul {
         display: none;
     }
 
-    html {
-        overflow-y: fixed;
+    html, body {
+        overflow-y: hidden;
     }
 
-    body, h1, h2, h3, h4, p,
+    h1, h2, h3, h4, p,
     figure, blockquote, dl, dd {
         overflow-y: auto;
     }
