@@ -250,6 +250,31 @@ header img {
     background-color: #00629B;
 }
 
+:root:has(#triton:checked) .to-do-list .union-wrapper:hover {
+    background-color: #00629B;
+}
+
+:root:has(#dark:checked) #calendar-details {
+    background-color: black;
+}
+
+:root:has(#dark:checked) #calendar td:hover {
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#dark:checked) #calendar td:hover {
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#dark:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
 
 @media (max-width: 978px) {
 

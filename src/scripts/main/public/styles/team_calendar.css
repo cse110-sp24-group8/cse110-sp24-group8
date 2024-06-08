@@ -121,14 +121,14 @@ h2 {
 /* Hover effect for table cells */
 #calendar td:hover {
   border-radius: 106px;
-  background: var(--Linear-Laker-Gold);
-  color: white;
+  background: var(--lecoder-gold);
+  color: var(--lecoder-header-color, white);
 }
 
 /* Hover effect for table cells */
 .calendar-cell.selected-date{
   border-radius: 106px;
-  background: var(--Linear-Laker-Gold);
+  background: var(--lecoder-gold);
   color: white;
 }
 
@@ -139,7 +139,7 @@ h2 {
 /* Style for calendar details section */
 #calendar-details {
   margin-top: -90px;
-  background: linear-gradient(to top, #ffae00 75%, rgba(250, 210, 102, 0.722) 99%);
+  background: var(--lecoder-gold);
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -187,19 +187,13 @@ a {
 
 /* Hover effect for link elements */
 a:hover {
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
-  color: rgb(0, 0, 0);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  color: var(--lecoder-header-color, black);
 }
 
 a:focus {
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
-  color: rgb(0, 0, 0);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  color: var(--lecoder-header-color, black);
 }
 
 /* Style for previous button */

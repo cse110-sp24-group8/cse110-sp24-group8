@@ -60,7 +60,7 @@ html, body {
   height: 63px;
   top: 10px;
   left: 5%;  /* adjust left as percentage for better responsiveness */
-  background: linear-gradient(-143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+  background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   border-radius: 5px;
   margin-top: 1%;
 }
@@ -73,7 +73,7 @@ html, body {
   top: 30%;
   font-family: 'Karla_regular';
   font-weight: 700;
-  color: #552583;
+  color: var(--lecoder-header-color, purple);
   font-size: 18px;
   letter-spacing: 0;
   line-height: normal;
@@ -128,14 +128,14 @@ html, body {
   height: 69px;
   bottom: 20px;  /* Set distance from bottom */
   right: 20px;   /* Set distance from right */
-  background-color: var(--variable-collection-laker-purple);
+  background-color: var(--lecoder-purple);
   border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
   transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
 }
 
 .union-wrapper:hover {
-  background-color: rgb(88, 101, 174);
+  background-color: var(--lecoder-light-purple);
 }
 
 .to-do-list .union {
@@ -161,7 +161,7 @@ html, body {
 }
 
 .button-style:hover {
-  background-color: #ececec;  /* Light grey background on hover */
+  background-color: var(--lecoder-purple);  /* Light grey background on hover */
 }
 
 /* Adding strike-through effect */
@@ -241,7 +241,7 @@ html, body {
   position: absolute;
   width: 100%;
   height: 34%;
-  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+  background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 .add-list .text-wrapper {
@@ -276,7 +276,7 @@ html, body {
 
 
 .add-list .frame {
-  background-color: #552583;
+  background-color: var(--lecoder-purple);
   color: #fff;
   border: none;
   position: absolute;
@@ -289,7 +289,7 @@ html, body {
 }
 
 .add-list .div-wrapper {
-  border-color: #552583;
+  border-color: var(--lecoder-purple,purple);
   border: none;
   position: absolute;
   bottom: 20px; /* Adjust the distance from the bottom */
@@ -327,7 +327,7 @@ html, body {
 
 
 .add-list .div-wrapper:hover {
-  background-color: #6a3982;
+  background-color: var(--lecoder-purple, purple);
   color: whitesmoke;
 }
 
@@ -428,7 +428,7 @@ html, body {
 
 
 .edit-list .frame1 {
-  background-color: #552583;
+  background-color: var(--lecoder-purple,purple);
   color: #fff;
   border: none;
   position: absolute;
@@ -441,7 +441,7 @@ html, body {
 }
 
 .edit-list .div-wrapper1 {
-  border-color: #552583;
+  border-color: var(--lecoder-purple,purple);
   border: none;
   position: absolute;
   bottom: 20px; /* Adjust the distance from the bottom */
@@ -450,7 +450,6 @@ html, body {
   font-size: 16px; /* Adjust the font size as needed */
   width: 95px;
   height: 50px;
-
 }
 
 .edit-list .text-wrapper1:hover {
@@ -474,12 +473,12 @@ html, body {
 
 .edit-list .frame1:hover {
   background-color: lightblue;
-  color: #552583;
+  color: var(--lecoder-purple,purple);
 } 
 
 
 .edit-list .div-wrapper1:hover {
-  background-color: #6a3982;
+  background-color: var(--lecoder-purple);
   color: whitesmoke;
 }
 
@@ -500,7 +499,7 @@ html, body {
 .to-do-list .text-wrapper,
 .to-do-list .date-wrapper {
   font-family: 'Karla_regular';
-  color: #552583;
+  color: var(--lecoder-light-purple,purple);
 }
 
 .date-wrapper {
@@ -519,7 +518,7 @@ html, body {
 }
 
 .text-wrapper::placeholder, .date-wrapper::placeholder {
-  color: var(--variable-collection-laker-purple); /* Using the variable for your custom purple color */
+  color: var(--lecoder-purple, purple); /* Using the variable for your custom purple color */
   opacity: 0.8; /* Ensures the color isn't faded */
 }
 
