@@ -23,6 +23,7 @@
         "live-server": "^1.1.2",
         "prettier": "^3.2.5",
         "puppeteer": "^22.8.2",
+        "text-encoding": "^0.7.0",
         "util": "^0.12.5"
     },
     "type": "module",
