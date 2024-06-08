@@ -341,6 +341,10 @@ header img {
     color: var(--lecoder-gradient-gold, white);
   }
 
+  :root:has(#triton:checked) .union-wrapper:hover{
+    background-color: #00629B;
+  }
+
   :root:has(#christmas:checked) .calendar-cell.selected-date{
     border-radius: 106px;
     background: var(--lecoder-gold);

@@ -68,21 +68,22 @@ ul {
     background-color: var(--lecoder-purple, purple);
     background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     display: flex;
-	flex-direction: column;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: center;
-	align-content: stretch;
-    padding: 1rem; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #progressContainer button {
-   grid-row-start: 2;
-   grid-column-start: 2;
+   /* grid-row-start: 2;
+   grid-column-start: 2; */
+   position: relative;
    border-radius: 50px;
    border: 0;
    color: var(--lecoder-header-color,white);
    background-color: var(--lecoder-light-purple);
+   margin: 0;
+   padding: 0;
+   bottom: 1rem;
 }
 
 #progressContainer strong {
