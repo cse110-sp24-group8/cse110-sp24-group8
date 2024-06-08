@@ -2,6 +2,12 @@
 
 @import url(main.css);
 
+#indexButton{
+    background: var(
+        --Linear-Laker-Gold,
+        linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+    );
+}
 
 :root {
     --clr-body-bg: hsl(0 0% 90%);

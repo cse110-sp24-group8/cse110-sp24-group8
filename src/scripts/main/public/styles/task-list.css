@@ -8,6 +8,13 @@
   --variable-collection-laker-purple: rgba(85, 37, 131, 1);
 }
 
+#taskListButton{
+  background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
 .to-do-list{
   width: 100%;
   height: calc(100vh - 100px);
