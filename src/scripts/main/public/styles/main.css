@@ -112,6 +112,7 @@ header img {
     width: 75%;
 }
 
+
 @media (max-width: 978px) {
     html, body {
         overflow: hidden;

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="Journal Dashboard">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" href="~/admin/branding/images/Sunshine%20LeBron.png">
+    <link rel="icon" type="image/png" href="/admin/branding/images/LeCoders_Logo.png">
     <link rel="stylesheet" href="../styles/task-list.css" />
     <script src="../js/loadNav.js"></script>
     <title>LeJournal TaskList</title>
@@ -62,5 +62,23 @@
         </div>
     </main>
     <script src="../js/task_script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM fully loaded and parsed");
+        const sideButtons = document.querySelectorAll('.sideButton');
+        console.log("Buttons found:", sideButtons.length);
+    
+        const currentUrl = window.location.href;
+        console.log("Current URL:", currentUrl);
+    
+        sideButtons.forEach(button => {
+            console.log("Checking button href:", button.getAttribute('href'));
+            if (currentUrl.endsWith(button.getAttribute('href'))) {
+                console.log("Match found, adding active class");
+                button.classList.add('active');
+            }
+        });
+    });
+    </script>
   </body>
 </html>
