@@ -71,7 +71,7 @@ ul {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	justify-content: flex-start;
-	align-items: stretch;
+	align-items: center;
 	align-content: stretch;
     padding: 1rem; 
 }
@@ -93,8 +93,8 @@ ul {
 }
 
 .progress-circle {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     padding: 1em;
     grid-row-start: 2;
     grid-column-start: 2;
