@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const colorThemes = document.querySelectorAll('[name="theme"]');
-    console.log(colorThemes);
   
     // Storing theme in localStorage
     const storeTheme = function(theme) {
