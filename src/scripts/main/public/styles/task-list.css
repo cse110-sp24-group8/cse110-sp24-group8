@@ -60,7 +60,7 @@ html, body {
   height: 63px;
   top: 10px;
   left: 5%;  /* adjust left as percentage for better responsiveness */
-  background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   border-radius: 5px;
   margin-top: 1%;
 }
@@ -224,7 +224,7 @@ html, body {
 }
 
 .close {
-  color: var(--variable-collection-laker-purple); /* Ensures the color is correct */
+  color: var(--lecoder-purple); /* Ensures the color is correct */
   position: absolute;
   top: 20px;  /* Adjusted for clear visibility */
   right: 25px;
@@ -241,7 +241,7 @@ html, body {
   position: absolute;
   width: 100%;
   height: 34%;
-  background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 .add-list .text-wrapper {
@@ -256,7 +256,7 @@ html, body {
   font-size: 18px;
   transition: border-color 0.3s, box-shadow 0.3s;
   outline: none;
-  color: var(--lecoder-purple, purple);
+  color: var(--lecoder-header-color, purple);
 }
 
 .add-list .date-wrapper {
@@ -271,7 +271,7 @@ html, body {
   font-size: 18px;
   transition: border-color 0.3s, box-shadow 0.3s;
   outline: none;
-  color: var(--lecoder-purple, purple);
+  color: var(--lecoder-header-color, purple);
 }
 
 
@@ -499,7 +499,6 @@ html, body {
 .to-do-list .text-wrapper,
 .to-do-list .date-wrapper {
   font-family: 'Karla_regular';
-  color: var(--lecoder-light-purple,purple);
 }
 
 .date-wrapper {

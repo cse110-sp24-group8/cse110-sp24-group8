@@ -202,7 +202,11 @@ header img {
     --lecoder-light-purple: #b67af3;
     --lecoder-light-gold: #EDDDA5;
     --lecoder-header-color: white;
-    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-gold: linear-gradient(
+        160deg,
+        rgba(253, 185, 39, 0.6) 9.51%,
+        #fdb927 86.81%
+      );
     --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
 }
 
@@ -215,6 +219,7 @@ header img {
     --lecoder-gradient-gold: linear-gradient(160deg, #c2c0c0 .51%, #c2c0c0 86.81%);
     --lecoder-gradient-purple: linear-gradient(20deg, #c2c0c0 0%, #c2c0c0 100%);
 }
+
 
 :root:has(#dark:checked) {
     --lecoder-purple: black;
@@ -250,30 +255,96 @@ header img {
     background-color: #00629B;
 }
 
+:root:has(#triton:checked) #openModal .union-wrapper:hover {
+    background-color: #00629B;
+}
+
 :root:has(#triton:checked) .to-do-list .union-wrapper:hover {
     background-color: #00629B;
 }
 
+:root:has(#triton:checked) .add-log-btn:hover, .add-log-btn:focus {
+    background-color: #00629B;
+}
+
 :root:has(#dark:checked) #calendar-details {
-    background-color: black;
+    background-color: var(--lecoder-light-purple);
+}
+
+:root:has(#dark:checked) .editFile:hover {
+    color: black;
+}
+
+:root:has(#dark:checked) #fileSelect {
+    color: black;
+}
+
+:root:has(#dark:checked) .fileSelect:hover {
+    color: black;
 }
 
 :root:has(#dark:checked) #calendar td:hover {
     border-radius: 106px;
     background: var(--lecoder-light-purple);
-    color: var(--lecoder-purple, white);
-  }
-
-  :root:has(#dark:checked) #calendar td:hover {
-    border-radius: 106px;
-    background: var(--lecoder-light-purple);
-    color: var(--lecoder-purple, white);
+    color: var(--lecoder-gold, white);
   }
 
   :root:has(#dark:checked) .calendar-cell.selected-date{
     border-radius: 106px;
     background: var(--lecoder-light-purple);
     color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#light:checked) .to-do-list .text-wrapper,
+  .to-do-list .date-wrapper {
+    color: black;
+  }
+
+  :root:has(#light:checked) button.frame {
+    background-color: var(--lecoder-gold);
+  }
+
+  :root:has(#dark:checked) .to-do-list .text-wrapper,
+  .to-do-list .date-wrapper {
+    color: var(--lecoder-header-color, black);
+  }
+
+  :root:has(#laker:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-purple);
+    color: var(--lecoder-light-purple, white);
+  }
+
+  :root:has(#laker:checked) .editFile {
+    background-color: var(--lecoder-header-color);
+  }
+
+  :root:has(#laker:checked) .editFile:hover {
+    color: var(--lecoder-gold);
+  }
+
+  :root:has(#christmas:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#triton:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-header-color);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#triton:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-gold);
+    color: var(--lecoder-gradient-gold, white);
+  }
+
+  :root:has(#christmas:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-gold);
+    color: var(--lecoder-light-gold, white);
   }
 
 @media (max-width: 978px) {

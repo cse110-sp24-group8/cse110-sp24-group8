@@ -108,7 +108,6 @@ ul {
 }
 
 
-
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
     background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);

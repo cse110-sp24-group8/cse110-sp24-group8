@@ -21,9 +21,9 @@ h1 {
 
 #codeLogButton{
   background: var(
-      --Linear-Laker-Gold,
-      linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+);
 }
 
 .content-holder{
@@ -33,7 +33,7 @@ h1 {
 }
 
 header h1 {
-  color: white;
+  color: var(--lecoder-header-color, black);
   text-align: center;
   font-size: 48px;
   margin: 0;
@@ -50,7 +50,7 @@ header h1 {
   height: 69px;
   bottom: 20px;
   right: 20px;
-  background-color: rgba(85, 37, 131, 1);
+  background-color: var(--lecoder-purple, purple);
   border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
   transform: translate(0, 0);
@@ -65,7 +65,7 @@ header h1 {
 }
 
 .add-log-btn:hover {
-  background-color: #ececec;
+  background-color: var(--lecoder-light-purple);
 }
 
 .add-log-btn:active {
@@ -83,8 +83,8 @@ header h1 {
 }
 
 button.frame {
-  background-color: #552583;
-  color: white;
+  background-color: var(--lecoder-purple, purple);
+  color: var(--lecoder-header-color, white);
   border: none;
   padding: 10px 30px;
   font-size: 24px;
@@ -127,11 +127,8 @@ button.frame {
 }
 
 .modal-content {
-  background: linear-gradient(
-    160deg,
-    rgba(253, 185, 39, 0.6) 9.51%,
-    #fdb927 86.81%
-  );
+
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   padding: 20px;
   border-radius: 10px;
   width: 95%;
@@ -186,7 +183,7 @@ button.frame {
 }
 
 .close {
-  color: #552583;
+  color: var(--lecoder-header-color purple);
   z-index: 100;
   position: absolute;
   right: 8px;
@@ -333,11 +330,7 @@ button.frame {
 }
 
 .fieldD1 {
-  background: linear-gradient(
-    281deg,
-    rgba(253, 185, 39, 0.6) 20.93%,
-    #fdb927 82.58%
-  );
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 .fieldD2 {

@@ -85,7 +85,7 @@ html, body {
 }
 
 .fieldD1 {
-  background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 .fieldD2 {
@@ -100,7 +100,7 @@ html, body {
 }
 
 .date-feedback, .time-feedback {
-  color: #ffffff;
+  color: var(--lecoder-header-color,white);
   font-size: 24px;
   font-weight: 400;
 }
@@ -119,7 +119,7 @@ html, body {
 }
 
 .question-feedback, .answer-feedback {
-  color: #7e25d7;
+  color: var(--lecoder-purple,purple);
   font-size: 24px;
   font-weight: 400;
 }
@@ -163,7 +163,7 @@ html, body {
 }
 
 .union-wrapper:hover {
-  background-color: rgb(94, 95, 99);
+  background-color: var(--lecoder-light-purple);
 }
 
 .feedback .union {
