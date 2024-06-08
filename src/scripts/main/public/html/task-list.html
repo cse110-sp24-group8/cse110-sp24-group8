@@ -56,29 +56,11 @@
           <!--pop-up page for add tasklist-->
           <div class="union-wrapper" id="openModal">
               <button class = "button-style">
-                <img class="union" src="../img/union.svg" />
+                <img class="union" alt="add task button" src="../img/union.svg" />
               </button>
           </div>
         </div>
     </main>
     <script src="../js/task_script.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log("DOM fully loaded and parsed");
-        const sideButtons = document.querySelectorAll('.sideButton');
-        console.log("Buttons found:", sideButtons.length);
-    
-        const currentUrl = window.location.href;
-        console.log("Current URL:", currentUrl);
-    
-        sideButtons.forEach(button => {
-            console.log("Checking button href:", button.getAttribute('href'));
-            if (currentUrl.endsWith(button.getAttribute('href'))) {
-                console.log("Match found, adding active class");
-                button.classList.add('active');
-            }
-        });
-    });
-    </script>
   </body>
 </html>
