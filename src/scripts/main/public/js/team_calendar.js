@@ -300,8 +300,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = "";
-            
-            location.reload();
         }
     });
 });
