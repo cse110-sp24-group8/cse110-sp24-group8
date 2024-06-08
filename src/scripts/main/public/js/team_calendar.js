@@ -2,9 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    let selectedDate = currentDate.toISOString().split('T')[0]; // Format today's date as 'YYYY-MM-DD'
+    let selectedDate = getPacificDate().toISOString().split('T')[0]; // Format today's date as 'YYYY-MM-DD'
     let notes = JSON.parse(localStorage.getItem('tasks')) || {};
 
+    function getPacificDate() {
+        const date = new Date(); // Get the local date and time
+        const userOffset = date.getTimezoneOffset() * 60000; // User's timezone offset in milliseconds
+        const pacificOffset = 480 * 60000; // PST offset (UTC-8) in milliseconds
+    
+        // Calculate PST date by adjusting UTC time
+        const pacificDate = new Date(date.getTime() + userOffset + pacificOffset);
+    
+        return pacificDate;
+    }    
+    
     function displayCalendar(month, year) {
         let firstDay = new Date(year, month, 1);
         let daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -162,13 +173,23 @@ document.addEventListener('DOMContentLoaded', function() {
             tasks[taskIndex].completed = isCompleted;
             tasks[taskIndex].completedDate = isCompleted ? new Date().toISOString() : null;
             localStorage.setItem('tasks', JSON.stringify(tasks));
-
             const taskElement = document.querySelector(`.overlap[data-task-id="${taskId}"]`);
             if (taskElement) {
                 const textWrapper = taskElement.querySelector('.text-wrapper');
                 textWrapper.style.textDecoration = isCompleted ? 'line-through' : 'none';
+                updateTaskCounts();
             }
         }
+    }
+
+    function updateTaskCounts() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const totalTasks = tasks.length;
+        const completedTasks = tasks.filter(task => task.completed).length;
+    
+        // Store the counts in localStorage
+        localStorage.setItem('totalTasks', totalTasks);
+        localStorage.setItem('completedTasks', completedTasks);
     }
 
     displayCalendar(currentMonth, currentYear);
@@ -198,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         highlightSelectedDate(); // Maintain the highlight on the selected date
     });
 });
+
+
 
 function loadPopupContent() {
     var xhttp = new XMLHttpRequest();
@@ -282,8 +305,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = "";
-            
-            location.reload();
         }
     });
 });
