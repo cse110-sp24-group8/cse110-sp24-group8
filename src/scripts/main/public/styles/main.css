@@ -178,11 +178,11 @@ header img {
 }
 
 #themeSwitcher input[type="radio"]#triton {
-    color: #00629B
+    color: #182B49;
 }
 
 #themeSwitcher input[type="radio"]#triton:checked {
-    background-color: #fdb927
+    background-color: #fdb927;
 }
 
 
@@ -244,7 +244,10 @@ header img {
     --lecoder-header-color: white;
     --lecoder-gradient-gold: linear-gradient(160deg, #00629B  9.51%, #00629B.81%);
     --lecoder-gradient-purple: linear-gradient(20deg, #00629B 0%, #00629B 100%);
-    
+}
+
+:root:has(#triton:checked) #themeSwitcher fieldset {
+    background-color: #00629B;
 }
 
 @media (max-width: 978px) {
