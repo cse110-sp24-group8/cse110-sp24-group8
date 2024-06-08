@@ -1,4 +1,4 @@
-# Restrospective (Sprint Review 1) / Web Dev Review (HTML CSS) 
+# Restrospective (Sprint Review 2) / Web Dev Review (HTML CSS) 
 ## Team 8
 
 **Type of meeting held**: Online
