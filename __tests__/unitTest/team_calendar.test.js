@@ -1,7 +1,10 @@
 /**
  * @jest-environment jsdom
  */
-import { formatTimeTo12Hr, formatTimeTo24Hr } from '../../src/scripts/main/public/js/team_calendar.js';
+import {
+  formatTimeTo12Hr,
+  formatTimeTo24Hr,
+} from '../../src/scripts/main/public/js/team_calendar.js';
 
 describe('team_calendar', () => {
   describe('formatTimeTo12Hr', () => {

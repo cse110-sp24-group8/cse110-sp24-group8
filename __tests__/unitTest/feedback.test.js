@@ -43,7 +43,7 @@ describe('Feedback System', () => {
 
   test('should add feedback to localStorage', async () => {
     localStorage.clear();
-    document.dispatchEvent(new Event('DOMContentLoaded'))
+    document.dispatchEvent(new Event('DOMContentLoaded'));
     const addFeedbackButton = document.getElementById('openModal');
     addFeedbackButton.click();
     const feedbackContainer = document.getElementById('feedbackContainer');
@@ -58,7 +58,7 @@ describe('Feedback System', () => {
       date: 'June 5th, 2023',
       time: '12:34 PM',
       question: 'Sample question?',
-      answer: 'Sample answer.'
+      answer: 'Sample answer.',
     };
     localStorage.setItem('feedbacks', JSON.stringify([feedback]));
 
@@ -70,7 +70,7 @@ describe('Feedback System', () => {
   });
 
   test('should delete feedback from container and localStorage', () => {
-    document.dispatchEvent(new Event('DOMContentLoaded'))
+    document.dispatchEvent(new Event('DOMContentLoaded'));
 
     const addFeedbackButton = document.getElementById('openModal');
 
