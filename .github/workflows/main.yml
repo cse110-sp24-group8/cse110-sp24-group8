@@ -28,7 +28,7 @@ jobs:
         run: npm run test  # Runs unit tests defined in the project; you can specify a path to run specific tests
       - name: Run E2E Tests
         run: |
-          nohup npm run dev & 
+          nohup npm run dev &  # Start the server in the background
           while ! nc -z localhost 6969; do 
             sleep 1
           done
