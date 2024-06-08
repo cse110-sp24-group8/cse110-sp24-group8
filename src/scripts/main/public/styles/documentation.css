@@ -11,6 +11,13 @@ h1 {
     font-size: 32px;
 }
 
+#documentationButton{
+    background: var(
+        --Linear-Laker-Gold,
+        linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+    );
+}
+
 header h1 {
     color: white;
     text-align: center;
@@ -21,11 +28,6 @@ header h1 {
 /* Adjust minimum height for CodeMirror editor */
 .CodeMirror {
     min-height: 55vh;
-}
-
-/* Set default font for all elements */
-* {
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 .file-wrapper {

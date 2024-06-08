@@ -16,6 +16,13 @@ html, body {
   padding: 0;
 }
 
+#feedbackButton{
+  background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
 /* Figma Styles of your File */
 :root {
   /* Colors */
@@ -241,7 +248,7 @@ html, body {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 50px; /* Ensure the height of the sidebar */
+    height: auto; /* Ensure the height of the sidebar */
     min-height: 50px; /* Ensure minimum height to fit icons */
     position: fixed;
     bottom: 0;
