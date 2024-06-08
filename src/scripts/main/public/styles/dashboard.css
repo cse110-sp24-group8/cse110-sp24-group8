@@ -173,7 +173,7 @@ ul {
     }
 
     html {
-        overflow-y: auto;
+        overflow-y: fixed;
     }
 
     body, h1, h2, h3, h4, p,
