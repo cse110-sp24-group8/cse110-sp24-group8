@@ -634,8 +634,101 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
     
   });
 
-  //Calendar Tests & Cross Features with Dashboard (Events in Recent Updates) & Cross Features with Task List (Strikethrough tasks are applied globally)  
+  //Calendar Tests & Cross Features with Dashboard (Events in Recent Updates) & Cross Features with Task List (Striking through tasks in calendar are applied when we check back in the task list page)  
+describe("Comprehensive E2E testing for Calendar page", () => {
+    beforeAll(async () => {
+        await page.goto("http://127.0.0.1:6969/html/team_calendar.html");
+    });
 
+    // Helper function to format date as 'YYYY-MM-DD'
+    const formatDate = (daysToAdd) => {
+        const date = new Date();
+        date.setDate(date.getDate() + daysToAdd);
+        return date.toISOString().split('T')[0];
+    };
+
+    const formatDateForEvent = (dateStr, time) => {
+      const date = new Date(dateStr);
+      const month = date.toLocaleString('default', { month: 'long' });
+      const day = date.getUTCDate();
+      return `${month} ${day}, ${time}`;
+    };
+
+    // Helper function to add an event
+    const addEvent = async (title, date, time) => {
+        await page.click('.union');
+        await page.type('.add-list .text-wrapper', title);
+        await page.evaluate((date) => {
+            document.querySelector('.add-list .date-wrapper').value = date;
+        }, date);
+        if (time) {
+            await page.evaluate((time) => {
+                document.querySelector('.add-list .time-wrapper').value = time;
+            }, time);
+        }
+        await page.click('.add-list .frame');
+    };
+
+
+    // Helper function to navigate to the previous or next month
+    const navigateMonth = async (direction) => {
+        if (direction === 'prev') {
+            await page.click('#prev_month');
+        } else if (direction === 'next') {
+            await page.click('#next_month');
+        }
+    };
+
+    // Test to add an event and check it on the calendar
+    test("Add an event and check it on the calendar", async () => {
+        const eventDate = formatDate(2); // Two days from now
+        await addEvent('Test Event', eventDate, '10:00');
+
+        const dateIn2Days = eventDate.split('-').join('-');
+        await page.click(`.calendar-cell[data-date="${dateIn2Days}"]`);
+        const eventsIn2Days = await page.$$eval('#event-content .text-content-wrapper', els => els.map(el => el.textContent.trim()));
+        expect(eventsIn2Days).toContain('Test Event');
+
+        await page.reload();        
+        expect(eventsIn2Days).toContain('Test Event');
+    });
+
+
+    // Test to navigate through months and check the calendar displays correct dates
+    test("Navigate through months and check the calendar", async () => {
+        await navigateMonth('next');
+        const nextMonthDisplayed = await page.$eval('#current_month', el => el.textContent.includes('July'));
+
+        await navigateMonth('prev');
+        const currentMonthDisplayed = await page.$eval('#current_month', el => el.textContent.includes('June'));
+
+        expect(nextMonthDisplayed).toBe(true);
+        expect(currentMonthDisplayed).toBe(true);
+    });
+
+    // Cross-feature test: Check events in Recent Updates on the dashboard
+    test("Check events in Recent Updates on the dashboard", async () => {
+      const eventDate = formatDate(0); // Today's date
+      await addEvent('Dashboard Event', eventDate, '09:00');
+  
+      const testEventDate = formatDate(2); // Adjust based on when 'Test Event' was added
+      const dashboardEventDate = formatDate(0); // Today's date for 'Dashboard Event'
+  
+      const formattedTestEvent = `(${formatDateForEvent(testEventDate, '10:00 AM')}) Test Event`; // Adjust the time as needed
+      const formattedDashboardEvent = `(${formatDateForEvent(dashboardEventDate, '9:00 AM')}) Dashboard Event`; // Adjust the time as needed
+  
+      await page.click('.sideButton img[alt="Dashboard Icon"]');
+      const recentUpdates = await page.$$eval('#contentCodeUpdate ul li', els => els.map(el => el.textContent.trim()));
+  
+      console.log("Recent Updates:", recentUpdates);
+      console.log("Formatted Test Event:", formattedTestEvent);
+      console.log("Formatted Dashboard Event:", formattedDashboardEvent);
+  
+      expect(recentUpdates).toContain(formattedTestEvent);
+      expect(recentUpdates).toContain(formattedDashboardEvent);
+    });
+
+});
 
 
   //Code Log Tests & Cross Features with Dashboard (Code Log Updates in Recent Updates)
