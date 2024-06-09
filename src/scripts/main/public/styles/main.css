@@ -120,13 +120,16 @@ header img {
     display: flex;
     flex-direction: row; /* affects whether vertical or horizontal*/
     gap: 2rem;
-    width: fit-content;
+    width: 0;
     background-color: var(--lecoder-light-purple);
     padding: 1rem 1rem;
     top: 0.6rem;
     right: 0.6rem;
     border-radius: 50px;
     margin-inline: auto;
+    transition: width .5s ease;
+    overflow: hidden; /* Keeps content hidden when collapsed */
+    white-space: nowrap;
 }
 
 #themeSwitcher input[type="radio"] {
@@ -504,6 +507,10 @@ ul {
 
     #themeSwitcher {
         display: block;
+    }
+
+    #themeSwitcher > fieldset {
+        flex-direction: row;
     }
     
         

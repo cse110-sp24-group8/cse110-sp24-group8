@@ -2,16 +2,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let activated = false;
     const radioButtons = document.querySelectorAll('#themeSwitcher input[type="radio"]');
+    const fieldset = document.querySelector('fieldset');
     document.querySelector('.hamburger-button').addEventListener('click', function() {
         activated = !activated;
         if (activated) {
             radioButtons.forEach(function(radioButton) {
                 radioButton.style.display = 'inline-block'; // Change 'block' to whatever display value you need
+                fieldset.style.width = '300px';
             });
         }
         else {
             radioButtons.forEach(function(radioButton) {
                 radioButton.style.display = 'none'; // Change 'block' to whatever display value you need
+                fieldset.style.width = '0';
             });
         }
     });
