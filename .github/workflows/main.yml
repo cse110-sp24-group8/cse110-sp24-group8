@@ -42,4 +42,3 @@ jobs:
         with:
           coverageCommand: npm run coverage  # Specifies the command to run to collect coverage data
           debug: true  # Enables debug output for the actions
-      - name: Print Node.js and npm versions
