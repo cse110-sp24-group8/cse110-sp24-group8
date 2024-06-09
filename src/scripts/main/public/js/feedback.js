@@ -176,7 +176,7 @@ export function formatDate(date) {
     const formattedDate = date.toLocaleDateString('en-US', options);
     const day = date.getDate();
     const suffix = getSuffix(day);
-    return formattedDate.replace(/\b(\d{1,2})(th|nd|rd|st)\b/gi, `$1${suffix}`);
+    return formattedDate.replace(/\b(\d{1,2})\b/, `${day}${suffix}`);
 }
 
 /**
@@ -186,6 +186,7 @@ export function formatDate(date) {
  * @returns {string} The suffix for the day.
  */
 export function getSuffix(day) {
+    if (day > 3 && day < 21) return 'th';
     switch (day % 10) {
         case 1:
             return 'st';
