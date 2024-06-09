@@ -69,6 +69,38 @@
             <textarea id="fileContent" name="content"></textarea>
         </div>
     </section>
+    <noscript>
+      <section>
+        <h2>Oops!</h2>
+        <h3>Please Enable JavaScript</h3>
+      </section>
+      <style>
+        main {
+          background-image:url(/src/scripts/main/public/img/No_Script_Background.png) ;
+          background-size: cover; /* Cover the entire page */
+          background-position: center; /* Center the background image */
+          background-repeat: no-repeat; /* Do not repeat the image */
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+        }
+        #dashboardHolder, .sidebar, form, .content-holder{
+          display: none;
+          visibility: none;
+        }
+        section {
+          color: white;
+        }
+        h2 {
+          margin: 0;
+          font-size: 5rem ;
+          overflow-y: hidden;
+        }
+      </style>
+    </noscript>
   </main>
   <!-- Link to external JavaScript file -->
   <script src="../js/documentation.js"></script>
