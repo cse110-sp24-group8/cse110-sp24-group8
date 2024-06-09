@@ -187,25 +187,7 @@ function progressCalculator(taskListPercent) {
  */
 function changeProgressText(percent) {
     let percentText = document.getElementById('percent');
-    // percentText.textContent = `${convertToPercentage((percent))}`; 
     percentText.textContent = `${Math.floor(percent * 100)}%`; //currently just an integer
-}
-
-/**
- * convertToPercentage changes a number to a percent with 2 decimal places and is used for the progress text
- * 
- * @param {float} decimal the decimal percent
- * @returns {String} rounded percentage with 2 decimals
- */
-function convertToPercentage(decimal) {
-    // Multiply by 100 to convert to percentage
-    var percentage = decimal * 100;
-
-    // Round to two decimal places
-    percentage = Math.round(percentage * 100) / 100;
-
-    // Convert back to string with % symbol
-    return percentage.toFixed(2) + '%';
 }
 
 /**
