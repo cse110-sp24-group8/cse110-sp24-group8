@@ -1,3 +1,48 @@
+# # Specifies the events that trigger the workflow: triggers on all pull requests
+# on: [pull_request]
+
+# permissions:
+#   pull-requests: write
+#   contents: write
+#   issues: write
+#   repository-projects: write
+
+# jobs:
+#   build-and-test:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v4 # Using version 4 of the checkout action
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: '20'  # Specifies Node.js version 20
+#           cache: 'npm'  # Caches npm modules to speed up subsequent workflow runs
+#       - name: Install Dependencies
+#         run: npm install  # Installs the project dependencies defined in package.json using npm
+#       - name: Run Lint
+#         run: npm run lint  # Runs the linter to check for syntax and style issues
+#       - name: Check formatting with Prettier
+#         run: npm run prettier-check
+#       - name: Run Unit Tests
+#         run: npm run test  # Runs unit tests defined in the project; you can specify a path to run specific tests
+#       - name: Run E2E Tests
+#         run: |
+#           nohup npm run dev &
+#           while ! nc -z localhost 6969; do
+#             sleep 1
+#           done
+#           npm run e2etest
+#         env:
+#           CI: true
+#       - name: Code Quality Check
+#         uses: paambaati/codeclimate-action@v6.0.0  # Uses a specific version of the Code Climate GitHub Action
+#         env:
+#           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
+#         with:
+#           coverageCommand: npm run coverage  # Specifies the command to run to collect coverage data
+#           debug: true  # Enables debug output for the actions
+
 # Specifies the events that trigger the workflow: triggers on all pull requests
 on: [pull_request]
 
@@ -12,33 +57,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4 # Using version 4 of the checkout action
+        uses: actions/checkout@v4
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # Specifies Node.js version 20
-          cache: 'npm'  # Caches npm modules to speed up subsequent workflow runs
+          node-version: '20'
+          cache: 'npm'
       - name: Install Dependencies
-        run: npm install  # Installs the project dependencies defined in package.json using npm
+        run: npm install
       - name: Run Lint
-        run: npm run lint  # Runs the linter to check for syntax and style issues
+        run: npm run lint
       - name: Check formatting with Prettier
         run: npm run prettier-check
       - name: Run Unit Tests
-        run: npm run test  # Runs unit tests defined in the project; you can specify a path to run specific tests
+        run: npm run test
+      - name: Setup Xvfb
+        run: sudo apt-get install xvfb -y
       - name: Run E2E Tests
         run: |
-          nohup npm run dev &  # Start the server in the background
+          xvfb-run --auto-servernum nohup npm run dev &
           while ! nc -z localhost 6969; do 
             sleep 1
           done
-          npm run e2etest
+          xvfb-run --auto-servernum npm run e2etest
         env:
           CI: true
       - name: Code Quality Check
-        uses: paambaati/codeclimate-action@v6.0.0  # Uses a specific version of the Code Climate GitHub Action
+        uses: paambaati/codeclimate-action@v6.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}  # Set via repository secrets
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: npm run coverage  # Specifies the command to run to collect coverage data
-          debug: true  # Enables debug output for the actions
+          coverageCommand: npm run coverage # Specifies the command to run to collect coverage data
+          debug: true # Enables debug output for the actions

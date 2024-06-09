@@ -2,7 +2,7 @@
     "scripts": {
         "lint": "eslint --config eslint.config.mjs './src/scripts/*.js'",
         "prettier-check": "prettier --write 'src/**/*.{js,css,md}'",
-        "test": "node --experimental-vm-modules nodemodules/jest/bin/jest.js _tests/unitTest",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js __tests__/unitTest",
         "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
         "e2etest": "jest __tests__/e2e.test.js --maxWorkers=1",
         "dev": "node live-server.js"
