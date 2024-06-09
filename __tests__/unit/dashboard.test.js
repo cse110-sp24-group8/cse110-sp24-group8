@@ -65,11 +65,11 @@ const localStorageMock = (() => {
       expect(monthDayTime('May 15, 2024', '13:00')).toBe('(May 15, 13:00)');
     });
   
-    // test('changeProgressText sets the text content of progress circle', () => {
-    //   changeProgressText(0.5);
-    //   const percentText = document.getElementById('percent');
-    //   expect(percentText.textContent).toBe('50%');
-    // });
+    test('changeProgressText sets the text content of progress circle', () => {
+      changeProgressText(0.5);
+      const percentText = document.getElementById('percent');
+      expect(percentText.textContent).toBe('50%');
+    });
   
     // describe('DOMContentLoaded Event Listener', () => {
     //   beforeEach(() => {

@@ -1,88 +1,88 @@
 /**
  * @jest-environment jsdom
  */
-// document.body.innerHTML = `
-//   <button id="openModal"></button>
-//   <div id="feedbackContainer"></div>
-// `;
+document.body.innerHTML = `
+  <button id="openModal"></button>
+  <div id="feedbackContainer"></div>
+`;
 
 // Import the script to be tested
 import { getSuffix, formatDate} from '../../src/scripts/main/public/js/feedback.js'; // Adjust the path to your JavaScript file
 
-// describe('Feedback System', () => {
-//   beforeEach(async () => {
-//     // Clear localStorage before each test
-//     localStorage.clear();
-//     // Reset the DOM
-//     document.body.innerHTML = `
-//     <button id="openModal"></button>
-//     <div id="feedbackContainer">
-//       <div class="feedbacklist" data-id="id-1717872352920-705">
-//         <div class="fieldD1"> 
-//           <button class="delete-btn">
-//             <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
-//           </button>
-//           <p class="date-feedback">Date: June 8th, 2024</p>
-//           <p class="time-feedback">Time: 11:45 AM</p>
-//         </div>
-//         <div class="fieldD2">
-//           <h2 class="question-feedback">Question:</h2>
-//           <textarea class="userquestion" rows="3" placeholder="Enter a Question"></textarea>
-//           <h2 class="answer-feedback">Answer:</h2>
-//           <textarea class="useranswer" rows="3" placeholder="Enter received answer"></textarea>
-//         </div>
-//       </div>
-//     </div>
-//     `;
-//     // Re-import the script to re-attach event listeners
-//     await import('../../src/scripts/main/public/js/feedback.js'); // Adjust the path to your JavaScript file
-//   });
+ describe('Feedback System', () => {
+   beforeEach(async () => {
+    // Clear localStorage before each test
+    localStorage.clear();
+    // Reset the DOM
+    document.body.innerHTML = `
+    <button id="openModal"></button>
+    <div id="feedbackContainer">
+      <div class="feedbacklist" data-id="id-1717872352920-705">
+        <div class="fieldD1"> 
+          <button class="delete-btn">
+            <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
+          </button>
+          <p class="date-feedback">Date: June 8th, 2024</p>
+          <p class="time-feedback">Time: 11:45 AM</p>
+        </div>
+        <div class="fieldD2">
+          <h2 class="question-feedback">Question:</h2>
+          <textarea class="userquestion" rows="3" placeholder="Enter a Question"></textarea>
+          <h2 class="answer-feedback">Answer:</h2>
+          <textarea class="useranswer" rows="3" placeholder="Enter received answer"></textarea>
+        </div>
+      </div>
+    </div>
+    `;
+    // Re-import the script to re-attach event listeners
+    await import('../../src/scripts/main/public/js/feedback.js'); // Adjust the path to your JavaScript file
+   });
 
-//   test('should add feedback to localStorage', async () => {
-//     localStorage.clear();
-//     document.dispatchEvent(new Event('DOMContentLoaded'));
-//     const addFeedbackButton = document.getElementById('openModal');
-//     addFeedbackButton.click();
-//     const feedbackContainer = document.getElementById('feedbackContainer');
+  test('should add feedback to localStorage', async () => {
+    localStorage.clear();
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+    const addFeedbackButton = document.getElementById('openModal');
+    addFeedbackButton.click();
+    const feedbackContainer = document.getElementById('feedbackContainer');
 
-//     const feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
-//     expect(feedbacks.length).toBe(1);
-//   });
+    const feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
+    expect(feedbacks.length).toBe(1);
+  });
 
-//   test('should load feedback from localStorage', () => {
-//     const feedback = {
-//       id: 'id-123',
-//       date: 'June 5th, 2023',
-//       time: '12:34 PM',
-//       question: 'Sample question?',
-//       answer: 'Sample answer.',
-//     };
-//     localStorage.setItem('feedbacks', JSON.stringify([feedback]));
+  test('should load feedback from localStorage', () => {
+    const feedback = {
+      id: 'id-123',
+      date: 'June 5th, 2023',
+      time: '12:34 PM',
+      question: 'Sample question?',
+      answer: 'Sample answer.',
+    };
+    localStorage.setItem('feedbacks', JSON.stringify([feedback]));
 
-//     // Trigger the DOMContentLoaded event to load feedback from localStorage
-//     document.dispatchEvent(new Event('DOMContentLoaded'));
+    // Trigger the DOMContentLoaded event to load feedback from localStorage
+    document.dispatchEvent(new Event('DOMContentLoaded'));
 
-//     const feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
-//     expect(feedbacks.length).toBe(1);
-//   });
+    const feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
+    expect(feedbacks.length).toBe(1);
+  });
 
-//   test('should delete feedback from container and localStorage', () => {
-//     document.dispatchEvent(new Event('DOMContentLoaded'));
+  test('should delete feedback from container and localStorage', () => {
+    document.dispatchEvent(new Event('DOMContentLoaded'));
 
-//     const addFeedbackButton = document.getElementById('openModal');
+    const addFeedbackButton = document.getElementById('openModal');
 
-//     addFeedbackButton.click();
+    addFeedbackButton.click();
 
-//     let feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
-//     const feedbackContainer = document.getElementById('feedbackContainer');
-//     const feedbackList = feedbackContainer.querySelector('.feedbacklist');
-//     const deleteButton = feedbackList.querySelector('.delete-btn');
-//     deleteButton.click();
+    let feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
+    const feedbackContainer = document.getElementById('feedbackContainer');
+    const feedbackList = feedbackContainer.querySelector('.feedbacklist');
+    const deleteButton = feedbackList.querySelector('.delete-btn');
+    deleteButton.click();
 
-//     feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
-//     expect(feedbacks.length).toBe(0);
-//   });
-// });
+    feedbacks = JSON.parse(localStorage.getItem('feedbacks'));
+    expect(feedbacks.length).toBe(0);
+  });
+ });
 describe('formatDate', () => {
     it('should format date with correct suffix', () => {
         const date = new Date(2023, 5, 1); // June 1, 2023
