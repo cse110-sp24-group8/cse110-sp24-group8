@@ -1,3 +1,4 @@
+/* global SimpleMDE */
 initializeSimpleMDE();
 
 // Event listener for the 'Add Log' button
@@ -32,6 +33,7 @@ window.onload = function () {
   }
 };
 
+/* eslint-disable-next-line no-unused-vars */
 function addLog() {
   let content = window.simplemde.value();
   const date = document.getElementById('logDate').value;

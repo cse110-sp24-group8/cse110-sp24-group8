@@ -1,3 +1,5 @@
+/* global SimpleMDE */
+
 document.addEventListener('DOMContentLoaded', function () {
     var simplemde = new SimpleMDE({ element: document.getElementById("fileContent") });
     const storagePrefix = 'file_';

@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "lint": "eslint --config eslint.config.mjs 'src/scripts/*.js",
+        "lint": "eslint --config eslint.config.mjs 'src/scripts/main/public/js/*.js'",
         "prettier-check": "prettier --write 'src/**/*.{js,css,md}'",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
