@@ -183,7 +183,7 @@ button.frame {
 }
 
 .close {
-  color: var(--lecoder-header-color purple);
+  color: var(--lecoder-header-color);
   z-index: 100;
   position: absolute;
   right: 8px;
@@ -330,12 +330,12 @@ button.frame {
 }
 
 .fieldD1 {
-  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  background: var(--lecoder-gradient-gold);
 }
 
 .fieldD2 {
   background: white;
-  border: 2px solid gold;
+  border: 2px solid var(--lecoder-gold);
   overflow-y: scroll;
   height: 440px;
 }

@@ -91,7 +91,7 @@ h2 {
   border: none;
   text-align: center;
   padding: 15px;
-  color: #515070;
+  color: var(--lecoder-light-purple);
   font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;

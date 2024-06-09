@@ -48,20 +48,20 @@ h1 {
 }
 
 #dueSoonContainer {
-    background-color: var(--lecoder-gold, gold);
-    background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background-color: var(--lecoder-gradient-gold, gold);
+    background: var(--lecoder-gradient-gold);
     white-space: normal;
 }
 
 #dueSoonContainer h3,
 ul {
     margin-left: 1rem;
-    color: var(--lecoder-header-color, purple);
+    color: var(--lecoder-purple, purple);
 }
 
 #dueSoonContainer h2 {
     text-align: center;
-    color: var(--lecoder-header-color, purple);
+    color: var(--lecoder-purple, purple);
 }
 
 #progressContainer {

@@ -60,7 +60,7 @@ html, body {
   height: 63px;
   top: 10px;
   left: 5%;  /* adjust left as percentage for better responsiveness */
-  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  background: var(--lecoder-gradient-gold);
   border-radius: 5px;
   margin-top: 1%;
 }
@@ -499,6 +499,7 @@ html, body {
 .to-do-list .text-wrapper,
 .to-do-list .date-wrapper {
   font-family: 'Karla_regular';
+  color: var(--lecoder-purple);
 }
 
 .date-wrapper {

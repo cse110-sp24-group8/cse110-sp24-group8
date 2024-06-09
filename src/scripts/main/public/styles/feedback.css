@@ -85,12 +85,12 @@ html, body {
 }
 
 .fieldD1 {
-  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  background: var(--lecoder-gradient-gold);
 }
 
 .fieldD2 {
   background: white;
-  border: 2px solid gold;
+  border: 2px solid var(--lecoder-gold);
 }
 
 .date-feedback, .time-feedback, .question-feedback, .answer-feedback {

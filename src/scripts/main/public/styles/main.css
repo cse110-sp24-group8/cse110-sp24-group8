@@ -202,11 +202,7 @@ header img {
     --lecoder-light-purple: #b67af3;
     --lecoder-light-gold: #EDDDA5;
     --lecoder-header-color: white;
-    --lecoder-gradient-gold: linear-gradient(
-        160deg,
-        rgba(253, 185, 39, 0.6) 9.51%,
-        #fdb927 86.81%
-      );
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
     --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
 }
 
@@ -220,12 +216,11 @@ header img {
     --lecoder-gradient-purple: linear-gradient(20deg, #c2c0c0 0%, #c2c0c0 100%);
 }
 
-
 :root:has(#dark:checked) {
     --lecoder-purple: black;
     --lecoder-gold: white;
     --lecoder-light-purple: #808080;
-    --lecoder-light-gold: black;
+    --lecoder-light-gold: #424549;
     --lecoder-header-color: rgb(255, 255, 255);
     --lecoder-gradient-gold: linear-gradient(160deg, #424549, #424549);
     --lecoder-gradient-purple: linear-gradient(20deg, #424549, #424549);
@@ -283,51 +278,103 @@ header img {
     color: black;
 }
 
-:root:has(#dark:checked) #calendar td:hover {
-    border-radius: 106px;
-    background: var(--lecoder-light-purple);
-    color: var(--lecoder-gold, white);
-  }
+:root:has(#laker:checked) .fieldD1 {
+    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+}
 
-  :root:has(#dark:checked) .calendar-cell.selected-date{
+:root:has(#dark:checked) .fieldD2 {
+    border: 2px solid black;
+}
+
+:root:has(#dark:checked) .calendar-cell.selected-date{
     border-radius: 106px;
     background: var(--lecoder-light-purple);
     color: var(--lecoder-purple, white);
+}
+
+  :root:has(#light:checked) .to-do-list,
+  .to-do-list .date-wrapper {
+    color: var(--lecoder-header-color), purple !important;
   }
 
-  :root:has(#light:checked) .to-do-list .text-wrapper,
+  :root:has(#light:checked) .text-wrapper {
+    color: var(--lecoder-header-color), purple !important;
+  }
+
+  :root:has(#dark:checked) .text-wrapper {
+    color: var(--lecoder-header-color), purple !important;
+  }
+
+  :root:has(#triton:checked) div{
+    color: var(--lecoder-header-color);
+  }
+
+  :root:has(#triton:checked) .date-wrapper {
+    color: var(--lecoder-gold, gold);
+  }
+
+  :root:has(#triton:checked) .to-do-list .text-wrapper,
   .to-do-list .date-wrapper {
-    color: black;
+    color: var(--lecoder-gold, gold);
   }
 
   :root:has(#light:checked) button.frame {
     background-color: var(--lecoder-gold);
   }
 
-  :root:has(#dark:checked) .to-do-list .text-wrapper,
-  .to-do-list .date-wrapper {
-    color: var(--lecoder-header-color, black);
-  }
-
-  :root:has(#laker:checked) .calendar-cell.selected-date{
+  :root:has(#laker:checked) .calendar-cell.selected-date {
     border-radius: 106px;
     background: var(--lecoder-purple);
     color: var(--lecoder-light-purple, white);
   }
 
-  :root:has(#laker:checked) .editFile {
-    background-color: var(--lecoder-header-color);
+  :root:has(#laker:checked) .to-do-list .overlap {
+    --lecoder-gradient-gold: linear-gradient(-143deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   }
+  :root:has(#laker:checked) .editFile {
+    color: var(--lecoder-header-color);
+  }
+
+  :root:has(#laker:checked) #dueSoonContainer h2{
+    color: var(--lecoder-purple, purple) !important;
+  }
+
+  :root:has(#light:checked) #dueSoonContainer h2 {
+    color: var(--lecoder-header-color), black;
+}
 
   :root:has(#laker:checked) .editFile:hover {
     color: var(--lecoder-gold);
   }
 
-  :root:has(#christmas:checked) .calendar-cell.selected-date{
-    border-radius: 106px;
-    background: var(--lecoder-light-purple);
-    color: var(--lecoder-purple, white);
+  :root:has(#laker:checked) #dueSoonContainer h3, ul, li{
+    color: var(--lecoder-purple);
   }
+
+  :root:has(#light:checked) #dueSoonContainer h3,
+ul {
+    color: var(--lecoder-header-color);
+}
+
+:root:has(#light:checked) #dueSoonContainer li {
+    color: var(--lecoder-header-color);
+}
+
+:root:has(#triton:checked) #dueSoonContainer h2,
+ul {
+    color: var(--lecoder-gold);
+}
+
+:root:has(#triton:checked) #dueSoonContainer h3,
+ul {
+    color: var(--lecoder-gold);
+}
+
+:root:has(#triton:checked) #dueSoonContainer li {
+    color: var(--lecoder-gold);
+}
+
+
 
   :root:has(#triton:checked) .calendar-cell.selected-date{
     border-radius: 106px;
@@ -349,6 +396,51 @@ header img {
     border-radius: 106px;
     background: var(--lecoder-gold);
     color: var(--lecoder-light-gold, white);
+  }
+
+  :root:has(#christmas:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#laker:checked) .close,
+.close:focus {
+  color: var(--lecoder-purple);
+}
+
+:root:has(#laker:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-light-purple);
+  transform: scale(1.2);
+}
+
+  :root:has(#light:checked) .close:hover,
+.close:focus {
+  color: white;
+  transform: scale(1.2);
+}
+
+:root:has(#dark:checked) .close:hover,
+.close:focus {
+  color: black;
+  transform: scale(1.2);
+}
+
+:root:has(#christmas:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-gold);
+  transform: scale(1.2);
+}
+
+:root:has(#triton:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-gold);
+  transform: scale(1.2);
+}
+
+#root:has(#laker:checked) .fieldD1 {
+    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
   }
 
 @media (max-width: 978px) {
