@@ -70,7 +70,7 @@ const localStorageMock = (() => {
       const percentText = document.getElementById('percent');
       expect(percentText.textContent).toBe('50%');
     });
-  
+  });
     // describe('DOMContentLoaded Event Listener', () => {
     //   beforeEach(() => {
     //     localStorage.setItem(
@@ -102,5 +102,5 @@ const localStorageMock = (() => {
       //   const computedStyle = getComputedStyle(progressBar);
       //   expect(computedStyle.animation).toContain('progressAnimation');
       // });
-    });
+    
   // });
