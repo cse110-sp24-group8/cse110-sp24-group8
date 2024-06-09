@@ -324,6 +324,14 @@ header img {
     color: var(--lecoder-gold, gold);
   }
 
+  :root:has(#light:checked) #calendar td {
+    color: black;
+  }
+
+  :root:has(#light:checked) #calendar td:hover {
+    color: white;
+  }
+
   :root:has(#light:checked) button.frame {
     background-color: var(--lecoder-gold);
   }
