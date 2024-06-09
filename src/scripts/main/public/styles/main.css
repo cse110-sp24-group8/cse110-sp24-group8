@@ -10,6 +10,7 @@
 body {
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 main {
@@ -21,14 +22,18 @@ main {
 /* Displays our buttons vertically*/
 .sidebar {
     display: flex;
-    flex-direction: column;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-start;
     padding: 0;
     margin: 0;
-    height: 92%;
+    height: 91.1%;
     background-color: var(--lecoder-purple, purple);
     font-size: 100%;
     text-align: center;
-    
+    /* height: fit-content; */
 }
 
 /* The div and h2 is the logo/name. All of the buttons are in the nav tag.*/
@@ -58,33 +63,26 @@ main {
      /* Adding our style to buttons. Decided that we will have text under icons instead of a toggled sidebar*/
      display: flex;
      flex-direction: column;
-     flex-wrap: nowrap;
+     flex-wrap: wrap;
      justify-content: center;
      align-items: center;
      align-content: stretch;
-     background-color: var(--lecoder-purple, purple);
-     color: white;
+
+     /* background-color: var(--lecoder-purple, purple); */
+     color: var(--lecoder-header-color, white);
      flex: 1;
      text-decoration: none;
-
+     box-sizing: none;
 }
 
-
-
-.sideButton:hover      {
-    background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+.sideButton:hover {
+    background: var(--lecoder-gradient-gold);
 
   
 }
 
 .sideButton:focus    {
-    background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+    background: var(--lecoder-gradient-gold);
 
   
 }
@@ -97,7 +95,7 @@ header {
 }
 
 header h1 {
-    color: white;
+    color: var(--lecoder-header-color);
     text-align: center;
     font-size: 3rem;
     padding: 1rem;
@@ -112,8 +110,391 @@ header img {
     width: 75%;
 }
 
+#themeSwitcher {
+    grid-column-end: 3;
+}
+
+#themeSwitcher > fieldset {      
+    border: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row; /* affects whether vertical or horizontal*/
+    gap: 2rem;
+    width: 0;
+    background-color: var(--lecoder-light-purple);
+    padding: 1rem 1rem;
+    top: 0.6rem;
+    right: 0.6rem;
+    border-radius: 50px;
+    margin-inline: auto;
+    transition: width .5s ease;
+    overflow: hidden; /* Keeps content hidden when collapsed */
+    white-space: nowrap;
+}
+
+#themeSwitcher input[type="radio"] {
+    appearance: none;
+    width: .7rem;
+    height: .7rem;
+    outline: 3px solid;
+    outline-offset: 3px;
+    border-radius: 50%;
+    margin-top: .6rem;
+    display: none;
+}
+
+#themeSwitcher input[type="radio"]#laker {
+    color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#laker:checked {
+    background-color: #552583;
+}
+
+#themeSwitcher input[type="radio"]#light {
+    color: white;
+}
+
+#themeSwitcher input[type="radio"]#light:checked {
+    background-color: white;
+}
+
+#themeSwitcher input[type="radio"]#dark {
+    color: black;
+}
+
+#themeSwitcher input[type="radio"]#dark:checked {
+    background-color: black;
+}
+
+#themeSwitcher input[type="radio"]#christmas {
+    color: red;
+}
+
+#themeSwitcher input[type="radio"]#christmas:checked {
+    background-color: rgb(3, 99, 11);
+}
+
+#themeSwitcher input[type="radio"]#triton {
+    color: #182B49;
+}
+
+#themeSwitcher input[type="radio"]#triton:checked {
+    background-color: #fdb927;
+}
+
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+:root:has(#laker:checked) {
+    --lecoder-purple: #552583;
+    --lecoder-gold: #fdb927;
+    --lecoder-light-purple: #b67af3;
+    --lecoder-light-gold: #EDDDA5;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#light:checked) {
+    --lecoder-purple: rgb(107, 107, 107);
+    --lecoder-gold: #838383;
+    --lecoder-light-purple: #838383;
+    --lecoder-light-gold: black;
+    --lecoder-header-color: black;
+    --lecoder-gradient-gold: linear-gradient(160deg, #c2c0c0 .51%, #c2c0c0 86.81%);
+    --lecoder-gradient-purple: linear-gradient(20deg, #c2c0c0 0%, #c2c0c0 100%);
+}
+
+:root:has(#dark:checked) {
+    --lecoder-purple: black;
+    --lecoder-gold: white;
+    --lecoder-light-purple: #808080;
+    --lecoder-light-gold: #424549;
+    --lecoder-header-color: rgb(255, 255, 255);
+    --lecoder-gradient-gold: linear-gradient(160deg, #424549, #424549);
+    --lecoder-gradient-purple: linear-gradient(20deg, #424549, #424549);
+}
+
+:root:has(#christmas:checked) {
+    --lecoder-purple:#960606;
+    --lecoder-gold: #960606;
+    --lecoder-light-purple: #3e8f0f;
+    --lecoder-light-gold: #ffdbdb;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, #f7a3a3  9.51%, #f7a3a3 86.81%);
+    --lecoder-gradient-purple: linear-gradient(20deg, #f7a3a3 0%, #f7a3a3 100%);
+}
+
+:root:has(#triton:checked) {
+    --lecoder-purple: #182B49;
+    --lecoder-gold: #FFCD00;
+    --lecoder-light-purple: #182B49;
+    --lecoder-light-gold: #182B49;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, #00629B  9.51%, #00629B.81%);
+    --lecoder-gradient-purple: linear-gradient(20deg, #00629B 0%, #00629B 100%);
+}
+
+:root:has(#triton:checked) #themeSwitcher fieldset {
+    background-color: #00629B;
+}
+
+:root:has(#triton:checked) #openModal .union-wrapper:hover {
+    background-color: #00629B;
+}
+
+:root:has(#triton:checked) .to-do-list .union-wrapper:hover {
+    background-color: #00629B;
+}
+
+:root:has(#triton:checked) .add-log-btn:hover, .add-log-btn:focus {
+    background-color: #00629B;
+}
+
+:root:has(#dark:checked) #calendar-details {
+    background-color: var(--lecoder-light-purple);
+}
+
+:root:has(#dark:checked) .editFile:hover {
+    color: black;
+}
+
+:root:has(#dark:checked) #fileSelect {
+    color: black;
+}
+
+:root:has(#dark:checked) .fileSelect:hover {
+    color: black;
+}
+
+:root:has(#laker:checked) .fieldD1 {
+    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+}
+
+:root:has(#dark:checked) .fieldD2 {
+    border: 2px solid black;
+}
+
+:root:has(#dark:checked) .progress-circle .bg-circle {
+    stroke: var(--lecoder-light-purple,gold);
+}
+
+:root:has(#laker:checked) #progressContainter{
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+}
+
+:root:has(#dark:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+}
+
+  :root:has(#light:checked) .to-do-list,
+  .to-do-list .date-wrapper {
+    color: var(--lecoder-header-color), purple !important;
+  }
+
+  :root:has(#light:checked) .text-wrapper {
+    color: var(--lecoder-header-color), purple !important;
+  }
+
+  :root:has(#dark:checked) .text-wrapper {
+    color: var(--lecoder-header-color), purple !important;
+  }
+
+  :root:has(#triton:checked) div{
+    color: var(--lecoder-header-color);
+  }
+
+  :root:has(#triton:checked) .date-wrapper {
+    color: var(--lecoder-gold, gold);
+  }
+
+  :root:has(#triton:checked) .to-do-list .text-wrapper,
+  .to-do-list .date-wrapper {
+    color: var(--lecoder-gold, gold);
+  }
+
+  :root:has(#light:checked) #calendar td {
+    color: black;
+  }
+
+  :root:has(#light:checked) #calendar td:hover {
+    color: white;
+  }
+
+  :root:has(#light:checked) button.frame {
+    background-color: var(--lecoder-gold);
+  }
+
+  :root:has(#laker:checked) .calendar-cell.selected-date {
+    border-radius: 106px;
+    background: var(--lecoder-purple);
+    color: var(--lecoder-light-purple, white);
+  }
+
+  :root:has(#laker:checked) .to-do-list .overlap {
+    --lecoder-gradient-gold: linear-gradient(-143deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  }
+  :root:has(#laker:checked) .editFile {
+    color: var(--lecoder-header-color);
+  }
+
+  :root:has(#laker:checked) #dueSoonContainer h2{
+    color: var(--lecoder-purple, purple) !important;
+  }
+
+  :root:has(#light:checked) #dueSoonContainer h2 {
+    color: var(--lecoder-header-color), black;
+}
+
+  :root:has(#laker:checked) .editFile:hover {
+    color: var(--lecoder-gold);
+  }
+
+  :root:has(#laker:checked) #dueSoonContainer h3, ul, li{
+    color: var(--lecoder-purple);
+  }
+
+  :root:has(#light:checked) #dueSoonContainer h3,
+ul {
+    color: var(--lecoder-header-color);
+}
+
+:root:has(#light:checked) #dueSoonContainer li {
+    color: var(--lecoder-header-color);
+}
+
+:root:has(#triton:checked) #dueSoonContainer h2,
+ul {
+    color: var(--lecoder-gold);
+}
+
+:root:has(#triton:checked) #dueSoonContainer h3,
+ul {
+    color: var(--lecoder-gold);
+}
+
+:root:has(#triton:checked) #dueSoonContainer li {
+    color: var(--lecoder-gold);
+}
+
+:root:has(#triton:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-header-color);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#triton:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-gold);
+    color: var(--lecoder-gradient-gold, white);
+  }
+
+  :root:has(#triton:checked) .union-wrapper:hover{
+    background-color: #00629B;
+  }
+
+  :root:has(#christmas:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-gold);
+    color: var(--lecoder-light-gold, white);
+  }
+
+  :root:has(#christmas:checked) .calendar-cell.selected-date{
+    border-radius: 106px;
+    background: var(--lecoder-light-purple);
+    color: var(--lecoder-purple, white);
+  }
+
+  :root:has(#laker:checked) .close,
+.close:focus {
+  color: var(--lecoder-purple);
+}
+
+:root:has(#laker:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-light-purple);
+  transform: scale(1.2);
+}
+
+:root:has(#light:checked) .close:hover,
+.close:focus {
+  color: white;
+  transform: scale(1.2);
+}
+
+:root:has(#dark:checked) .close:hover,
+.close:focus {
+  color: black;
+  transform: scale(1.2);
+}
+
+:root:has(#christmas:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-gold);
+  transform: scale(1.2);
+}
+
+:root:has(#triton:checked) .close:hover,
+.close:focus {
+  color: var(--lecoder-gold);
+  transform: scale(1.2);
+}
+
+#root:has(#laker:checked) .fieldD1 {
+    background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+  }
+  
+  
+#root:has(#laker:checked) #indexButton {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+
+  #root:has(#laker:checked) #indexButton{
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+  #root:has(#laker:checked) #indexButton:focus {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+#root:has(#laker:checked) .sideButton:hover {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
+#root:has(#laker:checked) .sideButton:focus    {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
 
 @media (max-width: 978px) {
+
     html, body {
         overflow: hidden;
     }
@@ -126,11 +507,37 @@ header img {
 
     .sideButton {
         min-width: 0px;
+        box-sizing: none;
     }
 
     .sidebar a span{
         display: none;
     }
+
+    #themeSwitcher {
+        display: block;
+    }
+
+    #themeSwitcher > fieldset {
+        flex-direction: row;
+    }
+    
         
  }
 
+    @media (max-height: 768px) {
+        html, body {
+            overflow: hidden;
+        }
+    
+        .sidebar {
+            min-width: 0px; 
+            text-transform: hidden;
+            box-sizing: none;
+        }
+    
+        .sideButton {
+            min-width: 0px;
+        }
+            
+        }

@@ -11,9 +11,18 @@
     --step-4: clamp(2.3325rem, 2.0823rem + 1.2511vw, 3.0519rem);
     --step-5: clamp(2.7994rem, 2.4461rem + 1.7663vw, 3.815rem);
 
+    /*Laker color theme*/
     --lecoder-purple: #552583;
     --lecoder-gold: #fdb927;
+    --lecoder-light-gold: #EDDDA5;
     --lecoder-light-purple: #b67af3;
+    --lecoder-header-color: white;
+    --lecoder-gradient-gold: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    --lecoder-gradient-purple: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+
+
+    /*Light color theme*/
+
 }
 
 @font-face {
@@ -30,9 +39,10 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+    box-sizing: border-box; 
     font-family: playPen, sans-serif;
 }
+
 
 /* Prevent font size inflation */
 html {
