@@ -64,10 +64,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
     const totalTasks = localStorage.getItem('totalTasks');
     const completedTasks = localStorage.getItem('completedTasks');
     let progressPercent = completedTasks / totalTasks;
-    console.log('Test');
 
+    const progressText = document.querySelector('strong');
+    console.log(progressText.innerHTML);
     if(isNaN(progressPercent)) {
         progressPercent = 1;
+        progressText.innerHTML = "You're Done With Your Tasks!"
+    }
+    else if (progressPercent >= .75) {
+        progressText.innerHTML = "You're Done With Your Tasks!"
+    }
+    else if (progressPercent > .5) {
+        progressText.innerHTML = "You've Passed The Halfway Mark!"
+    }
+    else if (progressPercent === .5) {
+        progressText.innerHTML = "You're Halfway Done!"
+    }
+    else if (progressPercent >= .25) {
+        progressText.innerHTML = "You Have A Good Amount Of Work!"
+    }
+    else {
+        progressText.innerHTML = "You Have A Lot Of Work!"
     }
 
     //Will use later for changing the task amount
@@ -198,14 +215,16 @@ function convertToPercentage(decimal) {
  * @returns {String} Month, Day
  */
 function monthDayDate(dateString) {
-    // Split the date string and create a Date object with local time
-    const [year, month, day] = dateString.split('-').map(Number);
-    const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
-    // Format the date to "Month Day" format
-    const options = { month: 'long', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options);
+    if (dateString !== null) {
+        // Split the date string and create a Date object with local time
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day); // Month is zero-based in JavaScript Date
+        // Format the date to "Month Day" format
+        const options = { month: 'long', day: 'numeric' };
+        const formattedDate = date.toLocaleDateString('en-US', options);
 
-    return formattedDate;
+        return formattedDate;
+    }
 }
 
 /**
