@@ -68,12 +68,12 @@ function updateIcons(theme) {
             'feedbackButton': '../icons/feedback-icon-white.png'
         },
         'christmas': {
-            'indexButton': '../icons/dashboard-icon-red.png',
-            'taskListButton': '../icons/tasklist-icon-red.png',
-            'calendarButton': '../icons/calendar-icon-red.png',
-            'codeLogButton': '../icons/codelog-icon-red.png',
-            'documentationButton': '../icons/documentation-icon-red.png',
-            'feedbackButton': '../icons/feedback-icon-red.png'
+            'indexButton': '../icons/dashboard-icon-white.png',
+            'taskListButton': '../icons/tasklist-icon-white.png',
+            'calendarButton': '../icons/calendar-icon-white.png',
+            'codeLogButton': '../icons/codelog-icon-white.png',
+            'documentationButton': '../icons/documentation-icon-white.png',
+            'feedbackButton': '../icons/feedback-icon-white.png'
         },
         'triton': {
             'indexButton': '../icons/dashboard-icon-yellow.png',
