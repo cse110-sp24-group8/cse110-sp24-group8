@@ -625,7 +625,7 @@ const getDate = (daysToAdd) => {
         return `${year}-${month}-${day}`;
       };
 
-      dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
+      //dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
   
