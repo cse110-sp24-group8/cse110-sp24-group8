@@ -20,10 +20,7 @@ h1 {
 }
 
 #codeLogButton{
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-);
+  background: var(--lecoder-gradient-gold);
 }
 
 .content-holder{

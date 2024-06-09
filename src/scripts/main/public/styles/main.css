@@ -76,19 +76,13 @@ main {
 }
 
 .sideButton:hover {
-    background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+    background: var(--lecoder-gradient-gold);
 
   
 }
 
 .sideButton:focus    {
-    background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+    background: var(--lecoder-gradient-gold);
 
   
 }
@@ -206,7 +200,7 @@ header img {
 }
 
 :root:has(#light:checked) {
-    --lecoder-purple: rgba(194, 192, 192, 1);
+    --lecoder-purple: rgb(133, 133, 133);
     --lecoder-gold: #838383;
     --lecoder-light-purple: #838383;
     --lecoder-light-gold: black;
@@ -283,6 +277,14 @@ header img {
 
 :root:has(#dark:checked) .fieldD2 {
     border: 2px solid black;
+}
+
+:root:has(#dark:checked) .progress-circle .bg-circle {
+    stroke: var(--lecoder-light-purple,gold);
+}
+
+:root:has(#laker:checked) #progressContainter{
+    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
 }
 
 :root:has(#dark:checked) .calendar-cell.selected-date{
@@ -373,9 +375,7 @@ ul {
     color: var(--lecoder-gold);
 }
 
-
-
-  :root:has(#triton:checked) .calendar-cell.selected-date{
+:root:has(#triton:checked) .calendar-cell.selected-date{
     border-radius: 106px;
     background: var(--lecoder-header-color);
     color: var(--lecoder-purple, white);
@@ -414,7 +414,7 @@ ul {
   transform: scale(1.2);
 }
 
-  :root:has(#light:checked) .close:hover,
+:root:has(#light:checked) .close:hover,
 .close:focus {
   color: white;
   transform: scale(1.2);
@@ -441,6 +441,43 @@ ul {
 #root:has(#laker:checked) .fieldD1 {
     background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
   }
+  
+  
+#root:has(#laker:checked) #indexButton {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+
+  #root:has(#laker:checked) #indexButton{
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+  #root:has(#laker:checked) #indexButton:focus {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+  }
+
+#root:has(#laker:checked) .sideButton:hover {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
+
+#root:has(#laker:checked) .sideButton:focus    {
+    background: var(
+    --Linear-Laker-Gold,
+    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
+  );
+}
 
 @media (max-width: 978px) {
 

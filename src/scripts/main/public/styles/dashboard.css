@@ -12,10 +12,7 @@ html, body {
 }
 
 #indexButton{
-    background: var(
-        --Linear-Laker-Gold,
-        linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-    );
+    background: var(--lecoder-gradient-gold);
 }
 
 :root {
@@ -66,7 +63,7 @@ ul {
 
 #progressContainer {
     background-color: var(--lecoder-purple, purple);
-    background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background: var(--lecoder-gradient-purple, purple);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -113,10 +110,9 @@ ul {
     stroke: var(--lecoder-gold,gold);
 }
 
-
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
-    background: var(--lecoder-gradient-purple), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background: var(--lecoder-gradient-purple, purple);
     grid-column: span 2;
 }
 
