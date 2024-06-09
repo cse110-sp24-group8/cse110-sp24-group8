@@ -23,11 +23,6 @@ header h1 {
     min-height: 55vh;
 }
 
-/* Set default font for all elements */
-* {
-    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-}
-
 .file-wrapper {
     font-family: 'Karla_regular';
 }
