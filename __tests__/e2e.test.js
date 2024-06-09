@@ -29,14 +29,23 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       return `${month} ${day}`;
   };
 
+  // const getDate = (daysToAdd) => {
+  //     const today = new Date();
+  //     const date = new Date(today);
+  //     date.setDate(today.getDate() + daysToAdd);
+  //     const day = String(date.getDate()).padStart(2, '0');
+  //     const month = String(date.getMonth() + 1).padStart(2, '0');
+  //     const year = date.getFullYear();
+  //     return `${day}/${month}/${year}`;
+  // };
   const getDate = (daysToAdd) => {
-      const today = new Date();
-      const date = new Date(today);
-      date.setDate(today.getDate() + daysToAdd);
-      const day = String(date.getDate()).padStart(2, '0');
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}/${month}/${year}`;
+    const today = new Date();
+    const date = new Date(today);
+    date.setUTCDate(today.getUTCDate() + daysToAdd);
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
   };
 
   const addTask = async (title, date) => {
