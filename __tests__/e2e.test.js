@@ -6,28 +6,28 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
 
   // Helper function to format the task list date
-  const formatTaskListDate = (date) => {
-      const day = date.getUTCDate();
-      const month = date.toLocaleString('default', { month: 'long' });
-      const year = date.getUTCFullYear();
-      const daySuffix = (day) => {
-          if (day > 3 && day < 21) return 'th'; // covers 11-20
-          switch (day % 10) {
-              case 1: return "st";
-              case 2: return "nd";
-              case 3: return "rd";
-              default: return "th";
-          }
-      };
-      return `${day}${daySuffix(day)} ${month} ${year}`;
-  };
+  // const formatTaskListDate = (date) => {
+  //     const day = date.getUTCDate();
+  //     const month = date.toLocaleString('default', { month: 'long' });
+  //     const year = date.getUTCFullYear();
+  //     const daySuffix = (day) => {
+  //         if (day > 3 && day < 21) return 'th'; // covers 11-20
+  //         switch (day % 10) {
+  //             case 1: return "st";
+  //             case 2: return "nd";
+  //             case 3: return "rd";
+  //             default: return "th";
+  //         }
+  //     };
+  //     return `${day}${daySuffix(day)} ${month} ${year}`;
+  // };
 
   // Helper function to format the Due Soon date
-  const formatDueSoonDate = (date) => {
-      const day = date.getUTCDate();
-      const month = date.toLocaleString('default', { month: 'long' });
-      return `${month} ${day}`;
-  };
+  // const formatDueSoonDate = (date) => {
+  //     const day = date.getUTCDate();
+  //     const month = date.toLocaleString('default', { month: 'long' });
+  //     return `${month} ${day}`;
+  // };
 
   // const getDate = (daysToAdd) => {
   //     const today = new Date();
@@ -38,15 +38,38 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
   //     const year = date.getFullYear();
   //     return `${day}/${month}/${year}`;
   // };
-  const getDate = (daysToAdd) => {
+  const formatTaskListDate = (date) => {
+    const day = date.getUTCDate();
+    const month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+    const year = date.getUTCFullYear();
+    const daySuffix = (day) => {
+        if (day > 3 && day < 21) return 'th'; // covers 11-20
+        switch (day % 10) {
+            case 1: return "st";
+            case 2: return "nd";
+            case 3: return "rd";
+            default: return "th";
+        }
+    };
+    return `${day}${daySuffix(day)} ${month} ${year}`;
+};
+
+const formatDueSoonDate = (date) => {
+    const day = date.getUTCDate();
+    const month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+    return `${month} ${day}`;
+};
+
+const getDate = (daysToAdd) => {
     const today = new Date();
-    const date = new Date(today);
-    date.setUTCDate(today.getUTCDate() + daysToAdd);
+    const date = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate() + daysToAdd));
     const day = String(date.getUTCDate()).padStart(2, '0');
     const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const year = date.getUTCFullYear();
     return `${day}/${month}/${year}`;
-  };
+};
+
+
 
   const addTask = async (title, date) => {
       await page.click('.union');
@@ -341,6 +364,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       const taskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
 
       for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
+        console.log(`Task: ${taskTextsAfterStrike[i]}, Expected Date: ${expectedDatesAfterStrike[i]}, Actual Date: ${taskDatesAfterStrike[i]}`);
           expect(taskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
           expect(taskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
           if (expectedOrderAfterStrike[i] === 'hi1') {
@@ -356,6 +380,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
       const reloadedTaskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
 
       for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
+          console.log(`Task after reload: ${taskTextsAfterReload[i]}, Expected Date: ${expectedDatesAfterStrike[i]}, Actual Date after reload: ${taskDatesAfterReload[i]}`);
           expect(reloadedTaskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
           expect(reloadedTaskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
           if (expectedOrderAfterStrike[i] === 'hi1') {
