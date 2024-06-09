@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
     // Retrieving and applying theme from localStorage
     const retrieveTheme = function() {
-        const currentTheme = localStorage.getItem("theme");
+        let currentTheme = localStorage.getItem("theme");
         if (!currentTheme) {
             currentTheme = 'laker'; // Default theme if none is set
             storeTheme(currentTheme);
