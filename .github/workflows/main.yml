@@ -42,3 +42,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
+          coverageCommand: npm run coverage # Specifies the command to run to collect coverage data
+          debug: true # Enables debug output for the actions
+
