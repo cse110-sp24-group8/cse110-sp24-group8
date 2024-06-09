@@ -8,8 +8,8 @@
         "dev": "node live-server.js"
     },
     "devDependencies": {
-        "@babel/core": "^7.24.6",
-        "@babel/preset-env": "^7.24.6",
+        "@babel/core": "^7.24.7",
+        "@babel/preset-env": "^7.24.7",
         "@eslint/js": "^9.2.0",
         "babel-jest": "^29.7.0",
         "eslint": "^9.2.0",
@@ -28,7 +28,9 @@
     },
     "type": "module",
     "jest": {
-        "transform": {},
+        "transform": {
+            "^.+\\.js$": "babel-jest"
+        },
         "preset": "jest-puppeteer",
         "verbose": true,
         "testTimeout": 150000,
@@ -36,5 +38,8 @@
         "setupFiles": [
             "./jest.setup.js"
         ]
+    },
+    "dependencies": {
+        "esm": "^3.2.25"
     }
 }
