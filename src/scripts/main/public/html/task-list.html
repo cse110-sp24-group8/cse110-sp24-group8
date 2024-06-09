@@ -15,6 +15,30 @@
       <h1>TaskList</h1>
       <!-- <div></div> -->
     </header>
+
+    <form id="themeSwitcher">
+      <fieldset>
+          <legend class="visually-hidden">Pick a color scheme</legend>
+          <label for="laker" class="visually-hidden">Laker</label>
+          <input type="radio" name="theme" id="laker">
+
+          <label for="light" class="visually-hidden">Light</label>
+          <input type="radio" name="theme" id="light">
+
+          <label for="dark" class="visually-hidden">Dark</label>
+          <input type="radio" name="theme" id="dark">
+
+          <label for="christmas" class="visually-hidden">Christmas</label>
+          <input type="radio" name="theme" id="christmas">
+
+          <label for="triton" class="visually-hidden">Triton</label>
+          <input type="radio" name="theme" id="triton">
+          <button type="button" class="hamburger-button">&#9776;</button>
+      </fieldset>
+    </form>
+
+    <script src="../js/themeswitch.js"></script> 
+    
     <!--Contains the 2 main components the sidebar and content-->
     <main>
       <nav class="sidebar">
@@ -60,6 +84,38 @@
               </button>
           </div>
         </div>
+        <noscript>
+          <section>
+            <h2>Oops!</h2>
+            <h3>Please Enable JavaScript</h3>
+          </section>
+          <style>
+            main {
+              background-image:url(/src/scripts/main/public/img/No_Script_Background.png) ;
+              background-size: cover; /* Cover the entire page */
+              background-position: center; /* Center the background image */
+              background-repeat: no-repeat; /* Do not repeat the image */
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              justify-content: center;
+              align-items: center;
+              align-content: center;
+            }
+            #dashboardHolder, .sidebar, form, .to-do-list, .overlap{
+              display: none;
+              visibility: none;
+            }
+            section {
+              color: white;
+            }
+            h2 {
+              margin: 0;
+              font-size: 5rem ;
+              overflow-y: hidden;
+            }
+          </style>
+        </noscript>
     </main>
     <script src="../js/task_script.js"></script>
   </body>

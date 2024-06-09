@@ -12,10 +12,7 @@
 }
 
 #calendarButton{
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
+  background: var(--lecoder-gradient-gold);
 }
 
 .headerWithContent {
@@ -91,7 +88,7 @@ h2 {
   border: none;
   text-align: center;
   padding: 15px;
-  color: #515070;
+  color: var(--lecoder-light-purple);
   font-family: 'Segoe UI';
   font-size: 14px;
   font-style: normal;
@@ -121,15 +118,15 @@ h2 {
 /* Hover effect for table cells */
 #calendar td:hover {
   border-radius: 106px;
-  background: var(--Linear-Laker-Gold);
-  color: white;
+  background: var(--lecoder-gradient-gold,gold);
+  color: var(--lecoder-header-color, white);
 }
 
 /* Hover effect for table cells */
 .calendar-cell.selected-date{
   border-radius: 106px;
-  background: var(--Linear-Laker-Gold);
-  color: white;
+  background: var(--lecoder-purple,gold);
+  color: var(--lecoder-header-color, white);
 }
 
 .calendar-cell {
@@ -139,7 +136,7 @@ h2 {
 /* Style for calendar details section */
 #calendar-details {
   margin-top: -90px;
-  background: linear-gradient(to top, #ffae00 75%, rgba(250, 210, 102, 0.722) 99%);
+  background: var(--lecoder-gradient-gold,gold);
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -187,19 +184,13 @@ a {
 
 /* Hover effect for link elements */
 a:hover {
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
-  color: rgb(0, 0, 0);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  color: var(--lecoder-header-color, black);
 }
 
 a:focus {
-  background: var(
-    --Linear-Laker-Gold,
-    linear-gradient(160deg, rgba(253, 185, 39, 0.6) 9.51%, #fdb927 86.81%)
-  );
-  color: rgb(0, 0, 0);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+  color: var(--lecoder-header-color, black);
 }
 
 /* Style for previous button */
@@ -230,14 +221,14 @@ a:focus {
   height: 69px;
   bottom: 20px;  /* Set distance from bottom */
   right: 20px;   /* Set distance from right */
-  background-color: var(--variable-collection-laker-purple);
+  background-color: var(--lecoder-purple);
   border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
   transform: translate(0, 0);  /* Adjust transform if necessary, or remove it if not needed */
 }
 
 .union-wrapper:hover {
-  background-color: rgb(88, 101, 174);
+  background-color: var(--lecoder-light-purple,rgb(88, 101, 174));
 }
 
 .union {
@@ -291,7 +282,7 @@ a:focus {
 }
 
 .close {
-  color: var(--variable-collection-laker-purple); /* Ensures the color is correct */
+  color: var(--lecoder-header-color); /* Ensures the color is correct */
   position: absolute;
   top: 20px;  /* Adjusted for clear visibility */
   right: 0%;
@@ -307,7 +298,7 @@ a:focus {
   position: absolute;
   width: 100%;
   height: 34%;
-  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
 }
 
 .add-list .text-wrapper {
@@ -359,7 +350,7 @@ a:focus {
 }
 
 .add-list .frame {
-  background-color: #552583;
+  background-color: var(--lecoder-light-purple,purple);
   color: #fff;
   border: none;
   position: absolute;
@@ -372,7 +363,7 @@ a:focus {
 }
 
 .add-list .div-wrapper {
-  border-color: #552583;
+  border-color: var(--lecoder-purple,purple);
   border: none;
   position: absolute;
   bottom: 20px; /* Adjust the distance from the bottom */
@@ -409,7 +400,7 @@ a:focus {
 } 
 
 .add-list .div-wrapper:hover {
-  background-color: #6a3982;
+  background-color: var(--lecoder-purple,purple);
   color: whitesmoke;
 }
 
@@ -570,15 +561,17 @@ a:focus {
   line-height: normal;
   white-space: nowrap; /* Prevents text from wrapping */
   overflow: hidden; /* Hides text that overflows */
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
+  pointer-events: none; 
 }
 
-.time-wrapper {
+.time-wrapper-display {
   font-size: 12px;
   color: #552583;
   position: absolute;
   left: 9px;
   bottom: 10px;
+  pointer-events: none; 
 }
 
 .edit-btn{
