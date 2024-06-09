@@ -570,15 +570,17 @@ a:focus {
   line-height: normal;
   white-space: nowrap; /* Prevents text from wrapping */
   overflow: hidden; /* Hides text that overflows */
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
+  pointer-events: none; 
 }
 
-.time-wrapper {
+.time-wrapper-display {
   font-size: 12px;
   color: #552583;
   position: absolute;
   left: 9px;
   bottom: 10px;
+  pointer-events: none; 
 }
 
 .edit-btn{

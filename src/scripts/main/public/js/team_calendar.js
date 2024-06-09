@@ -2,19 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    let selectedDate = getPacificDate().toISOString().split('T')[0]; // Format today's date as 'YYYY-MM-DD'
-    let notes = JSON.parse(localStorage.getItem('tasks')) || {};
-
-    function getPacificDate() {
-        const date = new Date(); // Get the local date and time
-        const userOffset = date.getTimezoneOffset() * 60000; // User's timezone offset in milliseconds
-        const pacificOffset = 480 * 60000; // PST offset (UTC-8) in milliseconds
     
-        // Calculate PST date by adjusting UTC time
-        const pacificDate = new Date(date.getTime() + userOffset + pacificOffset);
+    let selectedDate = getPacificDate().toISOString().split('T')[0]; // Gets 'YYYY-MM-DD'
+
+    let notes = JSON.parse(localStorage.getItem('tasks')) || {};
+    
+    function getPacificDate() {
+        const utcNow = Date.now(); // Current timestamp in UTC in milliseconds
+        const pacificOffset = -7 * 60 * 60 * 1000; // PDT is UTC-7 in milliseconds
+    
+        // Create new date object for Pacific time
+        const pacificDate = new Date(utcNow + pacificOffset);
     
         return pacificDate;
-    }    
+    }   
     
     function displayCalendar(month, year) {
         let firstDay = new Date(year, month, 1);
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventElement.innerHTML = `
                     <label class="group">
                         <div class="text-content-wrapper">${event.title}</div>
-                        <div class="time-wrapper">${event.time}</div>
+                        <div class="time-wrapper-display">${event.time}</div>
                         <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                             <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                         </button>
@@ -349,7 +350,7 @@ function updateEventList(targetDate) {
             <div class="overlap" data-task-id="${event.id}">
                 <label class="group">
                     <div class="text-content-wrapper">${event.title}</div>
-                    <div class="time-wrapper">${event.time || ""}</div>
+                    <div class="time-wrapper-display">${event.time || ""}</div>
                     <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                         <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                     </button>
@@ -432,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function() {
         eventsContainer.addEventListener('click', function(event) {
             if (event.target.closest('.edit-btn')) {
                 const eventElement = event.target.closest('.overlap');
-                const eventId = eventElement.dataset.eventId;
+                    const eventId = eventElement.dataset.eventId;
                 loadEditContent(eventId);
             }
         });
