@@ -621,11 +621,11 @@ const getDate = (daysToAdd) => {
       expect(task).toBeDefined();
 
       const convertDateToYYYYMMDD = (dateString) => {
-        const [day, month, year] = dateString.split('/');
-        return `${year}-${month}-${day}`;
+        const [year, day, month] = dateString.split('/');
+        return `${day}-${month}-${year}`;
       };
 
-      //dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
+      dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
   
