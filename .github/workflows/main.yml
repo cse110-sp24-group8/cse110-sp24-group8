@@ -30,11 +30,11 @@ jobs:
         run: sudo apt-get install xvfb -y
       - name: Run E2E Tests
         run: |
-          xvfb-run --auto-servernum nohup npm run dev &
+          nohup npm run dev &
           while ! nc -z localhost 6969; do 
             sleep 1
           done
-          xvfb-run --auto-servernum npm run e2etest
+          npm run e2etest
         env:
           CI: true
       - name: Code Quality Check
