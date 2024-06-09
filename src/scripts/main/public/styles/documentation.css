@@ -97,14 +97,14 @@ body {
 
 /* Style for edit file buttons */
 .editFile {
-    background-color: var(--lecoder-gold);
+    background-color: white;
     margin: 20px;
     border-radius: 20px;
     border: none;
 }
 
 .editFile:hover {
-    color: var(--lecoder-header-color);
+    color: var(--lecoder-gold);
 }
 
 /* Style for delete file button */
