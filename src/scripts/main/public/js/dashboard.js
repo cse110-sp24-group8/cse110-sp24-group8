@@ -192,23 +192,6 @@ export function changeProgressText(percent) {
 }
 
 /**
- * convertToPercentage changes a number to a percent with 2 decimal places and is used for the progress text
- * 
- * @param {float} decimal the decimal percent
- * @returns {String} rounded percentage with 2 decimals
- */
-export function convertToPercentage(decimal) {
-    // Multiply by 100 to convert to percentage
-    var percentage = decimal * 100;
-
-    // Round to two decimal places
-    percentage = Math.round(percentage * 100) / 100;
-
-    // Convert back to string with % symbol
-    return percentage.toFixed(2) + '%';
-}
-
-/**
  * Converts date of YYYY-MM-DD to Month, Day
  * 
  * @param {String} dateString

@@ -22,7 +22,6 @@ const localStorageMock = (() => {
   Object.defineProperty(window, 'localStorage', { value: localStorageMock });
   
   import {
-    convertToPercentage,
     monthDayDate,
     monthDayTime,
     changeProgressText,
@@ -51,12 +50,6 @@ const localStorageMock = (() => {
       expect(progressCalculator(1)).toBe(283);
     });
   
-    test('convertToPercentage converts a decimal to percentage string', () => {
-      expect(convertToPercentage(0.25)).toBe('25.00%');
-      expect(convertToPercentage(0.5)).toBe('50.00%');
-      expect(convertToPercentage(1)).toBe('100.00%');
-    });
-  
     test('monthDayDate converts date to Month Day format', () => {
       expect(monthDayDate('2024-05-15')).toBe('May 15');
     });
@@ -70,37 +63,4 @@ const localStorageMock = (() => {
       const percentText = document.getElementById('percent');
       expect(percentText.textContent).toBe('50%');
     });
-  
-    // describe('DOMContentLoaded Event Listener', () => {
-    //   beforeEach(() => {
-    //     localStorage.setItem(
-    //       'tasks',
-    //       JSON.stringify([
-    //         { text: 'Task 1', date: '2024-05-13', completed: false },
-    //         { text: 'Task 2', date: '2024-05-13', completed: false },
-    //         { text: 'Task 3', date: '2024-05-13', completed: false },
-    //         { text: 'Task 4', date: '2024-05-15', completed: false },
-    //       ])
-    //     );
-    //     localStorage.setItem('totalTasks', '4');
-    //     localStorage.setItem('completedTasks', '2');
-    //   });
-  
-      // test('DOM fully loaded and parsed', () => {
-      //   document.dispatchEvent(new Event('DOMContentLoaded'));
-  
-      //   const dueSection = document.getElementById('dueSoonContainer');
-      //   expect(dueSection.querySelectorAll('h3').length).toBe(2);
-      //   expect(dueSection.querySelectorAll('ul').length).toBe(2);
-      //   expect(dueSection.querySelectorAll('li').length).toBe(4);
-      // });
-  
-      // test('Progress bar updates correctly', () => {
-      //   document.dispatchEvent(new Event('DOMContentLoaded'));
-  
-      //   const progressBar = document.querySelector('.progress');
-      //   const computedStyle = getComputedStyle(progressBar);
-      //   expect(computedStyle.animation).toContain('progressAnimation');
-      // });
-    });
-  // });
+});
