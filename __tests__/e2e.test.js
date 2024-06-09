@@ -1,3 +1,5 @@
+import { ConsoleMessage } from "puppeteer";
+
 describe("Exhaustive E2E testing based on user flow for website.", () => {
   // First, visit the app hosted by live server
   beforeAll(async () => {
@@ -624,7 +626,7 @@ const getDate = (daysToAdd) => {
         const [day, month, year] = dateString.split('/');
         return `${year}-${day}-${month}`;
       };
-
+      console.log("dayAfterTommorow before conversion:" + dayAfterTomorrow)
       dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
