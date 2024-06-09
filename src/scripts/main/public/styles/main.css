@@ -120,13 +120,16 @@ header img {
     display: flex;
     flex-direction: row; /* affects whether vertical or horizontal*/
     gap: 2rem;
-    width: fit-content;
+    width: 0;
     background-color: var(--lecoder-light-purple);
     padding: 1rem 1rem;
     top: 0.6rem;
     right: 0.6rem;
     border-radius: 50px;
     margin-inline: auto;
+    transition: width .5s ease;
+    overflow: hidden; /* Keeps content hidden when collapsed */
+    white-space: nowrap;
 }
 
 #themeSwitcher input[type="radio"] {
@@ -136,6 +139,8 @@ header img {
     outline: 3px solid;
     outline-offset: 3px;
     border-radius: 50%;
+    margin-top: .6rem;
+    display: none;
 }
 
 #themeSwitcher input[type="radio"]#laker {
@@ -200,7 +205,7 @@ header img {
 }
 
 :root:has(#light:checked) {
-    --lecoder-purple: rgb(133, 133, 133);
+    --lecoder-purple: rgb(107, 107, 107);
     --lecoder-gold: #838383;
     --lecoder-light-purple: #838383;
     --lecoder-light-gold: black;
@@ -317,6 +322,14 @@ header img {
   :root:has(#triton:checked) .to-do-list .text-wrapper,
   .to-do-list .date-wrapper {
     color: var(--lecoder-gold, gold);
+  }
+
+  :root:has(#light:checked) #calendar td {
+    color: black;
+  }
+
+  :root:has(#light:checked) #calendar td:hover {
+    color: white;
   }
 
   :root:has(#light:checked) button.frame {
@@ -502,7 +515,11 @@ ul {
     }
 
     #themeSwitcher {
-        display: none;
+        display: block;
+    }
+
+    #themeSwitcher > fieldset {
+        flex-direction: row;
     }
     
         
