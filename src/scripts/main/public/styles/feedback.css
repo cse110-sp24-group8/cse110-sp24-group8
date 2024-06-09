@@ -16,6 +16,10 @@ html, body {
   padding: 0;
 }
 
+#feedbackButton{
+  background: var(--lecoder-gradient-gold,gold)
+}
+
 /* Figma Styles of your File */
 :root {
   /* Colors */
@@ -78,12 +82,12 @@ html, body {
 }
 
 .fieldD1 {
-  background: linear-gradient(281deg, rgba(253, 185, 39, 0.60) 20.93%, #FDB927 82.58%);
+  background: var(--lecoder-gradient-gold);
 }
 
 .fieldD2 {
   background: white;
-  border: 2px solid gold;
+  border: 2px solid var(--lecoder-gold);
 }
 
 .date-feedback, .time-feedback, .question-feedback, .answer-feedback {
@@ -93,7 +97,7 @@ html, body {
 }
 
 .date-feedback, .time-feedback {
-  color: #ffffff;
+  color: var(--lecoder-header-color,white);
   font-size: 24px;
   font-weight: 400;
 }
@@ -112,7 +116,7 @@ html, body {
 }
 
 .question-feedback, .answer-feedback {
-  color: #7e25d7;
+  color: var(--lecoder-purple,purple);
   font-size: 24px;
   font-weight: 400;
 }
@@ -149,14 +153,14 @@ html, body {
   height: 69px;
   bottom: 20px;
   right: 20px;
-  background-color: var(--variable-collection-laker-purple);
+  background-color: var(--lecoder-purple);
   border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
   transform: translate(0, 0);
 }
 
 .union-wrapper:hover {
-  background-color: rgb(94, 95, 99);
+  background-color: var(--lecoder-light-purple);
 }
 
 .feedback .union {
@@ -241,7 +245,7 @@ html, body {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 50px; /* Ensure the height of the sidebar */
+    height: auto; /* Ensure the height of the sidebar */
     min-height: 50px; /* Ensure minimum height to fit icons */
     position: fixed;
     bottom: 0;

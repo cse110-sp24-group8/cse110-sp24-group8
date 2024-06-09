@@ -19,6 +19,10 @@ h1 {
   font-size: 32px;
 }
 
+#codeLogButton{
+  background: var(--lecoder-gradient-gold);
+}
+
 .content-holder{
   box-sizing: border-box;
   width: 100%;
@@ -26,7 +30,7 @@ h1 {
 }
 
 header h1 {
-  color: white;
+  color: var(--lecoder-header-color, black);
   text-align: center;
   font-size: 48px;
   margin: 0;
@@ -38,35 +42,46 @@ header h1 {
 }
 
 .add-log-btn {
-  font-size: 50px;
-  background-color: #552583;
-  color: #fdb927;
-  border: none;
-  border-radius: 50%;
+  position: fixed;
   width: 69px;
   height: 69px;
-  position: fixed;
   bottom: 20px;
   right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  background-color: var(--lecoder-purple, purple);
+  border-radius: 34.5px;
   box-shadow: 2px 2px 15px #0000004c;
-  transition: background-color 0.3s, transform 0.2s;
+  transform: translate(0, 0);
+}
+
+.union {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 18.5px;
+  left: 18.5px;
 }
 
 .add-log-btn:hover {
-  background-color: rgb(88, 101, 174);
+  background-color: var(--lecoder-light-purple);
 }
 
 .add-log-btn:active {
   transform: translateY(2px);
 }
 
+.button-style {
+  background: grey;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 button.frame {
-  background-color: #552583;
-  color: white;
+  background-color: var(--lecoder-purple, purple);
+  color: var(--lecoder-header-color, white);
   border: none;
   padding: 10px 30px;
   font-size: 24px;
@@ -109,11 +124,8 @@ button.frame {
 }
 
 .modal-content {
-  background: linear-gradient(
-    160deg,
-    rgba(253, 185, 39, 0.6) 9.51%,
-    #fdb927 86.81%
-  );
+
+  background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   padding: 20px;
   border-radius: 10px;
   width: 95%;
@@ -168,7 +180,7 @@ button.frame {
 }
 
 .close {
-  color: #552583;
+  color: var(--lecoder-header-color);
   z-index: 100;
   position: absolute;
   right: 8px;
@@ -315,16 +327,12 @@ button.frame {
 }
 
 .fieldD1 {
-  background: linear-gradient(
-    281deg,
-    rgba(253, 185, 39, 0.6) 20.93%,
-    #fdb927 82.58%
-  );
+  background: var(--lecoder-gradient-gold);
 }
 
 .fieldD2 {
   background: white;
-  border: 2px solid gold;
+  border: 2px solid var(--lecoder-gold);
   overflow-y: scroll;
   height: 440px;
 }
@@ -415,7 +423,7 @@ button.frame {
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 50px;
+    height: auto;
     min-height: 50px;
     position: fixed;
     bottom: 0;
@@ -442,6 +450,4 @@ button.frame {
     width: 100%;
     overflow-y: auto;
   }
-
-
 }

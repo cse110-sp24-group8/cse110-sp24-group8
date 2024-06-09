@@ -2,6 +2,22 @@
 
 @import url(main.css);
 
+/* Fix Scrolling issues */
+html, body {
+    height: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+#indexButton{
+    background: var(--lecoder-gradient-gold);
+}
+
+:root {
+    --clr-body-bg: hsl(0 0% 90%);
+}
 
 #dashboardHolder {
     display: grid;
@@ -11,7 +27,7 @@
     gap: 0.4rem;
     padding-bottom: 60px; /* Adjust according to the height of the fixed sidebar */
     height: calc(100vh - 60px); /* Adjust height to fit the window height minus padding */
-    overflow-y: auto; /* Make the dashboard holder scrollable */
+    overflow-y: auto; 
     font-size: 1.125rem;
 }
 
@@ -24,15 +40,19 @@ h2 {
     font-size: 2.25rem;
 }
 
+h1 {
+    color: var(--lecoder-gold); 
+}
+
 #dueSoonContainer {
-    background-color: var(--lecoder-gold, gold);
-    background: linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
+    background-color: var(--lecoder-gradient-gold, gold);
+    background: var(--lecoder-gradient-gold);
     white-space: normal;
 }
 
 #dueSoonContainer h3,
 ul {
-    margin-left: 1em;
+    margin-left: 1rem;
     color: var(--lecoder-purple, purple);
 }
 
@@ -43,45 +63,56 @@ ul {
 
 #progressContainer {
     background-color: var(--lecoder-purple, purple);
-    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 90% 10%;
+    background: var(--lecoder-gradient-purple, purple);
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 1em; 
 }
 
 #progressContainer button {
-   grid-row-start: 2;
-   grid-column-start: 2;
+   /* grid-row-start: 2;
+   grid-column-start: 2; */
+   position: relative;
    border-radius: 50px;
+   border: 0;
+   color: var(--lecoder-header-color,white);
+   background-color: var(--lecoder-light-purple);
+   margin: 0;
+   padding: 0;
+   bottom: 1rem;
 }
 
 #progressContainer strong {
     padding: 1em;
-    color: white;
+    color: var(--lecoder-header-color, white);
     font-size: 2rem;
     grid-row-start: 1;
 }
 
-.progress-container {
-    position: relative;
-    min-width: 200px;
-}
-
 .progress-circle {
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     padding: 1em;
     grid-row-start: 2;
     grid-column-start: 2;
 }
 
+.progress-circle #percent {
+    fill: var(--lecoder-gold,gold);
+}
+
+.progress-circle .bg-circle {
+    stroke: var(--lecoder-light-gold,gold);
+}
+
+.progress-circle .progress {
+    stroke: var(--lecoder-gold,gold);
+}
 
 #codeUpdateContainer {
     background-color: var(--lecoder-purple, purple);
-    background: linear-gradient(180deg, rgba(179, 141, 211, 0.884) 0%, #552583 100%, purple);
+    background: var(--lecoder-gradient-purple, purple);
     grid-column: span 2;
 }
 
@@ -94,7 +125,7 @@ ul {
 
 #codeUpdateContainer li,
 #codeUpdateContainer > h2, #codeUpdateContainer h3 {
-    color: white;
+    color: var(--lecoder-header-color,white);
     margin-left: 1em;
 }
 
@@ -107,6 +138,9 @@ ul {
 
 #codeUpdateButtons button{
     border-radius: 50px;
+    border: 0;
+    color: var(--lecoder-header-color,white);
+    background-color: var(--lecoder-light-purple);
 }
 
 @media (max-width: 978px) {
@@ -125,6 +159,7 @@ ul {
         z-index: 1000;
         padding: 0.5rem 0; /* Add some padding for better appearance */
         min-width: 0px;
+        
     }
 
     #dashboardHolder {
@@ -144,11 +179,11 @@ ul {
         display: none;
     }
 
-    html {
-        overflow-y: fixed;
+    html, body {
+        overflow-y: hidden;
     }
 
-    body, h1, h2, h3, h4, p,
+    h1, h2, h3, h4, p,
     figure, blockquote, dl, dd {
         overflow-y: auto;
     }
@@ -156,5 +191,9 @@ ul {
     #dashboardHolder > * {
         width: 95%;
         margin: 1rem;
+    }
+
+    #themeSwitcher > form {
+        flex-direction: column;
     }
 }

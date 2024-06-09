@@ -2,9 +2,21 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentDate = new Date();
     let currentMonth = currentDate.getMonth();
     let currentYear = currentDate.getFullYear();
-    let selectedDate = currentDate.toISOString().split('T')[0]; // Format today's date as 'YYYY-MM-DD'
-    let notes = JSON.parse(localStorage.getItem('tasks')) || {};
+    
+    let selectedDate = getPacificDate().toISOString().split('T')[0]; // Gets 'YYYY-MM-DD'
 
+    let notes = JSON.parse(localStorage.getItem('tasks')) || {};
+    
+    function getPacificDate() {
+        const utcNow = Date.now(); // Current timestamp in UTC in milliseconds
+        const pacificOffset = -7 * 60 * 60 * 1000; // PDT is UTC-7 in milliseconds
+    
+        // Create new date object for Pacific time
+        const pacificDate = new Date(utcNow + pacificOffset);
+    
+        return pacificDate;
+    }   
+    
     function displayCalendar(month, year) {
         let firstDay = new Date(year, month, 1);
         let daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -140,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 eventElement.innerHTML = `
                     <label class="group">
                         <div class="text-content-wrapper">${event.title}</div>
-                        <div class="time-wrapper">${event.time}</div>
+                        <div class="time-wrapper-display">${event.time}</div>
                         <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                             <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                         </button>
@@ -162,13 +174,23 @@ document.addEventListener('DOMContentLoaded', function() {
             tasks[taskIndex].completed = isCompleted;
             tasks[taskIndex].completedDate = isCompleted ? new Date().toISOString() : null;
             localStorage.setItem('tasks', JSON.stringify(tasks));
-
             const taskElement = document.querySelector(`.overlap[data-task-id="${taskId}"]`);
             if (taskElement) {
                 const textWrapper = taskElement.querySelector('.text-wrapper');
                 textWrapper.style.textDecoration = isCompleted ? 'line-through' : 'none';
+                updateTaskCounts();
             }
         }
+    }
+
+    function updateTaskCounts() {
+        const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        const totalTasks = tasks.length;
+        const completedTasks = tasks.filter(task => task.completed).length;
+    
+        // Store the counts in localStorage
+        localStorage.setItem('totalTasks', totalTasks);
+        localStorage.setItem('completedTasks', completedTasks);
     }
 
     displayCalendar(currentMonth, currentYear);
@@ -198,6 +220,8 @@ document.addEventListener('DOMContentLoaded', function() {
         highlightSelectedDate(); // Maintain the highlight on the selected date
     });
 });
+
+
 
 function loadPopupContent() {
     var xhttp = new XMLHttpRequest();
@@ -277,8 +301,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             document.getElementById("pageModal").style.display = "none";
             document.getElementById("popupContent").innerHTML = "";
-            
-            location.reload();
         }
     });
 });
@@ -328,7 +350,7 @@ function updateEventList(targetDate) {
             <div class="overlap" data-task-id="${event.id}">
                 <label class="group">
                     <div class="text-content-wrapper">${event.title}</div>
-                    <div class="time-wrapper">${event.time || ""}</div>
+                    <div class="time-wrapper-display">${event.time || ""}</div>
                     <button class="delete-btn" onclick="handleEventDeletion('${event.id}')">
                         <img src="../img/task-delete.svg" alt="Delete" width="26" height="26">
                     </button>
@@ -411,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function() {
         eventsContainer.addEventListener('click', function(event) {
             if (event.target.closest('.edit-btn')) {
                 const eventElement = event.target.closest('.overlap');
-                const eventId = eventElement.dataset.eventId;
+                    const eventId = eventElement.dataset.eventId;
                 loadEditContent(eventId);
             }
         });
