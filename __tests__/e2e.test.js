@@ -589,7 +589,7 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
 
       const convertDateToDDMMYYYY = (dateString) => {
         const [day, month, year] = dateString.split('/');
-        return `${year}-${month}-${day}`;
+        return `${year}-${day}-${month}`;
       };
 
       dayAfterTomorrow = convertDateToDDMMYYYY(dayAfterTomorrow)
