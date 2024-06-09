@@ -264,8 +264,8 @@ header img {
     background-color: var(--lecoder-light-purple);
 }
 
-:root:has(#dark:checked) .editFile:hover {
-    color: black;
+:root:has(#dark:checked) .edit-file:hover {
+    color: grey;
 }
 
 :root:has(#dark:checked) #fileSelect {
