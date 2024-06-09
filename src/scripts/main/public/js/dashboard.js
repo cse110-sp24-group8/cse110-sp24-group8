@@ -87,20 +87,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         progressText.innerHTML = "You Have A Lot Of Work!"
     }
 
-    //Will use later for changing the task amount
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
-
     // Changes progress animation 
     let progressKeyframes = `@keyframes progressAnimation {
         from {
