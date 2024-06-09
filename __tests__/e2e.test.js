@@ -625,7 +625,7 @@ const getDate = (daysToAdd) => {
         const [day, month, year] = dateString.split('/');
         return `${year}-${day}-${month}`;
       };
-      
+
       //dayAfterTommorow is dd/mm/yyyy
       dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
@@ -634,7 +634,7 @@ const getDate = (daysToAdd) => {
       await page.click('.sideButton img[alt="Dashboard Icon"]');
   
       // Check Due Soon section
-      const expectedDueSoonTasks = ['bla12', 'hi5'];
+      const expectedDueSoonTasks = ['hi5', 'bla12'];
       const expectedDueSoonDates = [
           formatDueSoonDate(new Date(dayAfterTomorrow)),  // The day after tomorrow's date
           formatDueSoonDate(new Date(getDate(5).split('/').reverse().join('-')))   // 5 days later
