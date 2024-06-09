@@ -144,6 +144,71 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// /**
+//  * Function to standardize a date string to 00:00 AM in UTC
+//  * @param {string} date - The date string to standardize
+//  * @returns {string} - The standardized date string
+//  */
+// function standardizeDate(date) {
+//     if (!date) return null; // Return null if date is falsy
+//     const dateObj = new Date(date);
+//     if (isNaN(dateObj.getTime())) {
+//         return null; // Return null if the date is invalid
+//     }
+//     dateObj.setUTCHours(0, 0, 0, 0);
+//     return dateObj.toISOString().split('T')[0];
+// }
+
+
+// /**
+//  * Function to format date as "Today", "Tomorrow", or "10th May 2024"
+//  * @param {string} date - The date to format
+//  * @returns {string} - The formatted date string
+//  */
+// function formatDate(date) {
+//     if (!date || date === 'No Due Date') {
+//         return 'No Due Date'; // Return default text if no valid date
+//     }
+
+//     //PST timezone conversion
+//     const getPSTDate = (date) => {
+//         const dateString = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
+//         const pstDate = new Date(dateString);
+//         pstDate.setHours(0, 0, 0, 0); // Set to start of the day
+//         return pstDate;
+//     };
+
+//     const today = getPSTDate(new Date());
+//     const tomorrow = new Date(today);
+//     tomorrow.setDate(today.getDate() + 1);
+
+//     const dateToFormat = getPSTDate(date);
+//     dateToFormat.setDate(dateToFormat.getDate() + 1);
+
+//     if (dateToFormat.getTime() < today.getTime()) {
+//         return '<span style="color: red;">OVERDUE</span>';
+//     } else if (dateToFormat.getTime() === today.getTime()) {
+//         return '<span style="color:black;">Today</span>';
+//     } else if (dateToFormat.getTime() === tomorrow.getTime()) {
+//         return '<span style="color:black;">Tomorrow</span>';
+//     } else {
+//         const day = dateToFormat.getUTCDate();
+//         const month = dateToFormat.toLocaleString('default', { month: 'long' });
+//         const year = dateToFormat.getUTCFullYear();
+
+//         const daySuffix = (day) => {
+//             if (day > 3 && day < 21) return 'th'; // covers 11-20
+//             switch (day % 10) {
+//                 case 1: return "st";
+//                 case 2: return "nd";
+//                 case 3: return "rd";
+//                 default: return "th";
+//             }
+//         };
+
+//         return `${day}${daySuffix(day)} ${month} ${year}`;
+//     }
+// }
 /**
  * Function to standardize a date string to 00:00 AM in UTC
  * @param {string} date - The date string to standardize
@@ -159,7 +224,6 @@ function standardizeDate(date) {
     return dateObj.toISOString().split('T')[0];
 }
 
-
 /**
  * Function to format date as "Today", "Tomorrow", or "10th May 2024"
  * @param {string} date - The date to format
@@ -170,20 +234,18 @@ function formatDate(date) {
         return 'No Due Date'; // Return default text if no valid date
     }
 
-    //PST timezone conversion
-    const getPSTDate = (date) => {
-        const dateString = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
-        const pstDate = new Date(dateString);
-        pstDate.setHours(0, 0, 0, 0); // Set to start of the day
-        return pstDate;
+    // Convert the date to UTC and set to start of the day
+    const getUTCDate = (date) => {
+        const dateObj = new Date(date);
+        dateObj.setUTCHours(0, 0, 0, 0); // Set to start of the day in UTC
+        return dateObj;
     };
 
-    const today = getPSTDate(new Date());
+    const today = getUTCDate(new Date());
     const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setUTCDate(today.getUTCDate() + 1);
 
-    const dateToFormat = getPSTDate(date);
-    dateToFormat.setDate(dateToFormat.getDate() + 1);
+    const dateToFormat = getUTCDate(date);
 
     if (dateToFormat.getTime() < today.getTime()) {
         return '<span style="color: red;">OVERDUE</span>';
@@ -193,7 +255,7 @@ function formatDate(date) {
         return '<span style="color:black;">Tomorrow</span>';
     } else {
         const day = dateToFormat.getUTCDate();
-        const month = dateToFormat.toLocaleString('default', { month: 'long' });
+        const month = dateToFormat.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
         const year = dateToFormat.getUTCFullYear();
 
         const daySuffix = (day) => {
@@ -209,6 +271,7 @@ function formatDate(date) {
         return `${day}${daySuffix(day)} ${month} ${year}`;
     }
 }
+
 
 /**
  * Function to update the tasks displayed in the DOM
