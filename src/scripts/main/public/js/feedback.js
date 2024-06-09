@@ -197,5 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
   
         localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
     }
-  });
-  
+});

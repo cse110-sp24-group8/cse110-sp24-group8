@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navElement = document.querySelector('.sidebar');
     
+    /**
+     * Fetches and loads the sidebar HTML, applies the current theme, and handles the toggle button visibility based on the viewport width.
+     */
     fetch('sidebar.html')
         .then(res => {
             if (res.ok) {
@@ -16,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 updateIcons(currentTheme);
             }
 
-            // Remove the toggle button if on mobile device
+            // Remove the toggle button if on a mobile device
             if (window.innerWidth <= 978) {
                 const toggleButton = navElement.querySelector('.toggle');
                 if (toggleButton) {
@@ -25,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+    /**
+     * Handles the resize event to adjust the sidebar position and toggle button visibility based on the viewport width.
+     */
     function handleResize() {
         if (window.innerWidth <= 978) {
             navElement.classList.add('bottom-fixed');
@@ -41,6 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
     handleResize(); // Initial call to set the correct position on page load
 });
 
+/**
+ * Updates the icons in the sidebar based on the selected theme.
+ * @param {string} theme - The selected theme.
+ */
 function updateIcons(theme) {
     const iconMap = {
         'laker': {

@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-
-    
     let activated = false;
     const radioButtons = document.querySelectorAll('#themeSwitcher input[type="radio"]');
     const fieldset = document.querySelector('fieldset');
+    
+    /**
+     * Toggles the display of theme radio buttons and adjusts fieldset width on hamburger button click.
+     */
     document.querySelector('.hamburger-button').addEventListener('click', function() {
         activated = !activated;
         if (activated) {
@@ -12,8 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 radioButton.style.display = 'inline-block'; // Change 'block' to whatever display value you need
                 fieldset.style.width = '300px';
             });
-        }
-        else {
+        } else {
             radioButtons.forEach(function(radioButton) {
                 radioButton.style.display = 'none'; // Change 'block' to whatever display value you need
                 fieldset.style.width = '0';
@@ -64,13 +64,18 @@ document.addEventListener('DOMContentLoaded', () => {
             'feedback': './icons/feedback-icon-yellow.png'
         }
     };
-  
-    // Storing theme in localStorage
+
+    /**
+     * Stores the selected theme in localStorage.
+     * @param {string} theme - The selected theme.
+     */
     const storeTheme = function(theme) {
         localStorage.setItem("theme", theme);
     };
-  
-    // Retrieving and applying theme from localStorage
+
+    /**
+     * Retrieves and applies the stored theme from localStorage.
+     */
     const retrieveTheme = function() {
         const currentTheme = localStorage.getItem("theme");
         if (currentTheme) {
@@ -84,8 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     };
-  
-    // Adding event listeners to theme options
+
+    /**
+     * Adds event listeners to theme options for storing and updating icons.
+     */
     colorThemes.forEach((themeOption) => {
         themeOption.addEventListener("change", () => {
             storeTheme(themeOption.id);
@@ -93,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /**
+     * Updates the icons based on the selected theme.
+     * @param {string} theme - The selected theme.
+     */
     function updateIcons(theme) {
         const buttons = document.querySelectorAll('.sideButton');
         buttons.forEach(button => {
@@ -102,8 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-  
+
     // Applying theme from localStorage on page load
     retrieveTheme();
-  });
-  
+});

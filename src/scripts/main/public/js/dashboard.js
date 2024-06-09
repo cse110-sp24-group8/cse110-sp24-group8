@@ -1,5 +1,5 @@
 /**
- * event listener to change the percentage of the circle depending on the amount of tasks completed
+ * Event listener to change the percentage of the circle depending on the amount of tasks completed
  */
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
@@ -86,20 +86,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     else {
         progressText.innerHTML = "You Have A Lot Of Work!"
     }
-
-    //Will use later for changing the task amount
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
-
-    // if(isNaN(progressPercent)) {
-    //     progressPercent = 1;
-    // }
 
     // Changes progress animation 
     let progressKeyframes = `@keyframes progressAnimation {
@@ -211,7 +197,6 @@ function monthDayDate(dateString) {
 
 /**
  * Converts date of Month Day, Year with time to "(Month, Day, Time)"
- * 
  * @param {String} dateString
  * @param {String} timeString
  * @returns {String} "(Month, Day, Time)"
