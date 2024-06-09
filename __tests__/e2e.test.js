@@ -380,7 +380,6 @@ const getDate = (daysToAdd) => {
       const reloadedTaskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
 
       for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
-          console.log(`Task after reload: ${taskTextsAfterReload[i]}, Expected Date: ${expectedDatesAfterStrike[i]}, Actual Date after reload: ${taskDatesAfterReload[i]}`);
           expect(reloadedTaskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
           expect(reloadedTaskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
           if (expectedOrderAfterStrike[i] === 'hi1') {
@@ -615,7 +614,7 @@ const getDate = (daysToAdd) => {
       await page.click('.sideButton img[alt="Task List Icon"]');
       let dayAfterTomorrow = getDate(2);
       await editTask('hi12', 'bla12', dayAfterTomorrow, true);
-  
+      
       // Check local storage
       const tasks = await page.evaluate(() => JSON.parse(localStorage.getItem('tasks')));
       const task = tasks.find(t => t.text === 'bla12');
