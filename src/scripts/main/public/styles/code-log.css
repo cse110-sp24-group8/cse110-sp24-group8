@@ -19,9 +19,10 @@ h1 {
   font-size: 32px;
 }
 
-#codeLogButton{
+#codelogButton{
   background: var(--lecoder-gradient-gold);
 }
+
 
 .content-holder{
   box-sizing: border-box;

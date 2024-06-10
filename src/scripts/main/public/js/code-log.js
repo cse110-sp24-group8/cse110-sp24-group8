@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', (event) => {
+  console.log("DOM fully loaded and parsed");
+
 initializeSimpleMDE();
 
 // Event listener for the 'Add Log' button
@@ -70,7 +73,9 @@ function addLogEntry(date, time, content, container) {
 
   entry.innerHTML = `
       <div class='fieldD1'>
-          <div class='date-codelog'>Date: ${date}       <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button></div>
+          <div class='date-codelog'>Date: ${date}
+            <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button>
+          </div>
           <div class='time-codelog'>Time: ${time}</div>
       </div>
       <div class='fieldD2'>
@@ -127,6 +132,8 @@ function addLogEntry(date, time, content, container) {
   container.appendChild(entry);
 }
 
+
+
 // Function to initialize SimpleMDE
 function initializeSimpleMDE() {
   // Check if SimpleMDE is already initialized
@@ -181,3 +188,5 @@ function getSuffix(day) {
       return 'th';
   }
 }
+
+});

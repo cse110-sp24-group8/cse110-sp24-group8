@@ -1,6 +1,3 @@
-/*
- * Initializes the page once the DOM is fully loaded, sets up the SimpleMDE editor, and loads the existing files.
- */
 document.addEventListener('DOMContentLoaded', function () {
     var simplemde = new SimpleMDE({ element: document.getElementById("fileContent") });
     const storagePrefix = 'file_';
@@ -25,15 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /*
-     * Initializes the default 'Untitled' file if no files exist in localStorage.
+     * Initializes by loading the first available file or creating the default 'Untitled' file.
      */
-    function initializeUntitled() {
+    function initialize() {
+        const fileSelect = document.getElementById('fileSelect');
         const filesExist = Object.keys(localStorage).some(key => key.startsWith(storagePrefix));
-        if (!filesExist) {
+        if (filesExist) {
+            const firstFileKey = Object.keys(localStorage).find(key => key.startsWith(storagePrefix));
+            currentFile = firstFileKey.substring(storagePrefix.length);
+            simplemde.value(localStorage.getItem(firstFileKey));
+            fileSelect.value = currentFile;
+        } else {
             localStorage.setItem(storagePrefix + 'Untitled', '');
             currentFile = 'Untitled';
             simplemde.value(localStorage.getItem(storagePrefix + 'Untitled'));
-            const fileSelect = document.getElementById('fileSelect');
             const option = document.createElement('option');
             option.value = 'Untitled';
             option.textContent = 'Untitled';
@@ -51,12 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const fileName = prompt('Enter the name for the new file:');
         if (fileName && !localStorage.getItem(storagePrefix + fileName)) {
             localStorage.setItem(storagePrefix + fileName, '');
-            const fileSelect = document.getElementById('fileSelect');
             const option = document.createElement('option');
             option.value = fileName;
             option.textContent = fileName;
-            fileSelect.appendChild(option);
-            fileSelect.value = fileName;
+            document.getElementById('fileSelect').appendChild(option);
+            document.getElementById('fileSelect').value = fileName;
             currentFile = fileName;
             simplemde.value('');
         } else if (localStorage.getItem(storagePrefix + fileName)) {
@@ -78,8 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.removeItem(storagePrefix + oldFileName);
             currentFile = newFileName;
             loadFiles();
-            const fileSelect = document.getElementById('fileSelect');
-            fileSelect.value = newFileName;
+            document.getElementById('fileSelect').value = newFileName;
         } else if (localStorage.getItem(storagePrefix + newFileName)) {
             alert('File name already exists.');
         }
@@ -110,7 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 localStorage.removeItem(storagePrefix + currentFile);
                 currentFile = '';
                 loadFiles();
-                simplemde.value('');
+                const firstFileKey = Object.keys(localStorage).find(key => key.startsWith(storagePrefix));
+                if (firstFileKey) {
+                    currentFile = firstFileKey.substring(storagePrefix.length);
+                    simplemde.value(localStorage.getItem(firstFileKey));
+                    document.getElementById('fileSelect').value = currentFile;
+                } else {
+                    simplemde.value('');
+                }
             }
         } else {
             alert('No file selected to delete.');
@@ -127,5 +134,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     loadFiles();
-    initializeUntitled();
+    initialize();
 });
