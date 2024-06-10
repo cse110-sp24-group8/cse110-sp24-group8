@@ -237,7 +237,7 @@ const getDate = (daysToAdd) => {
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
       expect(tasks).toBe("[]");
     });
-
+    
     // Yes title no date
     test("Add a task with title 'hi1' and no date", async () => {
       await addTask('hi1', null);
