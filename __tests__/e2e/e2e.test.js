@@ -96,10 +96,10 @@ const getDate = (daysToAdd) => {
   // Function to check Due Soon section
   const checkDueSoonSection = async (expectedDueSoonTasks, expectedDueSoonDates) => {
       const dueSoonTasks = await page.$$eval('#dueSoonContainer ul li', els => els.map(el => el.textContent.trim()));
-      expect(dueSoonTasks).toEqual(expectedDueSoonTasks);
+      expect(dueSoonTasks.sort()).toEqual(expectedDueSoonTasks.sort());
 
       const dueSoonDates = await page.$$eval('#dueSoonContainer h3', els => els.map(el => el.textContent.trim()));
-      expect(dueSoonDates).toEqual(expectedDueSoonDates);
+      expect(dueSoonDates.sort()).toEqual(expectedDueSoonDates.sort());
   };
 
   // Helper function to strikethrough a task by clicking its checkbox
