@@ -259,7 +259,7 @@ function loadPopupContent() {
             console.error("Error loading page: " + this.statusText);
         }
     };
-    xhttp.open("GET", "addEvent.html", true);
+    xhttp.open("GET", "add-event.html", true);
     xhttp.send();
 }
 

@@ -312,7 +312,7 @@ header img {
   }
 
   :root:has(#triton:checked) div{
-    color: var(--lecoder-header-color);
+    color: black;
   }
 
   :root:has(#triton:checked) .date-wrapper {
