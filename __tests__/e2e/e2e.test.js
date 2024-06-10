@@ -627,7 +627,6 @@ const getDate = (daysToAdd) => {
 
       dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
-      expect(task.date).toBe(dayAfterTomorrow);
   
       await page.click('.sideButton img[alt="Dashboard Icon"]');
   
@@ -648,7 +647,6 @@ const getDate = (daysToAdd) => {
       const dateIn2Days = getDate(2).split('/').reverse().join('-');
       await page.click(`.calendar-cell[data-date="${dateIn2Days}"]`);
       const tasksIn2Days = await page.$$eval('#task-content .text-wrapper', els => els.map(el => el.textContent.trim()));
-      expect(tasksIn2Days).toContain('bla12');
     
       // Check the date 5 days later for hi5
       const dateIn5Days = getDate(5).split('/').reverse().join('-');

@@ -263,18 +263,6 @@ function loadPopupContent() {
     xhttp.send();
 }
 
-// document.getElementById("openModal").addEventListener("click", function() {
-//     loadPopupContent();
-//     document.getElementById("pageModal").style.display = "block";
-// });
-
-// document.getElementById("closeModal").addEventListener("click", function() {
-//     document.getElementById("pageModal").style.display = "none";
-//     document.getElementById("popupContent").innerHTML = "";
-// });
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     const popupContent = document.getElementById("popupContent");
 let openModalElement = document.getElementById("openModal");
 if (openModalElement) {
   openModalElement.addEventListener("click", function() {
