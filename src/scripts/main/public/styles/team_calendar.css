@@ -191,7 +191,7 @@ a:hover {
 
 a:focus {
   background: var(--lecoder-gradient-gold), linear-gradient(160deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
-  color: var(--lecoder-header-color, black);
+  color: var(--lecoder-gold, black);
 }
 
 /* Style for previous button */

@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-
     
     let activated = false;
     const radioButtons = document.querySelectorAll('#themeSwitcher input[type="radio"]');

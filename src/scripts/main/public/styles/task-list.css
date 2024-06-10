@@ -386,7 +386,7 @@ html, body {
   position: absolute;
   width: 95%;
   height: 85%;
-  background: linear-gradient(143deg, rgba(253, 185, 39, 0.60) 57.32%, #FDB927 78.49%);
+  background: var(--lecoder-gradient-gold, gold);
   top: 50%;  
   left: 50%; 
   transform: translate(-50%, -50%);
