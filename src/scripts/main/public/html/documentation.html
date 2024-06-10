@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -13,6 +13,7 @@
 
   <!-- Link to SimpleMDE Markdown Editor -->
   <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script src="../js/theme-switch.js"></script>
 </head>
 <body>
   <!-- Header section with logo and title -->
@@ -22,28 +23,27 @@
     <!-- <div></div> Placeholder for potential future content -->
   </header>
 
-  <form id="themeSwitcher">
-    <fieldset>
+    <form id="themeSwitcher">
+      <fieldset>
         <legend class="visually-hidden">Pick a color scheme</legend>
         <label for="laker" class="visually-hidden">Laker</label>
-        <input type="radio" name="theme" id="laker">
+        <input type="radio" name="theme" id="laker" />
 
         <label for="light" class="visually-hidden">Light</label>
-        <input type="radio" name="theme" id="light">
+        <input type="radio" name="theme" id="light" />
 
         <label for="dark" class="visually-hidden">Dark</label>
-        <input type="radio" name="theme" id="dark">
+        <input type="radio" name="theme" id="dark" />
 
         <label for="christmas" class="visually-hidden">Christmas</label>
-        <input type="radio" name="theme" id="christmas">
+        <input type="radio" name="theme" id="christmas" />
 
         <label for="triton" class="visually-hidden">Triton</label>
-        <input type="radio" name="theme" id="triton">
+        <input type="radio" name="theme" id="triton" />
         <button type="button" class="hamburger-button">&#9776;</button>
     </fieldset>
   </form>
-
-  <script src="../js/themeswitch.js"></script> 
+ 
   <!-- Main section containing sidebar and content -->
   <main>
     <nav class="sidebar">
@@ -55,7 +55,7 @@
         <img src="../icons/tasklist-icon.png" alt="Task List Icon">
         <span class="buttonIcon">Task List</span>
       </a>
-      <a href="team_calendar.html" class="sideButton" id="calendarButton">
+      <a href="team-calendar.html" class="sideButton" id="calendarButton">
         <img src="../icons/calendar-icon.png" alt="Calendar Icon">
         <span class="buttonIcon">Calendar</span>
       </a>
@@ -80,52 +80,72 @@
             <select id="fileSelect" onchange="switchFile()">
               <option value="" disabled selected>--Select a file--</option>
             </select>
-            <button class="edit-file" id="createFileButton" onclick="createNewFile()">Create New File</button>
-            <button class="edit-file" id="renameFileButton" onclick="renameFile()">Rename File</button>
+            <button
+              class="edit-file"
+              id="createFileButton"
+              onclick="createNewFile()"
+            >
+              Create New File
+            </button>
+            <button
+              class="edit-file"
+              id="renameFileButton"
+              onclick="renameFile()"
+            >
+              Rename File
+            </button>
           </div>
           <button id="deleteFileButton" onclick="deleteFile()">
-            <img src= "../img/task-delete.svg" alt="Delete" width="30" height="30">
+            <img
+              src="../img/task-delete.svg"
+              alt="Delete"
+              width="30"
+              height="30"
+            />
           </button>
         </div>
         <!-- Text area for file content -->
         <div class="textarea-wrapper">
-            <textarea id="fileContent" name="content"></textarea>
+          <textarea id="fileContent" name="content"></textarea>
         </div>
-    </section>
-    <noscript>
-      <section>
-        <h2>Oops!</h2>
-        <h3>Please Enable JavaScript</h3>
       </section>
-      <style>
-        main {
-          background-image:url(/src/scripts/main/public/img/No_Script_Background.png) ;
-          background-size: cover; /* Cover the entire page */
-          background-position: center; /* Center the background image */
-          background-repeat: no-repeat; /* Do not repeat the image */
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          justify-content: center;
-          align-items: center;
-          align-content: center;
-        }
-        #dashboardHolder, .sidebar, form, .content-holder{
-          display: none;
-          visibility: none;
-        }
-        section {
-          color: white;
-        }
-        h2 {
-          margin: 0;
-          font-size: 5rem ;
-          overflow-y: hidden;
-        }
-      </style>
-    </noscript>
-  </main>
-  <!-- Link to external JavaScript file -->
-  <script src="../js/documentation.js"></script>
-</body>
+      <noscript>
+        <section>
+          <h2>Oops!</h2>
+          <h3>Please Enable JavaScript</h3>
+        </section>
+        <style>
+          main {
+            background-image: url(/src/scripts/main/public/img/No_Script_Background.png);
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+          }
+          #dashboardHolder,
+          .sidebar,
+          form,
+          .content-holder {
+            display: none;
+            visibility: none;
+          }
+          section {
+            color: white;
+          }
+          h2 {
+            margin: 0;
+            font-size: 5rem;
+            overflow-y: hidden;
+          }
+        </style>
+      </noscript>
+    </main>
+    <!-- Link to external JavaScript file -->
+    <script src="../js/documentation.js"></script>
+  </body>
 </html>

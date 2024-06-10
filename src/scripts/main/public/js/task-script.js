@@ -8,7 +8,7 @@ function loadPopupContent() {
             document.getElementById("popupContent").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "addlist.html", true);
+    xhttp.open("GET", "add-list.html", true);
     xhttp.send();
 }
 
@@ -59,7 +59,7 @@ function loadEditContent(taskId) {
             }
         }
     };
-    xhttp.open("GET", "editlist.html", true);
+    xhttp.open("GET", "edit-list.html", true);
     xhttp.send();
 }
 
@@ -250,9 +250,9 @@ function formatDate(date) {
     if (dateToFormat.getTime() < today.getTime()) {
         return '<span style="color: red;">OVERDUE</span>';
     } else if (dateToFormat.getTime() === today.getTime()) {
-        return '<span style="color:black;">Today</span>';
+        return '<span>Today</span>';
     } else if (dateToFormat.getTime() === tomorrow.getTime()) {
-        return '<span style="color:black;">Tomorrow</span>';
+        return '<span>Tomorrow</span>';
     } else {
         const day = dateToFormat.getUTCDate();
         const month = dateToFormat.toLocaleString('default', { month: 'long', timeZone: 'UTC' });

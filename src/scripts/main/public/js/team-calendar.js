@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentYear = currentDate.getFullYear();
     
     let selectedDate = getPacificDate().toISOString().split('T')[0]; // Gets 'YYYY-MM-DD'
-
-    let notes = JSON.parse(localStorage.getItem('tasks')) || {};
     
+    /**
+     * Gets the current date in Pacific Time.
+     * @returns {Date} The current date adjusted to Pacific Time.
+     */
     function getPacificDate() {
         const utcNow = Date.now(); // Current timestamp in UTC in milliseconds
         const pacificOffset = -7 * 60 * 60 * 1000; // PDT is UTC-7 in milliseconds
@@ -17,6 +19,11 @@ document.addEventListener('DOMContentLoaded', function() {
         return pacificDate;
     }   
     
+    /**
+     * Displays the calendar for a given month and year.
+     * @param {number} month - The month to display (0-11).
+     * @param {number} year - The year to display.
+     */
     function displayCalendar(month, year) {
         let firstDay = new Date(year, month, 1);
         let daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -59,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (taskDates.has(fullDate) && eventDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "rgba(85, 37, 131, 1)";
+                        cell.style.color = "var(--lecoder-purple)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
                         cell.style.textDecoration = "underline";
@@ -68,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Check if the date has tasks and highlight if it does
                     if (taskDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "rgba(85, 37, 131, 1)";
+                        cell.style.color = "var(--lecoder-purple)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
                     }
@@ -90,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /**
+     * Highlights the selected date in the calendar.
+     */
     function highlightSelectedDate() {
         document.querySelectorAll('.calendar-cell').forEach(cell => {
             cell.classList.remove('selected-date');
@@ -99,6 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    /**
+     * Displays tasks for a given date.
+     * @param {string} date - The date to display tasks for (in 'YYYY-MM-DD' format).
+     */
     function displayTasks(date) {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const filteredTasks = tasks.filter(task => task.date === date);
@@ -132,6 +146,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /**
+     * Displays events for a given date.
+     * @param {string} date - The date to display events for (in 'YYYY-MM-DD' format).
+     */
     function displayEvents(date) {
         const events = JSON.parse(localStorage.getItem('events')) || [];
         const filteredEvents = events.filter(event => event.date === date);
@@ -166,6 +184,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /**
+     * Updates the completion status of a task.
+     * @param {number} taskId - The ID of the task to update.
+     * @param {boolean} isCompleted - Whether the task is completed or not.
+     */
     function updateTaskCompletion(taskId, isCompleted) {
         const tasks = JSON.parse(localStorage.getItem('tasks'));
         const taskIndex = tasks.findIndex(t => t.id == taskId);
@@ -183,6 +206,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /**
+     * Updates the task counts and stores them in localStorage.
+     */
     function updateTaskCounts() {
         const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         const totalTasks = tasks.length;
@@ -221,8 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
+/**
+ * Loads the popup content for adding events.
+ */
 function loadPopupContent() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -232,7 +259,7 @@ function loadPopupContent() {
             console.error("Error loading page: " + this.statusText);
         }
     };
-    xhttp.open("GET", "addEvent.html", true);
+    xhttp.open("GET", "add-event.html", true);
     xhttp.send();
 }
 
@@ -322,7 +349,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-//formatting the AM and PM time function
+/**
+ * Formats a time string to 12-hour format with AM/PM.
+ * @param {string} timeText - The time string in 24-hour format (HH:MM).
+ * @returns {string} The formatted time string in 12-hour format with AM/PM.
+ */
 export function formatTimeTo12Hr(timeText) {
     if (!timeText) return ""; // Return empty if no time provided
 
@@ -332,7 +363,11 @@ export function formatTimeTo12Hr(timeText) {
     return `${hour}:${minute} ${ampm}`;
 }
 
-//converting 12-hour format back to 24-hour format
+/**
+ * Converts a time string from 12-hour format to 24-hour format.
+ * @param {string} timeText - The time string in 12-hour format with AM/PM.
+ * @returns {string} The formatted time string in 24-hour format (HH:MM).
+ */
 export function formatTimeTo24Hr(timeText) {
     const [time, modifier] = timeText.split(' ');
     let [hour, minute] = time.split(':');
@@ -347,6 +382,10 @@ export function formatTimeTo24Hr(timeText) {
     return `${hour.toString().padStart(2, '0')}:${minute}`;
 }
 
+/**
+ * Updates the list of events for a specific date.
+ * @param {string} targetDate - The date to update the event list for (in 'YYYY-MM-DD' format).
+ */
 function updateEventList(targetDate) {
     const eventContentContainer = document.getElementById('event-content');
     if (!eventContentContainer) {
@@ -380,6 +419,11 @@ function updateEventList(targetDate) {
     });
 }
 
+/**
+ * Loads the edit content for an event.
+ * @param {number} eventId - The ID of the event to edit.
+ */
+/* eslint-disable-next-line no-unused-vars */
 function loadEditContent(eventId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -419,10 +463,14 @@ function loadEditContent(eventId) {
             }
         }
     };
-    xhttp.open("GET", "editEvent.html", true);
+    xhttp.open("GET", "edit-event.html", true);
     xhttp.send();
 }
 
+/**
+ * Handles the submission of edited event data.
+ * @param {number} eventId - The ID of the event being edited.
+ */
 function handleEditSubmit(eventId) {
     const newTitle = document.querySelector('.edit-list .text-wrapper').value;
     const newDate = document.querySelector('.edit-list .date-wrapper').value;
@@ -476,9 +524,12 @@ if (eventContentElement) {
   });
 }
 
+/**
+ * Handles the deletion of an event.
+ * @param {number} eventId - The ID of the event to delete.
+ */
 function handleEventDeletion(eventId) {
     let events = JSON.parse(localStorage.getItem('events')) || [];
     events = events.filter(event => event.id.toString() !== eventId);
     localStorage.setItem('events', JSON.stringify(events));
 }
-

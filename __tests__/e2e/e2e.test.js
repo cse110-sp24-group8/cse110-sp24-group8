@@ -159,7 +159,7 @@ const getDate = (daysToAdd) => {
       await page.waitForSelector('#viewEventsButton');
       await page.click('#viewEventsButton');
       const documentationUrl = await page.url();
-      expect(documentationUrl).toContain('html/team_calendar.html');
+      expect(documentationUrl).toContain('html/team-calendar.html');
       await page.click('.sideButton img[alt="Dashboard Icon"]');
     });
   });
@@ -260,7 +260,7 @@ const getDate = (daysToAdd) => {
       expect(tasks[1].text).toBe('hi2');
       expect(tasks[1].date).toBe(today.split('/').reverse().join('-'));
 
-      await checkTaskOrderAndDates(['hi1', 'hi2'], ['No Due Date', '<span style="color:black;">Today</span>']);
+      await checkTaskOrderAndDates(['hi1', 'hi2'], ['No Due Date', '<span>Today</span>']);
     });
 
     // Yes title yes date, tomorrow
@@ -273,7 +273,7 @@ const getDate = (daysToAdd) => {
       expect(tasks[2].text).toBe('hi3');
       expect(tasks[2].date).toBe(tomorrow.split('/').reverse().join('-'));
 
-      await checkTaskOrderAndDates(['hi1', 'hi2', 'hi3'], ['No Due Date', '<span style="color:black;">Today</span>', '<span style="color:black;">Tomorrow</span>']);
+      await checkTaskOrderAndDates(['hi1', 'hi2', 'hi3'], ['No Due Date', '<span>Today</span>', '<span>Tomorrow</span>']);
     });
 
     // Yes title yes date, anytime in the past, should be OVERDUE. We will do yesterday arbitrarily.
@@ -288,7 +288,7 @@ const getDate = (daysToAdd) => {
 
       await checkTaskOrderAndDates(
         ['hi1', 'hi4', 'hi2', 'hi3'],
-        ['No Due Date', '<span style="color: red;">OVERDUE</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Tomorrow</span>']
+        ['No Due Date', '<span style="color: red;">OVERDUE</span>', '<span>Today</span>', '<span>Tomorrow</span>']
       );
 
       // Verify the text color is red for the overdue task
@@ -314,8 +314,8 @@ const getDate = (daysToAdd) => {
       const expectedDates = [
           'No Due Date', 'No Due Date',
           '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
-          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
-          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          '<span>Today</span>', '<span>Today</span>', '<span>Today</span>', '<span>Today</span>',
+          '<span>Tomorrow</span>', '<span>Tomorrow</span>',
           formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-')))
       ];
 
@@ -354,8 +354,8 @@ const getDate = (daysToAdd) => {
       const expectedOrderAfterStrike = ['hi9', 'hi6', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi1'];
       const expectedDatesAfterStrike = [
           'No Due Date', '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
-          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
-          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          '<span>Today</span>', '<span>Today</span>', '<span>Today</span>', '<span>Today</span>',
+          '<span>Tomorrow</span>', '<span>Tomorrow</span>',
           formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-'))), 'No Due Date'
       ];
 
@@ -408,8 +408,8 @@ const getDate = (daysToAdd) => {
       const expectedOrderAfterStrike = ['hi9', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi1', 'hi6'];
       const expectedDatesAfterStrike = [
           'No Due Date', '<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
-          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
-          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          '<span>Today</span>', '<span>Today</span>', '<span>Today</span>', '<span>Today</span>',
+          '<span>Tomorrow</span>', '<span>Tomorrow</span>',
           formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-'))), 'No Due Date', '<span style="color: red;">OVERDUE</span>'
       ];
     
@@ -472,8 +472,8 @@ const getDate = (daysToAdd) => {
       const expectedOrderAfterUnstrike = ['hi9','hi1', 'hi4', 'hi8', 'hi2', 'hi10', 'hi11', 'hi12', 'hi3', 'hi7', 'hi5', 'hi6'];
       const expectedDatesAfterUnstrike = [
           'No Due Date', 'No Due Date','<span style="color: red;">OVERDUE</span>', '<span style="color: red;">OVERDUE</span>',
-          '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>', '<span style="color:black;">Today</span>',
-          '<span style="color:black;">Tomorrow</span>', '<span style="color:black;">Tomorrow</span>',
+          '<span>Today</span>', '<span>Today</span>', '<span>Today</span>', '<span>Today</span>',
+          '<span>Tomorrow</span>', '<span>Tomorrow</span>',
           formatTaskListDate(new Date(getDate(5).split('/').reverse().join('-'))), '<span style="color: red;">OVERDUE</span>'
       ];
   
@@ -625,7 +625,7 @@ const getDate = (daysToAdd) => {
         return `${year}-${month}-${day}`;
       };
 
-      //dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
+      dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
   
@@ -670,7 +670,7 @@ const getDate = (daysToAdd) => {
   //Calendar Tests & Cross Features with Dashboard (Events in Recent Updates) & Cross Features with Task List (Striking through tasks in calendar are applied when we check back in the task list page)  
 describe("Comprehensive E2E testing for Calendar page", () => {
     beforeAll(async () => {
-        await page.goto("http://127.0.0.1:6969/html/team_calendar.html");
+        await page.goto("http://127.0.0.1:6969/html/team-calendar.html");
     });
 
     // Helper function to format date as 'YYYY-MM-DD'

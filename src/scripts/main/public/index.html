@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -6,64 +6,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="icon" type="image/png" href="./icons/LeCoders_Logo.png">
     <link rel="stylesheet" href="./styles/dashboard.css">
+                                
     <script type="module" src="js/dashboard.js"></script>
+    <script defer src="js/theme-switch.js"></script>
 
     <title>LeJournal Dashboard</title>
   </head>
   <body>
     <header>
-      <img src="./icons/journallogo-icon.png" alt="Journal Logo">
+      <img src="./icons/journallogo-icon.png" alt="Journal Logo" />
       <h1>Welcome, LeCoder!</h1>
-  
     </header>
 
     <form id="themeSwitcher">
       <fieldset>
-          <legend class="visually-hidden">Pick a color scheme</legend>
-          <label for="laker" class="visually-hidden">Laker</label>
-          <input type="radio" name="theme" id="laker">
+        <legend class="visually-hidden">Pick a color scheme</legend>
+        <label for="laker" class="visually-hidden">Laker</label>
+        <input type="radio" name="theme" id="laker" />
 
-          <label for="light" class="visually-hidden">Light</label>
-          <input type="radio" name="theme" id="light">
+        <label for="light" class="visually-hidden">Light</label>
+        <input type="radio" name="theme" id="light" />
 
-          <label for="dark" class="visually-hidden">Dark</label>
-          <input type="radio" name="theme" id="dark">
+        <label for="dark" class="visually-hidden">Dark</label>
+        <input type="radio" name="theme" id="dark" />
 
-          <label for="christmas" class="visually-hidden">Christmas</label>
-          <input type="radio" name="theme" id="christmas">
+        <label for="christmas" class="visually-hidden">Christmas</label>
+        <input type="radio" name="theme" id="christmas" />
 
-          <label for="triton" class="visually-hidden">Triton</label>
-          <input type="radio" name="theme" id="triton">
-          <button type="button" class="hamburger-button">&#9776;</button>
+        <label for="triton" class="visually-hidden">Triton</label>
+        <input type="radio" name="theme" id="triton" />
+        <button type="button" class="hamburger-button">&#9776;</button>
       </fieldset>
     </form>
 
-    <script src="js/themeswitch.js"></script>
-      
+    <script src="js/theme-switch.js"></script>
+
     <main>
       <nav class="sidebar">
         <a href="index.html" class="sideButton" id="indexButton">
-          <img src="/src/scripts/main/public/icons/dashboard-icon.png" alt="Dashboard Icon">
+          <img
+            src="/src/scripts/main/public/icons/dashboard-icon.png"
+            alt="Dashboard Icon"
+          />
           <span class="buttonIcon">Home</span>
         </a>
         <a href="./html/task-list.html" class="sideButton" id="tasklistButton">
-          <img src="./icons/tasklist-icon.png" alt="Task List Icon">
+          <img src="./icons/tasklist-icon.png" alt="Task List Icon" />
           <span class="buttonIcon">Task List</span>
         </a>
-        <a href="./html/team_calendar.html" class="sideButton" id="calendarButton">
-          <img src="./icons/calendar-icon.png" alt="Calendar Icon">
+        <a
+          href="./html/team-calendar.html"
+          class="sideButton"
+          id="calendarButton"
+        >
+          <img src="./icons/calendar-icon.png" alt="Calendar Icon" />
           <span class="buttonIcon">Calendar</span>
         </a>
         <a href="./html/code-log.html" class="sideButton" id="codelogButton">
-          <img src="./icons/codelog-icon.png" alt="Code Log Icon">
+          <img src="./icons/codelog-icon.png" alt="Code Log Icon" />
           <span class="buttonIcon">Code log</span>
         </a>
-        <a href="./html/documentation.html" class="sideButton" id="documentationButton">
-          <img src="./icons/documentation-icon.png" alt="Documentation Icon">
+        <a
+          href="./html/documentation.html"
+          class="sideButton"
+          id="documentationButton"
+        >
+          <img src="./icons/documentation-icon.png" alt="Documentation Icon" />
           <span class="buttonIcon">Docs</span>
         </a>
         <a href="./html/feedback.html" class="sideButton" id="feedbackButton">
-          <img src="./icons/feedback-icon.png" alt="Feedback Icon">
+          <img src="./icons/feedback-icon.png" alt="Feedback Icon" />
           <span class="buttonIcon">Feedback</span>
         </a>
       </nav>
@@ -73,96 +85,101 @@
         <section id="dueSoonContainer">
           <h2>Due Soon!</h2>
         </section>
-          <section id="progressContainer">
-            <strong></strong>
-            <svg class="progress-circle" viewBox="0 0 100 100">
-              <circle
-                class="bg-circle"
-                cx="50"
-                cy="50"
-                r="45"
-                stroke="#EDDDA5"
-                stroke-width="10"
-                fill="none"
-              />
-              <circle
-                class="progress"
-                cx="50"
-                cy="50"
-                r="45"
-                stroke="#FDB927"
-                stroke-width="10"
-                fill="none"
-                stroke-dasharray="0 283"
-                transform="rotate(270 50 50)"
-              />
-              <text id="percent"
-                x="50%"
-                y="50%"
-                dominant-baseline="middle"
-                text-anchor="middle"
-                font-size="20px"
-                fill="#FDB927"
+        <section id="progressContainer">
+          <strong></strong>
+          <svg class="progress-circle" viewBox="0 0 100 100">
+            <circle
+              class="bg-circle"
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="#EDDDA5"
+              stroke-width="10"
+              fill="none"
+            />
+            <circle
+              class="progress"
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="#FDB927"
+              stroke-width="10"
+              fill="none"
+              stroke-dasharray="0 283"
+              transform="rotate(270 50 50)"
+            />
+            <text
+              id="percent"
+              x="50%"
+              y="50%"
+              dominant-baseline="middle"
+              text-anchor="middle"
+              font-size="20px"
+              fill="#FDB927"
+            >
+              0%
+            </text>
+          </svg>
+          <button id="viewAllTasksButton" onclick="window.location.href='./html/task-list.html'">
+            View All Tasks
+          </button>
+        </section>
+        <section id="codeUpdateContainer">
+          <h2>Recent Updates</h2>
+          <section id="codeUpdateWithButtons">
+            <section id="contentCodeUpdate">
+              <h3>Events</h3>
+              <ul></ul>
+              <h3>Code Log Updates</h3>
+              <ul></ul>
+            </section>
+            <section id="codeUpdateButtons">
+              <button id="viewEventsButton"
+                onclick="window.location.href='./html/team-calendar.html'"
               >
-              
-                0%
-                
-                </text>
-              </svg>
-            </div>
-            <button id="viewAllTasksButton" onclick="window.location.href='./html/task-list.html'">View All Tasks</button>
-
-          </section>
-          <section id="codeUpdateContainer">
-            <h2>Recent Updates</h2>
-            <section id="codeUpdateWithButtons">
-              <section id="contentCodeUpdate">
-                <h3>Events</h3>
-                <ul>
-                </ul>
-                <h3>Code Log Updates</h3>
-                <ul>
-                </ul>
-              </section>
-              <section id="codeUpdateButtons">
-                  <button id="viewEventsButton" onclick="window.location.href='./html/team_calendar.html'">View Events</button>
-                  <button id="viewCodeLogButton" onclick="window.location.href='./html/code-log.html'">View Code Log</button>
-              </section>
+                View Events
+              </button>
+              <button id="viewCodeLogButton" onclick="window.location.href='./html/code-log.html'">
+                View Code Log
+              </button>
             </section>
           </section>
-        </section> 
-        <noscript>
-          <section>
-            <h2>Oops!</h2>
-            <h3>Please Enable JavaScript</h3>
-          </section>
-          <style>
-            main {
-              background-image:url(/src/scripts/main/public/img/No_Script_Background.png) ;
-              background-size: cover; /* Cover the entire page */
-              background-position: center; /* Center the background image */
-              background-repeat: no-repeat; /* Do not repeat the image */
-              display: flex;
-              flex-direction: row;
-              flex-wrap: nowrap;
-              justify-content: center;
-              align-items: center;
-              align-content: center;
-            }
-            #dashboardHolder, .sidebar, form {
-              display: none;
-              visibility: none;
-            }
-            section {
-              color: white;
-            }
-            h2 {
-              margin: 0;
-              font-size: 5rem ;
-              overflow-y: hidden;
-            }
-          </style>
-        </noscript>
+        </section>
+      </section>
+      <noscript>
+        <section>
+          <h2>Oops!</h2>
+          <h3>Please Enable JavaScript</h3>
+        </section>
+        <style>
+          main {
+            background-image: url(/src/scripts/main/public/img/No_Script_Background.png);
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the background image */
+            background-repeat: no-repeat; /* Do not repeat the image */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+          }
+          #dashboardHolder,
+          .sidebar,
+          form {
+            display: none;
+            visibility: none;
+          }
+          section {
+            color: white;
+          }
+          h2 {
+            margin: 0;
+            font-size: 5rem;
+            overflow-y: hidden;
+          }
+        </style>
+      </noscript>
     </main>
   </body>
 </html>

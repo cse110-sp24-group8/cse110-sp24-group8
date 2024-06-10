@@ -1,23 +1,23 @@
-document.addEventListener('DOMContentLoaded', (event) => {
-  console.log("DOM fully loaded and parsed");
-
+/* global SimpleMDE */
 initializeSimpleMDE();
 
 // Event listener for the 'Add Log' button
-document
-  .getElementById('addLogButton')
-  .addEventListener('click', function () {
-    openModal();
-    setDateTimeFields();
-  });
+document.getElementById('addLogButton').addEventListener('click', function () {
+  openModal();
+  setDateTimeFields();
+});
 
-// Function to open the modal
+/**
+ * Function to open the modal.
+ */
 function openModal() {
   document.getElementById('addLogModal').style.display = 'block';
   document.getElementById('logsContainer').classList.add('hidden');
 }
 
-// Function to close the modal
+/**
+ * Function to close the modal.
+ */
 function closeModal() {
   document.getElementById('addLogModal').style.display = 'none';
   document.getElementById('logsContainer').classList.remove('hidden');
@@ -35,6 +35,10 @@ window.onload = function () {
   }
 };
 
+/**
+ * Function to add a new log.
+ */
+/* eslint-disable-next-line no-unused-vars */
 function addLog() {
   let content = window.simplemde.value();
   const date = document.getElementById('logDate').value;
@@ -66,6 +70,13 @@ function addLog() {
   closeModal();
 }
 
+/**
+ * Function to add a log entry to the logs container.
+ * @param {string} date - The date of the log.
+ * @param {string} time - The time of the log.
+ * @param {string} content - The content of the log.
+ * @param {HTMLElement} container - The container to append the log entry to.
+ */
 function addLogEntry(date, time, content, container) {
   const entry = document.createElement('pre');
   entry.className = 'log-entry';
@@ -73,18 +84,13 @@ function addLogEntry(date, time, content, container) {
 
   entry.innerHTML = `
       <div class='fieldD1'>
-          <div class='date-codelog'>Date: ${date}
-            <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button>
-          </div>
+          <div class='date-codelog'>Date: ${date}       <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button></div>
           <div class='time-codelog'>Time: ${time}</div>
       </div>
       <div class='fieldD2'>
           <pre>${htmlContent}</pre>
       </div>
-
   `;
-
-
 
   const deleteButton = entry.querySelector('.delete-button');
   deleteButton.addEventListener('click', function () {
@@ -132,9 +138,9 @@ function addLogEntry(date, time, content, container) {
   container.appendChild(entry);
 }
 
-
-
-// Function to initialize SimpleMDE
+/**
+ * Function to initialize SimpleMDE.
+ */
 function initializeSimpleMDE() {
   // Check if SimpleMDE is already initialized
   if (!window.simplemde) {
@@ -145,7 +151,9 @@ function initializeSimpleMDE() {
   }
 }
 
-// Function to set the current date and time in the input fields
+/**
+ * Function to set the current date and time in the input fields.
+ */
 function setDateTimeFields() {
   const currentDate = new Date(); // Get the current date and time
   const formattedDate = formatDate(currentDate); // Format the date
@@ -166,7 +174,11 @@ function setDateTimeFields() {
   timeField.readOnly = true;
 }
 
-// Function to format the date
+/**
+ * Function to format the date.
+ * @param {Date} date - The date to format.
+ * @returns {string} The formatted date.
+ */
 function formatDate(date) {
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   const formattedDate = date.toLocaleDateString('en-US', options); // Format the date as a string
@@ -175,7 +187,11 @@ function formatDate(date) {
   return formattedDate.replace(/\b(\d{1,2})(th|nd|rd|st)\b/gi, `$1${suffix}`); // Replace the default suffix with the correct one
 }
 
-// Function to get the suffix for a day
+/**
+ * Function to get the suffix for a day.
+ * @param {number} day - The day of the month.
+ * @returns {string} The suffix for the day.
+ */
 function getSuffix(day) {
   switch (day % 10) {
     case 1:
@@ -188,5 +204,3 @@ function getSuffix(day) {
       return 'th';
   }
 }
-
-});
