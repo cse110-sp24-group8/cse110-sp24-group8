@@ -38,7 +38,6 @@ describe("Exhaustive E2E testing based on user flow for website.", () => {
   //     const year = date.getFullYear();
   //     return `${day}/${month}/${year}`;
   // };
-  //hi
   const formatTaskListDate = (date) => {
     const day = date.getUTCDate();
     const month = date.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
@@ -626,7 +625,7 @@ const getDate = (daysToAdd) => {
         return `${year}-${month}-${day}`;
       };
 
-      dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
+      //dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
   
