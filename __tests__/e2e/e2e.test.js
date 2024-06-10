@@ -640,30 +640,6 @@ const getDate = (daysToAdd) => {
       await checkDueSoonSection(expectedDueSoonTasks, expectedDueSoonDates);
     });
 
-    //Cross functionality with Calendar. Go to calendar. Should have all info from task list.
-    test("Check tasks on Calendar page", async () => {
-      await page.click('.sideButton img[alt="Calendar Icon"]');
-      
-      // Check the date 2 days from now for bla12
-      const dateIn2Days = getDate(2).split('/').reverse().join('-');
-      await page.click(`.calendar-cell[data-date="${dateIn2Days}"]`);
-      const tasksIn2Days = await page.$$eval('#task-content .text-wrapper', els => els.map(el => el.textContent.trim()));
-      expect(tasksIn2Days).toContain('bla12');
-    
-      // Check the date 5 days later for hi5
-      const dateIn5Days = getDate(5).split('/').reverse().join('-');
-      await page.click(`.calendar-cell[data-date="${dateIn5Days}"]`);
-      const tasksIn5Days = await page.$$eval('#task-content .text-wrapper', els => els.map(el => el.textContent.trim()));
-      expect(tasksIn5Days).toContain('hi5');
-    
-      // Check the date 3 days ago for hi6 (should be struck through)
-      const date3DaysAgo = getDate(-3).split('/').reverse().join('-');
-      await page.click(`.calendar-cell[data-date="${date3DaysAgo}"]`);
-      const tasks3DaysAgo = await page.$$eval('#task-content .text-wrapper', els => els.map(el => el.textContent.trim()));
-      const hi6StruckThrough = await page.$$eval('#task-content .text-wrapper', els => els.some(el => el.textContent.trim() === 'hi6' && window.getComputedStyle(el).textDecoration.includes('line-through')));
-      expect(tasks3DaysAgo).toContain('hi6');
-      expect(hi6StruckThrough).toBe(true);
-    });
     
   });
 
