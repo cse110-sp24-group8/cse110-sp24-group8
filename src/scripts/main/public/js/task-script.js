@@ -159,7 +159,6 @@ function standardizeDate(date) {
     return dateObj.toISOString().split('T')[0];
 }
 
-
 /**
  * Function to format date as "Today", "Tomorrow", or "10th May 2024"
  * @param {string} date - The date to format
@@ -170,20 +169,18 @@ function formatDate(date) {
         return 'No Due Date'; // Return default text if no valid date
     }
 
-    //PST timezone conversion
-    const getPSTDate = (date) => {
-        const dateString = date.toLocaleString("en-US", { timeZone: "America/Los_Angeles" });
-        const pstDate = new Date(dateString);
-        pstDate.setHours(0, 0, 0, 0); // Set to start of the day
-        return pstDate;
+    // Convert the date to UTC and set to start of the day
+    const getUTCDate = (date) => {
+        const dateObj = new Date(date);
+        dateObj.setUTCHours(0, 0, 0, 0); // Set to start of the day in UTC
+        return dateObj;
     };
 
-    const today = getPSTDate(new Date());
+    const today = getUTCDate(new Date());
     const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setUTCDate(today.getUTCDate() + 1);
 
-    const dateToFormat = getPSTDate(date);
-    dateToFormat.setDate(dateToFormat.getDate() + 1);
+    const dateToFormat = getUTCDate(date);
 
     if (dateToFormat.getTime() < today.getTime()) {
         return '<span style="color: red;">OVERDUE</span>';
@@ -193,7 +190,7 @@ function formatDate(date) {
         return '<span>Tomorrow</span>';
     } else {
         const day = dateToFormat.getUTCDate();
-        const month = dateToFormat.toLocaleString('default', { month: 'long' });
+        const month = dateToFormat.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
         const year = dateToFormat.getUTCFullYear();
 
         const daySuffix = (day) => {
@@ -209,6 +206,7 @@ function formatDate(date) {
         return `${day}${daySuffix(day)} ${month} ${year}`;
     }
 }
+
 
 /**
  * Function to update the tasks displayed in the DOM
