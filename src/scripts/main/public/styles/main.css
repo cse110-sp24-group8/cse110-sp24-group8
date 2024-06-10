@@ -308,11 +308,11 @@ header img {
   }
 
   :root:has(#dark:checked) .text-wrapper {
-    color: white !important;
+    color: black !important;
   }
 
   :root:has(#dark:checked) .date-wrapper {
-    color: white !important;
+    color: black !important;
   }
 
   :root:has(#triton:checked) div{
