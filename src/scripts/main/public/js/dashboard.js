@@ -1,5 +1,5 @@
 /**
- * event listener to change the percentage of the circle depending on the amount of tasks completed
+ * Event listener to change the percentage of the circle depending on the amount of tasks completed
  */
 document.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
@@ -173,7 +173,6 @@ export function progressCalculator(taskListPercent) {
  */
 export function changeProgressText(percent) {
     let percentText = document.getElementById('percent');
-    // percentText.textContent = `${convertToPercentage((percent))}`; 
     percentText.textContent = `${Math.floor(percent * 100)}%`; //currently just an integer
 }
 
@@ -198,7 +197,6 @@ export function monthDayDate(dateString) {
 
 /**
  * Converts date of Month Day, Year with time to "(Month, Day, Time)"
- * 
  * @param {String} dateString
  * @param {String} timeString
  * @returns {String} "(Month, Day, Time)"

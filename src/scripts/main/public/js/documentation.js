@@ -1,9 +1,10 @@
+/* global SimpleMDE */
 document.addEventListener('DOMContentLoaded', function () {
     var simplemde = new SimpleMDE({ element: document.getElementById("fileContent") });
     const storagePrefix = 'file_';
     let currentFile = '';
 
-    /*
+    /**
      * Loads the files from localStorage into the file selection dropdown.
      */
     function loadFiles() {
@@ -21,18 +22,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /*
+    /**
      * Initializes by loading the first available file or creating the default 'Untitled' file.
      */
     function initialize() {
         const fileSelect = document.getElementById('fileSelect');
         const filesExist = Object.keys(localStorage).some(key => key.startsWith(storagePrefix));
         if (filesExist) {
+            // Load the first file found in localStorage
             const firstFileKey = Object.keys(localStorage).find(key => key.startsWith(storagePrefix));
             currentFile = firstFileKey.substring(storagePrefix.length);
             simplemde.value(localStorage.getItem(firstFileKey));
             fileSelect.value = currentFile;
         } else {
+            // Create a default 'Untitled' file if no files exist
             localStorage.setItem(storagePrefix + 'Untitled', '');
             currentFile = 'Untitled';
             simplemde.value(localStorage.getItem(storagePrefix + 'Untitled'));
@@ -44,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /*
+    /**
      * Creates a new file with the user-provided name.
      * Prompts the user for the new file name.
      * @returns {void}
@@ -52,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.createNewFile = function () {
         const fileName = prompt('Enter the name for the new file:');
         if (fileName && !localStorage.getItem(storagePrefix + fileName)) {
+            // Create new file if name is provided and doesn't already exist
             localStorage.setItem(storagePrefix + fileName, '');
             const option = document.createElement('option');
             option.value = fileName;
@@ -65,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /*
+    /**
      * Renames the current file to a new user-provided name.
      * Prompts the user for the new file name.
      * @returns {void}
@@ -73,6 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     window.renameFile = function () {
         const newFileName = prompt('Enter the new name for the file:');
         if (newFileName && !localStorage.getItem(storagePrefix + newFileName)) {
+            // Rename file if new name is provided and doesn't already exist
             const oldFileName = currentFile;
             const fileContent = localStorage.getItem(storagePrefix + oldFileName);
             localStorage.setItem(storagePrefix + newFileName, fileContent);
@@ -85,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /*
+    /**
      * Switches to the selected file and loads its content into the editor.
      * @returns {void}
      */
@@ -93,13 +98,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const fileSelect = document.getElementById('fileSelect');
         const selectedFile = fileSelect.value;
         if (currentFile) {
+            // Save the content of the current file before switching
             localStorage.setItem(storagePrefix + currentFile, simplemde.value());
         }
         currentFile = selectedFile;
         simplemde.value(localStorage.getItem(storagePrefix + currentFile));
     }
 
-    /*
+    /**
      * Deletes the current file after confirming with the user.
      * @returns {void}
      */
@@ -107,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (currentFile) {
             const confirmed = confirm(`Are you sure you want to delete the file "${currentFile}"?`);
             if (confirmed) {
+                // Remove the current file from localStorage and update the UI
                 localStorage.removeItem(storagePrefix + currentFile);
                 currentFile = '';
                 loadFiles();
@@ -124,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /*
+    /**
      * Saves the current file content to localStorage whenever the content changes.
      */
     simplemde.codemirror.on('change', function() {
@@ -133,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Load files and initialize the editor on page load
     loadFiles();
     initialize();
 });

@@ -1,39 +1,42 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="description" content="Code Log" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../styles/code-log.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css"
+    />
     <link rel="stylesheet" href="../styles/markdown.css" />
     <link rel="icon" type="image/png" href="../icons/LeCoders_Logo.png">
     <title>LeJournal Code Log</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
       <img src="../icons/journallogo-icon.png" alt="Journal Logo" />
       <h1>Code Log</h1>
     </header>
-    
+
     <form id="themeSwitcher">
       <fieldset>
-          <legend class="visually-hidden">Pick a color scheme</legend>
-          <label for="laker" class="visually-hidden">Laker</label>
-          <input type="radio" name="theme" id="laker">
+        <legend class="visually-hidden">Pick a color scheme</legend>
+        <label for="laker" class="visually-hidden">Laker</label>
+        <input type="radio" name="theme" id="laker" />
 
-          <label for="light" class="visually-hidden">Light</label>
-          <input type="radio" name="theme" id="light">
+        <label for="light" class="visually-hidden">Light</label>
+        <input type="radio" name="theme" id="light" />
 
-          <label for="dark" class="visually-hidden">Dark</label>
-          <input type="radio" name="theme" id="dark">
+        <label for="dark" class="visually-hidden">Dark</label>
+        <input type="radio" name="theme" id="dark" />
 
-          <label for="christmas" class="visually-hidden">Christmas</label>
-          <input type="radio" name="theme" id="christmas">
+        <label for="christmas" class="visually-hidden">Christmas</label>
+        <input type="radio" name="theme" id="christmas" />
 
-          <label for="triton" class="visually-hidden">Triton</label>
-          <input type="radio" name="theme" id="triton">
-          <button type="button" class="hamburger-button">&#9776;</button>
+        <label for="triton" class="visually-hidden">Triton</label>
+        <input type="radio" name="theme" id="triton" />
+        <button type="button" class="hamburger-button">&#9776;</button>
       </fieldset>
     </form>
 
@@ -49,7 +52,7 @@
           <img src="../icons/tasklist-icon.png" alt="Task List Icon">
           <span class="buttonIcon">Task List</span>
         </a>
-        <a href="team_calendar.html" class="sideButton" id="calendarButton">
+        <a href="team-calendar.html" class="sideButton" id="calendarButton">
           <img src="../icons/calendar-icon.png" alt="Calendar Icon">
           <span class="buttonIcon">Calendar</span>
         </a>
@@ -67,7 +70,7 @@
         </a>
       </nav>
       <!-- Code Log Content -->
-      <section class="content-holder" >
+      <section class="content-holder">
         <div id="addLogModal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -75,30 +78,45 @@
               <div class="form-group">
                 <div class="input-group">
                   <img src="../icons/calendar-icon.png" alt="Calendar Icon" />
-                  <input type="text" id="logDate" class="input-field" placeholder="Date:" />
+                  <input
+                    type="text"
+                    id="logDate"
+                    class="input-field"
+                    placeholder="Date:"
+                  />
                 </div>
               </div>
               <div class="form-group">
                 <div class="input-group">
                   <img src="../icons/calendar-icon.png" alt="Clock Icon" />
-                  <input type="text" id="logTime" class="input-field" placeholder="Time:" />
+                  <input
+                    type="text"
+                    id="logTime"
+                    class="input-field"
+                    placeholder="Time:"
+                  />
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <textarea id="logContent" rows="10" cols="50" class="textarea-field"></textarea>
+              <textarea
+                id="logContent"
+                rows="10"
+                cols="50"
+                class="textarea-field"
+              ></textarea>
             </div>
             <button class="frame" onclick="addLog()">Add Log</button>
           </div>
-      </div>
+        </div>
         <!-- Logs Container -->
         <div id="logsContainer" class="logs-container"></div>
         <!--pop-up page for add tasklist-->
         <div class="add-log-btn" id="addLogButton">
-          <button class = "button-style">
+          <button class="button-style">
             <img class="union" src="../img/union.svg" />
-        </button>
-      </div>
+          </button>
+        </div>
       </section>
       <noscript>
         <section>
@@ -107,7 +125,7 @@
         </section>
         <style>
           main {
-            background-image:url(/src/scripts/main/public/img/No_Script_Background.png) ;
+            background-image: url(/src/scripts/main/public/img/No_Script_Background.png);
             background-size: cover; /* Cover the entire page */
             background-position: center; /* Center the background image */
             background-repeat: no-repeat; /* Do not repeat the image */
@@ -118,7 +136,10 @@
             align-items: center;
             align-content: center;
           }
-          #dashboardHolder, .sidebar, form, .content-holder{
+          #dashboardHolder,
+          .sidebar,
+          form,
+          .content-holder {
             display: none;
             visibility: none;
           }
@@ -127,7 +148,7 @@
           }
           h2 {
             margin: 0;
-            font-size: 5rem ;
+            font-size: 5rem;
             overflow-y: hidden;
           }
         </style>
@@ -135,6 +156,6 @@
     </main>
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
     <script src="../js/code-log.js"></script>
-    <script src="../js/themeswitch.js"></script> 
-</body>
-</html> 
+    <script src="../js/theme-switch.js"></script>
+  </body>
+</html>
