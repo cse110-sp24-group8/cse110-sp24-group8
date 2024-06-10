@@ -6,7 +6,7 @@ import {
     formatTimeTo24Hr,
   } from '../../src/scripts/main/public/js/team-calendar.js';
   
-  describe('team_calendar', () => {
+  describe('team-calendar', () => {
     describe('formatTimeTo12Hr', () => {
       it('formats 24-hour time to 12-hour time with AM/PM', () => {
         expect(formatTimeTo12Hr('13:45')).toEqual('1:45 PM');

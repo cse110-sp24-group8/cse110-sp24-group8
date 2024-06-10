@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     if (taskDates.has(fullDate) && eventDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "rgba(85, 37, 131, 1)";
+                        cell.style.color = "var(--lecoder-purple)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
                         cell.style.textDecoration = "underline";
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Check if the date has tasks and highlight if it does
                     if (taskDates.has(fullDate)) {
                         cell.style.fontWeight = "bold";
-                        cell.style.color = "rgba(85, 37, 131, 1)";
+                        cell.style.color = "var(--lecoder-purple)";
                         cell.style.fontWeight = "bold";
                         cell.style.fontSize = "1em"; // Larger text for emphasis
                     }

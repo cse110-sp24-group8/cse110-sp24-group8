@@ -295,7 +295,7 @@ header img {
 :root:has(#dark:checked) .calendar-cell.selected-date{
     border-radius: 106px;
     background: var(--lecoder-light-purple);
-    color: var(--lecoder-purple, white);
+    color: var(--lecoder-purple, white) !important;
 }
 
   :root:has(#light:checked) .to-do-list,
@@ -308,7 +308,11 @@ header img {
   }
 
   :root:has(#dark:checked) .text-wrapper {
-    color: var(--lecoder-header-color), purple !important;
+    color: white !important;
+  }
+
+  :root:has(#dark:checked) .date-wrapper {
+    color: white !important;
   }
 
   :root:has(#triton:checked) div{
@@ -339,7 +343,13 @@ header img {
   :root:has(#laker:checked) .calendar-cell.selected-date {
     border-radius: 106px;
     background: var(--lecoder-purple);
-    color: var(--lecoder-light-purple, white);
+    color: var(--lecoder-light-purple, white) !important;
+  }
+
+  :root:has(#light:checked) .calendar-cell.selected-date {
+    border-radius: 106px;
+    background: var(--lecoder-purple);
+    color: var(--lecoder-light-gold, white) !important;
   }
 
   :root:has(#laker:checked) .to-do-list .overlap {

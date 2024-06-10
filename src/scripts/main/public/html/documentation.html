@@ -11,16 +11,17 @@
   <link rel="icon" type="image/png" href="../icons/LeCoders_Logo.png">
   <title>Documentation</title>
 
-    <!-- Link to SimpleMDE Markdown Editor -->
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-  </head>
-  <body>
-    <!-- Header section with logo and title -->
-    <header>
-      <img src="../icons/journallogo-icon.png" alt="Journal Logo" />
-      <h1>Documentation</h1>
-      <!-- <div></div> Placeholder for potential future content -->
-    </header>
+  <!-- Link to SimpleMDE Markdown Editor -->
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+  <script src="../js/theme-switch.js"></script>
+</head>
+<body>
+  <!-- Header section with logo and title -->
+  <header>
+    <img src="../icons/journallogo-icon.png" alt="Journal Logo">
+    <h1>Documentation</h1>
+    <!-- <div></div> Placeholder for potential future content -->
+  </header>
 
     <form id="themeSwitcher">
       <fieldset>
@@ -40,10 +41,9 @@
         <label for="triton" class="visually-hidden">Triton</label>
         <input type="radio" name="theme" id="triton" />
         <button type="button" class="hamburger-button">&#9776;</button>
-      </fieldset>
-    </form>
-
-  <script src="../js/theme-switch.js"></script> 
+    </fieldset>
+  </form>
+ 
   <!-- Main section containing sidebar and content -->
   <main>
     <nav class="sidebar">
@@ -55,7 +55,7 @@
         <img src="../icons/tasklist-icon.png" alt="Task List Icon">
         <span class="buttonIcon">Task List</span>
       </a>
-      <a href="team_calendar.html" class="sideButton" id="calendarButton">
+      <a href="team-calendar.html" class="sideButton" id="calendarButton">
         <img src="../icons/calendar-icon.png" alt="Calendar Icon">
         <span class="buttonIcon">Calendar</span>
       </a>
