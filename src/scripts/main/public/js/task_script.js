@@ -188,9 +188,9 @@ function formatDate(date) {
     if (dateToFormat.getTime() < today.getTime()) {
         return '<span style="color: red;">OVERDUE</span>';
     } else if (dateToFormat.getTime() === today.getTime()) {
-        return '<span style="color:black;">Today</span>';
+        return '<span>Today</span>';
     } else if (dateToFormat.getTime() === tomorrow.getTime()) {
-        return '<span style="color:black;">Tomorrow</span>';
+        return '<span>Tomorrow</span>';
     } else {
         const day = dateToFormat.getUTCDate();
         const month = dateToFormat.toLocaleString('default', { month: 'long' });
