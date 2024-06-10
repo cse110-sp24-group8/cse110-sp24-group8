@@ -445,7 +445,7 @@ function loadEditContent(eventId) {
             }
         }
     };
-    xhttp.open("GET", "editEvent.html", true);
+    xhttp.open("GET", "edit-event.html", true);
     xhttp.send();
 }
 

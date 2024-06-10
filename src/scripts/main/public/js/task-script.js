@@ -59,7 +59,7 @@ function loadEditContent(taskId) {
             }
         }
     };
-    xhttp.open("GET", "editlist.html", true);
+    xhttp.open("GET", "edit-list.html", true);
     xhttp.send();
 }
 
