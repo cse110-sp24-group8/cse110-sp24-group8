@@ -1,43 +1,53 @@
 <a href="../index.html" class="sideButton" id="indexButton">
-  <img src="../icons/dashboard-icon.png" alt="Dashboard Icon">
+  <img src="../icons/dashboard-icon.png" alt="Dashboard Icon" />
   <span class="buttonIcon" tabindex="0">Home</span>
 </a>
 <a href="task-list.html" class="sideButton" tabindex="1" id="taskListButton">
-  <img src="../icons/tasklist-icon.png" alt="Task List Icon">
+  <img src="../icons/tasklist-icon.png" alt="Task List Icon" />
   <span class="buttonIcon" tabindex="1">Task List</span>
 </a>
-<a href="team_calendar.html" class="sideButton" id="calendarButton" tabindex="2">
-  <img src="../icons/calendar-icon.png" alt="Calendar Icon">
+<a
+  href="team-calendar.html"
+  class="sideButton"
+  id="calendarButton"
+  tabindex="2"
+>
+  <img src="../icons/calendar-icon.png" alt="Calendar Icon" />
   <span class="buttonIcon" tabindex="2">Calendar</span>
 </a>
 <a href="code-log.html" class="sideButton" id="codeLogButton" tabindex="3">
-  <img src="../icons/codelog-icon.png" alt="Code Log Icon">
+  <img src="../icons/codelog-icon.png" alt="Code Log Icon" />
   <span class="buttonIcon" tabindex="3">Code log</span>
 </a>
-<a href="documentation.html" class="sideButton" id="documentationButton" tabindex="4">
-  <img src="../icons/documentation-icon.png" alt="Documentation Icon">
+<a
+  href="documentation.html"
+  class="sideButton"
+  id="documentationButton"
+  tabindex="4"
+>
+  <img src="../icons/documentation-icon.png" alt="Documentation Icon" />
   <span class="buttonIcon" tabindex="4">Docs</span>
 </a>
 <a href="feedback.html" class="sideButton" id="feedbackButton" tabindex="3">
-  <img src="../icons/feedback-icon.png" alt="Feedback Icon">
+  <img src="../icons/feedback-icon.png" alt="Feedback Icon" />
   <span class="buttonIcon" tabindex="5">Feedback</span>
 </a>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    console.log("DOM fully loaded and parsed");
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
     const sideButtons = document.querySelectorAll('.sideButton');
-    console.log("Buttons found:", sideButtons.length);
+    console.log('Buttons found:', sideButtons.length);
 
     const currentUrl = window.location.href;
-    console.log("Current URL:", currentUrl);
+    console.log('Current URL:', currentUrl);
 
-    sideButtons.forEach(button => {
-        console.log("Checking button href:", button.getAttribute('href'));
-        if (currentUrl.endsWith(button.getAttribute('href'))) {
-            console.log("Match found, adding active class");
-            button.classList.add('active');
-        }
+    sideButtons.forEach((button) => {
+      console.log('Checking button href:', button.getAttribute('href'));
+      if (currentUrl.endsWith(button.getAttribute('href'))) {
+        console.log('Match found, adding active class');
+        button.classList.add('active');
+      }
     });
-});
+  });
 </script>
