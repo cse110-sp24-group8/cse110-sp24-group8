@@ -8,7 +8,7 @@ function loadPopupContent() {
             document.getElementById("popupContent").innerHTML = this.responseText;
         }
     };
-    xhttp.open("GET", "addlist.html", true);
+    xhttp.open("GET", "add-list.html", true);
     xhttp.send();
 }
 
