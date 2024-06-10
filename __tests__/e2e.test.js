@@ -1,5 +1,3 @@
-//import { ConsoleMessage } from "puppeteer";
-
 describe("Exhaustive E2E testing based on user flow for website.", () => {
   // First, visit the app hosted by live server
   beforeAll(async () => {
@@ -237,7 +235,7 @@ const getDate = (daysToAdd) => {
       const tasks = await page.evaluate(() => localStorage.getItem('tasks'));
       expect(tasks).toBe("[]");
     });
-    
+
     // Yes title no date
     test("Add a task with title 'hi1' and no date", async () => {
       await addTask('hi1', null);
@@ -366,6 +364,7 @@ const getDate = (daysToAdd) => {
       const taskStrikeThroughStyles = await page.$$eval('.tasks-container .text-wrapper', els => els.map(el => window.getComputedStyle(el).textDecoration));
 
       for (let i = 0; i < expectedOrderAfterStrike.length; i++) {
+        console.log(`Task: ${taskTextsAfterStrike[i]}, Expected Date: ${expectedDatesAfterStrike[i]}, Actual Date: ${taskDatesAfterStrike[i]}`);
           expect(taskTextsAfterStrike[i]).toBe(expectedOrderAfterStrike[i]);
           expect(taskDatesAfterStrike[i]).toBe(expectedDatesAfterStrike[i]);
           if (expectedOrderAfterStrike[i] === 'hi1') {
@@ -623,9 +622,9 @@ const getDate = (daysToAdd) => {
 
       const convertDateToYYYYMMDD = (dateString) => {
         const [day, month, year] = dateString.split('/');
-        return `${year}-${day}-${month}`;
+        return `${year}-${month}-${day}`;
       };
-      
+
       dayAfterTomorrow = convertDateToYYYYMMDD(dayAfterTomorrow)
 
       expect(task.date).toBe(dayAfterTomorrow);
@@ -649,7 +648,7 @@ const getDate = (daysToAdd) => {
       const dateIn2Days = getDate(2).split('/').reverse().join('-');
       await page.click(`.calendar-cell[data-date="${dateIn2Days}"]`);
       const tasksIn2Days = await page.$$eval('#task-content .text-wrapper', els => els.map(el => el.textContent.trim()));
-      expect(tasksIn2Days).toContain('bla12')
+      expect(tasksIn2Days).toContain('bla12');
     
       // Check the date 5 days later for hi5
       const dateIn5Days = getDate(5).split('/').reverse().join('-');
@@ -753,6 +752,10 @@ describe("Comprehensive E2E testing for Calendar page", () => {
   
       await page.click('.sideButton img[alt="Dashboard Icon"]');
       const recentUpdates = await page.$$eval('#contentCodeUpdate ul li', els => els.map(el => el.textContent.trim()));
+  
+      console.log("Recent Updates:", recentUpdates);
+      console.log("Formatted Test Event:", formattedTestEvent);
+      console.log("Formatted Dashboard Event:", formattedDashboardEvent);
   
       expect(recentUpdates).toContain(formattedTestEvent);
       expect(recentUpdates).toContain(formattedDashboardEvent);
@@ -978,6 +981,7 @@ test("Delete 10 log entries", async () => {
   while (clickCount < 10) {
       deleteButtons = await page.$$('.delete-button');
       if (deleteButtons.length === 0) {
+          console.log('No more delete buttons found.');
           break;
       }
       await deleteButtons[0].click();
@@ -985,6 +989,7 @@ test("Delete 10 log entries", async () => {
       clickCount++;
   }
 
+  console.log(`Total delete clicks made: ${clickCount}`);
 });
 
 });
