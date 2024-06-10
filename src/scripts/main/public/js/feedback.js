@@ -44,40 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Save feedback to localStorage
         saveFeedbackToLocalStorage(uniqueId, formattedDate, formattedTime);
     }
-  
-    /**
-     * Formats a date object into a string with the format "Month Day, Year".
-     * 
-     * @param {Date} date - The date object to format.
-     * @returns {string} The formatted date string.
-     */
-    function formatDate(date) {
-        const options = { day: 'numeric', month: 'long', year: 'numeric' };
-        const formattedDate = date.toLocaleDateString('en-US', options);
-        const day = date.getDate();
-        const suffix = getSuffix(day);
-        return formattedDate.replace(/\b(\d{1,2})(th|nd|rd|st)\b/gi, `$1${suffix}`);
-    }
-  
-    /**
-     * Returns the appropriate suffix for a given day of the month.
-     * 
-     * @param {number} day - The day of the month.
-     * @returns {string} The suffix for the day.
-     */
-    function getSuffix(day) {
-        switch (day % 10) {
-            case 1:
-                return 'st';
-            case 2:
-                return 'nd';
-            case 3:
-                return 'rd';
-            default:
-                return 'th';
-        }
-    }
-  
+
     /**
      * Generates a unique identifier.
      * 
@@ -197,4 +164,38 @@ document.addEventListener('DOMContentLoaded', () => {
   
         localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
     }
-});
+  });
+/**
+     * Formats a date object into a string with the format "Month Day, Year".
+     * 
+     * @param {Date} date - The date object to format.
+     * @returns {string} The formatted date string.
+     */
+export function formatDate(date) {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const formattedDate = date.toLocaleDateString('en-US', options);
+    const day = date.getDate();
+    const suffix = getSuffix(day);
+    return formattedDate.replace(/\b(\d{1,2})\b/, `${day}${suffix}`);
+}
+
+/**
+ * Returns the appropriate suffix for a given day of the month.
+ * 
+ * @param {number} day - The day of the month.
+ * @returns {string} The suffix for the day.
+ */
+export function getSuffix(day) {
+    if (day > 3 && day < 21) return 'th';
+    switch (day % 10) {
+        case 1:
+            return 'st';
+        case 2:
+            return 'nd';
+        case 3:
+            return 'rd';
+        default:
+            return 'th';
+    }
+}
+  

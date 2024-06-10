@@ -263,16 +263,33 @@ function loadPopupContent() {
     xhttp.send();
 }
 
-document.getElementById("openModal").addEventListener("click", function() {
+// document.getElementById("openModal").addEventListener("click", function() {
+//     loadPopupContent();
+//     document.getElementById("pageModal").style.display = "block";
+// });
+
+// document.getElementById("closeModal").addEventListener("click", function() {
+//     document.getElementById("pageModal").style.display = "none";
+//     document.getElementById("popupContent").innerHTML = "";
+// });
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     const popupContent = document.getElementById("popupContent");
+let openModalElement = document.getElementById("openModal");
+if (openModalElement) {
+  openModalElement.addEventListener("click", function() {
     loadPopupContent();
     document.getElementById("pageModal").style.display = "block";
-});
+  });
+}
 
-document.getElementById("closeModal").addEventListener("click", function() {
+let closeModalElement = document.getElementById("closeModal");
+if (closeModalElement) {
+  closeModalElement.addEventListener("click", function() {
     document.getElementById("pageModal").style.display = "none";
     document.getElementById("popupContent").innerHTML = "";
-});
-
+  });
+}
 document.addEventListener("DOMContentLoaded", function() {
     const popupContent = document.getElementById("popupContent");
 
@@ -337,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * @param {string} timeText - The time string in 24-hour format (HH:MM).
  * @returns {string} The formatted time string in 12-hour format with AM/PM.
  */
-function formatTimeTo12Hr(timeText) {
+export function formatTimeTo12Hr(timeText) {
     if (!timeText) return ""; // Return empty if no time provided
 
     let [hour, minute] = timeText.split(':');
@@ -351,7 +368,7 @@ function formatTimeTo12Hr(timeText) {
  * @param {string} timeText - The time string in 12-hour format with AM/PM.
  * @returns {string} The formatted time string in 24-hour format (HH:MM).
  */
-function formatTimeTo24Hr(timeText) {
+export function formatTimeTo24Hr(timeText) {
     const [time, modifier] = timeText.split(' ');
     let [hour, minute] = time.split(':');
     hour = parseInt(hour);
@@ -406,6 +423,7 @@ function updateEventList(targetDate) {
  * Loads the edit content for an event.
  * @param {number} eventId - The ID of the event to edit.
  */
+/* eslint-disable-next-line no-unused-vars */
 function loadEditContent(eventId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -475,26 +493,36 @@ function handleEditSubmit(eventId) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const eventsContainer = document.querySelector('.event-content');
-    if (eventsContainer) {
-        eventsContainer.addEventListener('click', function(event) {
-            if (event.target.closest('.edit-btn')) {
-                const eventElement = event.target.closest('.overlap');
-                    const eventId = eventElement.dataset.eventId;
-                loadEditContent(eventId);
-            }
-        });
-    } 
+    let eventContentElement = document.getElementById('event-content');
+    if (eventContentElement) {
+        eventContentElement.addEventListener('click', function(event) {
+    if (event.target.closest('.delete-btn')) {
+      const eventElement = event.target.closest('.overlap');
+      const eventId = eventElement.dataset.eventId;
+      handleEventDeletion(eventId);
+      eventElement.remove();
+    }
+  });
+}
+
+function handleEventDeletion(eventId) {
+    let events = JSON.parse(localStorage.getItem('events')) || [];
+    events = events.filter(event => event.id.toString() !== eventId);
+    localStorage.setItem('events', JSON.stringify(events));
+}
 });
 
-document.getElementById('event-content').addEventListener('click', function(event) {
+let eventContentElement = document.getElementById('event-content');
+if (eventContentElement) {
+  eventContentElement.addEventListener('click', function(event) {
     if (event.target.closest('.delete-btn')) {
-        const eventElement = event.target.closest('.overlap');
-        const eventId = eventElement.dataset.eventId;
-        handleEventDeletion(eventId);
-        eventElement.remove();
+      const eventElement = event.target.closest('.overlap');
+      const eventId = eventElement.dataset.eventId;
+      handleEventDeletion(eventId);
+      eventElement.remove();
     }
-});
+  });
+}
 
 /**
  * Handles the deletion of an event.
