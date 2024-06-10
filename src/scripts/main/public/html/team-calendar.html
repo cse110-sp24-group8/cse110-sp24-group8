@@ -7,7 +7,6 @@
     <!-- Add Favicon -->
     <link rel="stylesheet" href="../styles/team-calendar.css">
     <link rel="icon" type="image/png" href="/admin/branding/images/LeCoders_Logo.png">
-    <script src="../js/load-nav.js"></script>
     <title>LeJournal Dashboard</title>
   </head>
   <body>
@@ -37,11 +36,35 @@
       </fieldset>
     </form>
 
-    <script src="../js/themeswitch.js"></script> 
+    <script src="../js/theme-switch.js"></script> 
     
     <!-- Contains the 2 main components: the sidebar and content -->
     <main>
       <nav class="sidebar">
+        <a href="../index.html" class="sideButton" id="indexButton">
+          <img src="./icons/dashboard-icon.png" alt="Dashboard Icon">
+          <span class="buttonIcon">Home</span>
+        </a>
+        <a href="task-list.html" class="sideButton" id="tasklistButton">
+          <img src="./icons/tasklist-icon.png" alt="Task List Icon">
+          <span class="buttonIcon">Task List</span>
+        </a>
+        <a href="team-calendar.html" class="sideButton" id="calendarButton">
+          <img src="./icons/calendar-icon.png" alt="Calendar Icon">
+          <span class="buttonIcon">Calendar</span>
+        </a>
+        <a href="code-log.html" class="sideButton" id="codelogButton">
+          <img src="./icons/codelog-icon.png" alt="Code Log Icon">
+          <span class="buttonIcon">Code log</span>
+        </a>
+        <a href="documentation.html" class="sideButton" id="documentationButton">
+          <img src="./icons/documentation-icon.png" alt="Documentation Icon">
+          <span class="buttonIcon">Docs</span>
+        </a>
+        <a href="feedback.html" class="sideButton" id="feedbackButton">
+          <img src="./icons/feedback-icon.png" alt="Feedback Icon">
+          <span class="buttonIcon">Feedback</span>
+        </a>
       </nav>
       <!-- This container includes the header and calendar -->
       <section class="headerWithContent">

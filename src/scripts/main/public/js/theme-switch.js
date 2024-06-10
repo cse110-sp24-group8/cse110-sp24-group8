@@ -24,51 +24,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorThemes = document.querySelectorAll('[name="theme"]');
     const iconMap = {
         'laker': {
-            'indexButton': './icons/dashboard-icon-white.png',
-            'tasklist': './icons/tasklist-icon-white.png',
-            'calendar': './icons/calendar-icon-white.png',
-            'codelog': './icons/codelog-icon-white.png',
-            'documentation': './icons/documentation-icon-white.png',
-            'feedback': './icons/feedback-icon-white.png'
+            'indexButton': '../icons/dashboard-icon-white.png',
+            'tasklistButton': '../icons/tasklist-icon-white.png',
+            'calendarButton': '../icons/calendar-icon-white.png',
+            'codelogButton': '../icons/codelog-icon-white.png',
+            'documentationButton': '../icons/documentation-icon-white.png',
+            'feedbackButton': '../icons/feedback-icon-white.png'
         },
         'light': {
-            'indexButton': './icons/dashboard-icon-black.png',
-            'tasklist': './icons/tasklist-icon-black.png',
-            'calendar': './icons/calendar-icon-black.png',
-            'codelog': './icons/codelog-icon-black.png',
-            'documentation': './icons/documentation-icon-black.png',
-            'feedback': './icons/feedback-icon-black.png'
+            'indexButton': '../icons/dashboard-icon-black.png',
+            'tasklistButton': '../icons/tasklist-icon-black.png',
+            'calendarButton': '../icons/calendar-icon-black.png',
+            'codelogButton': '../icons/codelog-icon-black.png',
+            'documentationButton': '../icons/documentation-icon-black.png',
+            'feedbackButton': '../icons/feedback-icon-black.png'
         },
         'dark': {
-            'indexButton': './icons/dashboard-icon-white.png',
-            'tasklist': './icons/tasklist-icon-white.png',
-            'calendar': './icons/calendar-icon-white.png',
-            'codelog': './icons/codelog-icon-white.png',
-            'documentation': './icons/documentation-icon-white.png',
-            'feedback': './icons/feedback-icon-white.png'
+            'indexButton': '../icons/dashboard-icon-white.png',
+            'tasklistButton': '../icons/tasklist-icon-white.png',
+            'calendarButton': '../icons/calendar-icon-white.png',
+            'codelogButton': '../icons/codelog-icon-white.png',
+            'documentationButton': '../icons/documentation-icon-white.png',
+            'feedbackButton': '../icons/feedback-icon-white.png'
         },
         'christmas': {
-            'indexButton': './icons/dashboard-icon-white.png',
-            'tasklist': './icons/tasklist-icon-white.png',
-            'calendar': './icons/calendar-icon-white.png',
-            'codelog': './icons/codelog-icon-white.png',
-            'documentation': './icons/documentation-icon-white.png',
-            'feedback': './icons/feedback-icon-white.png'
+            'indexButton': '../icons/dashboard-icon-white.png',
+            'tasklistButton': '../icons/tasklist-icon-white.png',
+            'calendarButton': '../icons/calendar-icon-white.png',
+            'codelogButton': '../icons/codelog-icon-white.png',
+            'documentationButton': '../icons/documentation-icon-white.png',
+            'feedbackButton': '../icons/feedback-icon-white.png'
         },
         'triton': {
-            'indexButton': './icons/dashboard-icon-yellow.png',
-            'tasklist': './icons/tasklist-icon-yellow.png',
-            'calendar': './icons/calendar-icon-yellow.png',
-            'codelog': './icons/codelog-icon-yellow.png',
-            'documentation': './icons/documentation-icon-yellow.png',
-            'feedback': './icons/feedback-icon-yellow.png'
+            'indexButton': '../icons/dashboard-icon-yellow.png',
+            'tasklistButton': '../icons/tasklist-icon-yellow.png',
+            'calendarButton': '../icons/calendar-icon-yellow.png',
+            'codelogButton': '../icons/codelog-icon-yellow.png',
+            'documentationButton': '../icons/documentation-icon-yellow.png',
+            'feedbackButton': '../icons/feedback-icon-yellow.png'
         }
     };
 
-    /**
-     * Stores the selected theme in localStorage.
-     * @param {string} theme - The selected theme.
-     */
+     // Adjust icon paths based on the current page
+     function adjustIconPaths(iconMap) {
+        const currentPage = window.location.pathname.split('/').pop();
+        if (currentPage === 'index.html' || currentPage === '') {
+            // We are on the dashboard page, adjust paths for other pages
+            Object.keys(iconMap).forEach(theme => {
+                iconMap[theme]['indexButton'] = iconMap[theme]['indexButton'].replace('../', './');
+                iconMap[theme]['tasklistButton'] = iconMap[theme]['tasklistButton'].replace('../', './');
+                iconMap[theme]['calendarButton'] = iconMap[theme]['calendarButton'].replace('../', './');
+                iconMap[theme]['codelogButton'] = iconMap[theme]['codelogButton'].replace('../', './');
+                iconMap[theme]['documentationButton'] = iconMap[theme]['documentationButton'].replace('../', './');
+                iconMap[theme]['feedbackButton'] = iconMap[theme]['feedbackButton'].replace('../', './');
+            });
+        }
+    }
+
+    adjustIconPaths(iconMap);
+  
+    // Storing theme in localStorage
     const storeTheme = function(theme) {
         localStorage.setItem("theme", theme);
     };
@@ -77,7 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
      * Retrieves and applies the stored theme from localStorage.
      */
     const retrieveTheme = function() {
-        const currentTheme = localStorage.getItem("theme");
+        let currentTheme = localStorage.getItem("theme");
+        if (!currentTheme) {
+            currentTheme = 'laker'; // Default theme if none is set
+            storeTheme(currentTheme);
+        }
+        
         if (currentTheme) {
             colorThemes.forEach((themeOption) => {
                 if (themeOption.id === currentTheme) {

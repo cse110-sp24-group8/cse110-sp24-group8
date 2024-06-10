@@ -264,8 +264,8 @@ header img {
     background-color: var(--lecoder-light-purple);
 }
 
-:root:has(#dark:checked) .editFile:hover {
-    color: black;
+:root:has(#dark:checked) .edit-file:hover {
+    color: grey;
 }
 
 :root:has(#dark:checked) #fileSelect {
@@ -345,9 +345,6 @@ header img {
   :root:has(#laker:checked) .to-do-list .overlap {
     --lecoder-gradient-gold: linear-gradient(-143deg, rgba(253, 185, 39, 0.60) 9.51%, #FDB927 86.81%);
   }
-  :root:has(#laker:checked) .editFile {
-    color: var(--lecoder-header-color);
-  }
 
   :root:has(#laker:checked) #dueSoonContainer h2{
     color: var(--lecoder-purple, purple) !important;
@@ -357,9 +354,6 @@ header img {
     color: var(--lecoder-header-color), black;
 }
 
-  :root:has(#laker:checked) .editFile:hover {
-    color: var(--lecoder-gold);
-  }
 
   :root:has(#laker:checked) #dueSoonContainer h3, ul, li{
     color: var(--lecoder-purple);

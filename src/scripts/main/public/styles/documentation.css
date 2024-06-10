@@ -106,7 +106,7 @@ body {
 }
 
 .edit-file:hover {
-    color: var(--lecoder-header-color);
+    color: var(--lecoder-gold);
 }
 
 /* Style for delete file button */

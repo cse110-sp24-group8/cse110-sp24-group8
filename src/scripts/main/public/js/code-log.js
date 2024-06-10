@@ -86,7 +86,9 @@ function addLogEntry(date, time, content, container) {
 
   entry.innerHTML = `
       <div class='fieldD1'>
-          <div class='date-codelog'>Date: ${date}       <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button></div>
+          <div class='date-codelog'>Date: ${date}
+            <button class='delete-button'><img src="../img/task-delete.svg" alt="Delete" width="26" height="26"></button>
+          </div>
           <div class='time-codelog'>Time: ${time}</div>
       </div>
       <div class='fieldD2'>
@@ -206,3 +208,4 @@ function getSuffix(day) {
       return 'th';
   }
 }
+
